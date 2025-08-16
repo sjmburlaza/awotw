@@ -1,0 +1,15 @@
+<p>home works!</p>
+<div class="home-container">
+  <div class="content">
+
+  </div>
+  <div class="modes">
+    @for (mode of sortModes; track $index) {
+      <div class="mode" (click)="sort(mode)">
+        {{ mode }}
+      </div>
+    }
+  </div>
+</div>
+
+

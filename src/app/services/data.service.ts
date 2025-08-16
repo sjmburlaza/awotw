@@ -1,0 +1,35 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+export interface Group {
+  groupName: string;
+  items: Item[];
+}
+
+export interface Item {
+  id: string;
+  name: string;
+  yearBuilt: string;
+  style: string;
+  buildingType: string;
+  location: string;
+  continent: string;
+  descriptionUrl: string;
+  imageUrl: string;
+  codename: string;
+  color: string;
+}
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  constructor(private http: HttpClient) { }
+
+  getData(): Observable<Item[]> {
+    return this.http.get<Item[]>('assets/json/data.json');
+  }
+}
