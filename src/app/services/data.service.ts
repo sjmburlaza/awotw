@@ -8,7 +8,7 @@ export interface Group {
 }
 
 export interface Item {
-  id: string;
+  id: number;
   name: string;
   yearBuilt: string;
   style: string;
