@@ -1,0 +1,27 @@
+<div class="container">
+  @if (details) {
+    <div class="details">
+      <div class="details__image">
+        @if (loading) {
+          <div class="loader"></div>
+        }
+        <img [src]="details.imageURL" (load)="loading = false" (error)="loading = false" [hidden]="loading">
+      </div>
+      <div class="details__link">
+        <a [href]="details.descriptionURL" target="_blank">
+          <span>
+            {{ details.name }}
+          </span>
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+      <div class="details__location">
+        <i class="bi bi-pin-map"></i>
+        <span>
+          {{ details.location }}
+        </span>
+      </div>
+    </div>
+  }
+</div>
+

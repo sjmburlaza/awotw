@@ -15,8 +15,8 @@ export interface Item {
   buildingType: string;
   location: string;
   continent: string;
-  descriptionUrl: string;
-  imageUrl: string;
+  descriptionURL: string;
+  imageURL: string;
   codename: string;
   color: string;
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,4 +11,13 @@ import { Component } from '@angular/core';
 export class Header {
   isNightMode = false;
 
+  constructor( private router: Router ) {}
+
+  goToHomePage() {
+    this.router.navigate(['/home']);
+  }
+
+  goToQuizPage() {
+    this.router.navigate(['/quiz']);
+  }
 }

@@ -1,0 +1,38 @@
+.details {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 16px;
+  font-family: 'Barlow';
+
+  &__link {
+    font-size: 20px;
+  }
+
+  &__image {
+    height: 70vh;
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #ff7ff4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}

@@ -1,0 +1,71 @@
+<div class="quiz-container">
+  @if (selectedQuiz?.code) {
+    <div class="quiz-selected">
+      <div class="header">
+        <div class="header__title">
+          {{ selectedQuiz?.title }}
+        </div>
+        <div class="header__score">
+          Your score: 1/10
+        </div>
+      </div>
+      @if (loading) {
+        <div class="loader-wrapper">
+          <div class="loader">
+          </div>
+          <p>Generating question...</p>
+        </div>
+      }
+      <div class="content">
+        <div class="content__image">
+          <img [src]="item?.imageURL" (load)="loading = false" (error)="loading = false" [hidden]="loading">
+        </div>
+        @if (!loading) {
+          <div class="content__controls">
+            <div class="options">
+              <div class="label">
+                Select the correct answer:
+              </div>
+              @for (option of options; track $index) {
+                <div class="option">
+                  <input type="radio">
+                  <span>{{ option }}</span>
+                </div>
+              }
+            </div>
+            <div class="see-answer">
+              <button>
+                See answer
+                <span><i class="bi bi-eye-slash"></i></span>
+              </button>
+            </div>
+            <div class="next">
+              <button (click)="goNext()">
+                Next question
+                <span><i class="bi bi-arrow-right-circle"></i></span>
+              </button>
+            </div>
+            <div class="exit">
+              <button (click)="exit()">
+                Exit quiz
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="quiz-home">
+      <div class="title">
+        Quiz Me!!
+      </div>
+      <div class="quizzes">
+        @for (quiz of quizzes; track $index) {
+          <button (click)="onSelectQuiz(quiz)">
+            {{ quiz.title }}
+          </button>
+        }
+      </div>
+    </div>
+  }
+</div>

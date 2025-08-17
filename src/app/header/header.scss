@@ -2,14 +2,34 @@
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+
+  .search-bar {
+
+  }
+
+  .title {
+    // font-family: Prosto One;
+    font-family: "Londrina Outline", sans-serif;
+    font-size: 44px;
+    text-align: center;
+    margin-top: -12px;
+    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+  }
 }
 
-
-.button {
+.buttons {
   display: flex;
   gap: 8px;
 }
 
-img {
-  width: 24px;
+button {
+  padding: 4px 8px;
+}
+
+input {
+  width: 90px;
+  padding: 4px 8px;
 }

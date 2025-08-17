@@ -3,19 +3,23 @@
     <button>
       <i class="bi bi-search"></i>
     </button>
-    <input type="text">
+    <input type="text" placeholder="Search...">
   </div>
-  <div class="title">Architectural Wonders of the World</div>
-  <div class="button">
-    <div class="button__quiz">
-      <img src="assets/images/quiz.png" alt="">
+  <div class="title" (click)="goToHomePage()">
+    {{ 'Architectural Wonders of the World' | uppercase }}
+  </div>
+  <div class="buttons">
+    <div class="button__quiz" (click)="goToQuizPage()">
+      <button>
+        Quiz Me!!
+      </button>
     </div>
     <div class="button__bg-mode">
-      <button class="button__bg-mode__img">
+      <button>
         @if (isNightMode) {
-          <img src="assets/images/night.png" alt="">
+          <i class="bi bi-sun"></i>
         } @else {
-          <img src="assets/images/day.png" alt="">
+          <i class="bi bi-moon"></i>
         }
       </button>
     </div>

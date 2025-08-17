@@ -4,8 +4,12 @@
       <div class="group">
         <div class="items">
           @for (item of group.items; track item.id) {
-            <div #animatedItem class="item" [ngStyle]="getDynamicStyle(item)">
-              {{ item.codename }}
+            <div #animatedItem 
+              class="item" 
+              [ngStyle]="getDynamicStyle(item)"
+              (click)="goToDetailPage(item.id)"
+            >
+                {{ item.codename }}
             </div>
           }
         </div>

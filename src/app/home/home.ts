@@ -4,6 +4,7 @@ import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { animate, animateChild, AnimationBuilder, query, style, transition, trigger } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -36,7 +37,8 @@ export class Home implements OnInit {
   groups: Group[] = [];
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -207,6 +209,10 @@ export class Home implements OnInit {
     } else {
       return 'black';
     }
+  }
+
+  goToDetailPage(itemId: number): void {
+    this.router.navigate(['/detail/' + itemId]);
   }
   
 }
