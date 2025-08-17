@@ -90,7 +90,7 @@ export class Home implements OnInit {
     });
   }
 
-  sort(mode: string) {
+  sort(mode: string): void {
     this.capturePositions();
     const items = [...this.data];
 
@@ -100,7 +100,7 @@ export class Home implements OnInit {
         this.groups = this.groupByAttribute(items, 'name');
         break;
       case Mode.CHRONOLOGICAL:
-        // sorted = this.chronologicalSort(this.data);
+        this.groups = this.groupByYearBuilt(items);
         break;
       case Mode.LOCATION:
         this.sortAlphabetical(items, 'continent');
@@ -138,8 +138,75 @@ export class Home implements OnInit {
     }));
   }
 
-  chronologicalSort(data: Item[]) {
+  groupByYearBuilt(data: Item[]): Group[] {
+    const BC: Item[] = [];
+    const AD: Item[] = [];
 
+    for (const item of data) {
+      if (item.yearBuilt.endsWith("C")) {
+        BC.push(item);
+      } else {
+        AD.push(item);
+      }
+    }
+
+    const map = new Map<string, Item[]>();
+    for (const item of AD) {
+      const year = item.yearBuilt.split("-")[0].padStart(4, "0");
+      const century = year.substring(0, 2) + "00s";
+
+      if (!map.has(century)) {
+        map.set(century, []);
+      }
+      map.get(century)!.push(item);
+    }
+
+    let groups: Group[] = [
+      { groupName: "BC", items: BC },
+      ...Array.from(map.entries()).map(([groupName, items]) => ({
+        groupName,
+        items,
+      })),
+    ];
+
+    const idx1900s = groups.findIndex((g) => g.groupName === "1900s");
+    if (idx1900s !== -1) {
+      const items = groups[idx1900s].items;
+      const partA = items.slice(0, 13);
+      const partB = items.slice(13, 26);
+
+      groups[idx1900s] = { groupName: "1900s-a", items: partA };
+
+      groups.splice(idx1900s + 1, 0, { groupName: "1900s-b", items: partB });
+    }
+
+    const bcGroup = groups.shift();
+    groups.sort((a, b) => a.groupName.localeCompare(b.groupName));
+
+    return bcGroup ? [bcGroup, ...groups] : groups;
+  }
+
+  getDynamicStyle(item: Item) {
+    const fontColor = this.getColor(item.color);
+    return {
+      color: fontColor,
+      backgroundColor: item.color
+    }
+  }
+
+  getColor(hexcode: string): string {
+    const c = hexcode.substring(1);
+    const rgb = parseInt(c, 16);
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >>  8) & 0xff;
+    const b = (rgb >>  0) & 0xff;
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    
+    if (luma < 100) {
+      return 'white';
+    } else {
+      return 'black';
+    }
   }
   
 }

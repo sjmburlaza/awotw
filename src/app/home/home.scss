@@ -1,5 +1,5 @@
 .home-container {
-  background-color: aquamarine;
+  // background-color: aquamarine;
   position: fixed;
   bottom: 36px;
   left: 50%;
@@ -14,15 +14,17 @@
   display: flex;
   justify-content: center;
   align-items: end;
-  column-gap: 12px;
+  column-gap: 8px;
   font-size: 12px;
+  font-family: 'Barlow';
 
   .group {
-    background-color: #ff7ff4;
+    // background-color: #dfcbde;
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 40px;
 
     .items {
       display: flex;
@@ -32,23 +34,20 @@
       justify-content: center;
 
       .item {
-        background-color: darkcyan;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
-        display: inline-block;
+        // display: inline-block;
+        display: flex;
         transition: transform 300ms ease-out;
         width: 32px;
         height: 32px;
-
+        justify-content: center;
+        align-items: center;
       }
     }
 
     &__name {
       margin-top: 12px;
-      max-width: 40px;
       height: 32px;
-      // text-align: center;
+      font-family: 'Barlow Condensed';
     }
   }
 }
@@ -58,6 +57,7 @@
   display: flex;
   gap: 24px;
   justify-content: center;
+  font-family: 'Barlow';
 
   .mode {
     cursor: pointer;

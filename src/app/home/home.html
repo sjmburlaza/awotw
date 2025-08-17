@@ -4,7 +4,7 @@
       <div class="group">
         <div class="items">
           @for (item of group.items; track item.id) {
-            <div class="item" #animatedItem>
+            <div #animatedItem class="item" [ngStyle]="getDynamicStyle(item)">
               {{ item.codename }}
             </div>
           }
@@ -14,7 +14,6 @@
         </div>
       </div>
     }
-
   </div>
   <div class="modes">
     @for (mode of sortModes; track $index) {
