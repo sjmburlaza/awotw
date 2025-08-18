@@ -1,6 +1,6 @@
 # ArchitecturalWondersV3
 
-V1: https://github.com/sharmaneburlaza/architectural-wonders-v1
+V1: https://github.com/sharmaneburlaza/architectural-wonders-v1. 
 V2: https://github.com/sharmaneburlaza/architectural-wonders
 
 #
