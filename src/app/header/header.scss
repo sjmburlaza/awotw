@@ -1,9 +1,44 @@
+%gradient-text {
+  background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   margin-top: 24px;
 
-  .search-bar {
+  &__globe {
+    button {
+      border: none;
+      background-color: transparent;
+
+      i {
+        font-size: 24px;
+        @extend %gradient-text;
+      }
+    }
+  }
+
+  .title {
+    font-family: "Londrina Outline", sans-serif;
+    font-size: 44px;
+    text-align: center;
+    margin-top: -12px;
+    @extend %gradient-text;
+    cursor: pointer;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+
+  &__search-bar {
     button {
       padding: 0 6px;
       height: 24px;
@@ -21,39 +56,7 @@
     }
 
     input::placeholder {
-      background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
-  }
-
-  .title {
-    // font-family: Prosto One;
-    font-family: "Londrina Outline", sans-serif;
-    font-size: 44px;
-    text-align: center;
-    margin-top: -12px;
-    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: pointer;
-  }
-}
-
-.button {
-  display: flex;
-  gap: 8px;
-
-  i {
-    font-size: 20px;
-  }
-
-  &__globe {
-    button {
-      border: none;
-      background-color: transparent;
+      @extend %gradient-text;
     }
   }
 
@@ -61,6 +64,10 @@
     button {
       border: none;
       background-color: transparent;
+
+      i {
+        font-size: 22px;
+      }
     }
   }
 
@@ -68,7 +75,8 @@
     button {
       display: flex;
       justify-content: center;
-      height: 22px;
+      align-items: center;
+      height: 24px;
       padding: 0 8px;
       border: 1px solid gray;
       border-radius: 4px;
