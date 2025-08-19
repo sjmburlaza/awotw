@@ -1,0 +1,29 @@
+<div class="search-container">
+  <div class="title">
+    Your search results...
+  </div>
+  @if (searchResults.length) {
+    <div class="results">
+      @for (item of searchResults; track item.id) {
+        <a class="results__item" [href]="item.descriptionURL" target="_blank">
+          <div class="results__item__img">
+            <img [src]="item.imageURL" alt="">
+          </div>
+          <div class="results__item__name">
+            {{ item.name }}
+          </div>
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="nothing-found">
+      <div class="nothing-found__label">
+        <p>Nothing found.</p>
+        <img src="assets/images/no-results.png" alt="">
+      </div>
+      <div class="nothing-found__gif">
+        <img src="assets/images/empty.gif" alt="">
+      </div>
+    </div>
+  }
+</div>

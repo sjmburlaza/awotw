@@ -1,0 +1,84 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    margin: 36px 0;
+    font-size: 24px;
+    font-family: "Barlow";
+  }
+
+  .results {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    column-gap: 30px;
+    margin-bottom: 36px;
+
+    a {
+      text-decoration: none;
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+      cursor: pointer;
+
+      &__img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 302px;
+        height: 202px;
+        border: 1px solid gainsboro;
+        border-radius: 8px;
+
+        img {
+          max-width: 300px;
+          max-height: 200px;
+          object-fit: cover;
+        }
+      }
+
+      &__name {
+        font-family: "Barlow Condensed";
+        font-size: 18px;
+      }
+    }
+
+  }
+
+  .nothing-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &__label {
+      display: flex;
+      column-gap: 12px;
+
+      p {
+        font-size: 36px;
+        font-family: "Barlow";
+      }
+
+      img {
+        height: 48px;
+      }
+    }
+    &__gif {
+
+      img {
+        height: 360px;
+      }
+    }
+  }
+}
