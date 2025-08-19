@@ -105,6 +105,11 @@
   .title {
     font-family: "Michroma", sans-serif;
     font-weight: bold;
+    background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .quizzes {
