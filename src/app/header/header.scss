@@ -17,7 +17,7 @@
       background-color: transparent;
 
       i {
-        font-size: 24px;
+        font-size: 28px;
         @extend %gradient-text;
       }
     }
@@ -67,6 +67,7 @@
 
       i {
         font-size: 22px;
+        // color: gray;
       }
     }
   }

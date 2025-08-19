@@ -99,7 +99,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 36px;
+  gap: 60px;
   font-size: 36px;
 
   .title {
@@ -114,10 +114,11 @@
 
   .quizzes {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 24px;
+    width: 900px;
 
     button {
       padding: 24px 0;
