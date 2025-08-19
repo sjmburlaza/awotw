@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,19 @@ import { Router } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
-export class Header {
-  isNightMode = false;
+export class Header implements OnInit {
+  isDarkMode = false;
+  currentUrl = '/home';
 
   constructor( private router: Router ) {}
+
+  ngOnInit() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.currentUrl = event.urlAfterRedirects;
+      });
+  }
 
   goToHomePage() {
     this.router.navigate(['/home']);
@@ -20,4 +30,10 @@ export class Header {
   goToQuizPage() {
     this.router.navigate(['/quiz']);
   }
+
+  onToggleBgMode(): void {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.classList.toggle('dark-mode');
+  }
+
 }

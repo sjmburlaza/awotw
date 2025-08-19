@@ -17,6 +17,10 @@
     &__title {
       font-size: 36px;
     }
+
+    &__score {
+      font-size: 20px;
+    }
   }
 
   .content {
@@ -40,26 +44,51 @@
       padding-left: 24px;
 
       .options {
-        display: grid;
-        gap: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
         margin-bottom: 36px;
 
-        .label {
-          font-size: 24px;
+        .options__label {
+          font-size: 22px;
+          margin-bottom: 8px;
         }
 
         .option {
-          font-size: 20px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 18px;
+          padding: 6px 0 6px 16px;
+        }
+
+        .incorrect {
+          background-color: rgb(242, 113, 113);
+          border-radius: 6px;
+        }
+
+        .correct {
+          background-color: lightgreen;
+          border-radius: 6px;
         }
 
         span {
-          padding-left: 12px;
+          // padding-left: 12px;
         }
       }
 
-      button {
+      .see-answer__btn, .next__btn {
         padding: 8px 12px;
         width: 150px;
+      }
+
+      .exit {
+        margin-top: 60px;
+
+        .exit__btn {
+          padding: 0;
+          width: 80px;
+        }
       }
     }
   }
@@ -73,6 +102,11 @@
   gap: 36px;
   font-size: 36px;
 
+  .title {
+    font-family: "Michroma", sans-serif;
+    font-weight: bold;
+  }
+
   .quizzes {
     display: flex;
     flex-direction: column;
@@ -84,22 +118,25 @@
       padding: 24px 0;
       width: 400px;
       font-size: 32px;
+      border-radius: 12px;
+      border: 1px solid gray;
+      font-family: "Edu NSW ACT Cursive", cursive;
     }
-  }
-}
 
-.exit {
-  margin-top: 60px;
-
-  button {
-    padding: 0 !important;
-    width: 80px !important;
+    button:hover {
+      background-color: #ccc;
+      border-width: 2px;
+    }
   }
 }
 
 img {
   max-width: 700px;
   height: 400px;
+}
+
+button {
+  cursor: pointer;
 }
 
 .loader-wrapper {
@@ -126,4 +163,15 @@ img {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes stretch {
+  0%   { transform: scaleX(1); }
+  50%  { transform: scaleX(1.4); }
+  100% { transform: scaleX(1); }
+}
+
+.stretch-text {
+  display: inline-block;
+  animation: stretch 1.5s ease-in-out infinite;
 }

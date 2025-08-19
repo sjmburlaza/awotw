@@ -4,18 +4,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 16px;
   font-family: 'Barlow';
-
-  &__link {
-    font-size: 20px;
-  }
 
   &__image {
     height: 70vh;
 
     img {
       height: 100%;
+    }
+  }
+
+  &__link {
+    font-size: 20px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+
+    a {
+      display: flex;
+      gap: 8px;
+      background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+
+      i {
+        font-size: 18px;
+      }
     }
   }
 }

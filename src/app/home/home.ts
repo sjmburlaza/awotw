@@ -27,11 +27,26 @@ export class Home implements OnInit {
   private positions = new Map<number, DOMRect>();
 
   sortModes = [
-    Mode.ALPHABETICAL,
-    Mode.CHRONOLOGICAL,
-    Mode.LOCATION,
-    Mode.PROGRAMMATIC,
-    Mode.STYLE
+    {
+      name: Mode.ALPHABETICAL,
+      isSelected: false
+    },
+    {
+      name: Mode.CHRONOLOGICAL,
+      isSelected: false
+    },
+    {
+      name: Mode.LOCATION,
+      isSelected: false
+    },
+    {
+      name: Mode.PROGRAMMATIC,
+      isSelected: false
+    },
+    {
+      name: Mode.STYLE,
+      isSelected: true
+    }
   ];
   data: Item[] = [];
   groups: Group[] = [];
@@ -92,11 +107,21 @@ export class Home implements OnInit {
     });
   }
 
-  sort(mode: string): void {
+  updateSelectedMode(selectedMode: {name: string; isSelected: boolean}) {
+    this.sortModes = this.sortModes.map(mode => {
+      return {
+        name: mode.name,
+        isSelected: mode.name === selectedMode.name,
+      }
+    })
+  }
+
+  sort(mode: {name: string; isSelected: boolean}): void {
     this.capturePositions();
+    this.updateSelectedMode(mode);
     const items = [...this.data];
 
-    switch(mode) {
+    switch(mode.name) {
       case Mode.ALPHABETICAL:
         this.sortAlphabetical(items, 'name');
         this.groups = this.groupByAttribute(items, 'name');

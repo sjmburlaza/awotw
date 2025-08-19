@@ -4,3 +4,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body.dark-mode {
+  background-color: #222222;
+  color: #FFF5EE;
+
+  i {
+    color: white;
+  }
+
+  button {
+    background-color: transparent;
+    color: #FFF5EE;
+    border: 1px solid white;
+  }
+
+  button:disabled {
+    border-color: gray;
+    color: gray;
+
+    i {
+      color: gray;
+    }
+  }
+
+  .option.correct {
+    color: #222222;
+
+    i {
+      color: #222222;
+    }
+  }
+}
+

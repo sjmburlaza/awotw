@@ -43,6 +43,11 @@
         align-items: center;
         cursor: pointer;
       }
+
+      .item:hover {
+        transform: scale(1.4);
+        z-index: 1;
+      }
     }
 
     &__name {
@@ -62,5 +67,11 @@
 
   .mode {
     cursor: pointer;
+  }
+
+  .selected-mode {
+    font-weight: bold;
+    transform: scale(1.1);
+    color: blueviolet;
   }
 }

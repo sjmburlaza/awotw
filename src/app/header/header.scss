@@ -4,7 +4,29 @@
   margin-top: 24px;
 
   .search-bar {
+    button {
+      padding: 0 6px;
+      height: 24px;
+      border: 1px solid gray;
+      background-color: transparent;
+    }
 
+    input {
+      width: 90px;
+      height: 24px;
+      padding: 4px 8px;
+      border: 1px solid gray;
+      border-left: none;
+      background-color: transparent;
+    }
+
+    input::placeholder {
+      background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
   }
 
   .title {
@@ -20,16 +42,45 @@
   }
 }
 
-.buttons {
+.button {
   display: flex;
   gap: 8px;
+
+  i {
+    font-size: 20px;
+  }
+
+  &__globe {
+    button {
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &__bg-mode {
+    button {
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &__quiz {
+    button {
+      display: flex;
+      justify-content: center;
+      height: 22px;
+      padding: 0 8px;
+      border: 1px solid gray;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+      color: whitesmoke;
+      font-family: "Michroma", sans-serif;
+      font-size: 12px;
+    }
+  }
 }
 
 button {
-  padding: 4px 8px;
+  cursor: pointer;
 }
 
-input {
-  width: 90px;
-  padding: 4px 8px;
-}
