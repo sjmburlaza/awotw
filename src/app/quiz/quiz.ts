@@ -34,6 +34,16 @@ export class Quiz implements OnInit {
       title: 'What is the style?',
       color: 'blue'
     },
+    {
+      code: 'yearBuilt',
+      title: 'When was it built?',
+      color: 'orange'
+    },
+    {
+      code: 'buildingType',
+      title: 'What is the use?',
+      color: 'violet'
+    },
   ]
   data: Item[] = [];
   selectedQuiz: QuizModel | undefined | null;
@@ -122,6 +132,7 @@ export class Quiz implements OnInit {
     this.selectedQuiz = null;
     this.currentCount = 0;
     this.currentScore = 0;
+    this.hasSeenAnswer = false;
   }
 
 }
