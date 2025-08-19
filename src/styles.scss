@@ -35,5 +35,9 @@ body.dark-mode {
       color: #222222;
     }
   }
+
+  input:not(:placeholder-shown) {
+    color: #FFF5EE;
+  }
 }
 
