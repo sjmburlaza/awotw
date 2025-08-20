@@ -1,10 +1,11 @@
-import { Component, ElementRef, inject, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { DataService, Group, Item } from '../services/data.service';
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { animate, animateChild, AnimationBuilder, query, style, transition, trigger } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
+import { Loader } from '../loader/loader';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -16,11 +17,11 @@ enum Mode {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,],
+  imports: [CommonModule, Loader],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
-export class Home implements OnInit {
+export class Home implements OnInit, AfterViewInit {
   @ViewChildren('animatedItem', { read: ElementRef })
   animatedItems!: QueryList<ElementRef<HTMLLIElement>>;
 
@@ -50,6 +51,7 @@ export class Home implements OnInit {
   ];
   data: Item[] = [];
   groups: Group[] = [];
+  isLoading = true;
 
   constructor(
     private dataService: DataService,
@@ -60,6 +62,7 @@ export class Home implements OnInit {
     this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
       this.data = res;
       this.groups = this.groupByAttribute(this.data, 'style');
+      this.isLoading = false;
     });
   }
 
