@@ -1,0 +1,28 @@
+$dot-size: 32px;
+$dot-gap: 16px;
+$dot-duration: 1s;
+
+.loader-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: $dot-gap;
+}
+
+.loader-dots > span {
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+  opacity: .3;
+  animation: dotPulse $dot-duration ease-in-out infinite;
+}
+
+.loader-dots > span:nth-child(1) { background: #e74c3c; animation-delay: 0s;  }
+.loader-dots > span:nth-child(2) { background: #f39c12; animation-delay: .1s; }
+.loader-dots > span:nth-child(3) { background: #f1c40f; animation-delay: .2s; }
+.loader-dots > span:nth-child(4) { background: #2ecc71; animation-delay: .3s; }
+.loader-dots > span:nth-child(5) { background: #3498db; animation-delay: .4s; }
+
+@keyframes dotPulse {
+  0%, 100% { opacity: .3; transform: scale(1); }
+  50%      { opacity: 1;  transform: scale(1.4); }
+}

@@ -1,5 +1,4 @@
 .home-container {
-  // background-color: aquamarine;
   position: fixed;
   bottom: 24px;
   left: 50%;
@@ -18,6 +17,11 @@
     width: 1200px;
     gap: 16px;
   }
+}
+
+.loader {
+  height: 50vh;
+  margin: 0 auto;
 }
 
 .content {
