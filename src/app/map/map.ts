@@ -19,11 +19,11 @@ export class Map implements AfterViewInit {
   }
 
   private initMap(): void {
-    this.map = L.map('map').setView([37.5960027, 23.0794219], 6);
+    this.map = L.map('map').setView([47.7017066, 10.8602689], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
-      noWrap: true,   // 🔹 prevents horizontal repeat
+      noWrap: true,
       bounds: [[-90, -180], [90, 180]]
     }).addTo(this.map);
 
@@ -33,6 +33,8 @@ export class Map implements AfterViewInit {
   private loadWonders(): void {
     this.dataService.getData().subscribe((wonders: Item[]) => {
       wonders.forEach(wonder => {
+        if (!wonder.lat || !wonder.lon) return;
+
         const marker = L.marker(
           [+wonder.lat, +wonder.lon],
           { icon: this.createColoredIcon(wonder.color) }
