@@ -20,6 +20,7 @@
 
     a {
       text-decoration: none;
+      color: gray;
     }
 
     &__item {
@@ -68,10 +69,6 @@
       p {
         font-size: 36px;
         font-family: "Barlow";
-      }
-
-      img {
-        height: 48px;
       }
     }
     &__gif {

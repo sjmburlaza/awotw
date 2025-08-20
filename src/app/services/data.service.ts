@@ -19,6 +19,8 @@ export interface Item {
   imageURL: string;
   codename: string;
   color: string;
+  lat: string;
+  lon: string;
 }
 
 
@@ -30,6 +32,6 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getData(): Observable<Item[]> {
-    return this.http.get<Item[]>('assets/json/data.json');
+    return this.http.get<Item[]>('assets/json/wonders.json');
   }
 }

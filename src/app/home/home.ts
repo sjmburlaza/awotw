@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { animate, animateChild, AnimationBuilder, query, style, transition, trigger } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { Loader } from '../loader/loader';
+import { Loader } from '../shared/components/loader/loader';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
