@@ -1,14 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormsModule } from "@angular/forms";
-
-const URL = {
-  HOME: '/home',
-  QUIZ: '/quiz',
-  SEARCH: '/search'
-}
+import { URL } from '../shared/constants/routes.const';
 
 @Component({
   selector: 'app-header',
@@ -50,6 +45,10 @@ export class Header implements OnInit {
     } else {
       this.router.navigate([URL.HOME]);
     }
+  }
+
+  goToMapPage(): void {
+    this.router.navigate([URL.MAP]);
   }
 
   goToHomePage(): void {

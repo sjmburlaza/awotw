@@ -12,12 +12,13 @@
   margin-top: 24px;
 
   &__globe {
-    button {
+    display: flex;
+    gap: 4px;
+
+    &__home {
       display: flex;
       align-items: center;
       gap: 4px;
-      border: none;
-      background-color: transparent;
 
       i {
         font-size: 28px;
@@ -28,6 +29,16 @@
         @extend %gradient-text;
       }
     }
+
+    button {
+      border: none;
+      background-color: transparent;
+      height: 28px;
+
+      p {
+        text-decoration: underline;
+      }
+    }
   }
 
   .title {
@@ -36,7 +47,6 @@
     text-align: center;
     margin-top: -12px;
     @extend %gradient-text;
-    cursor: pointer;
   }
 }
 

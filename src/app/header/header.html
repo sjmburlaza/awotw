@@ -1,11 +1,18 @@
 <div class="header">
   <div class="header__globe">
-    <button (click)="goToHomePage()">
+    <button class="header__globe__home" (click)="goToHomePage()">
       <i class="bi bi-globe"></i>
       @if (currentUrl !== URL.HOME) {
         <span [ngClass]="{'move-right': isHomeClicked}">AWOTW</span>
       }
     </button>
+    @if (currentUrl === URL.HOME) {
+      <button (click)="goToMapPage()">
+        <p>
+          See Map View
+        </p>
+      </button>
+    }
   </div>
   <div class="title" [ngClass]="{'zoom-in-text': zoomInText}">
     @if (currentUrl === URL.HOME) {
