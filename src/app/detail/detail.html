@@ -1,5 +1,12 @@
 <div class="container">
-  @if (details) {
+  @if (details && currentDetailId) {
+    <div class="back-btn control-btn">
+      @if (currentDetailId > 1) {
+        <button (click)="goBack()">
+          <i class="bi bi-arrow-left-circle"></i>
+        </button>
+      }
+    </div>
     <div class="details">
       <div class="details__image">
         @if (loading) {
@@ -7,20 +14,29 @@
         }
         <img [src]="details.imageURL" (load)="loading = false" (error)="loading = false" [hidden]="loading">
       </div>
-      <div class="details__link">
-        <a [href]="details.descriptionURL" target="_blank">
+      @if (!loading) {
+        <div class="details__link">
+          <a [href]="details.descriptionURL" target="_blank">
+            <span>
+              {{ details.name }}
+            </span>
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+        <div class="details__location">
+          <i class="bi bi-pin-map"></i>
           <span>
-            {{ details.name }}
+            {{ details.location }}
           </span>
-          <i class="bi bi-box-arrow-up-right"></i>
-        </a>
-      </div>
-      <div class="details__location">
-        <i class="bi bi-pin-map"></i>
-        <span>
-          {{ details.location }}
-        </span>
-      </div>
+        </div>
+      }
+    </div>
+    <div class="next-btn control-btn">
+      @if (currentDetailId < wondersData.length) {
+        <button (click)="goNext()">
+          <i class="bi bi-arrow-right-circle"></i>
+        </button>
+      }
     </div>
   }
 </div>
