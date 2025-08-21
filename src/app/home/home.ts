@@ -4,7 +4,7 @@ import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Loader } from '../shared/components/loader/loader';
-import { groupByYearBuilt } from '../shared/utils-helper';
+import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from '../shared/utils-helper';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -60,7 +60,7 @@ export class Home implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
       this.data = res;
-      this.groups = this.groupByAttribute(this.data, 'style');
+      this.groups = groupByAttribute(this.data, 'style');
       this.isLoading = false;
     });
   }
@@ -101,14 +101,6 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
 
-  sortAlphabetical(data: Item[], attribute: keyof Item): Item[] {
-    return data.sort((a, b) => {
-      const keyA = String(a[attribute]);
-      const keyB = String(b[attribute]);
-      return keyA.localeCompare(keyB);
-    });
-  }
-
   updateSelectedMode(selectedMode: {name: string; isSelected: boolean}) {
     this.sortModes = this.sortModes.map(mode => {
       return {
@@ -125,46 +117,28 @@ export class Home implements OnInit, AfterViewInit {
 
     switch(mode.name) {
       case Mode.ALPHABETICAL:
-        this.sortAlphabetical(items, 'name');
-        this.groups = this.groupByAttribute(items, 'name');
+        sortAlphabetical(items, 'name');
+        this.groups = groupByAttribute(items, 'name');
         break;
       case Mode.CHRONOLOGICAL:
         this.groups = groupByYearBuilt(items);
         break;
       case Mode.LOCATION:
-        this.sortAlphabetical(items, 'continent');
-        this.groups = this.groupByAttribute(items, 'continent');
+        sortAlphabetical(items, 'continent');
+        this.groups = groupByAttribute(items, 'continent');
         break;
       case Mode.PROGRAMMATIC:
-        this.sortAlphabetical(items, 'buildingType');
-        this.groups = this.groupByAttribute(items, 'buildingType');
+        sortAlphabetical(items, 'buildingType');
+        this.groups = groupByAttribute(items, 'buildingType');
         break;
       case Mode.STYLE:
-        this.groups = this.groupByAttribute(items, 'style');
+        this.groups = groupByAttribute(items, 'style');
         break;
     }
 
     requestAnimationFrame(() => {
       this.playAnimations();
     });
-  }
-
-  groupByAttribute(data: Item[], attribute: keyof Item): Group[] {
-    const map = new Map<string, Item[]>();
-
-    for (const item of data) {
-      const groupkey = attribute === 'name' ? String(item[attribute][0]) :  String(item[attribute]);
-
-      if (!map.has(groupkey)) {
-        map.set(groupkey, []);
-      }
-      map.get(groupkey)!.push(item);
-    }
-
-    return Array.from(map.entries()).map(([groupName, items]) => ({
-      groupName,
-      items
-    }));
   }
  
   getDynamicStyle(item: Item) {
