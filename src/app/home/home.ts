@@ -2,10 +2,9 @@ import { AfterViewInit, Component, ElementRef, inject, OnInit, QueryList, ViewCh
 import { DataService, Group, Item } from '../services/data.service';
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { animate, animateChild, AnimationBuilder, query, style, transition, trigger } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { Loader } from '../shared/components/loader/loader';
+import { groupByYearBuilt } from '../shared/utils-helper';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -130,7 +129,7 @@ export class Home implements OnInit, AfterViewInit {
         this.groups = this.groupByAttribute(items, 'name');
         break;
       case Mode.CHRONOLOGICAL:
-        this.groups = this.groupByYearBuilt(items);
+        this.groups = groupByYearBuilt(items);
         break;
       case Mode.LOCATION:
         this.sortAlphabetical(items, 'continent');
@@ -167,55 +166,7 @@ export class Home implements OnInit, AfterViewInit {
       items
     }));
   }
-
-  groupByYearBuilt(data: Item[]): Group[] {
-    const BC: Item[] = [];
-    const AD: Item[] = [];
-
-    for (const item of data) {
-      if (item.yearBuilt.endsWith("C")) {
-        BC.push(item);
-      } else {
-        AD.push(item);
-      }
-    }
-
-    const map = new Map<string, Item[]>();
-    for (const item of AD) {
-      const year = item.yearBuilt.split("-")[0].padStart(4, "0");
-      const century = year.substring(0, 2) + "00s";
-
-      if (!map.has(century)) {
-        map.set(century, []);
-      }
-      map.get(century)!.push(item);
-    }
-
-    let groups: Group[] = [
-      { groupName: "BC", items: BC },
-      ...Array.from(map.entries()).map(([groupName, items]) => ({
-        groupName,
-        items,
-      })),
-    ];
-
-    const idx1900s = groups.findIndex((g) => g.groupName === "1900s");
-    if (idx1900s !== -1) {
-      const items = groups[idx1900s].items;
-      const partA = items.slice(0, 13);
-      const partB = items.slice(13, 26);
-
-      groups[idx1900s] = { groupName: "1900s-a", items: partA };
-
-      groups.splice(idx1900s + 1, 0, { groupName: "1900s-b", items: partB });
-    }
-
-    const bcGroup = groups.shift();
-    groups.sort((a, b) => a.groupName.localeCompare(b.groupName));
-
-    return bcGroup ? [bcGroup, ...groups] : groups;
-  }
-
+ 
   getDynamicStyle(item: Item) {
     const fontColor = this.getColor(item.color);
     return {

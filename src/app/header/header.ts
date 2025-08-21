@@ -51,12 +51,16 @@ export class Header implements OnInit {
     this.router.navigate([URL.MAP]);
   }
 
+  goToTimelinePage(): void {
+    this.router.navigate([URL.TIMELINE]);
+  }
+
   goToHomePage(): void {
     this.isHomeClicked = true;
     setTimeout(() => {
       this.router.navigate([URL.HOME]);
       this.isHomeClicked = false;
-    }, 800);
+    }, 500);
   }
 
   goToQuizPage(): void {

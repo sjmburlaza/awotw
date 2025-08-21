@@ -1,3 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.control-btn {
+  width: 36px;
+  margin-top: 40vh;
+
+  i {
+    font-size: 36px;
+    color: gray;
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+}
+
 .details {
   margin-top: 24px;
   display: flex;
@@ -7,10 +28,18 @@
   font-family: 'Barlow';
 
   &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid gainsboro;
+    width: 960px;
     height: 70vh;
 
     img {
+      width: 90%;
       height: 100%;
+      object-fit: contain;
     }
   }
 
