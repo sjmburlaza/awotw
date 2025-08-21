@@ -1,5 +1,31 @@
 import { Group, Item } from "../services/data.service";
 
+export function sortAlphabetical(data: Item[], attribute: keyof Item): Item[] {
+  return data.sort((a, b) => {
+    const keyA = String(a[attribute]);
+    const keyB = String(b[attribute]);
+    return keyA.localeCompare(keyB);
+  });
+}
+
+export function groupByAttribute(data: Item[], attribute: keyof Item): Group[] {
+  const map = new Map<string, Item[]>();
+
+  for (const item of data) {
+    const groupkey = attribute === 'name' ? String(item[attribute][0]) :  String(item[attribute]);
+
+    if (!map.has(groupkey)) {
+      map.set(groupkey, []);
+    }
+    map.get(groupkey)!.push(item);
+  }
+
+  return Array.from(map.entries()).map(([groupName, items]) => ({
+    groupName,
+    items
+  }));
+}
+
 export function groupByYearBuilt(data: Item[]): Group[] {
   const BC: Item[] = [];
   const AD: Item[] = [];
@@ -44,6 +70,14 @@ export function groupByYearBuilt(data: Item[]): Group[] {
 
   const bcGroup = groups.shift();
   groups.sort((a, b) => a.groupName.localeCompare(b.groupName));
+  const combinedGroups = bcGroup ? [bcGroup, ...groups] : groups;
 
-  return bcGroup ? [bcGroup, ...groups] : groups;
+  combinedGroups.map((group) => {
+    return {
+      groupName: group.groupName,
+      items: sortAlphabetical(group.items, 'name')
+    };
+  });
+
+  return combinedGroups;
 }
