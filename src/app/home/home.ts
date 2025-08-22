@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Loader } from '../shared/components/loader/loader';
 import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from '../shared/utils-helper';
+import { LoadingService } from '../services/loading-service';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -54,7 +55,8 @@ export class Home implements OnInit, AfterViewInit {
 
   constructor(
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService,
   ) {}
 
   ngOnInit() {
@@ -62,6 +64,7 @@ export class Home implements OnInit, AfterViewInit {
       this.data = res;
       this.groups = groupByAttribute(this.data, 'style');
       this.isLoading = false;
+      this.loadingService.isLoading(false);
     });
   }
 
