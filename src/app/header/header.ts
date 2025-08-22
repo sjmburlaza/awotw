@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormsModule } from "@angular/forms";
 import { URL } from '../shared/constants/routes.const';
+import { LoadingService } from '../services/loading-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +20,12 @@ export class Header implements OnInit {
   isHomeClicked = false;
   zoomInText = false;
   searchQuery = '';
+  isLoading = true;
 
   constructor(
     private router: Router,
+    private loadingService: LoadingService,
+    private destroyRef: DestroyRef,
   ) {}
 
   ngOnInit() {
@@ -37,6 +42,10 @@ export class Header implements OnInit {
           this.searchQuery = '';
         }
     });
+
+    this.loadingService.isloading$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((res) => this.isLoading = res);
   }
 
   onSearch(): void {
