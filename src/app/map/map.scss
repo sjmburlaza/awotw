@@ -1,10 +1,21 @@
-#map {
+.map-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 80vh;
   width: 1200px;
+
+  .title {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-family: 'Barlow';
+    text-align: center;
+  }
+
+  #map {
+    height: 80vh;
+    width: 100%;
+  }
 }
 
 .custom-marker {

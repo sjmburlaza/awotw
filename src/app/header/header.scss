@@ -9,7 +9,8 @@
 .header {
   display: grid;
   grid-template-columns: 2fr 5fr 2fr;
-  margin-top: 24px;
+  height: 100%;
+  padding-top: 24px;
 
   &__globe {
     display: flex;

@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormsModule } from "@angular/forms";
 import { URL } from '../shared/constants/routes.const';
-import { LoadingService } from '../services/loading-service';
+import { LoaderService } from '../services/loader-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -24,7 +24,7 @@ export class Header implements OnInit {
 
   constructor(
     private router: Router,
-    private loadingService: LoadingService,
+    private loaderService: LoaderService,
     private destroyRef: DestroyRef,
   ) {}
 
@@ -43,9 +43,9 @@ export class Header implements OnInit {
         }
     });
 
-    this.loadingService.isloading$
+    this.loaderService.isLoading$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((res) => this.isLoading = res);
+      .subscribe((state) => this.isLoading = state);
   }
 
   onSearch(): void {
