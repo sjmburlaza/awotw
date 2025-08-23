@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Loader } from '../shared/components/loader/loader';
 import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from '../shared/utils-helper';
 import { LoaderService } from '../services/loader-service';
+import { URL } from '../shared/constants/routes.const';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -26,6 +27,7 @@ export class Home implements OnInit, AfterViewInit {
   animatedItems!: QueryList<ElementRef<HTMLLIElement>>;
 
   private positions = new Map<number, DOMRect>();
+  readonly URL = URL;
 
   sortModes = [
     {
@@ -59,7 +61,8 @@ export class Home implements OnInit, AfterViewInit {
     private loaderService: LoaderService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loaderService.setLoading(true);
     this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
       this.data = res;
       this.groups = groupByAttribute(this.data, 'style');
@@ -68,11 +71,11 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.capturePositions();
   }
 
-  private capturePositions() {
+  private capturePositions(): void {
     this.positions.clear();
     this.animatedItems.forEach((el, i) => {
       const rect = el.nativeElement.getBoundingClientRect();
@@ -80,7 +83,7 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
 
-  private playAnimations() {
+  private playAnimations(): void {
     this.animatedItems.forEach((el, i) => {
       const item = this.data[i];
       const oldRect = this.positions.get(item.id);
@@ -104,7 +107,7 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
 
-  updateSelectedMode(selectedMode: {name: string; isSelected: boolean}) {
+  updateSelectedMode(selectedMode: {name: string; isSelected: boolean}): void {
     this.sortModes = this.sortModes.map(mode => {
       return {
         name: mode.name,
@@ -144,7 +147,7 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
  
-  getDynamicStyle(item: Item) {
+  getDynamicStyle(item: Item): {color: string, backgroundColor: string} {
     const fontColor = this.getColor(item.color);
     return {
       color: fontColor,
@@ -168,7 +171,7 @@ export class Home implements OnInit, AfterViewInit {
   }
 
   goToDetailPage(itemId: number): void {
-    this.router.navigate(['/detail/' + itemId]);
+    this.router.navigate([URL.DETAIL + '/' + itemId]);
   }
   
 }

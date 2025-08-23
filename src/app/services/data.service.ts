@@ -19,8 +19,14 @@ export interface Item {
   imageURL: string;
   codename: string;
   color: string;
-  lat: string;
-  lon: string;
+  lat?: string;
+  lon?: string;
+  wiki?: {
+    title?: string;
+    description?: string;
+    extract?: string;
+    wikipedia?: string;
+  }
 }
 
 

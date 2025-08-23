@@ -59,7 +59,8 @@
             <div class="see-answer">
               <button class="see-answer__btn" [disabled]="disableSeeAnswerBtn" (click)="seeAnswer()">
                 See answer
-                <span><i class="bi bi-eye-slash"></i></span>
+                <span [hidden]="hasSeenAnswer"><i class="bi bi-eye-slash"></i></span>
+                <span [hidden]="!hasSeenAnswer"><i class="bi bi-eye"></i></span>
               </button>
             </div>
             <div class="next">
