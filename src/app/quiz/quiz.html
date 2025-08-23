@@ -6,7 +6,10 @@
           {{ selectedQuiz?.title }}
         </div>
         <div class="header__score">
-          Your score: {{ currentScore }}/{{ currentCount }}
+          Your score: 
+          <span>
+            {{ currentScore }}/{{ currentCount }}
+          </span>
         </div>
       </div>
       @if (loading) {
@@ -46,11 +49,9 @@
                   >
                   <label [for]="option">{{ option }}</label>
                   @if (hasSeenAnswer && option === correctAnswer) {
-                    <span>
-                      <a [href]="item?.descriptionURL" target="_blank">
-                        <i class="bi bi-box-arrow-up-right"></i>
-                      </a>
-                    </span>
+                    <a class="option__url" [href]="item?.descriptionURL" target="_blank">
+                      <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
                   }
                 </div>
               }

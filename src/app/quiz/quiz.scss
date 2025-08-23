@@ -1,5 +1,4 @@
 .quiz-container {
-  margin-top: 24px;
   font-family: 'Barlow';
 }
 
@@ -10,38 +9,57 @@
   .header {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 200px;
+    gap: 36px;
     margin-bottom: 24px;
 
     &__title {
-      font-size: 36px;
+      width: 800px;
+      font-size: 32px;
+      text-align: center;
     }
 
     &__score {
-      font-size: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      width: 300px;
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        width: 48px;
+        border: 1px solid palevioletred;
+        border-radius: 24px;
+        margin-left: 8px;
+      }
     }
   }
 
   .content {
     display: flex;
     justify-content: center;
+    gap: 36px;
 
     &__image {
       display: flex;
       justify-content: center;
       align-items: center;
       border: 1px solid #ccc;
-      width: 700px;
+      width: 800px;
+
+      img {
+        max-width: 800px;
+        height: 500px;
+      }
     }
 
     &__controls {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      width: 400px;
-      // background-color: bisque;
-      padding-left: 24px;
+      width: 300px;
 
       .options {
         display: flex;
@@ -60,6 +78,12 @@
           gap: 8px;
           font-size: 18px;
           padding: 6px 0 6px 16px;
+
+          &__url {
+            i {
+              font-size: 12px;
+            }
+          }
         }
 
         .incorrect {
@@ -83,7 +107,7 @@
       }
 
       .exit {
-        margin-top: 60px;
+        margin-top: 120px;
 
         .exit__btn {
           padding: 0;
@@ -134,11 +158,6 @@
       border-width: 2px;
     }
   }
-}
-
-img {
-  max-width: 700px;
-  height: 400px;
 }
 
 button {
