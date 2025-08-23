@@ -13,7 +13,13 @@
     "codename": "SPD",
     "color": "#566D7E",
     "lat": "29.8503350",
-    "lon": "31.2282840"
+    "lon": "31.2282840",
+    "wiki": {
+      "title": "Pyramid of Djoser",
+      "description": "Archeological site in Egypt",
+      "extract": "The pyramid of Djoser, sometimes called the Step Pyramid of Djoser or Step Pyramid of Horus Netjerikhet, is an archaeological site in the Saqqara necropolis, Egypt, northwest of the ruins of Memphis. It is the first Egyptian pyramid to be built. The 6-tier, 4-sided structure is the earliest colossal stone building in Egypt. It was built in the 27th century BC during the Third Dynasty for the burial of Pharaoh Djoser. The pyramid is the central feature of a vast mortuary complex in an enormous courtyard surrounded by ceremonial structures and decoration.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Pyramid_of_Djoser"
+    }
   },
   {
     "id": 2,
@@ -29,7 +35,13 @@
     "codename": "GPG",
     "color": "#737CA1",
     "lat": "29.9870753",
-    "lon": "31.2118063"
+    "lon": "31.2118063",
+    "wiki": {
+      "title": "Great Pyramid of Giza",
+      "description": "Largest pyramid in the Giza Necropolis, Egypt",
+      "extract": "The Great Pyramid of Giza is the largest Egyptian pyramid. It served as the tomb of pharaoh Khufu, who ruled during the Fourth Dynasty of the Old Kingdom. Built c. 2600 BC, over a period of about 26 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only wonder that has remained largely intact. It is the most famous monument of the Giza pyramid complex, which is part of the UNESCO World Heritage Site \"Memphis and its Necropolis\". It is situated at the northeastern end of the line of the three main pyramids at Giza.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+    }
   },
   {
     "id": 3,
@@ -45,11 +57,17 @@
     "codename": "HHK",
     "color": "#728FCE",
     "lat": "25.7020960",
-    "lon": "32.6471860"
+    "lon": "32.6471860",
+    "wiki": {
+      "title": "Great Hypostyle Hall",
+      "description": "Hall within the Karnak temple complex",
+      "extract": "The Great Hypostyle Hall is located within the Karnak Temple Complex, in the Precinct of Amon-Re. It is one of the most visited monuments of Ancient Egypt. The structure was built around the 19th Egyptian Dynasty. Its design was initially instituted by Hatshepsut, at the North-west chapel to Amun in the upper terrace of Deir el-Bahri. The name refers to hypostyle architectural pattern.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Great_Hypostyle_Hall"
+    }
   },
   {
     "id": 4,
-    "name": "Great Temple of Abu Simbel",
+    "name": "Abu Simbel",
     "yearBuilt": "1264 BC",
     "style": "Egyptian",
     "buildingType": "Religious",
@@ -61,7 +79,13 @@
     "codename": "GTA",
     "color": "#4863A0",
     "lat": "22.3371195",
-    "lon": "31.6257973"
+    "lon": "31.6257973",
+    "wiki": {
+      "title": "Abu Simbel",
+      "description": "UNESCO World Heritage Site in southern Egypt",
+      "extract": "Abu Simbel is a historic site comprising two massive rock-cut temples in the village of Abu Simbel, Aswan Governorate, Upper Egypt, near the border with Sudan. It is located on the western bank of Lake Nasser, about 230 km (140 mi) southwest of Aswan. The twin temples were originally carved out of the mountainside in the 13th century BC, during the 19th Dynasty reign of the Pharaoh Ramesses II. Their huge external rock relief figures of Ramesses II have become iconic. His wife, Nefertari, and children can be seen in smaller figures by his feet. Sculptures inside the Great Temple commemorate Ramesses II's heroic leadership at the Battle of Kadesh.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Abu_Simbel"
+    }
   },
   {
     "id": 5,
@@ -77,7 +101,13 @@
     "codename": "TOH",
     "color": "#2B547E",
     "lat": "37.9755648",
-    "lon": "23.7348324"
+    "lon": "23.7348324",
+    "wiki": {
+      "title": "Temple of Hephaestus",
+      "description": "Ancient Greek temple in Athens",
+      "extract": "The Temple of Hephaestus or Hephaisteion, is a well-preserved Greek temple dedicated to Hephaestus; it remains standing largely intact today. It is a Doric peripteral temple, and is located at the north-west side of the Agora of Athens, on top of the Agoraios Kolonos hill. From the 7th century until 1834, it served as the Greek Orthodox church of Saint George Akamates. The building's condition has been maintained due to its history of varied use.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Hephaestus"
+    }
   },
   {
     "id": 6,
@@ -93,7 +123,13 @@
     "codename": "TOS",
     "color": "#36454F",
     "lat": "37.5877940",
-    "lon": "14.1550480"
+    "lon": "14.1550480",
+    "wiki": {
+      "title": "Segesta",
+      "description": "Ancient Sicilian city",
+      "extract": "Segesta was one of the major cities of the Elymians, one of the three indigenous peoples of Sicily. The other major cities of the Elymians were Eryx and Entella. It is located in the northwestern part of Sicily in Italy, near the modern commune of Calatafimi-Segesta in the province of Trapani. The hellenization of Segesta happened very early and had a profound effect on its people.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Segesta"
+    }
   },
   {
     "id": 7,
@@ -109,7 +145,13 @@
     "codename": "ERE",
     "color": "#29465B",
     "lat": "37.9755648",
-    "lon": "23.7348324"
+    "lon": "23.7348324",
+    "wiki": {
+      "title": "Erechtheion",
+      "description": "Ancient Greek temple",
+      "extract": "The Erechtheion or Temple of Athena Polias is an ancient Greek Ionic temple on the north side of the Acropolis, Athens, which was primarily dedicated to the goddess Athena.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Erechtheion"
+    }
   },
   {
     "id": 8,
@@ -125,11 +167,17 @@
     "codename": "PAR",
     "color": "#2B3856",
     "lat": "37.9755648",
-    "lon": "23.7348324"
+    "lon": "23.7348324",
+    "wiki": {
+      "title": "Parthenon",
+      "description": "Temple on the Athenian Acropolis, Greece",
+      "extract": "The Parthenon is a former temple on the Athenian Acropolis, Greece, that was dedicated to the goddess Athena. Its decorative sculptures are considered some of the high points of classical Greek art, and the Parthenon is considered an enduring symbol of ancient Greece, democracy, and Western civilization.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Parthenon"
+    }
   },
   {
     "id": 9,
-    "name": "Tholos of the Sanctuary of Athena Pronaia",
+    "name": "Tholos of Delphi",
     "yearBuilt": "380-360 BC",
     "style": "Greek, Roman",
     "buildingType": "Memorial",
@@ -141,7 +189,13 @@
     "codename": "TSP",
     "color": "#123456",
     "lat": "38.4811538",
-    "lon": "22.5005486"
+    "lon": "22.5005486",
+    "wiki": {
+      "title": "Tholos of Delphi",
+      "description": "Ancient Greek temple to Athena Pronaia",
+      "extract": "The Tholos of Delphi is among the ancient structures of the Sanctuary of Athena Pronaia in Delphi. The circular temple, a tholos, shares the immediate site with other ancient foundations of the Temple of Athena Pronaia, all located less than a mile east of the main ruins at Delphi, in the modern Greek regional unit of Phocis. The tholos is part of the Delphi UNESCO World Heritage Site.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Tholos_of_Delphi"
+    }
   },
   {
     "id": 10,
@@ -157,7 +211,13 @@
     "codename": "ATE",
     "color": "#151B54",
     "lat": "37.5960027",
-    "lon": "23.0794219"
+    "lon": "23.0794219",
+    "wiki": {
+      "title": "Ancient Theatre of Epidaurus",
+      "description": "UNESCO World Heritage Site",
+      "extract": "The Ancient Theatre of Epidaurus is a theatre in the Greek city of Epidaurus, located on the southeast end of the sanctuary dedicated to the ancient Greek God of medicine, Asclepius. It is built on the west side of Cynortion Mountain, near modern Lygourio, and belongs to the Epidaurus Municipality. Constructed in the late 4th century BC, it is considered to be the most perfect ancient Greek theatre with regard to acoustics and aesthetics. Because of its exceptional architecture and aesthetics, the theatre was inscribed on the UNESCO World Heritage List in 1988 along with the Temple of Asclepius.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ancient_Theatre_of_Epidaurus"
+    }
   },
   {
     "id": 11,
@@ -173,7 +233,13 @@
     "codename": "COL",
     "color": "#191970",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "Colosseum",
+      "description": "Ancient Roman amphitheatre",
+      "extract": "The Colosseum is an elliptical amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is still the largest standing amphitheatre in the world, despite its age. Construction began under the Emperor Vespasian in 72 and was completed in AD 80 under his successor and heir, Titus. Further modifications were made during the reign of Domitian. The three emperors who were patrons of the work are known as the Flavian dynasty, and the amphitheatre was named the Flavian Amphitheatre by later classicists and archaeologists for its association with their family name (Flavius).",
+      "wikipedia": "https://en.wikipedia.org/wiki/Colosseum"
+    }
   },
   {
     "id": 12,
@@ -189,7 +255,13 @@
     "codename": "PDG",
     "color": "#000080",
     "lat": "43.9704248",
-    "lon": "4.5425941"
+    "lon": "4.5425941",
+    "wiki": {
+      "title": "Pont du Gard",
+      "description": "Ancient Roman aqueduct bridge",
+      "extract": "The Pont du Gard is an ancient Roman aqueduct bridge built in the first century AD to carry water over 50 km (31 mi) to the Roman colony of Nemausus (Nîmes). It crosses the river Gardon near the town of Vers-Pont-du-Gard in southern France. The Pont du Gard is one of the best preserved Roman aqueduct bridges. It was added to UNESCO's list of World Heritage sites in 1985 because of its exceptional preservation, historical importance, and architectural ingenuity.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Pont_du_Gard"
+    }
   },
   {
     "id": 13,
@@ -205,7 +277,13 @@
     "codename": "MCa",
     "color": "#9AFEFF",
     "lat": "43.8381744",
-    "lon": "4.3557277"
+    "lon": "4.3557277",
+    "wiki": {
+      "title": "Maison carrée",
+      "description": "Ancient Roman temple in Nîmes, France",
+      "extract": "The Maison carrée is an ancient Roman temple in Nîmes, southern France; it is one of the best-preserved Roman temples to survive in the territory of the former Roman Empire. It is a mid-sized Augustan provincial temple of the Imperial cult, a caesareum.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Maison_carr%C3%A9e"
+    }
   },
   {
     "id": 14,
@@ -221,7 +299,13 @@
     "codename": "PAN",
     "color": "#57FEFF",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "Pantheon",
+      "description": "Topics referred to by the same term",
+      "extract": "Pantheon may refer to:Pantheon (religion), a set of gods belonging to a particular religion or tradition, and a temple or sacred building\nPantheon, Rome, Italy, a Catholic church and former Roman temple",
+      "wikipedia": "https://en.wikipedia.org/wiki/Pantheon"
+    }
   },
   {
     "id": 15,
@@ -237,7 +321,13 @@
     "codename": "LoC",
     "color": "#8EEBEC",
     "lat": "37.9443103",
-    "lon": "27.3437775"
+    "lon": "27.3437775",
+    "wiki": {
+      "title": "Library of Celsus",
+      "description": "Ancient Greek building in Ephesus, Anatolia",
+      "extract": "The Library of Celsus is an ancient Roman building in Ephesus, Anatolia, today located near the modern town of Selçuk, in the İzmir Province of western Turkey. The building was commissioned in the years 110s CE by a consul of the Roman Empire, Tiberius Julius Aquila Polemaeanus, as a funerary monument for his father Tiberius Julius Celsus Polemaeanus, former proconsul of Asia, and completed during the reign of the Roman Emperor Hadrian, sometime after Aquila's death.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Library_of_Celsus"
+    }
   },
   {
     "id": 16,
@@ -253,27 +343,39 @@
     "codename": "AoC",
     "color": "#81D8D0",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "Arch of Constantine",
+      "description": "Ancient Roman triumphal arch, a landmark of Rome, Italy",
+      "extract": "The Arch of Constantine is a triumphal arch in Rome dedicated to the emperor Constantine the Great. The arch was commissioned by the Roman Senate to commemorate Constantine's victory over Maxentius at the Battle of the Milvian Bridge in AD 312. Situated between the Colosseum and the Palatine Hill, the arch spans the Via Triumphalis, the route taken by victorious military leaders when they entered the city in a triumphal procession. Dedicated in 315, it is the largest Roman triumphal arch, with overall dimensions of 21 m (69 ft) high, 25.9 m (85 ft) wide and 7.4 m (24 ft) deep. It has three bays, the central one being 11.5 m (38 ft) high and 6.5 m (21 ft) wide and the laterals 7.4 m (24 ft) by 3.4 m (11 ft) each. The arch is constructed of brick-faced concrete covered in marble.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Arch_of_Constantine"
+    }
   },
   {
     "id": 17,
-    "name": "Avenue of Dead",
+    "name": "Avenue of Dead/Teotihuacan",
     "yearBuilt": "1-600",
     "style": "Pre-Columbian",
     "buildingType": "Memorial",
     "scale": "",
     "location": "Teotihuacan, Mexico",
     "continent": "South America",
-    "descriptionURL": "https://www.ncpedia.org/media/avenue-dead-teotihuacan",
-    "imageURL": "https://www.worldhistory.org/uploads/images/3630.jpg?v=1639849501",
+    "descriptionURL": "https://en.wikipedia.org/wiki/Teotihuacan",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Teotihuac%C3%A1n-5973.JPG/1200px-Teotihuac%C3%A1n-5973.JPG",
     "codename": "AoD",
     "color": "#2E8B57",
     "lat": "19.6933571",
-    "lon": "-98.8831264"
+    "lon": "-98.8831264",
+    "wiki": {
+      "title": "Teotihuacan",
+      "description": "Ancient Mesoamerican city",
+      "extract": "Teotihuacan is an ancient Mesoamerican city located in a sub-valley of the Valley of Mexico, which is located in the State of Mexico, 40 kilometers (25 mi) northeast of modern-day Mexico City.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Teotihuacan"
+    }
   },
   {
     "id": 18,
-    "name": "Palace of Palenque",
+    "name": "Lakamha/Palenque",
     "yearBuilt": "600",
     "style": "Pre-Columbian",
     "buildingType": "Residential",
@@ -281,11 +383,17 @@
     "location": "Chiapas, Mexico",
     "continent": "South America",
     "descriptionURL": "https://en.wikipedia.org/wiki/Palenque",
-    "imageURL": "https://www.thoughtco.com/thmb/LF_2xhuBzeJCG7DoKMdKa9aUf28=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/view-of-the-palace-palenque-unesco-world-heritage-list-1987-chiapas-mexico-mayan-civilization-7th-8th-century-557378321-58b1a3233df78cdcd8d7034e.jpg",
-    "codename": "PoP",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/d/df/Palace_at_Palenque.jpg",
+    "codename": "Pal",
     "color": "#50C878",
     "lat": "16.5000001",
-    "lon": "-92.5000001"
+    "lon": "-92.5000001",
+    "wiki": {
+      "title": "Palenque",
+      "description": "Ancient Mayan city-state in Chiapas, Mexico",
+      "extract": "Palenque, also anciently known in the Itza Language as Lakamha, was a Maya city-state in southern Mexico that perished in the 8th century. The Palenque ruins date from ca. 226 BC to ca. 799 AD. After its decline, it was overgrown by the jungle of cedar, mahogany, and sapodilla trees, but has since been excavated and restored. It is located near the Usumacinta River in the Mexican state of Chiapas, about 130 km (81 mi) south of Ciudad del Carmen, 150 meters (490 ft) above sea level. It is adjacent to the modern town of Palenque, Chiapas. It averages a humid 26 °C (79 °F) with roughly 2,160 millimeters (85 in) of rain a year.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Palenque"
+    }
   },
   {
     "id": 19,
@@ -301,7 +409,13 @@
     "codename": "TGJ",
     "color": "#78866B",
     "lat": "16.9131737",
-    "lon": "-89.9296189"
+    "lon": "-89.9296189",
+    "wiki": {
+      "title": "Tikal Temple I",
+      "description": "Mesoamerican pyramid in Guatemala",
+      "extract": "Tikal Temple I is the designation given to one of the major structures at Tikal, one of the largest cities and archaeological sites of the pre-Columbian Maya civilization in Mesoamerica. It is located in the Petén Basin region of northern Guatemala. It also is known as the Temple of the Great Jaguar because of a lintel that represents a king sitting upon a jaguar throne. An alternative name is the Temple of Ah Cacao, after the ruler buried in the temple. Temple I is a typically Petén-styled limestone stepped pyramid structure that is dated to approximately 732 AD.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Tikal_Temple_I"
+    }
   },
   {
     "id": 20,
@@ -317,7 +431,8 @@
     "codename": "NUQ",
     "color": "#848B79",
     "lat": "20.3602902",
-    "lon": "-89.7705605"
+    "lon": "-89.7705605",
+    "wiki": null
   },
   {
     "id": 21,
@@ -333,7 +448,13 @@
     "codename": "ToW",
     "color": "#728C00",
     "lat": "20.6845957",
-    "lon": "-88.8755669"
+    "lon": "-88.8755669",
+    "wiki": {
+      "title": "Chichen Itza",
+      "description": "Pre-Columbian Maya city in Mexico",
+      "extract": "Chichén Itzá was a large pre-Columbian city built by the Maya people of the Terminal Classic period. The archeological site is located in Tinúm Municipality, Yucatán State, Mexico.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Chichen_Itza"
+    }
   },
   {
     "id": 22,
@@ -349,7 +470,13 @@
     "codename": "GSS",
     "color": "#6B8E23",
     "lat": "23.8143419",
-    "lon": "77.5340719"
+    "lon": "77.5340719",
+    "wiki": {
+      "title": "Sanchi Stupa",
+      "description": "Buddhist complex in Madhya Pradesh, India",
+      "extract": "\nSanchi Stupa is a Buddhist complex, famous for its Great Stupa, on a hilltop at Sanchi Town in Raisen District of the State of Madhya Pradesh, India. It is located, about 23 kilometers from Raisen town, district headquarter and 46 kilometres (29 mi) north-east of Bhopal, capital of Madhya Pradesh.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Sanchi_Stupa"
+    }
   },
   {
     "id": 23,
@@ -365,7 +492,13 @@
     "codename": "SoM",
     "color": "#556B2F",
     "lat": "24.8073229",
-    "lon": "88.9445447"
+    "lon": "88.9445447",
+    "wiki": {
+      "title": "Somapura Mahavihara",
+      "description": "Ancient Buddhist monastery in Bangladesh",
+      "extract": "Somapura Mahavihara, also known as Paharpur Buddhist Vihara, is a major Buddhist monastery (mahavihara) in Paharpur, Badalgachhi, Naogaon, Bangladesh. It is among the best known Buddhist viharas in the Indian Subcontinent and is one of the most important archaeological sites in the country. It was designated as a UNESCO World Heritage Site in 1985.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Somapura_Mahavihara"
+    }
   },
   {
     "id": 24,
@@ -381,7 +514,13 @@
     "codename": "AJC",
     "color": "#4B5320",
     "lat": "19.8761211",
-    "lon": "75.3610333"
+    "lon": "75.3610333",
+    "wiki": {
+      "title": "Ajanta Caves",
+      "description": "Buddhist cave monuments in Maharashtra, India",
+      "extract": "The Ajanta Caves are 30 rock-cut Buddhist cave monuments dating from the second century BCE to about 480 CE in Aurangabad district of Maharashtra state in India. Ajanta Caves are a UNESCO World Heritage Site. Universally regarded as masterpieces of Buddhist religious art, the caves include paintings and rock-cut sculptures described as among the finest surviving examples of ancient Indian art, particularly expressive paintings that present emotions through gesture, pose and form.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ajanta_Caves"
+    }
   },
   {
     "id": 25,
@@ -397,7 +536,13 @@
     "codename": "HaM",
     "color": "#4E9258",
     "lat": "26.9154576",
-    "lon": "75.8189817"
+    "lon": "75.8189817",
+    "wiki": {
+      "title": "Hawa Mahal",
+      "description": "Palace in Jaipur, Rajasthan, India",
+      "extract": "The Hawa Mahal is a palace in the city of Jaipur, Rajasthan, India. Built from red and pink sandstone, it is on the edge of the City Palace, Jaipur, and extends to the Zenana, or women's chambers.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Hawa_Mahal"
+    }
   },
   {
     "id": 26,
@@ -413,7 +558,13 @@
     "codename": "NaT",
     "color": "#347235",
     "lat": "22.3850051",
-    "lon": "71.7452610"
+    "lon": "71.7452610",
+    "wiki": {
+      "title": "Navlakha Temple, Ghumli",
+      "description": "built by Gurjara Pratihara Rulers in 8th to 10th Century",
+      "extract": "",
+      "wikipedia": "https://en.wikipedia.org/wiki/Navlakha_temple"
+    }
   },
   {
     "id": 27,
@@ -429,7 +580,8 @@
     "codename": "JVV",
     "color": "#228B22",
     "lat": "24.5924330",
-    "lon": "72.7081876"
+    "lon": "72.7081876",
+    "wiki": null
   },
   {
     "id": 28,
@@ -445,7 +597,13 @@
     "codename": "NyT",
     "color": "#006400",
     "lat": "27.7043320",
-    "lon": "85.4521180"
+    "lon": "85.4521180",
+    "wiki": {
+      "title": "Nyatapola Temple",
+      "description": "Five tiered pagoda temple in Bhaktapur, Nepal",
+      "extract": "Nyātāpola is a five tiered temple located in the central part of Bhaktapur, Nepal. It is the tallest monument within the city and is also the tallest temple of Nepal. This temple was commissioned by King Bhupatindra Malla, the construction of which lasted for six months from December 1701 to July 1702. The temple has survived four major earthquakes and its aftershocks including the recent 7.8 magnitude April 2015 earthquake which caused major damage to the city of Bhaktapur.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Nyatapola_Temple"
+    }
   },
   {
     "id": 29,
@@ -461,7 +619,13 @@
     "codename": "PaT",
     "color": "#6AA121",
     "lat": "27.4646365",
-    "lon": "89.3183409"
+    "lon": "89.3183409",
+    "wiki": {
+      "title": "Paro Taktsang",
+      "description": "Buddhist temple complex in Paro, Bhutan",
+      "extract": "Paro Taktsang, is a sacred Vajrayana Himalayan Buddhist site located in the cliffside of the upper Paro valley in Bhutan. It is one of thirteen Tiger's Nest caves in historical Tibet in which Padmasambhava practiced and taught Vajrayana.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Paro_Taktsang"
+    }
   },
   {
     "id": 30,
@@ -477,7 +641,13 @@
     "codename": "Pot",
     "color": "#3EA055",
     "lat": "29.6542054",
-    "lon": "91.1173015"
+    "lon": "91.1173015",
+    "wiki": {
+      "title": "Potala Palace",
+      "description": "Fortress in Lhasa, Tibet",
+      "extract": "Potala Palace is the name of a museum in the Tibet Autonomous Region of China previously a palace of the Bö sovereign in Ü, the Dalai Lama, in the dzong-style, in Lhasa, capital of Bod (བོད་) & historically Ü (དབུས). It was the winter palace of the Dalai Lamas from 1649. In 1959 the Bö government ceased inhabitation because a previous invasion by the People's Republic of China caused transfer of governmental power.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Potala_Palace"
+    }
   },
   {
     "id": 31,
@@ -493,11 +663,17 @@
     "codename": "JaM",
     "color": "#4CC417",
     "lat": "26.2644203",
-    "lon": "71.6027498"
+    "lon": "71.6027498",
+    "wiki": {
+      "title": "Congregational mosque",
+      "description": "Type of mosque designated for Friday noon prayers",
+      "extract": "A congregational mosque or Friday mosque, or sometimes great mosque or grand mosque, is a mosque for hosting the Friday noon prayers known as jumu'ah. It can also host the Eid prayers in situations when there is no musalla or eidgah available nearby to host the prayers. In early Islamic history, the number of congregational mosques in one city was strictly limited. As cities and populations grew over time, it became more common for many mosques to host Friday prayers in the same area.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Congregational_mosque"
+    }
   },
   {
     "id": 32,
-    "name": "Temple of Padmanabhaswamy",
+    "name": "Padmanabhaswamy Temple",
     "yearBuilt": "300",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -505,11 +681,17 @@
     "location": "Thiruvananthapuram, India",
     "continent": "Asia",
     "descriptionURL": "https://en.wikipedia.org/wiki/Padmanabhaswamy_Temple",
-    "imageURL": "https://www.holidify.com/images/cmsuploads/compressed/6580072031_bd440e0838_b_20180205133850.jpg",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Padmanabhaswamy_Temple_Gopuram.jpg/1200px-Padmanabhaswamy_Temple_Gopuram.jpg",
     "codename": "Pad",
     "color": "#EDE275",
     "lat": "8.4882267",
-    "lon": "76.9475510"
+    "lon": "76.9475510",
+    "wiki": {
+      "title": "Padmanabhaswamy Temple",
+      "description": "Temple dedicated to Vishnu in Thiruvananthapuram",
+      "extract": "The Padmanabhaswamy Temple is a Hindu temple dedicated to Vishnu in Thiruvananthapuram, the capital of the state of Kerala, India. It is one of the 108 Divya Desams, considered the sacred abodes of Vishnu in the Sri Vaishnava tradition. Adi Shankara had created sacred hymns on Anantha Padmanabha and it is an important holy site for Smartha Tradition. The name of the city it stands on, Thiruvananthapuram, in Malayalam and Tamil translates to \"The City of Ananta\". The temple is built in an intricate fusion of the Kerala style and the Dravidian style of architecture, featuring high walls, and a 16th-century gopuram. While as per some traditions the Ananthapura Temple in Kumbla in Kerala's Kasaragod district is considered as the original spiritual seat of the deity (\"Mulasthanam\"), architecturally to some extent, the temple is a replica of the Adikesava Perumal Temple in Thiruvattar in Kanyakumari district of Tamil Nadu.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Padmanabhaswamy_Temple"
+    }
   },
   {
     "id": 33,
@@ -525,7 +707,13 @@
     "codename": "Mee",
     "color": "#FAF884",
     "lat": "10.9094334",
-    "lon": "78.3665347"
+    "lon": "78.3665347",
+    "wiki": {
+      "title": "Meenakshi Temple",
+      "description": "Historic Hindu temple in Madurai, Tamil Nadu, India",
+      "extract": "Arulmigu Meenakshi Sundareswarar Temple, also known as Arulmigu Meenakshi Amman Thirukkovil, is a historic Hindu temple located on the southern bank of the Vaigai River in the temple city of Madurai, Tamil Nadu, India. It is dedicated to the goddess Meenakshi, a form of Parvati, her consort Sundareśvarar, a form of Shiva and her brother Aḻagar, a form of Vishnu. The temple is theologically significant as it represents a confluence of the Shaivism, Shaktism and Vaishnavism denominations of Hinduism. The temple is at the centre of the ancient temple city of Madurai mentioned in the Tamil Sangam literature, with the goddess temple mentioned in 6th-century CE texts. This temple is one of the Paadal Petra Sthalams, which are 275 temples of Shiva that are revered in the verses of Tamil Saiva Nayanars of the 6th-9th century CE.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Meenakshi_Temple"
+    }
   },
   {
     "id": 34,
@@ -539,7 +727,13 @@
     "descriptionURL": "https://hampi.in/vittala-temple",
     "imageURL": "https://upload.wikimedia.org/wikipedia/commons/b/b2/The_elegant_stone_chariot.jpg",
     "codename": "Vit",
-    "color": "#FFFF00"
+    "color": "#FFFF00",
+    "wiki": {
+      "title": "Vitthala Temple",
+      "description": "",
+      "extract": "The temple is built in the form of a sprawling campus with compound wall and gateway towers. There are many halls, pavilions and temples located inside this campus.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 35,
@@ -555,7 +749,13 @@
     "codename": "GWG",
     "color": "#F5E216",
     "lat": "35.5895959",
-    "lon": "109.3013107"
+    "lon": "109.3013107",
+    "wiki": {
+      "title": "Giant Wild Goose Pagoda",
+      "description": "Temple in Xi'an, China",
+      "extract": "The Giant Wild Goose Pagoda or Big Wild Goose Pagoda is a monumental Buddhist pagoda located in southern Xi'an, Shaanxi, China. It was built c. AD 652 during the Tang dynasty, when Xi'an was the imperial capital. The pagoda originally had five stories. It was rebuilt in 704 during the reign of the empress Wu Zetian. Its current exterior brick façade was added during the Ming dynasty.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Giant_Wild_Goose_Pagoda"
+    }
   },
   {
     "id": 36,
@@ -566,12 +766,15 @@
     "scale": "",
     "location": "Jixian, China",
     "continent": "Asia",
-    "descriptionURL": "https://en.wikipedia.org/wiki/Dule_Temple#:~:text=Guanyin%20Pavilion,-The%20Guanyin%20Pavilion&text=The%20statue%2C%20measuring%2016%20meters,dynasty%20(618%2D907).",
+    "descriptionURL": "https://en.wikipedia.org/wiki/Dule_Temple",
     "imageURL": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Guanyin_Pavilion_of_Dule_Temple.JPG",
     "codename": "GPD",
     "color": "#FFDB58",
     "lat": "36.1587489",
-    "lon": "110.6930115"
+    "lon": "110.6930115",
+    "wiki": {
+      "extract": "The Guanyin Pavilion is a three-story timber structure with five single-eaves Xieshan roofs (歇山顶; 歇山頂; Xiēshān Dǐng; 'half-hipped', 'half-gabled roofs'). The pavilion has a height of about 23 meters and consists of more than one thousand individual pieces"
+    }
   },
   {
     "id": 37,
@@ -587,7 +790,13 @@
     "codename": "HPG",
     "color": "#FDD017",
     "lat": "40.1906320",
-    "lon": "116.4121440"
+    "lon": "116.4121440",
+    "wiki": {
+      "title": "Temple of Heaven",
+      "description": "Imperial complex of religious buildings in Beijing, China",
+      "extract": "The Temple of Heaven is a complex of imperial religious Confucian buildings situated in the southeastern part of central Beijing. The complex was visited by the Emperors of the Ming and Qing dynasties for annual ceremonies of prayer to Heaven for a good harvest. The Temple of Heaven was inscribed as a World Heritage site in 1998 and was described as \"a masterpiece of architecture and landscape design which simply and graphically illustrates a cosmogony of great importance for the evolution of one of the world's great civilizations...\" as the \"symbolic layout and design of the Temple of Heaven had a profound influence on architecture and planning in the Far East over many centuries.\"",
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Heaven"
+    }
   },
   {
     "id": 38,
@@ -603,7 +812,13 @@
     "codename": "ToL",
     "color": "#F2BB66",
     "lat": "21.0283334",
-    "lon": "105.8540410"
+    "lon": "105.8540410",
+    "wiki": {
+      "title": "Temple of Confucius",
+      "description": "Temple to venerate Confucius and Confucian sages and philosophers",
+      "extract": "A temple of Confucius or Confucian temple is a temple for the veneration of Confucius and the sages and philosophers of Confucianism in Chinese folk religion and other East Asian religions. They were formerly the site of the administration of the imperial examination in China, Korea, Japan and Vietnam and often housed schools and other studying facilities.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_of_Confucius"
+    }
   },
   {
     "id": 39,
@@ -619,7 +834,13 @@
     "codename": "GyP",
     "color": "#FBB117",
     "lat": "37.5666791",
-    "lon": "126.9782914"
+    "lon": "126.9782914",
+    "wiki": {
+      "title": "Gyeongbokgung",
+      "description": "Palace in Seoul, South Korea",
+      "extract": "Gyeongbokgung is a former royal palace in Seoul, South Korea. Established in 1395, it was the first royal palace of the Joseon dynasty, and is now one of the most significant tourist attractions in the country.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Gyeongbokgung"
+    }
   },
   {
     "id": 40,
@@ -635,11 +856,17 @@
     "codename": "MOZ",
     "color": "#FFA62F",
     "lat": "34.5737364",
-    "lon": "135.4828866"
+    "lon": "135.4828866",
+    "wiki": {
+      "title": "Mozu Tombs",
+      "description": "Megalithic tombs in Japan",
+      "extract": "The Mozu Tombs  are a group of kofun —megalithic tombs—in Sakai, Osaka Prefecture, Japan. Originally consisting of more than 100 tombs, fewer than 50% of the key-hole, round, and rectangular tombs remain.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Mozu_Tombs"
+    }
   },
   {
     "id": 41,
-    "name": "Hōryū-ji Pagoda",
+    "name": "Hōryū-ji",
     "yearBuilt": "607",
     "style": "Sinosphere",
     "buildingType": "Religious",
@@ -648,10 +875,16 @@
     "continent": "Asia",
     "descriptionURL": "https://en.wikipedia.org/wiki/H%C5%8Dry%C5%AB-ji",
     "imageURL": "https://upload.wikimedia.org/wikipedia/commons/6/64/Horyu-ji_National_Treasure_World_heritage_%E5%9B%BD%E5%AE%9D%E3%83%BB%E4%B8%96%E7%95%8C%E9%81%BA%E7%94%A3%E6%B3%95%E9%9A%86%E5%AF%BA85.JPG",
-    "codename": "PaH",
+    "codename": "Hji",
     "color": "#EE9A4D",
     "lat": "34.2963089",
-    "lon": "135.8816819"
+    "lon": "135.8816819",
+    "wiki": {
+      "title": "Hōryū-ji",
+      "description": "Buddhist temple in Nara Prefecture, Japan",
+      "extract": "Hōryū-ji  is a Buddhist temple that was once one of the powerful Seven Great Temples, located in Ikaruga, Nara Prefecture, Japan. Built shortly after Buddhism was introduced to Japan, it is also one of the oldest Buddhist sites in the country. Its full name is Hōryū Gakumonji (法隆学問寺), or Learning Temple of the Flourishing Law, with the complex serving as both a seminary and monastery.",
+      "wikipedia": "https://en.wikipedia.org/wiki/H%C5%8Dry%C5%AB-ji"
+    }
   },
   {
     "id": 42,
@@ -667,7 +900,13 @@
     "codename": "NNJ",
     "color": "#E2A76F",
     "lat": "35.0115754",
-    "lon": "135.7681441"
+    "lon": "135.7681441",
+    "wiki": {
+      "title": "Ninna-ji",
+      "description": "Historic Buddhist temple in Kyoto, Japan",
+      "extract": "Ninna-ji  is the head temple of the Omuro school of the Shingon Sect of Buddhism. Located in western Kyoto, Japan, it was first founded in AD 888 by Emperor Uda, and was later reconstructed in the 17th century. It is part of the Historic Monuments of Ancient Kyoto, a UNESCO World Heritage Site.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ninna-ji"
+    }
   },
   {
     "id": 43,
@@ -683,11 +922,17 @@
     "codename": "Kin",
     "color": "#C19A6B",
     "lat": "35.0115754",
-    "lon": "135.7681441"
+    "lon": "135.7681441",
+    "wiki": {
+      "title": "Kinkaku-ji",
+      "description": "Zen Buddhist temple in Kyoto, Japan",
+      "extract": "Kinkaku-ji , officially named Rokuon-ji , is a Zen Buddhist temple in Kyoto, Japan and a tourist attraction. It is designated as a World Heritage Site, a National Special Historic Site, a National Special Landscape, and one of the 17 Historic Monuments of Ancient Kyoto. The temple is nicknamed after its reliquary (shariden), the Golden Pavilion , whose top two floors are coated in 0.5 μm gold leaf. The current pavilion was rebuilt in 1955 after being destroyed in an arson attack.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Kinkaku-ji"
+    }
   },
   {
     "id": 44,
-    "name": "Bakong Temple",
+    "name": "Bakong",
     "yearBuilt": "800",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -699,7 +944,13 @@
     "codename": "Bak",
     "color": "#E6BF83",
     "lat": "10.5935025",
-    "lon": "104.1181507"
+    "lon": "104.1181507",
+    "wiki": {
+      "title": "Bakong",
+      "description": "Temple mountain of sandstone in Angkor, Cambodia",
+      "extract": "Bakong is the first Khmer temple mountain of sandstone constructed by rulers of the Khmer Empire at Angkor near modern Siem Reap in Cambodia. In the final decades of the 9th century AD, it served as the official state temple of King Indravarman I in the ancient city of Hariharalaya, located in an area that today is called Roluos.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Bakong"
+    }
   },
   {
     "id": 45,
@@ -715,7 +966,13 @@
     "codename": "PPK",
     "color": "#C8B560",
     "lat": "14.9222000",
-    "lon": "104.4439596"
+    "lon": "104.4439596",
+    "wiki": {
+      "title": "Prasat Prang Ku",
+      "description": "",
+      "extract": "",
+      "wikipedia": ""
+    }
   },
   {
     "id": 46,
@@ -731,7 +988,13 @@
     "codename": "AnW",
     "color": "#C7A317",
     "lat": "13.4124426",
-    "lon": "103.8665873"
+    "lon": "103.8665873",
+    "wiki": {
+      "title": "Angkor Wat",
+      "description": "Temple complex in Cambodia",
+      "extract": "Angkor Wat is a Hindu-Buddhist temple complex in Cambodia. Located on a site measuring 162.6 hectares within the ancient Khmer capital city of Angkor, it was originally constructed in 1150 CE as a Hindu temple dedicated to the deity Vishnu. It was later gradually transformed into a Buddhist temple towards the end of the century. Hailed as one of the largest religious structures in the world, it is one of the best examples of Khmer architecture and a symbol of Cambodia, depicted as a part of the Cambodian national flag.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Angkor_Wat"
+    }
   },
   {
     "id": 47,
@@ -747,7 +1010,8 @@
     "codename": "Cha",
     "color": "#B8860B",
     "lat": "16.0635601",
-    "lon": "108.2399744"
+    "lon": "108.2399744",
+    "wiki": null
   },
   {
     "id": 48,
@@ -763,7 +1027,13 @@
     "codename": "DoR",
     "color": "#CD7F32",
     "lat": "31.7788472",
-    "lon": "35.2257856"
+    "lon": "35.2257856",
+    "wiki": {
+      "title": "Dome of the Rock",
+      "description": "Islamic building in Al-Aqsa, Jerusalem",
+      "extract": "The Dome of the Rock is an Islamic shrine at the center of the Al-Aqsa mosque compound on the Temple Mount in the Old City of Jerusalem. It is the world's oldest surviving work of Islamic architecture, the earliest archaeologically attested religious structure to be built by a Muslim ruler and its inscriptions contain the earliest epigraphic proclamations of Islam and of the Islamic prophet Muhammad.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Dome_of_the_Rock"
+    }
   },
   {
     "id": 49,
@@ -779,7 +1049,13 @@
     "codename": "GMS",
     "color": "#AA6C39",
     "lat": "34.2000000",
-    "lon": "43.9000000"
+    "lon": "43.9000000",
+    "wiki": {
+      "title": "Great Mosque of Samarra",
+      "description": "9th-century former mosque in Samarra, Iraq",
+      "extract": "The Great Mosque of Samarra is a former congregational mosque, now in partial ruins, located in Samarra, in the Saladin Governorate of Iraq. The mosque was commissioned in 848 CE and completed in 851 by the Abbasid caliph Al-Mutawakkil. At the time of construction, it was the world's largest mosque. It is known for its 52-metre-high (171 ft) minaret encircled by a spiral ramp. The former mosque is located within the 15,058-hectare (37,210-acre) Samarra Archaeological City UNESCO World Heritage Site, listed in 2007.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Great_Mosque_of_Samarra"
+    }
   },
   {
     "id": 50,
@@ -795,7 +1071,13 @@
     "codename": "TSR",
     "color": "#AB784E",
     "lat": "30.1978380",
-    "lon": "71.4719683"
+    "lon": "71.4719683",
+    "wiki": {
+      "title": "Tomb of Shah Rukn-e-Alam",
+      "description": "Mausoleum of the Sufi saint Sheikh Rukn-ud-Din Abul Fateh in Multan, Pakistan",
+      "extract": "The Tomb of Shah Rukn-e-Alam located in Multan, Punjab, Pakistan, is the mausoleum of the 14th century Sufi saint Shah Rukn-e-Alam. The shrine is considered to be the earliest example of Tughluq architecture, and is one of the most impressive shrines in the Indian subcontinent. The shrine attracts over 100,000 pilgrims to the annual urs festival that commemorates his death.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Tomb_of_Shah_Rukn-e-Alam"
+    }
   },
   {
     "id": 51,
@@ -811,7 +1093,13 @@
     "codename": "CoL",
     "color": "#806517",
     "lat": "37.1760599",
-    "lon": "-3.5881103"
+    "lon": "-3.5881103",
+    "wiki": {
+      "title": "Court of the Lions",
+      "description": "Historic palace inside the Alhambra in Granada, Spain",
+      "extract": "The Court of the Lions (Spanish: Patio de los Leones) or Palace of the Lions is a palace in the heart of the Alhambra, a historic citadel formed by a complex of palaces, gardens and forts in Granada, Spain. It was commissioned by the Nasrid sultan Muhammad V of the Emirate of Granada in Al-Andalus. Its construction started in the second period of his reign, between 1362 and 1391 AD. Along with the Alhambra, the palace is part of a UNESCO World Heritage Site. It was minted in Spain's 2011 limited edition of €2 Commemorative Coins.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Court_of_the_Lions"
+    }
   },
   {
     "id": 52,
@@ -827,7 +1115,13 @@
     "codename": "Taj",
     "color": "#665D1E",
     "lat": "27.1752554",
-    "lon": "78.0098161"
+    "lon": "78.0098161",
+    "wiki": {
+      "title": "Taj Mahal",
+      "description": "Marble mausoleum in Agra, India",
+      "extract": "The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned in 1631 by the fifth Mughal emperor, Shah Jahan, to house the tomb of his beloved wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself. The tomb is the centrepiece of a 17-hectare (42-acre) complex, which includes a mosque and a guest house, and is set in formal gardens bounded on three sides by a crenellated wall.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Taj_Mahal"
+    }
   },
   {
     "id": 53,
@@ -843,7 +1137,13 @@
     "codename": "BSS",
     "color": "#8E7618",
     "lat": "41.8849718",
-    "lon": "12.4790848"
+    "lon": "12.4790848",
+    "wiki": {
+      "title": "Basilica of Saint Sabina",
+      "description": "historical church on the Aventine Hill in Rome",
+      "extract": "Santa Sabina is the oldest extant ecclesiastical basilica in Rome that preserves its original colonnaded rectangular plan with apse and architectural style.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Santa_Sabina"
+    }
   },
   {
     "id": 54,
@@ -859,7 +1159,13 @@
     "codename": "HaI",
     "color": "#8B8000",
     "lat": "41.0063810",
-    "lon": "28.9758715"
+    "lon": "28.9758715",
+    "wiki": {
+      "title": "Hagia Irene",
+      "description": "Byzantine church building in Istanbul, now a museum",
+      "extract": "Hagia Irene or Hagia Eirene, sometimes known also as Saint Irene, is a former Eastern Orthodox church located in the outer courtyard of Topkapı Palace in Istanbul. It is the oldest known church structure in the city and one of the only Byzantine churches in Istanbul that was never converted into a mosque, alongside the Church of Saint Mary of the Mongols, as it was used as an arsenal for storing weapons until the 19th century. The Hagia Irene now operates as a museum and concert hall.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Hagia_Irene"
+    }
   },
   {
     "id": 55,
@@ -875,7 +1181,13 @@
     "codename": "BSV",
     "color": "#827839",
     "lat": "44.3640607",
-    "lon": "12.0590095"
+    "lon": "12.0590095",
+    "wiki": {
+      "title": "Basilica of San Vitale",
+      "description": "Minor basilica in Ravenna, Italy",
+      "extract": "The Basilica of San Vitale is a late antique church in Ravenna, Italy. The sixth-century church is an important surviving example of early Byzantine art and architecture, and its mosaics in particular are some of the most-studied works in Byzantine art. It is one of eight structures in Ravenna inscribed on the UNESCO World Heritage List. Its foundational inscription describes the church as a basilica, though its centrally-planned design is not typical of the basilica form. Within the Roman Catholic Church it holds the honorific title of basilica for its historic and ecclesial importance.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Basilica_of_San_Vitale"
+    }
   },
   {
     "id": 56,
@@ -891,7 +1203,13 @@
     "codename": "BSC",
     "color": "#8A865D",
     "lat": "44.3640607",
-    "lon": "12.0590095"
+    "lon": "12.0590095",
+    "wiki": {
+      "title": "Basilica of Sant'Apollinare in Classe",
+      "description": "Byzantine-style minor basilica in Ravenna, Italy",
+      "extract": "The Basilica of Sant'Apollinare in Classe is a church in Classe, Ravenna, Italy, consecrated on 9 May 549 by the bishop Maximian and dedicated to Saint Apollinaris, the first bishop of Ravenna and Classe.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Basilica_of_Sant'Apollinare_in_Classe"
+    }
   },
   {
     "id": 57,
@@ -907,7 +1225,13 @@
     "codename": "Kap",
     "color": "#93917C",
     "lat": "37.9755648",
-    "lon": "23.7348324"
+    "lon": "23.7348324",
+    "wiki": {
+      "title": "Church of Panagia Kapnikarea",
+      "description": "Byzantine church in Athens, Greece",
+      "extract": "The Church of Panagia Kapnikarea or just Kapnikarea is a Greek Orthodox church and one of the oldest churches in Athens.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Church_of_Panagia_Kapnikarea"
+    }
   },
   {
     "id": 58,
@@ -923,7 +1247,13 @@
     "codename": "THS",
     "color": "#AF9B60",
     "lat": "41.0063810",
-    "lon": "28.9758715"
+    "lon": "28.9758715",
+    "wiki": {
+      "title": "Hagia Sophia",
+      "description": "Mosque and former church in Istanbul, Turkey",
+      "extract": "Hagia Sophia, officially the Hagia Sophia Grand Mosque, is a mosque and former museum and church serving as a major cultural and historical site in Istanbul, Turkey. The last of three church buildings to be successively erected on the site by the Eastern Roman Empire, it was completed in AD 537, becoming the world's largest interior space and among the first to employ a fully pendentive dome. It is considered the epitome of Byzantine architecture and is said to have \"changed the history of architecture\". From its dedication in 360 until 1453 Hagia Sophia served as the cathedral of Constantinople in the Byzantine liturgical tradition, except for the period 1204–1261 when the Latin Crusaders installed their own hierarchy. After the fall of Constantinople in 1453, it served as a mosque, having its minarets added soon after. The site became a museum in 1935, and was redesignated as a mosque in 2020. In 2024, the upper floor of the mosque began to serve as a museum once again.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+    }
   },
   {
     "id": 59,
@@ -939,7 +1269,13 @@
     "codename": "SMC",
     "color": "#827B60",
     "lat": "52.1527188",
-    "lon": "9.9518083"
+    "lon": "9.9518083",
+    "wiki": {
+      "title": "St. Michael's Church",
+      "description": "Topics referred to by the same term",
+      "extract": "St. Michael's Church are churches generally named after Michael the Archangel, and include:",
+      "wikipedia": "https://en.wikipedia.org/wiki/St._Michael's_Church"
+    }
   },
   {
     "id": 60,
@@ -955,7 +1291,13 @@
     "codename": "ASD",
     "color": "#786D5F",
     "lat": "41.9625970",
-    "lon": "-3.4185675"
+    "lon": "-3.4185675",
+    "wiki": {
+      "title": "Abbey of Santo Domingo de Silos",
+      "description": "Benedictine monastery in Santo Domingo village, northern Spain",
+      "extract": "Santo Domingo de Silos Abbey is a Benedictine monastery in the village of Santo Domingo de Silos in the southern part of Burgos Province in northern Spain. The monastery is named after the eleventh-century saint Dominic of Silos.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Abbey_of_Santo_Domingo_de_Silos"
+    }
   },
   {
     "id": 61,
@@ -971,7 +1313,13 @@
     "codename": "ACS",
     "color": "#483C32",
     "lat": "44.5995543",
-    "lon": "2.3981666"
+    "lon": "2.3981666",
+    "wiki": {
+      "title": "Abbey Church of Sainte-Foy",
+      "description": "Church in Conques, France",
+      "extract": "The Abbey Church of Sainte-Foy in Conques, France, was a popular stop for pilgrims traveling the Way of St. James to Santiago de Compostela, in what is now Spain. The main draw for medieval pilgrims at Conques were the remains of Sainte-Foy, a young woman martyred during the fourth century. The relics of Sainte-Foy arrived in Conques through theft in 866. After unsuccessful attempts to acquire the relics of Saint Vincent of Saragossa and then the relics of St. Vincent Pompejac in Agen, the abbey authorities set their sights on the relics of Sainte-Foy at the ancient St. Faith's Church, Sélestat. The Conques abbey opened a priory next to the shrine in Sélestat. A monk from Conques posed as a loyal monk in Agen for nearly a decade in order to get close enough to the relics to steal them. The abbey church has been a listed monument since 1840.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Abbey_Church_of_Sainte-Foy"
+    }
   },
   {
     "id": 62,
@@ -987,7 +1335,13 @@
     "codename": "DuC",
     "color": "#513B1C",
     "lat": "54.6666670",
-    "lon": "-1.7500000"
+    "lon": "-1.7500000",
+    "wiki": {
+      "title": "Durham Cathedral",
+      "description": "Church in Durham, County Durham, England",
+      "extract": "Durham Cathedral, formally the Cathedral Church of Christ, Blessed Mary the Virgin and St Cuthbert of Durham, is a Church of England cathedral in the city of Durham, England. The cathedral is the seat of the bishop of Durham and is the mother church of the diocese of Durham. It also contains the shrines of the Anglo-Saxon saints Cuthbert and Bede. There are daily Church of England services at the cathedral, and it received 727,367 visitors in 2019. It is a grade I listed building and forms part of the Durham Castle and Cathedral World Heritage Site.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Durham_Cathedral"
+    }
   },
   {
     "id": 63,
@@ -1003,7 +1357,13 @@
     "codename": "MLA",
     "color": "#3D3635",
     "lat": "50.4031154",
-    "lon": "7.2524081"
+    "lon": "7.2524081",
+    "wiki": {
+      "title": "Maria Laach Abbey",
+      "description": "Benedictine abbey situated in Glees, Germany",
+      "extract": "Maria Laach Abbey is a Benedictine abbey situated in Glees, on the southwestern shore of the Laacher See, in the Eifel region of the Rhineland-Palatinate in Germany. It is a member of the Beuronese Congregation within the Benedictine Confederation. The abbey was built in the 11th-12th centuries and was originally known as \"Abtei Laach\" until 1862 when the Jesuits added the name \"Maria\".",
+      "wikipedia": "https://en.wikipedia.org/wiki/Maria_Laach_Abbey"
+    }
   },
   {
     "id": 64,
@@ -1019,7 +1379,13 @@
     "codename": "Mun",
     "color": "#43302E",
     "lat": "51.1935531",
-    "lon": "5.9885077"
+    "lon": "5.9885077",
+    "wiki": {
+      "title": "Munsterkerk",
+      "description": "13th-century church in Roermond, Netherlands",
+      "extract": "The Munsterkerk (Munster) is a 13th-century church dedicated to Our Lady in the Dutch town of Roermond. Its remarkable front towers are 55 meter in height.\nThe Munsterkerk is one of the most important examples of Late Romanesque architecture in the Netherlands. \nThe Roermond Minster is the only surviving part of an abbey, the rest of which was demolished in 1924. The church was renovated by architect P. J. H. Cuypers between 1863 and 1890; during this renovation, the two front towers were added while after a smaller baroque bell tower on the nave was removed, and the originally octagonal eastern towers were replaced by square ones. The renovation of the Roermond Minster was highly controversial, but Cuypers continued to renovate the Minster according to his plan.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Munsterkerk"
+    }
   },
   {
     "id": 65,
@@ -1035,7 +1401,13 @@
     "codename": "NDC",
     "color": "#5C3317",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Notre-Dame de Paris",
+      "description": "Cathedral in Paris, France, built 1163–1345",
+      "extract": "Notre-Dame de Paris, often referred to simply as Notre-Dame, is a medieval Catholic cathedral on the Île de la Cité, in the 4th arrondissement of Paris, France. It is the cathedral church of the Roman Catholic Archdiocese of Paris.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Notre-Dame_de_Paris"
+    }
   },
   {
     "id": 66,
@@ -1051,7 +1423,13 @@
     "codename": "CaC",
     "color": "#704214",
     "lat": "51.2070749",
-    "lon": "0.7210362"
+    "lon": "0.7210362",
+    "wiki": {
+      "title": "Canterbury Cathedral",
+      "description": "Church in Kent, England",
+      "extract": "Canterbury Cathedral is the cathedral of the archbishop of Canterbury, the spiritual leader of the Church of England and symbolic leader of the worldwide Anglican Communion. Located in Canterbury, Kent, it is one of the oldest Christian structures in England and forms part of a World Heritage Site. Its formal title is the Cathedral and Metropolitical Church of Christ, Canterbury.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Canterbury_Cathedral"
+    }
   },
   {
     "id": 67,
@@ -1067,7 +1445,13 @@
     "codename": "ChC",
     "color": "#A0522D",
     "lat": "48.4438601",
-    "lon": "1.4881434"
+    "lon": "1.4881434",
+    "wiki": {
+      "title": "Chartres Cathedral",
+      "description": "Medieval cathedral in France",
+      "extract": "Chartres Cathedral is a Catholic cathedral in Chartres, France, about 80 km southwest of Paris, and is the seat of the Bishop of Chartres. Dedicated in honour of the Virgin Mary, it was mostly constructed between 1194 and 1220. It stands on the site of at least five cathedrals that have occupied the site since the Diocese of Chartres was formed as an episcopal see in the 4th century. It is one of the best-known and most influential examples of High Gothic and Classic Gothic architecture. It was built above earlier Romanesque basements, while its north spire is more recent (1507–1513) and is built in the more ornate Flamboyant style.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Chartres_Cathedral"
+    }
   },
   {
     "id": 68,
@@ -1083,7 +1467,13 @@
     "codename": "BCH",
     "color": "#954535",
     "lat": "51.2085526",
-    "lon": "3.2267720"
+    "lon": "3.2267720",
+    "wiki": {
+      "title": "Bruges City Hall",
+      "description": "City hall in Bruges, Belgium",
+      "extract": "The City Hall of Bruges, West Flanders, Belgium, is a landmark building and the seat of that city. Built in a late-Gothic monumental style between 1376 and 1421, it is one of the oldest city halls in the former Burgundian Netherlands. It is located on Burg Square, the area of the former fortified castle in the centre of Bruges.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Bruges_City_Hall"
+    }
   },
   {
     "id": 69,
@@ -1099,7 +1489,13 @@
     "codename": "HDS",
     "color": "#C04000",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Hôtel de Sens",
+      "description": "Building in Paris, France",
+      "extract": "The Hôtel de Sens or Hôtel des archevêques de Sens is a 16th-century hôtel particulier, or private mansion, in the Marais, in the 4th arrondissement of Paris, France. It nowadays houses the Forney art library.",
+      "wikipedia": "https://en.wikipedia.org/wiki/H%C3%B4tel_de_Sens"
+    }
   },
   {
     "id": 70,
@@ -1115,7 +1511,13 @@
     "codename": "Kon",
     "color": "#EB5406",
     "lat": "54.7046485",
-    "lon": "20.4565666"
+    "lon": "20.4565666",
+    "wiki": {
+      "title": "Königsberg Cathedral",
+      "description": "Cathedral in Brick Gothic style in Kaliningrad",
+      "extract": "Königsberg Cathedral is a Brick Gothic-style monument in Kaliningrad, Russia, located on Kneiphof island in the Pregolya river. It is the most significant preserved building of the former city of Königsberg, which was largely destroyed in World War II.",
+      "wikipedia": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg_Cathedral"
+    }
   },
   {
     "id": 71,
@@ -1131,7 +1533,13 @@
     "codename": "Rid",
     "color": "#C35817",
     "lat": "52.0799838",
-    "lon": "4.3113461"
+    "lon": "4.3113461",
+    "wiki": {
+      "title": "Ridderzaal",
+      "description": "Building on Binnenhof, The Hague, used for the state opening of Parliament",
+      "extract": "The Ridderzaal is the main building of the 13th-century inner square of the former castle of the counts of Holland called Binnenhof at the address Binnenhof 11 in The Hague, Netherlands. It is used for the annual state opening of Parliament on Prinsjesdag, when the Dutch monarch drives to Parliament in the Golden Coach and delivers the speech from the throne. It is also used for official royal receptions, and inter-parliamentary conferences.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ridderzaal"
+    }
   },
   {
     "id": 72,
@@ -1147,7 +1555,13 @@
     "codename": "Sai",
     "color": "#B86500",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Sainte-Chapelle",
+      "description": "French royal chapel in Paris, France",
+      "extract": "The Sainte-Chapelle is a royal chapel in the Gothic style, within the medieval Palais de la Cité, the residence of the Kings of France until the 14th century, on the Île de la Cité in the River Seine in Paris, France.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Sainte-Chapelle"
+    }
   },
   {
     "id": 73,
@@ -1163,7 +1577,13 @@
     "codename": "FlC",
     "color": "#B5651D",
     "lat": "43.7697955",
-    "lon": "11.2556404"
+    "lon": "11.2556404",
+    "wiki": {
+      "title": "Florence Cathedral",
+      "description": "Church in Tuscany, Italy",
+      "extract": "Florence Cathedral, formally the Cathedral of Saint Mary of the Flower, is the cathedral of the Catholic Archdiocese of Florence in Florence, Italy. Commenced in 1296 in the Gothic style to a design of Arnolfo di Cambio and completed by 1436 with a dome engineered by Filippo Brunelleschi, the basilica's exterior is faced with polychrome marble panels in various shades of green and pink, alternated by white, and features an elaborate 19th-century Gothic Revival western façade by Emilio De Fabris.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Florence_Cathedral"
+    }
   },
   {
     "id": 74,
@@ -1179,23 +1599,35 @@
     "codename": "BSA",
     "color": "#B76734",
     "lat": "45.1692628",
-    "lon": "10.6708365"
+    "lon": "10.6708365",
+    "wiki": {
+      "title": "Basilica di Sant'Andrea",
+      "description": "Monastery church in Piedmont, Italy",
+      "extract": "The Basilica di Sant'Andrea is the church of a monastery in Vercelli, Piedmont, northern Italy, founded in 1219 by Cardinal Guala Bicchieri and completed in 1227. It represents an early example of Gothic architecture in Italy, inspired by Cistercian models and featuring Romanesque elements as well.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Basilica_di_Sant'Andrea"
+    }
   },
   {
     "id": 75,
-    "name": "Tempietto, The",
+    "name": "Tempietto del Bramante",
     "yearBuilt": "1502",
     "style": "Rennaisance",
     "buildingType": "Religious",
     "scale": "",
     "location": "Rome, Italy",
     "continent": "Europe",
-    "descriptionURL": "https://en.wikipedia.org/wiki/San_Pietro_in_Montorio#The_Tempietto",
-    "imageURL": "https://i.pinimg.com/564x/ed/ac/53/edac53cb9e2ef63798ce7485cc93ec1b.jpg",
+    "descriptionURL": "https://en.wikipedia.org/wiki/Tempietto_del_Bramante",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Tempietto_di_San_Pietro_in_Montorio.jpg/960px-Tempietto_di_San_Pietro_in_Montorio.jpg",
     "codename": "Tem",
     "color": "#C36241",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "",
+      "description": "",
+      "extract": "The Tempietto (lit.'small temple') is a small commemorative tomb (martyrium) designed by Donato Bramante, to mark the location of the crucifixion of St Peter.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 76,
@@ -1211,7 +1643,13 @@
     "codename": "ViM",
     "color": "#FF6700",
     "lat": "41.9297239",
-    "lon": "12.4537255"
+    "lon": "12.4537255",
+    "wiki": {
+      "title": "Villa Madama",
+      "description": "Building in Rome, Italy",
+      "extract": "Villa Madama is a Renaissance-style rural palace (villa) located on Via di Villa Madama #250 in Rome, Italy. Located west of the city center and a few miles north of the Vatican, and just south of the Foro Olimpico Stadium. Even though incomplete, this villa with its loggia and segmented columned garden court and its casino with an open center and terraced gardens, was initially planned by Raphael, and highly influential for subsequent architects of the High Renaissance.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_Madama"
+    }
   },
   {
     "id": 77,
@@ -1227,7 +1665,13 @@
     "codename": "CAR",
     "color": "#FF5F1F",
     "lat": "45.7538536",
-    "lon": "4.0454737"
+    "lon": "4.0454737",
+    "wiki": {
+      "title": "Château d'Azay-le-Rideau",
+      "description": "French château",
+      "extract": "The Château d'Azay-le-Rideau is located in the town of Azay-le-Rideau in the French département of Indre-et-Loire. Built between 1518 and 1527, this château is considered one of the foremost examples of early French renaissance architecture. Set on an island in the middle of the Indre river, this picturesque château has become one of the most popular of the châteaux of the Loire valley.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_d'Azay-le-Rideau"
+    }
   },
   {
     "id": 78,
@@ -1243,7 +1687,13 @@
     "codename": "CdC",
     "color": "#F88017",
     "lat": "45.7538536",
-    "lon": "4.0454737"
+    "lon": "4.0454737",
+    "wiki": {
+      "title": "Château de Chambord",
+      "description": "Castle in Chambord, Centre-Val de Loire, France",
+      "extract": "The Château de Chambord in Chambord, Centre-Val de Loire, France, is one of the most recognisable châteaux in the world because of its very distinctive French Renaissance architecture, which blends traditional French medieval forms with classical Renaissance structures. The building was commissioned by king Francis I of France and built between 1519 and 1547.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_de_Chambord"
+    }
   },
   {
     "id": 79,
@@ -1259,7 +1709,13 @@
     "codename": "PaR",
     "color": "#F87431",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "Palazzo Farnese",
+      "description": "Palazzo in Rome, Italy",
+      "extract": "Palazzo Farnese or Farnese Palace is one of the most important High Renaissance palaces in Rome. Owned by the Italian Republic, it was given to the French government in 1936 for a period of 99 years, and currently serves as the French embassy in Italy.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Palazzo_Farnese"
+    }
   },
   {
     "id": 80,
@@ -1275,7 +1731,13 @@
     "codename": "TdM",
     "color": "#FF7722",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Temple du Marais",
+      "description": "Church in Paris, France",
+      "extract": "The Temple du Marais, sometimes known as the Temple Sainte-Marie, or historically, as the Church of Sainte Marie de la Visitation, is a Protestant church located in the 4th arrondissement of Paris, in the district of Le Marais at 17 Rue Saint-Antoine. It was originally built as a Roman Catholic convent by the Order of the Visitation of Holy Mary, whose sisters were commonly called the Visitandines. The church was closed in the French Revolution and later given to a Protestant congregation which continues its ministry to the present. The closest métro station is Bastille    ",
+      "wikipedia": "https://en.wikipedia.org/wiki/Temple_du_Marais"
+    }
   },
   {
     "id": 81,
@@ -1291,7 +1753,13 @@
     "codename": "SCQ",
     "color": "#E67451",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "San Carlo alle Quattro Fontane",
+      "description": "Church in Rome, Italy",
+      "extract": "The church of San Carlo alle Quattro Fontane, also called San Carlino, is a Roman Catholic church in Rome, Italy. The church was designed by the architect Francesco Borromini and it was his first independent commission. It is an iconic masterpiece of Baroque architecture, built as part of a complex of monastic buildings on the Quirinal Hill for the Spanish Trinitarians, an order dedicated to the freeing of Christian slaves. He received the commission in 1634, under the patronage of Cardinal Francesco Barberini, whose palace was across the road. However, this financial backing did not last and subsequently the building project suffered various financial difficulties. It is one of at least three churches in Rome dedicated to Saint Charles Borromeo, including San Carlo ai Catinari and San Carlo al Corso.",
+      "wikipedia": "https://en.wikipedia.org/wiki/San_Carlo_alle_Quattro_Fontane"
+    }
   },
   {
     "id": 82,
@@ -1307,7 +1775,13 @@
     "codename": "SPQ",
     "color": "#FFA07A",
     "lat": "41.8933203",
-    "lon": "12.4829321"
+    "lon": "12.4829321",
+    "wiki": {
+      "title": "St. Peter's Square",
+      "description": "Piazza in Vatican City",
+      "extract": "St. Peter's Square is a large plaza located directly in front of St. Peter's Basilica in Vatican City, the papal enclave in Rome, directly west of the neighborhood (rione) of Borgo. Both the square and the basilica are named after Saint Peter, an apostle of Jesus whom Catholics consider the first Pope.",
+      "wikipedia": "https://en.wikipedia.org/wiki/St._Peter's_Square"
+    }
   },
   {
     "id": 83,
@@ -1323,7 +1797,8 @@
     "codename": "GVV",
     "color": "#DA8A67",
     "lat": "46.6033540",
-    "lon": "1.8883335"
+    "lon": "1.8883335",
+    "wiki": null
   },
   {
     "id": 84,
@@ -1339,7 +1814,13 @@
     "codename": "DdI",
     "color": "#FF8674",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Les Invalides",
+      "description": "Building complex in Paris, France",
+      "extract": "The Hôtel des Invalides, commonly called Les Invalides, is a complex of buildings in the 7th arrondissement of Paris, France, containing museums and monuments, all relating to the military history of France, as well as a hospital and an old soldiers' retirement home, the building's original purpose. The buildings house the Musée de l'Armée, the museum of the Army of France, the Musée des Plans-Reliefs, and the Musée d'Histoire Contemporaine. The complex also includes the Cathedral of Saint-Louis-des-Invalides, the national cathedral of the French military. It is adjacent to the Royal Chapel known as the Dôme des Invalides, the tallest church building in Paris at a height of 107 metres. The latter has been converted into a shrine to some of France's leading military figures, most notably the tomb of Napoleon.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Les_Invalides"
+    }
   },
   {
     "id": 85,
@@ -1355,7 +1836,13 @@
     "codename": "RVH",
     "color": "#F08080",
     "lat": "51.4820845",
-    "lon": "-0.0045417"
+    "lon": "-0.0045417",
+    "wiki": {
+      "title": "Royal Naval Hospital",
+      "description": "",
+      "extract": "A Royal Naval Hospital (RNH) was a hospital operated by the British Royal Navy for the care and treatment of sick and injured naval personnel. A network of these establishments were situated across the globe to suit British interests. They were part of the Royal Naval Medical Service. The British Army equivalent was a Military Hospital, and in the 20th century a number of RAF Hospitals were also established.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Royal_Naval_Hospital"
+    }
   },
   {
     "id": 86,
@@ -1371,7 +1858,13 @@
     "codename": "CSN",
     "color": "#F67280",
     "lat": "50.0874654",
-    "lon": "14.4212535"
+    "lon": "14.4212535",
+    "wiki": {
+      "title": "St. Nicholas Church",
+      "description": "Topics referred to by the same term",
+      "extract": "The following cathedrals, churches and chapels are dedicated to Saint Nicholas:",
+      "wikipedia": "https://en.wikipedia.org/wiki/St._Nicholas_Church"
+    }
   },
   {
     "id": 87,
@@ -1387,7 +1880,13 @@
     "codename": "Kar",
     "color": "#F75D59",
     "lat": "48.2083537",
-    "lon": "16.3725042"
+    "lon": "16.3725042",
+    "wiki": {
+      "title": "Karlskirche",
+      "description": "Church in Vienna",
+      "extract": "The Karlskirche is a Baroque church in the Karlsplatz in Vienna, Austria. The church is dedicated to Saint Charles Borromeo, a leading figure of the Counter-Reformation. The church is located on the border of Wieden and the Innere Stadt, the city centre.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Karlskirche"
+    }
   },
   {
     "id": 88,
@@ -1403,7 +1902,13 @@
     "codename": "RPA",
     "color": "#CD5C5C",
     "lat": "52.3730796",
-    "lon": "4.8924534"
+    "lon": "4.8924534",
+    "wiki": {
+      "title": "Royal Palace of Amsterdam",
+      "description": "Palace on Dam Square in the centre of Amsterdam, Netherlands",
+      "extract": "The Royal Palace of Amsterdam in Amsterdam is one of three palaces in the Netherlands which are at the disposal of the monarch by Act of Parliament. It is situated on the west side of Dam Square in the centre of Amsterdam, opposite the War Memorial and next to the Nieuwe Kerk. During the Batavian Republic, the public floors of the building became the first Amsterdam museum under Louis Bonaparte. When Bonaparte was made king by Napoleon, the building was used as the royal palace. After the fall of Napoleon, it became the palace of the Dutch Royal House. The public floors still function as a museum and are open to the public most days of the year.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Royal_Palace_of_Amsterdam"
+    }
   },
   {
     "id": 89,
@@ -1419,7 +1924,13 @@
     "codename": "Zwi",
     "color": "#FF4500",
     "lat": "51.0493286",
-    "lon": "13.7381437"
+    "lon": "13.7381437",
+    "wiki": {
+      "title": "Zwinger (Dresden)",
+      "description": "Palatial complex in Dresden, Germany",
+      "extract": "The Zwinger is a palatial complex with gardens in Dresden, Germany. Designed by architect Matthäus Daniel Pöppelmann, it is one of the most important buildings of the Baroque period in Germany. Along with the Frauenkirche, the Zwinger is the most famous architectural monument of Dresden.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Zwinger_(Dresden)"
+    }
   },
   {
     "id": 90,
@@ -1435,7 +1946,13 @@
     "codename": "CSG",
     "color": "#FD1C03",
     "lat": "50.8692278",
-    "lon": "5.7993594"
+    "lon": "5.7993594",
+    "wiki": {
+      "title": "Château St. Gerlach",
+      "description": "",
+      "extract": "Château St. Gerlach, formerly St. Gerlach Monastery or Sint-Gerlachusstift, is located in the church village of Houthem in Valkenburg aan de Geul in the valley of the Geul river, in the province of Limburg, Netherlands. It was originally built in the twelfth century as a monastery of canons and functioned from the fourteenth century as noble ladies convent. In the nineteenth century, the monastery was converted into a castle-like country house. It includes a rectangular main building, a coach house and a castle farm. Since 1997, the complex at Joseph Corneli Allee has been a luxurious hotel, restaurant and conference center established. The building complex, including the Sint-Gerlachus Church and the surrounding gardens, includes several national monuments and is part of the Buitengoed Geul & Maas.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ch%C3%A2teau_St._Gerlach"
+    }
   },
   {
     "id": 91,
@@ -1451,7 +1968,8 @@
     "codename": "DHC",
     "color": "#F70D1A",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": null
   },
   {
     "id": 92,
@@ -1467,7 +1985,13 @@
     "codename": "Qup",
     "color": "#C24641",
     "lat": "38.7077507",
-    "lon": "-9.1365919"
+    "lon": "-9.1365919",
+    "wiki": {
+      "title": "Palace of Queluz",
+      "description": "18th-century Rococo Portuguese palace in Lisbon",
+      "extract": "The Palace of Queluz is an 18th-century palace located at Queluz, a city of the Sintra Municipality, in the Lisbon District, on the Portuguese Riviera. One of the last great Rococo buildings to be designed in Europe, the palace was conceived as a summer retreat for King Joseph I's brother, Peter of Braganza, later to become husband and king jure uxoris to his own niece, Queen Maria I. It eventually served as a discreet place of incarceration for Maria I, when she became afflicted by severe mental illness in the years following Peter III's death in 1786. Following the destruction of the Palace of Ajuda by fire in 1794, Queluz Palace became the official residence of the Portuguese Prince Regent John, and his family, and remained so until the royal family fled to the Portuguese colony of Brazil following the French invasion of Portugal (1807).",
+      "wikipedia": "https://en.wikipedia.org/wiki/Palace_of_Queluz"
+    }
   },
   {
     "id": 93,
@@ -1483,11 +2007,17 @@
     "codename": "WIE",
     "color": "#B21807",
     "lat": "47.7017066",
-    "lon": "10.8602689"
+    "lon": "10.8602689",
+    "wiki": {
+      "title": "Wieskirche",
+      "description": "UNESCO World Heritage Site",
+      "extract": "The Pilgrimage Church of Wies is an oval Rococo church, designed in the late 1740s by brothers J. B. and Dominikus Zimmermann, the latter of whom lived nearby for the last eleven years of his life. It is located in the foothills of the Alps, in the municipality of Steingaden in the Weilheim-Schongau district, Bavaria, Germany. Because of its outstanding rococo architecture, the Wieskirche was added to the UNESCO World Heritage List in 1983.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Wieskirche"
+    }
   },
   {
     "id": 94,
-    "name": "English landscape garden at Stourhead",
+    "name": "Stourhead",
     "yearBuilt": "1740",
     "style": "Neoclassical",
     "buildingType": "Plaza/ Garden",
@@ -1499,7 +2029,13 @@
     "codename": "ELG",
     "color": "#A70D2A",
     "lat": "51.3241620",
-    "lon": "-1.9032487"
+    "lon": "-1.9032487",
+    "wiki": {
+      "title": "Stourhead",
+      "description": "Estate, grade I listed garden in England",
+      "extract": "Stourhead is a 1,072-hectare (2,650-acre) estate at the source of the River Stour in the southwest of the English county of Wiltshire, extending into Somerset.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Stourhead"
+    }
   },
   {
     "id": 95,
@@ -1515,7 +2051,13 @@
     "codename": "PaP",
     "color": "#990000",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Panthéon",
+      "description": "Mausoleum in Paris for the most distinguished French people",
+      "extract": "The Panthéon is a monument in the 5th arrondissement of Paris, France. It stands in the Latin Quarter, atop the Montagne Sainte-Geneviève, in the centre of the Place du Panthéon, which was named after it. The edifice was built between 1758 and 1790, from designs by Jacques-Germain Soufflot, at the behest of King Louis XV; the king intended it as a church dedicated to Saint Genevieve, Paris's patron saint, whose relics were to be housed in the church. Neither Soufflot nor Louis XV lived to see the church completed.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Panth%C3%A9on"
+    }
   },
   {
     "id": 96,
@@ -1531,7 +2073,13 @@
     "codename": "HdM",
     "color": "#8C001A",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Hôtel de la Marine",
+      "description": "Historic building in Paris",
+      "extract": "The Hôtel de la Marine, also known (formerly) as the Hôtel du Garde-Meuble, is an historic building on the Place de la Concorde in Paris, just east of Rue Royale. It was designed by the architect Ange-Jacques Gabriel and built between 1757 and 1774 on the newly created square first called Place Louis XV. The identical building across the street, constructed at the same time, now houses the Hôtel de Crillon and the Automobile Club of France.",
+      "wikipedia": "https://en.wikipedia.org/wiki/H%C3%B4tel_de_la_Marine"
+    }
   },
   {
     "id": 97,
@@ -1547,7 +2095,8 @@
     "codename": "SGT",
     "color": "#560319",
     "lat": "44.8412250",
-    "lon": "-0.5800364"
+    "lon": "-0.5800364",
+    "wiki": null
   },
   {
     "id": 98,
@@ -1563,7 +2112,13 @@
     "codename": "ViW",
     "color": "#3D0C02",
     "lat": "52.3723233",
-    "lon": "4.6310464"
+    "lon": "4.6310464",
+    "wiki": {
+      "title": "Villa Welgelegen",
+      "description": "Neo-classical building in Haarlem, Netherlands",
+      "extract": "Villa Welgelegen is a historical building in Haarlem, the Netherlands, which currently houses the offices of the provincial executives of North Holland. Located at the north end of a public park in the city, it is an example of neoclassical architecture, designed by Abraham van der Hart and unusual for its style in the Netherlands.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_Welgelegen"
+    }
   },
   {
     "id": 99,
@@ -1579,7 +2134,13 @@
     "codename": "NeW",
     "color": "#550A35",
     "lat": "52.5108850",
-    "lon": "13.3989367"
+    "lon": "13.3989367",
+    "wiki": {
+      "title": "Neue Wache",
+      "description": "Historic memorial in Berlin",
+      "extract": "The Neue Wache is a listed building on Unter den Linden boulevard in the historic centre of Berlin, Germany. Erected from 1816 to 1818 according to plans by Karl Friedrich Schinkel as a guardhouse for the Royal Palace and a memorial to the Liberation Wars, it is considered a major work of Prussian Neoclassical architecture. A Victoria pedimental sculpture by Johann Gottfried Schadow and five General statues by Christian Daniel Rauch, referring to the Warrior statues on Schlossbrücke, also belong to the ensemble. Since 1931, it has held Germany's Tomb of the Unknown Soldier and national memorial for the First World War. Following German Reunification, the site has also been, since 1993, the Central Memorial of the Federal Republic of Germany to the Victims of War and Tyranny.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Neue_Wache"
+    }
   },
   {
     "id": 100,
@@ -1595,7 +2156,13 @@
     "codename": "BuM",
     "color": "#7D0552",
     "lat": "55.9533456",
-    "lon": "-3.1883749"
+    "lon": "-3.1883749",
+    "wiki": {
+      "title": "List of Robert Burns memorials",
+      "description": "",
+      "extract": "This is a list of over sixty known memorials to the Scottish poet Robert Burns. Of these, the oldest outdoor statue is given to be at Camperdown, Victoria, Australia (1830).",
+      "wikipedia": "https://en.wikipedia.org/wiki/List_of_Robert_Burns_memorials"
+    }
   },
   {
     "id": 101,
@@ -1611,11 +2178,17 @@
     "codename": "CUS",
     "color": "#872657",
     "lat": "-13.5170887",
-    "lon": "-71.9785356"
+    "lon": "-71.9785356",
+    "wiki": {
+      "title": "Cusco Cathedral",
+      "description": "Cathedral in Peru",
+      "extract": "The Cathedral of Cusco or Cathedral Basilica of the Virgin of the Assumption is the main temple of the city of Cusco, in Peru and houses the headquarters of the Archdiocese of Cusco. The Cathedral Basilica of Cusco, together with the Triunfo temple make up the Cathedral Complex, it is located in the northeast sector of the current Plaza de Armas of Cusco. In the place that, during the Inca period, was occupied by both the Suntor Wassi and the Kisoarkancha or Palace of the eighth Inca Viracocha. The complex occupies an area of 3,920 square meters and is the most important religious monument in the Historic Center of Cusco.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Cusco_Cathedral"
+    }
   },
   {
     "id": 102,
-    "name": "Exterior of the Palais Garnier",
+    "name": "Opéra Garnier/Palais Garnier",
     "yearBuilt": "1860",
     "style": "Beaux Arts",
     "buildingType": "Accessory",
@@ -1627,7 +2200,13 @@
     "codename": "EPG",
     "color": "#7F4E52",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Palais Garnier",
+      "description": "Opera house in Paris, France",
+      "extract": "The Palais Garnier, also known as Opéra Garnier, is a historic 1,979-seat opera house at the Place de l'Opéra in the 9th arrondissement of Paris, France. It was built for the Paris Opera from 1861 to 1875 at the behest of Emperor Napoleon III. Initially referred to as le nouvel Opéra de Paris, it soon became known as the Palais Garnier, \"in acknowledgment of its extraordinary opulence\" and the architect Charles Garnier's plans and designs, which are representative of the Napoleon III style. It was the primary theatre of the Paris Opera and its associated Paris Opera Ballet until 1989, when a new opera house, the Opéra Bastille, opened at the Place de la Bastille. The company now uses the Palais Garnier mainly for ballet. The theatre has been a monument historique of France since 1923.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Palais_Garnier"
+    }
   },
   {
     "id": 103,
@@ -1643,7 +2222,8 @@
     "codename": "GSP",
     "color": "#7F5A58",
     "lat": "48.8709020",
-    "lon": "2.3321510"
+    "lon": "2.3321510",
+    "wiki": null
   },
   {
     "id": 104,
@@ -1659,7 +2239,8 @@
     "codename": "CEC",
     "color": "#B1907F",
     "lat": "44.4361414",
-    "lon": "26.1027202"
+    "lon": "26.1027202",
+    "wiki": null
   },
   {
     "id": 105,
@@ -1675,7 +2256,13 @@
     "codename": "CaP",
     "color": "#B38481",
     "lat": "44.4361414",
-    "lon": "26.1027202"
+    "lon": "26.1027202",
+    "wiki": {
+      "title": "Cantacuzino Palace",
+      "description": "Romanian historic building",
+      "extract": "Cantacuzino Palace is located on Calea Victoriei no. 141, Bucharest, Romania. It was built by architect Ion D. Berindey in the Beaux Arts style, having a few Rococo Revival rooms. Today it houses the George Enescu museum.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Cantacuzino_Palace"
+    }
   },
   {
     "id": 106,
@@ -1691,7 +2278,13 @@
     "codename": "PeP",
     "color": "#E799A3",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Petit Palais",
+      "description": "Historic site, exhibition hall in Paris, France",
+      "extract": "The Petit Palais is an art museum in the 8th arrondissement of Paris, France.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Petit_Palais"
+    }
   },
   {
     "id": 107,
@@ -1707,7 +2300,13 @@
     "codename": "GCT",
     "color": "#D58A94",
     "lat": "40.7127281",
-    "lon": "-74.0060152"
+    "lon": "-74.0060152",
+    "wiki": {
+      "title": "Grand Central Terminal",
+      "description": "Railway terminal in Manhattan, New York",
+      "extract": "Grand Central Terminal is a commuter rail terminal at 42nd Street and Park Avenue in Midtown Manhattan, New York City. Grand Central is the southern terminus of the Metro-North Railroad's Harlem, Hudson and New Haven Lines, serving the northern parts of the New York metropolitan area. It also serves the Long Island Rail Road through Grand Central Madison, a 16-acre (65,000 m2) addition to the station located underneath the Metro-North tracks, built from 2007 to 2023. The terminal also connects to the New York City Subway at Grand Central–42nd Street station. The terminal is the third-busiest train station in North America, after New York Penn Station and Toronto Union Station.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Grand_Central_Terminal"
+    }
   },
   {
     "id": 108,
@@ -1723,7 +2322,13 @@
     "codename": "Jet",
     "color": "#6B8E50",
     "lat": "27.1303344",
-    "lon": "80.8596660"
+    "lon": "80.8596660",
+    "wiki": {
+      "title": "Jetavana",
+      "description": "Buddhist monastery in Uttar Pradesh, India",
+      "extract": "Jetavana was one of the most famous of the Buddhist monasteries or viharas in India. It was the second vihara donated to Gautama Buddha after the Venuvana in Rajgir. The monastery was given to him by his chief male patron, Anathapindika.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Jetavana"
+    }
   },
   {
     "id": 109,
@@ -1739,7 +2344,13 @@
     "codename": "HoT",
     "color": "#FFCBA4",
     "lat": "50.8465573",
-    "lon": "4.3516970"
+    "lon": "4.3516970",
+    "wiki": {
+      "title": "Hôtel Tassel",
+      "description": "Historic Art Nouveau house and UNESCO World Heritage Site in Brussels, Belgium",
+      "extract": "The Hôtel Tassel is a historic town house in Brussels, Belgium. It was designed by Victor Horta for the scientist and professor Emile Tassel, and built between 1892 and 1893, in Art Nouveau style. It is considered one of the first buildings in that style because of its highly innovative plan and its ground-breaking use of materials and decoration. It is located at 6, rue Paul-Emile Janson/Paul-Emile Jansonstraat, a few steps from the Avenue Louise/Louizalaan.",
+      "wikipedia": "https://en.wikipedia.org/wiki/H%C3%B4tel_Tassel"
+    }
   },
   {
     "id": 110,
@@ -1755,7 +2366,13 @@
     "codename": "SeB",
     "color": "#F8B88B",
     "lat": "48.2083537",
-    "lon": "16.3725042"
+    "lon": "16.3725042",
+    "wiki": {
+      "title": "Secession Building",
+      "description": "Art Exhibition pavilion in Vienna, Austria",
+      "extract": "The Secession Building is a contemporary art exhibition hall in Vienna, Austria. It was completed in 1898 by Joseph Maria Olbrich as an architectural manifesto for the Vienna Secession, a group of rebel artists that seceded from the long-established fine art institution.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Secession_Building"
+    }
   },
   {
     "id": 111,
@@ -1771,7 +2388,13 @@
     "codename": "LFM",
     "color": "#FFDDCA",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "La Fermette Marbeuf",
+      "description": "Gourmet restaurant in Paris, France",
+      "extract": "La Fermette Marbeuf was a prestigious gourmet restaurant in the Champs-Élysées quarter in the 8th arrondissement of Paris, France. Its Belle Époque Art Nouveau \"1900 room\" has been an official Historical Monument since 1983. It now hosts the restaurant Beefbar.",
+      "wikipedia": "https://en.wikipedia.org/wiki/La_Fermette_Marbeuf"
+    }
   },
   {
     "id": 112,
@@ -1787,7 +2410,13 @@
     "codename": "LVH",
     "color": "#FBBBB9",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Leonardo da Vinci High School",
+      "description": "high school in California, United States",
+      "extract": "",
+      "wikipedia": "https://en.wikipedia.org/wiki/Da_Vinci_Charter_Academy"
+    }
   },
   {
     "id": 113,
@@ -1803,7 +2432,13 @@
     "codename": "QCa",
     "color": "#FFC0CB",
     "lat": "37.5877940",
-    "lon": "14.1550480"
+    "lon": "14.1550480",
+    "wiki": {
+      "title": "Quattro Canti",
+      "description": "Square in Palermo, Italy",
+      "extract": "Quattro Canti, officially known as Piazza Vigliena, is a Baroque square in Palermo, region of Sicily, Italy; it is considered the center of the historic quarters of the city. The site is the intersection of two major streets in Palermo, the Via Maqueda and the Corso Vittorio Emanuele, and at this intersection are the corners of all four of the ancient quarters of Palermo: the Kalsa (SE); Seralcadi (SW); Albergaria (wW); and Castellammare (NE). On the southwest corner stands the church of San Giuseppe dei Padre Teatini. A few steps away along the flank of this church, behind the Southeast corner building, along Via Maqueda is the Piazza and Fontana Pretoria, sandwiched between this church and Santa Caterina. A few more steps reaches San Cataldo and the ancient Norman church of La Martorana.\nAbout 500 meters west along the Cassaro is the piazza of the Cathedral of Palermo and the adjacent Palazzo dei Normanni.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Quattro_Canti"
+    }
   },
   {
     "id": 114,
@@ -1819,11 +2454,14 @@
     "codename": "PDM",
     "color": "#FEA3AA",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "extract": "It is named after Porte Dauphine, a gate in the 19th-century Thiers wall of Paris. Its subtitle honours Jean de Lattre de Tassigny.[1] because of its location under the square of the same name), French general officer, hero of the Second World War and Companion of the Liberation, who was raised to the dignity of Marshal of France posthumously. However, this subtitle does not appear on the plans."
+    }
   },
   {
     "id": 115,
-    "name": "Maison Huot",
+    "name": "Maisons Huot",
     "yearBuilt": "1903",
     "style": "Art Nouveau",
     "buildingType": "Cultural, Institutional",
@@ -1835,7 +2473,13 @@
     "codename": "MaH",
     "color": "#E7A1B0",
     "lat": "48.6937223",
-    "lon": "6.1834097"
+    "lon": "6.1834097",
+    "wiki": {
+      "title": "Maisons Huot",
+      "description": "house in Nancy, France",
+      "extract": "Maisons Huot are two Art Nouveau buildings located at 92 Quai Claude-le-Lorrain in Nancy, France, designed by architect Émile André and featuring stained-glass windows by Jacques Gruber. Completed in 1903 or 1904, the architecture blends late Baroque and Gothic Revival styles with floral motifs, creating a rich and decorative example of the Nancy School of Art Nouveau.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 116,
@@ -1851,7 +2495,13 @@
     "codename": "CaB",
     "color": "#F778A1",
     "lat": "41.3825802",
-    "lon": "2.1770730"
+    "lon": "2.1770730",
+    "wiki": {
+      "title": "Casa Batlló",
+      "description": "Building by Antoni Gaudí in Barcelona, Spain",
+      "extract": "Casa Batlló is a building in the center of Barcelona, Spain. It was designed by Antoni Gaudí, and is considered one of his masterpieces. A remodel of a previously built house, it was redesigned in 1904 by Gaudí and has been refurbished several times since. Gaudí's assistants Domènec Sugrañes i Gras, Josep Canaleta and Joan Rubió also contributed to the renovation project.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Casa_Batll%C3%B3"
+    }
   },
   {
     "id": 117,
@@ -1867,7 +2517,13 @@
     "codename": "MCH",
     "color": "#C25A7C",
     "lat": "44.4361414",
-    "lon": "26.1027202"
+    "lon": "26.1027202",
+    "wiki": {
+      "title": "Mița the Cyclist House",
+      "description": "Art Nouveau and Baroque Revival house in Bucharest, Romania, gift of King Ferdinand to Mița the Cyclist",
+      "extract": "Art Nouveau and Baroque Revival house in Bucharest, Romania, gift of King Ferdinand to Mița the Cyclist",
+      "wikipedia": ""
+    }
   },
   {
     "id": 118,
@@ -1883,7 +2539,13 @@
     "codename": "LCB",
     "color": "#C25283",
     "lat": "48.8534951",
-    "lon": "2.3483915"
+    "lon": "2.3483915",
+    "wiki": {
+      "title": "Les Chardons building",
+      "description": "Art Nouveau building in Paris",
+      "extract": "The Les Chardons building features yellow ochre and almond green flamed sandstone ceramics covering its entire facade with detailed thistle motifs.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 119,
@@ -1899,7 +2561,13 @@
     "codename": "BaP",
     "color": "#FF69B4",
     "lat": "41.3825802",
-    "lon": "2.1770730"
+    "lon": "2.1770730",
+    "wiki": {
+      "title": "Barcelona Pavilion",
+      "description": "Exhibit building in Barcelona",
+      "extract": "The Barcelona Pavilion, designed by Ludwig Mies van der Rohe and Lilly Reich, was the German Pavilion for the 1929 International Exposition in Barcelona, Spain. This building was used for the official opening of the German section of the exhibition. It is an important building in the history of modern architecture, known for its simple form and its spectacular use of extravagant materials, such as marble, red onyx and travertine. Furnishings specifically designed for the building, including the Barcelona chair, are still in production. It has inspired many important modernist buildings. The original structure was demolished in 1930, and it was reconstructed in 1986.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Barcelona_Pavilion"
+    }
   },
   {
     "id": 120,
@@ -1915,7 +2583,13 @@
     "codename": "ViS",
     "color": "#FC6C85",
     "lat": "48.9274192",
-    "lon": "2.0426301"
+    "lon": "2.0426301",
+    "wiki": {
+      "title": "Villa Savoye",
+      "description": "1931 building by Le Corbusier in Poissy, France",
+      "extract": "Villa Savoye is a modernist villa and gatelodge in Poissy, on the outskirts of Paris, France. It was designed by the Swiss-French architect Le Corbusier and his cousin Pierre Jeanneret, and built between 1928 and 1931 using reinforced concrete.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Villa_Savoye"
+    }
   },
   {
     "id": 121,
@@ -1931,7 +2605,13 @@
     "codename": "MSX",
     "color": "#665D4E",
     "lat": "34.3953420",
-    "lon": "-111.7632750"
+    "lon": "-111.7632750",
+    "wiki": {
+      "title": "Mission San Xavier del Bac",
+      "description": "17th-century Spanish mission in Arizona",
+      "extract": "Mission San Xavier del Bac is a historic Spanish Catholic mission about 10 miles (16 km) south of downtown Tucson, Arizona, on the Tohono O'odham Nation San Xavier Indian Reservation. The mission was founded in 1692 by Eusebio Kino in the center of a centuries-old settlement of the Sobaipuri O'odham, a branch of the Akimel or River O'odham located along the banks of the Santa Cruz River. The mission was named for Francis Xavier, co-founder of the Jesuit Order in Europe. The original church was built to the north of the later Franciscan church and was demolished during an Apache raid in 1770.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Mission_San_Xavier_del_Bac"
+    }
   },
   {
     "id": 122,
@@ -1947,7 +2627,13 @@
     "codename": "SBu",
     "color": "#E759AC",
     "lat": "40.7127281",
-    "lon": "-74.0060152"
+    "lon": "-74.0060152",
+    "wiki": {
+      "title": "Seagram Building",
+      "description": "Office skyscraper in Manhattan, New York",
+      "extract": "The Seagram Building is a skyscraper at 375 Park Avenue, between 52nd and 53rd streets, in the Midtown Manhattan neighborhood of New York City. Designed by Ludwig Mies van der Rohe along with Philip Johnson, Ely Jacques Kahn, and Robert Allan Jacobs, the high-rise tower is 515 feet (157 m) tall with 38 stories. The International Style building, completed in 1958, initially served as the headquarters of the Seagram Company, a Canadian distiller.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Seagram_Building"
+    }
   },
   {
     "id": 123,
@@ -1963,7 +2649,13 @@
     "codename": "UCC",
     "color": "#DA70D6",
     "lat": "38.7251776",
-    "lon": "-105.6077160"
+    "lon": "-105.6077160",
+    "wiki": {
+      "title": "United States Air Force Academy, Cadet Area",
+      "description": "United States historic place",
+      "extract": "The United States Air Force Academy, Cadet Area is a portion of the United States Air Force Academy near Colorado Springs, Colorado. Its use of modern architecture stands in contrast with the very traditional designs of West Point and the United States Naval Academy. It was designated a National Historic Landmark District in 2004 for its landscape, architecture, and historic importance as a military academy.",
+      "wikipedia": "https://en.wikipedia.org/wiki/United_States_Air_Force_Academy%2C_Cadet_Area"
+    }
   },
   {
     "id": 124,
@@ -1979,7 +2671,13 @@
     "codename": "RuH",
     "color": "#FF77FF",
     "lat": "41.3082138",
-    "lon": "-72.9250518"
+    "lon": "-72.9250518",
+    "wiki": {
+      "title": "Rudolph Hall",
+      "description": "Brutalist building in New Haven, Connecticut",
+      "extract": "Rudolph Hall is one of the earliest and best-known examples of Brutalist architecture in the United States. Completed in 1963 in New Haven, Connecticut, the building houses Yale University's School of Architecture. Until 2000, it also housed the School of Art.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Rudolph_Hall"
+    }
   },
   {
     "id": 125,
@@ -1995,7 +2693,13 @@
     "codename": "H67",
     "color": "#C45AEC",
     "lat": "45.5031824",
-    "lon": "-73.5698065"
+    "lon": "-73.5698065",
+    "wiki": {
+      "title": "Habitat 67",
+      "description": "Housing complex built for 1967 World's Fair in Montreal",
+      "extract": "Habitat 67, or simply Habitat, is a housing complex at Cité du Havre, on the Saint Lawrence River, Montreal, Quebec, Canada, designed by Israeli-Canadian-American architect Moshe Safdie. It originated in his master's thesis at the School of Architecture at McGill University and then an amended version was built for Expo 67, a World's Fair held from April to October 1967. Its address is 2600 Avenue Pierre-Dupuy, next to the Marc-Drouin Quay. Habitat 67 is considered an architectural landmark and a recognized building in Montreal.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Habitat_67"
+    }
   },
   {
     "id": 126,
@@ -2011,7 +2715,13 @@
     "codename": "GeL",
     "color": "#A74AC7",
     "lat": "32.7174202",
-    "lon": "-117.1627720"
+    "lon": "-117.1627720",
+    "wiki": {
+      "title": "Geisel Library",
+      "description": "Library at the University of California, San Diego",
+      "extract": "Geisel Library is the main library building of the University of California, San Diego. It is named in honor of Audrey and Theodor Seuss Geisel, the latter of whom is better known as children's author Dr. Seuss. The building's distinctive architecture, described as occupying \"a fascinating nexus between brutalism and futurism\", has made it an iconic and widely recognized building on campus. The library is located in the center of the UC San Diego campus.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Geisel_Library"
+    }
   },
   {
     "id": 127,
@@ -2027,7 +2737,13 @@
     "codename": "RoL",
     "color": "#D291BC",
     "lat": "43.6534817",
-    "lon": "-79.3839347"
+    "lon": "-79.3839347",
+    "wiki": {
+      "title": "Robarts Library",
+      "description": "Academic library in Toronto, Ontario, Canada",
+      "extract": "The John P. Robarts Research Library, commonly referred to as Robarts Library, is the main humanities and social sciences library of the University of Toronto Libraries and the largest individual library in the university, located at the St. George campus in Downtown Toronto. Opened in 1973 and named for John Robarts, the 17th Premier of Ontario, the library contains more than 4.5 million bookform items, 4.1 million microform items and 740,000 other items.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Robarts_Library"
+    }
   },
   {
     "id": 128,
@@ -2043,7 +2759,8 @@
     "codename": "FPF",
     "color": "#915F6D",
     "lat": "47.6038321",
-    "lon": "-122.3300620"
+    "lon": "-122.3300620",
+    "wiki": null
   },
   {
     "id": 129,
@@ -2059,7 +2776,13 @@
     "codename": "PdI",
     "color": "#7E587E",
     "lat": "29.9559145",
-    "lon": "-90.0730259"
+    "lon": "-90.0730259",
+    "wiki": {
+      "title": "Piazza Italia",
+      "description": "Topics referred to by the same term",
+      "extract": "Piazza Italia or Piazza d'Italia may refer to:Piazza Italia, Naples\nPiazza Italia, Reggio Calabria\nPiazza d'Italia, Sassari\nPiazza d'Italia, New Orleans\nPiazza d'Italia (novel), a 1975 novel by Antonio Tabucchi\nPiazza Italia (restaurant), Portland, Oregon, U.S.\n\n",
+      "wikipedia": "https://en.wikipedia.org/wiki/Piazza_Italia"
+    }
   },
   {
     "id": 130,
@@ -2075,7 +2798,13 @@
     "codename": "NeS",
     "color": "#614051",
     "lat": "48.7784485",
-    "lon": "9.1800132"
+    "lon": "9.1800132",
+    "wiki": {
+      "title": "Neue Staatsgalerie",
+      "description": "Art museum in Stuttgart, Germany",
+      "extract": "The Neue Staatsgalerie in Stuttgart, Germany, was designed by the British firm James Stirling, Michael Wilford and Associates, although largely accredited solely to partner James Stirling. It was constructed between 1979 and 1984. The building has been claimed as the epitome of Post-modernism.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Neue_Staatsgalerie"
+    }
   },
   {
     "id": 131,
@@ -2091,7 +2820,8 @@
     "codename": "ATT",
     "color": "#583759",
     "lat": "32.7762719",
-    "lon": "-96.7968559"
+    "lon": "-96.7968559",
+    "wiki": null
   },
   {
     "id": 132,
@@ -2107,7 +2837,13 @@
     "codename": "TDB",
     "color": "#5E5A80",
     "lat": "34.0536909",
-    "lon": "-118.2427660"
+    "lon": "-118.2427660",
+    "wiki": {
+      "title": "Team Disney Building Anaheim",
+      "description": "",
+      "extract": "The four story, 415,000 sf building was designed to evoke elements of time and movement. It is both intellectually stimulating and light-hearted.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 133,
@@ -2123,7 +2859,13 @@
     "codename": "Bun",
     "color": "#CCCCFF",
     "lat": "52.5108850",
-    "lon": "13.3989367"
+    "lon": "13.3989367",
+    "wiki": {
+      "title": "Federal Chancellery of Germany",
+      "description": "Office of the Federal Chancellor of Germany",
+      "extract": "The Federal Chancellery is a German federal agency serving the executive office of the chancellor of Germany, the head of the federal government, currently Friedrich Merz. The Chancellery's primary function is to assist the chancellor in coordinating the activities of the federal government. The head of the Chancellery holds the rank of either a Secretary of State or a Federal Minister, currently held by Thorsten Frei. The headquarters of the German Chancellery is at the Federal Chancellery building in Berlin, which is the largest government headquarters in the world.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Federal_Chancellery_of_Germany"
+    }
   },
   {
     "id": 134,
@@ -2139,7 +2881,13 @@
     "codename": "WCA",
     "color": "#6A5ACD",
     "lat": "40.2253569",
-    "lon": "-82.6881395"
+    "lon": "-82.6881395",
+    "wiki": {
+      "title": "Wexner Center for the Arts",
+      "description": "Contemporary art, Ohio State University",
+      "extract": "The Wexner Center for the Arts is the Ohio State University's \"multidisciplinary, international laboratory for the exploration and advancement of contemporary art.\"",
+      "wikipedia": "https://en.wikipedia.org/wiki/Wexner_Center_for_the_Arts"
+    }
   },
   {
     "id": 135,
@@ -2155,7 +2903,13 @@
     "codename": "VFS",
     "color": "#736AFF",
     "lat": "47.6056484",
-    "lon": "7.6120793"
+    "lon": "7.6120793",
+    "wiki": {
+      "title": "Vitra Fire Station",
+      "description": "First construction by architect Zaha Hadid, in Weil am Rhein, Germany",
+      "extract": "The Vitra Fire Station is a concrete and steel building of 852 m2 (9,170 sq ft) located at the Vitra Furniture factory in Weil am Rhein, Germany. Completed in 1993, it was the first constructed project by Iraqi architect Zaha Hadid.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Vitra_Fire_Station"
+    }
   },
   {
     "id": 136,
@@ -2171,7 +2925,13 @@
     "codename": "JeM",
     "color": "#6F2DA8",
     "lat": "52.5108850",
-    "lon": "13.3989367"
+    "lon": "13.3989367",
+    "wiki": {
+      "title": "Jewish Museum Berlin",
+      "description": "Museum in Berlin, Germany",
+      "extract": "The Jewish Museum Berlin was opened in 2001 and is the largest Jewish museum in Europe. On 3,500 square metres of floor space, the museum presents the history of the Jews in Germany from the Middle Ages to the present day, with new focuses and new scenography. It consists of three buildings, two of which are new additions specifically built for the museum by architect Daniel Libeskind. German-Jewish history is documented in the collections, the library and the archive, and is reflected in the museum's program of events.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Jewish_Museum_Berlin"
+    }
   },
   {
     "id": 137,
@@ -2187,7 +2947,13 @@
     "codename": "GuM",
     "color": "#6C2DC7",
     "lat": "43.2630018",
-    "lon": "-2.9350039"
+    "lon": "-2.9350039",
+    "wiki": {
+      "title": "Guggenheim Museum Bilbao",
+      "description": "Modern and contemporary art museum in Bilbao, Spain",
+      "extract": "The Guggenheim Museum Bilbao is a museum of modern and contemporary art in Bilbao, Biscay, Spain. It is one of several museums affiliated to the Solomon R. Guggenheim Foundation and features permanent and visiting exhibits of works by Spanish and international artists. It was inaugurated on 18 October 1997 by King Juan Carlos I of Spain, with an exhibition of 250 contemporary works of art. It is one of the largest museums in Spain.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Guggenheim_Museum_Bilbao"
+    }
   },
   {
     "id": 138,
@@ -2203,7 +2969,13 @@
     "codename": "PSC",
     "color": "#4B0150",
     "lat": "52.4205588",
-    "lon": "10.7861682"
+    "lon": "10.7861682",
+    "wiki": {
+      "title": "Phaeno Science Center",
+      "description": "",
+      "extract": "The Phæno Science Center is an interactive science center in Wolfsburg, Germany, completed in 2005.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Phaeno_Science_Center"
+    }
   },
   {
     "id": 139,
@@ -2219,7 +2991,13 @@
     "codename": "SIB",
     "color": "#DA70A6",
     "lat": "36.7014631",
-    "lon": "-118.7559970"
+    "lon": "-118.7559970",
+    "wiki": {
+      "title": "Salk Institute for Biological Studies",
+      "description": "Scientific research institute in San Diego, US",
+      "extract": "The Salk Institute for Biological Studies is a scientific research institute in the La Jolla community of San Diego, California. The independent, non-profit institute was founded in 1960 by Jonas Salk, the developer of the polio vaccine; among the founding consultants were Jacob Bronowski and Francis Crick. Construction of the research facilities began in spring of 1962. The Salk Institute consistently ranks among the top institutions in the US in terms of research output and quality in the life sciences.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Salk_Institute_for_Biological_Studies"
+    }
   },
   {
     "id": 140,
@@ -2235,7 +3013,13 @@
     "codename": "MPI",
     "color": "#2E8B77",
     "lat": "-13.1691964",
-    "lon": "-72.5570606"
+    "lon": "-72.5570606",
+    "wiki": {
+      "title": "Machu Picchu",
+      "description": "15th-century Inca citadel in Peru",
+      "extract": "Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers (50 mi) northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Machu_Picchu"
+    }
   },
   {
     "id": 141,
@@ -2251,7 +3035,13 @@
     "codename": "GOP",
     "color": "#2E8B67",
     "lat": "20.6845957",
-    "lon": "-88.8755669"
+    "lon": "-88.8755669",
+    "wiki": {
+      "title": "Governor's Palace",
+      "description": "Topics referred to by the same term",
+      "extract": "Governor's Palace may refer to:Palace of the Governors, Santa Fe, New Mexico, NRHP-listed\nSpanish Governor's Palace, San Antonio, Texas, NRHP-listed\nGovernor's Palace, New Bern, North Carolina, also known as Tryon Palace\nGovernor's Palace \nGovernor's Palace, Chandigarh, Le Corbusier designed building\nGrandmaster's Palace in Valletta, Malta, formerly known as Governor's Palace",
+      "wikipedia": "https://en.wikipedia.org/wiki/Governor's_Palace"
+    }
   },
   {
     "id": 142,
@@ -2267,7 +3057,13 @@
     "codename": "Ulm",
     "color": "#B86550",
     "lat": "48.3984968",
-    "lon": "9.9912458"
+    "lon": "9.9912458",
+    "wiki": {
+      "title": "Ulm Minster",
+      "description": "Lutheran church in Germany; tallest church in the world",
+      "extract": "Ulm Minster is a Gothic church located in Ulm, State of Baden-Württemberg (Germany). It was originally built as a Roman Catholic church but became a Lutheran Church in the 16th Century.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Ulm_Minster"
+    }
   },
   {
     "id": 143,
@@ -2283,7 +3079,13 @@
     "codename": "Bor",
     "color": "#6B8E10",
     "lat": "-7.3032412",
-    "lon": "110.0044145"
+    "lon": "110.0044145",
+    "wiki": {
+      "title": "Borobudur",
+      "description": "9th-century Buddhist temple in Java, Indonesia",
+      "extract": "Borobudur, also transcribed Barabudur, is a 9th-century Mahayana Buddhist temple in Magelang Regency, near the city of Magelang and the town of Muntilan, in Central Java, Indonesia.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Borobudur"
+    }
   },
   {
     "id": 144,
@@ -2299,7 +3101,13 @@
     "codename": "RDz",
     "color": "#6B8E70",
     "lat": "27.4646365",
-    "lon": "89.3183409"
+    "lon": "89.3183409",
+    "wiki": {
+      "title": "Rinpung Dzong",
+      "description": "Fortress in Paro, Bhutan",
+      "extract": "Rinpung Dzong, sometimes referred to as Paro Dzong, is a large dzong - Buddhist monastery and fortress - of the Drukpa Lineage of the Kagyu school in Paro District, Bhutan. It houses the district Monastic Body as well as government administrative offices of Paro Dzongkhag. It is listed as a tentative site in Bhutan's Tentative List for UNESCO inclusion.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Rinpung_Dzong"
+    }
   },
   {
     "id": 145,
@@ -2315,7 +3123,13 @@
     "codename": "Jvy",
     "color": "#6B8E30",
     "lat": "8.3349850",
-    "lon": "80.4106096"
+    "lon": "80.4106096",
+    "wiki": {
+      "title": "Jetavanaramaya",
+      "description": "Dagoba in North Central Province, Sri Lanka",
+      "extract": "The Jetavanarama stupa or Jetavanaramaya is a stupa, or Buddhist reliquary monument, located in the ruins of Jetavana monastery in the UNESCO world heritage city of Anuradhapura, Sri Lanka. At 122 metres (400 ft), it was the world's tallest stupa, and the third tallest structure in the world when it was built by King Mahasena of Anuradhapura (273–301). He initiated the construction of the stupa following the destruction of the Mahaviharaya of Anuradhapura. His son Kithsirimevan completed the construction of the stupa, and it was renovated by Parakramabahu I of Polonnaruwa. A part of a belt tied by the Buddha is believed to be the relic that is enshrined here.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Jetavanaramaya"
+    }
   },
   {
     "id": 146,
@@ -2331,7 +3145,13 @@
     "codename": "Sew",
     "color": "#6B8E20",
     "lat": "-6.7115076",
-    "lon": "110.6337137"
+    "lon": "110.6337137",
+    "wiki": {
+      "title": "Sewu",
+      "description": "8th-century Buddhist site in Indonesia",
+      "extract": "Sewu is an eighth-century Mahayana Buddhist or Hindu located 800 metres north of Prambanan in Central Java, Indonesia. The word for a Hindu or Buddhist temple in Javanese is \"candi\", hence, the common name is \"Candi Sewu\". Candi Sewu is the second largest Buddhist temple complex in Indonesia; Borobudur is the largest. Sewu predates is located near the \"Loro Jonggrang\" temple at Prambanan. Although the complex consists of 249 temples, this Javanese name translates to 'a thousand temples,' which originated from popular local folklore. Archaeologists believe the original name for the temple compound to be Manjusrigrha.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Sewu"
+    }
   },
   {
     "id": 147,
@@ -2347,7 +3167,13 @@
     "codename": "Hem",
     "color": "#3EA090",
     "lat": "33.9456407",
-    "lon": "77.6568576"
+    "lon": "77.6568576",
+    "wiki": {
+      "title": "Hemis Monastery",
+      "description": "Tibetan Buddhist monastery in Hemis, Ladakh, India",
+      "extract": "Hemis Monastery is a Himalayan Buddhist monastery (gompa) of the Drukpa Lineage, in Hemis on the bank of the Indus River, Ladakh, India. Situated 45 km from Leh, it was re-established in 1672 by the Ladakhi king Sengge Namgyal. The annual Hemis festival honouring Padmasambhava is held there in early June.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Hemis_Monastery"
+    }
   },
   {
     "id": 148,
@@ -2363,7 +3189,13 @@
     "codename": "Kyi",
     "color": "#3EA080",
     "lat": "27.4646365",
-    "lon": "89.3183409"
+    "lon": "89.3183409",
+    "wiki": {
+      "title": "Kyichu Lhakhang",
+      "description": "Buddhist temple in Paro, Bhutan",
+      "extract": "Kyichu Lhakhang, is an important Himalayan Buddhist temple situated in Lango Gewog of Paro Dzongkhag in Bhutan.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Kyichu_Lhakhang"
+    }
   },
   {
     "id": 149,
@@ -2379,7 +3211,13 @@
     "codename": "NTM",
     "color": "#3EA070",
     "lat": "33.9456407",
-    "lon": "77.6568576"
+    "lon": "77.6568576",
+    "wiki": {
+      "title": "Namgyal Tsemo Monastery",
+      "description": "Buddhist monastery in northern India",
+      "extract": "Namgyal Tsemo Monastery or Namgyal Tsemo Gompa is a Buddhist monastery in Leh city of Leh district, Ladakh, northern India. Founded by King Tashi Namgyal (1555-1575) of Ladakh, it has a three-story high gold statue of Maitreya Buddha and ancient manuscripts and frescoes. It is situated near the Tsemo Castle.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Namgyal_Tsemo_Monastery"
+    }
   },
   {
     "id": 150,
@@ -2395,7 +3233,13 @@
     "codename": "Bph",
     "color": "#B8860A",
     "lat": "13.3599016",
-    "lon": "103.8614609"
+    "lon": "103.8614609",
+    "wiki": {
+      "title": "Baphuon",
+      "description": "Temple at Angkor, Cambodia",
+      "extract": "The Baphuon is a temple at Angkor, Cambodia. It is located in Angkor Thom, northwest of the Bayon. Also called \"golden mountain\" (svarnādrī), the Baphuon is built on an artificial hill. The temple was originally dedicated to Shiva and late converted to a Theravada Buddhist temple. The dating of the temple has been fractious; recent work has shown that it was not built during the reign of Udayādityavarman II, as is popularly reported. In 2015 a French team directly dates four iron crampons integrated into the structure using the AMS Carbon-14 method, revealed the construction was much earlier than thought and can now be considered as the major temple associated with Suryavarman I (1010–1050CE), a ruler which had no temple previously associated with his reign.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Baphuon"
+    }
   },
   {
     "id": 151,
@@ -2411,7 +3255,13 @@
     "codename": "VTH",
     "color": "#FFDD00",
     "lat": "15.3358000",
-    "lon": "76.4610201"
+    "lon": "76.4610201",
+    "wiki": {
+      "title": "Virupaksha Temple, Hampi",
+      "description": "Temple in Karnataka, India",
+      "extract": "Virupaksha Temple is located in Hampi in the Vijayanagara district of Karnataka, India, situated on the banks of the river Tungabhadra, a 7th-century temple of Lord Shiva. It is part of the Group of Monuments at Hampi, designated as a UNESCO World Heritage Site. The temple is dedicated to Sri Virupaksha. The temple was expanded by Lakkan Dandesha, a nayaka (chieftain) under the ruler Deva Raya II, also known as Prauda Deva Raya of the Vijayanagara Empire.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Virupaksha_Temple%2C_Hampi"
+    }
   },
   {
     "id": 152,
@@ -2427,7 +3277,13 @@
     "codename": "Dod",
     "color": "#FFEE00",
     "lat": "15.2960090",
-    "lon": "75.7772040"
+    "lon": "75.7772040",
+    "wiki": {
+      "title": "Doddabasappa Temple",
+      "description": "12th-century temple in Dambal, Karnataka state, India",
+      "extract": "Doddabasappa Temple is a 12th-century Western Chalukyan architectural innovation in Dambal, Karnataka state, India. Dambal is about 20 km (12 mi) southeast of Gadag city and 24 km (15 mi) southwest of Ittagi in Koppal district. The sanctum contains a Shiva linga, the symbol of the presiding deity, God Shiva. The temple interior is a standard construction and consists of a sanctum (cella), a vestibule (antarala) and a main mantapa. The vestibule connects the sanctum to the mantapa. The Western Chalukya monuments, regional variants of existing dravida temples, defined the Karnata dravida architectural tradition.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Doddabasappa_Temple"
+    }
   },
   {
     "id": 153,
@@ -2443,7 +3299,13 @@
     "codename": "Buc",
     "color": "#7D0562",
     "lat": "51.4893335",
-    "lon": "-0.1440551"
+    "lon": "-0.1440551",
+    "wiki": {
+      "title": "Buckingham Palace",
+      "description": "Official London residence of the British monarch",
+      "extract": "Buckingham Palace is a royal residence in London, and the administrative headquarters of the monarch of the United Kingdom. Located in the City of Westminster, the palace is often at the centre of state occasions and royal hospitality. It has been a focal point for the British people at times of national rejoicing and mourning.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Buckingham_Palace"
+    }
   },
   {
     "id": 154,
@@ -2459,7 +3321,13 @@
     "codename": "Rei",
     "color": "#7D0572",
     "lat": "52.5108850",
-    "lon": "13.3989367"
+    "lon": "13.3989367",
+    "wiki": {
+      "title": "Reichstag building",
+      "description": "Seat of the federal parliament of Germany",
+      "extract": "The Reichstag is a historic legislative government building on Platz der Republik in Berlin that is the seat of the German Bundestag. It is also the meeting place of the Federal Convention, which elects the President of Germany.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Reichstag_building"
+    }
   },
   {
     "id": 155,
@@ -2475,7 +3343,13 @@
     "codename": "FaW",
     "color": "#DA70C6",
     "lat": "40.9699889",
-    "lon": "-77.7278831"
+    "lon": "-77.7278831",
+    "wiki": {
+      "title": "Fallingwater",
+      "description": "House in Stewart Township, Pennsylvania",
+      "extract": "Fallingwater is a house museum in Stewart Township in the Laurel Highlands of southwestern Pennsylvania, United States. Designed by the architect Frank Lloyd Wright, it is built partly over a waterfall on the Bear Run stream. The three-story residence was developed as a weekend retreat for Liliane and Edgar J. Kaufmann Sr., the owner of Kaufmann's Department Store in Pittsburgh. The Western Pennsylvania Conservancy (WPC), which has operated Fallingwater as a tourist attraction since 1963, maintains 5,000 acres (2,000 ha) surrounding the house.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Fallingwater"
+    }
   },
   {
     "id": 156,
@@ -2491,11 +3365,14 @@
     "codename": "JoH",
     "color": "#DA70B6",
     "lat": "41.6500201",
-    "lon": "-72.7342163"
+    "lon": "-72.7342163",
+    "wiki": {
+      "extract": "The house is an example of early use of industrial materials in home design, such as glass and steel. The building is an example of minimal structure, geometry, proportion, and the effects of transparency and reflection."
+    }
   },
   {
     "id": 157,
-    "name": "Raqemo or Petra",
+    "name": "Raqmo/Petra",
     "yearBuilt": "BC",
     "style": "Egyptian",
     "buildingType": "Cultural, Institutional",
@@ -2507,7 +3384,10 @@
     "codename": "Raq",
     "color": "#566D7F",
     "lat": "31.1667049",
-    "lon": "36.9416280"
+    "lon": "36.9416280",
+    "wiki": {
+      "extract": "Petra (Arabic: ٱلْبَتْراء, romanized: Al-Batrāʾ; Ancient Greek: Πέτρα \"Rock\"), originally known to its inhabitants as Raqmu, is an ancient city and archaeological site in southern Jordan. Famous for its rock-cut architecture and water conduit systems, Petra is also called the \"Rose City\" because of the colour of the sandstone from which it is carved."
+    }
   },
   {
     "id": 158,
@@ -2523,7 +3403,13 @@
     "codename": "ElC",
     "color": "#2E8B58",
     "lat": "20.6848037",
-    "lon": "-88.5682609"
+    "lon": "-88.5682609",
+    "wiki": {
+      "title": "El Castillo",
+      "description": "Topics referred to by the same term",
+      "extract": "El Castillo, also known as the Temple of Kukulcan is a Mesoamerican step-pyramid that dominates the center of the Chichen Itza archaeological site in the Mexican state of Yucatán. The temple building is more formally designated by archaeologists as Chichen Itza Structure 5B18. The building served as a temple to the deity Kukulcán, the Yucatec Maya Feathered Serpent deity closely related to Quetzalcoatl, a deity known to the Aztecs and other central Mexican cultures of the Postclassic period. It has a substructure that likely was constructed several centuries earlier for the same purpose.",
+      "wikipedia": "https://en.wikipedia.org/wiki/El_Castillo"
+    }
   },
   {
     "id": 159,
@@ -2539,7 +3425,13 @@
     "codename": "RoB",
     "color": "#2B547F",
     "lat": "51.3813864",
-    "lon": "-2.3596963"
+    "lon": "-2.3596963",
+    "wiki": {
+      "title": "Roman Baths",
+      "description": "Index of articles associated with the same name",
+      "extract": "The Roman Baths are well-preserved thermae in the city of Bath, Somerset, England. A temple was constructed on the site between 60 and 70 AD in the first few decades of Roman Britain. Its presence led to the development of the small Roman urban settlement known as Aquae Sulis around the site. The Roman baths—designed for public bathing—were used until the end of Roman rule in Britain in the 5th century AD. According to the Anglo-Saxon Chronicle, the original Roman baths were in ruins a century later. The area around the natural springs was redeveloped several times during the Early and Late Middle Ages.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Roman_Baths"
+    }
   },
   {
     "id": 160,
@@ -2555,7 +3447,13 @@
     "codename": "LoA",
     "color": "#2B547F",
     "lat": "31.1996346",
-    "lon": "29.9098685"
+    "lon": "29.9098685",
+    "wiki": {
+      "title": "Library of Alexandria",
+      "description": "Library in ancient Alexandria, Egypt",
+      "extract": "The Great Library of Alexandria in Alexandria, Egypt, was one of the largest and most significant libraries of the ancient world. The library was part of a larger research institution called the Mouseion, which was dedicated to the Muses, the nine goddesses of the arts. The idea of a universal library in Alexandria may have been proposed by Demetrius of Phalerum, an exiled Athenian statesman living in Alexandria, to Ptolemy I Soter, who may have established plans for the Library, but the Library itself was probably not built until the reign of his son Ptolemy II Philadelphus. The Library quickly acquired many papyrus scrolls, owing largely to the Ptolemaic kings' aggressive and well-funded policies for procuring texts. It is unknown precisely how many scrolls were housed at any given time, but estimates range from 40,000 to 400,000 at its height.",
+      "wikipedia": "https://en.wikipedia.org/wiki/Library_of_Alexandria"
+    }
   },
   {
     "id": 161,
@@ -2571,6 +3469,12 @@
     "codename": "UQa",
     "color": "#2B542F",
     "lat": "34.0346534",
-    "lon": "-5.0161926"
+    "lon": "-5.0161926",
+    "wiki": {
+      "title": "University of al-Qarawiyyin",
+      "description": "University in Fez, Morocco",
+      "extract": "The University of al-Qarawiyyin, also written Al-Karaouine or Al Quaraouiyine, is a university located in Fez, Morocco. It was founded as a mosque by Fatima al-Fihri in 857–859 and subsequently became one of the leading spiritual and educational centers of the Islamic Golden Age. It was incorporated into Morocco's modern state university system in 1963 and officially renamed \"University of Al Quaraouiyine\" two years later. The mosque building itself is also a significant complex of historical Moroccan and Islamic architecture that features elements from many different periods of Moroccan history. Scholars consider al-Qarawiyyin to have been effectively run as a madrasa until after World War II. Many scholars distinguish this status from the status of \"university\", which they view as a distinctly European invention. They date al-Qarawiyyin's transformation from a madrasa into a university to its modern reorganization in 1963. UNESCO and the Guinness World Records, have cited al-Qarawiyyin as the oldest university or oldest continually operating higher learning institution in the world.",
+      "wikipedia": "https://en.wikipedia.org/wiki/University_of_al-Qarawiyyin"
+    }
   }
 ]
