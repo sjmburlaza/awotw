@@ -12,10 +12,9 @@
       @for (group of groups; track group.groupName) {
         <div class="group">
           <div class="group__name">
-            <button>
-            </button>
+            <span class="circle"></span>
             <span>
-              {{ group.groupName }}
+            {{ group.groupName }}
             </span>
           </div>
           <div class="group__items">
@@ -25,7 +24,8 @@
                   <img [src]="item.imageURL" alt="">
                 </div>
                 <div class="item__name">
-                  {{ item.name }}
+                    {{ item.name }}
+                  <app-tooltip></app-tooltip>
                 </div>
               </div>
             }

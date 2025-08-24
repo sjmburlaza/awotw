@@ -47,12 +47,14 @@
                     (ngModelChange)="onSelectOption()"
                     [disabled]="hasSeenAnswer"
                   >
-                  <label [for]="option">{{ option }}</label>
-                  @if (hasSeenAnswer && option === correctAnswer) {
-                    <a class="option__url" [href]="item?.descriptionURL" target="_blank">
-                      <i class="bi bi-box-arrow-up-right"></i>
-                    </a>
-                  }
+                  <label [for]="option">
+                    {{ option }}
+                    @if (hasSeenAnswer && option === correctAnswer) {
+                      <a class="option__url" [href]="item?.descriptionURL" target="_blank">
+                        <i class="bi bi-box-arrow-up-right"></i>
+                      </a>
+                    }
+                  </label>
                 </div>
               }
             </div>
