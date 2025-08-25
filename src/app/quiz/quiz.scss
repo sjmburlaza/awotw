@@ -81,7 +81,8 @@
 
           &__url {
             i {
-              font-size: 12px;
+              font-size: 14px;
+              margin-left: 4px;
             }
           }
         }
@@ -94,6 +95,7 @@
         .correct {
           background-color: lightgreen;
           border-radius: 6px;
+          padding-right: 12px;
         }
 
         span {
