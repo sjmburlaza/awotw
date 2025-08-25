@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DataService, Group, Item } from '../services/data.service';
 import { take } from 'rxjs';
 import { groupByYearBuilt } from '../shared/utils-helper';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Loader } from '../shared/components/loader/loader';
-import { Tooltip } from '../shared/components/tooltip/tooltip';
+import { TooltipDirective } from '../shared/components/tooltip/tooltip.directive';
 
 @Component({
   selector: 'app-timeline',
-  imports: [Loader, Tooltip],
+  imports: [Loader, TooltipDirective],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss'
 })

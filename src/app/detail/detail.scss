@@ -70,6 +70,11 @@
           color: transparent;
         }
       }
+
+      .location {
+        display: flex;
+        gap: 8px;
+      }
     }
 
     .right-section {

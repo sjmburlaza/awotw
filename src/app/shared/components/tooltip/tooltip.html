@@ -1,3 +1,10 @@
-<span class="tooltip">
-  <i class="bi bi-info-circle"></i>
-</span>
+<div 
+  class="tooltip" 
+  [class.show]="visible" 
+  [ngStyle]="{ top: top + 'px', left: left + 'px' }"
+>
+  <ng-container *ngIf="template; else textContent"
+    [ngTemplateOutlet]="template">
+  </ng-container>
+  <ng-template #textContent>{{ text }}</ng-template>
+</div>
