@@ -59,37 +59,26 @@ export class TooltipDirective {
     const tooltipRect = tooltipEl.getBoundingClientRect();
 
     let top = 0, left = 0;
-    const tooltipTargetSpace = 0;
+    const spaceBetweenTooltipAndTarget = 0;
+    const tooltipWidth = 300;
 
     switch (this.tooltipPosition) {
       case 'top':
-        top = targetRect.top - tooltipRect.height - tooltipTargetSpace + window.scrollY;
+        top = targetRect.top - tooltipRect.height - spaceBetweenTooltipAndTarget + window.scrollY;
         left = targetRect.left + (targetRect.width - tooltipRect.width) / 2;
         break;
       case 'bottom':
-        top = targetRect.bottom + tooltipTargetSpace + window.scrollY;
-        left = targetRect.left + (targetRect.width - tooltipRect.width) / 2;
+        top = targetRect.bottom + spaceBetweenTooltipAndTarget + window.scrollY;
+        left = targetRect.left - (tooltipWidth / 2);
         break;
       case 'left':
         top = targetRect.top + (targetRect.height - tooltipRect.height) / 2 + window.scrollY;
-        left = targetRect.left - tooltipRect.width - tooltipTargetSpace;
+        left = targetRect.left - tooltipRect.width - spaceBetweenTooltipAndTarget;
         break;
       case 'right':
         top = targetRect.top + (targetRect.height - tooltipRect.height) / 2 + window.scrollY;
-        left = targetRect.right + tooltipTargetSpace;
+        left = targetRect.right + spaceBetweenTooltipAndTarget;
         break;
-    }
-
-    // Smart repositioning
-    if (left < 0) left = tooltipTargetSpace;
-    if (left + tooltipRect.width > window.innerWidth) {
-      left = window.innerWidth - tooltipRect.width - tooltipTargetSpace;
-    }
-    if (top < window.scrollY) {
-      top = targetRect.bottom + tooltipTargetSpace + window.scrollY;
-    }
-    if (top + tooltipRect.height > window.scrollY + window.innerHeight) {
-      top = targetRect.top - tooltipRect.height - tooltipTargetSpace + window.scrollY;
     }
 
     this.tooltipRef.instance.top = top;

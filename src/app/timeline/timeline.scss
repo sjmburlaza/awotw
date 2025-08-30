@@ -62,26 +62,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 282px;
-    height: 182px;
+    width: 322px;
+    height: 222px;
     border: 1px solid gainsboro;
     border-radius: 8px;
 
     img {
-      max-width: 280px;
-      max-height: 180px;
+      max-width: 320px;
+      max-height: 220px;
       object-fit: cover;
     }
   }
 
   &__name {
-    width: 280px;
+    width: 300px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
     font-family: "Barlow Condensed";
     font-size: 18px;
-    margin-left: 8px;
+    margin-left: 12px;
 
     i {
       color: gray;

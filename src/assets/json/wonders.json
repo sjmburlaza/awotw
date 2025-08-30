@@ -1956,20 +1956,25 @@
   },
   {
     "id": 91,
-    "name": "Door of the Hôtel de Chenizot",
-    "yearBuilt": "1719",
-    "style": "Rococo",
-    "buildingType": "Accessory",
+    "name": "Het Loo Palace",
+    "yearBuilt": "1686",
+    "style": "Baroque",
+    "buildingType": "Residential",
     "scale": "",
-    "location": "Paris, France",
+    "location": "Apeldoorn, Netherlands",
     "continent": "Europe",
-    "descriptionURL": "https://www.france-voyage.com/cities-towns/paris-29996/private-mansion-chenizot-20440.htm",
-    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/5/57/Hotel_de_chenizot_facade.jpg",
-    "codename": "DHC",
+    "descriptionURL": "https://en.wikipedia.org/wiki/Het_Loo_Palace",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/8165_Paleis_%27t_Loo_voorzijde.jpg/1600px-8165_Paleis_%27t_Loo_voorzijde.jpg",
+    "codename": "HLC",
     "color": "#F70D1A",
-    "lat": "48.8534951",
-    "lon": "2.3483915",
-    "wiki": null
+    "lat": "52.234167",
+    "lon": "5.945833",
+    "wiki": {
+      "title": "",
+      "description": "",
+      "extract": "The symmetrical Dutch Baroque building was designed by Jacob Roman and Johan van Swieten. It was built between 1684 and 1686 for stadtholder-king William III and his consort Mary II of England. The garden was designed by Claude Desgotz.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 92,
