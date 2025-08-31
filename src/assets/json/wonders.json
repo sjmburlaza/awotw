@@ -568,20 +568,25 @@
   },
   {
     "id": 27,
-    "name": "Jain Vimal Vasahi Temple",
+    "name": "Vimal Vasahi Temple",
     "yearBuilt": "1031",
     "style": "Maru Gurjara",
     "buildingType": "Religious",
     "scale": "",
     "location": "Mount Abu, India",
     "continent": "Asia",
-    "descriptionURL": "https://www.mountabuonline.in/city-guide/vimal-vasahi-temple",
-    "imageURL": "https://im.hunt.in/cg/Mount-Abu/City-Guide/Pillars-of-Vimala-Vasahi-Temple.png",
-    "codename": "JVV",
+    "descriptionURL": "https://en.wikipedia.org/wiki/Dilwara_Temples",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/commons/8/81/Delwada.jpg",
+    "codename": "VVT",
     "color": "#228B22",
     "lat": "24.5924330",
     "lon": "72.7081876",
-    "wiki": null
+    "wiki": {
+      "title": "",
+      "description": "",
+      "extract": "The Adinatha or Vimal Vasahi Temple is carved entirely out of white marble and was mostly built in 1026 by Vimal Shah, a minister of Bhima I, the Chaulukya king of Gujarat. The outer mandapa is an addition of the next century. The temple is dedicated to Rishabhanatha. The temple stands in an open courtyard surrounded by a corridor, which has numerous cells containing smaller idols of the tirthankaras. The richly carved corridors, pillars, arches, and 'mandaps' or porticoes of the temple are simply amazing.",
+      "wikipedia": ""
+    }
   },
   {
     "id": 28,
