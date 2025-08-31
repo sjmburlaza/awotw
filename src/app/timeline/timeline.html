@@ -25,7 +25,10 @@
                 </div>
                 <div class="item__name">
                     {{ item.name }}
-                    <span class="tooltip" [appTooltip]="item.wiki?.extract ?? ''">
+                    <span 
+                      class="tooltip" 
+                      [appTooltip]="item.wiki?.extract ?? 'No description available.'"
+                    >
                       <i class="bi bi-info-circle"></i>
                     </span>
                 </div>
