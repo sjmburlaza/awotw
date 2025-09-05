@@ -18,7 +18,7 @@ export class Search {
   ) {}
 
   ngOnInit() {
-    this.dataService.getData().pipe(take(1)).subscribe(res => {
+    this.dataService.getWonders().pipe(take(1)).subscribe(res => {
       this.route.queryParams.subscribe(params => {
         const searchQuery = params['q'];
         this.performSearch(res, searchQuery)

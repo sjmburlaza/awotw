@@ -25,7 +25,7 @@ export class Detail implements OnInit {
 
   ngOnInit() {
     this.currentDetailId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
       this.wondersData = res;
       if (this.currentDetailId) {
         this.getDetails(this.currentDetailId, res);

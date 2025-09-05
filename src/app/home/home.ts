@@ -63,7 +63,7 @@ export class Home implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);
-    this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
       this.data = res;
       this.groups = groupByAttribute(this.data, 'style');
       this.isLoading = false;

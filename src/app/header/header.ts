@@ -64,6 +64,10 @@ export class Header implements OnInit {
     this.router.navigate([URL.TIMELINE]);
   }
 
+  goToChartsPage(): void {
+    this.router.navigate([URL.CHARTS]);
+  }
+
   goToHomePage(): void {
     this.isHomeClicked = true;
     setTimeout(() => {

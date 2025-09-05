@@ -63,7 +63,7 @@ export class Quiz implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => this.data = res);
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => this.data = res);
   }
 
   onSelectQuiz(quiz: QuizModel): void {

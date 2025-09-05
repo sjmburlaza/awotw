@@ -31,7 +31,7 @@ export class Map implements AfterViewInit {
   }
 
   private loadWonders(): void {
-    this.dataService.getData().subscribe((wonders: Item[]) => {
+    this.dataService.getWonders().subscribe((wonders: Item[]) => {
       wonders.forEach(wonder => {
         if (!wonder.lat || !wonder.lon) return;
 

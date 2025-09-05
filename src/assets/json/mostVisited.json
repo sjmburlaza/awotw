@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Forbidden City",
+    "location": "Beijing, China",
+    "visitors_per_year": 17000000,
+    "year": 2018,
+    "description": "The imperial palace complex of the Ming and Qing dynasties, showcasing traditional Chinese architecture and history.",
+    "color": "#DDF0A7"
+  },
+  {
+    "name": "St. Peter's Basilica",
+    "location": "Vatican City",
+    "visitors_per_year": 11000000,
+    "year": 2018,
+    "description": "The world’s largest church and a Renaissance masterpiece, serving as a spiritual center of Catholicism.",
+    "color": "#A4F2CE"
+  },
+  {
+    "name": "Notre-Dame Cathedral",
+    "location": "Paris, France",
+    "visitors_per_year": 12000000,
+    "year": "approximate annual",
+    "description": "A Gothic architectural gem on the Île de la Cité, famed for its stained glass, towers, and cultural heritage.",
+    "color": "#9FE8BF"
+  },
+  {
+    "name": "Louvre Museum",
+    "location": "Paris, France",
+    "visitors_per_year": 8700000,
+    "year": 2024,
+    "description": "The world’s largest and most visited art museum, home to masterpieces like the Mona Lisa and Venus de Milo.",
+    "color": "#F29AE1"
+  },
+  {
+    "name": "Lincoln Memorial",
+    "location": "Washington, D.C., USA",
+    "visitors_per_year": 7804683,
+    "year": 2018,
+    "description": "A national monument honoring Abraham Lincoln, symbolizing unity, freedom, and American ideals.",
+    "color": "#EDA5E1"
+  },
+  {
+    "name": "Colosseum (and Circuit)",
+    "location": "Rome, Italy",
+    "visitors_per_year": 7650519,
+    "year": 2018,
+    "description": "An ancient Roman amphitheater, famous for gladiatorial contests and its enduring symbol of Imperial Rome.",
+    "color": "#D595F0"
+  },
+  {
+    "name": "Acropolis (Parthenon)",
+    "location": "Athens, Greece",
+    "visitors_per_year": 7200000,
+    "year": 2016,
+    "description": "A UNESCO site and ancient citadel featuring the Parthenon, a temple dedicated to the goddess Athena.",
+    "color": "#F1AAA8"
+  },
+  {
+    "name": "Eiffel Tower",
+    "location": "Paris, France",
+    "visitors_per_year": 7000000,
+    "year": 2017,
+    "description": "The iron lattice tower and global symbol of France, originally built for the 1889 World’s Fair.",
+    "color": "#EFBAED"
+  },
+  {
+    "name": "Hagia Sophia",
+    "location": "Istanbul, Turkey",
+    "visitors_per_year": 6250000,
+    "year": 2024,
+    "description": "A masterpiece of Byzantine architecture, serving as a cathedral, mosque, and now a mosque-museum hybrid.",
+    "color": "#ADF3D5"
+  },
+  {
+    "name": "Taj Mahal",
+    "location": "Agra, India",
+    "visitors_per_year": 6532366,
+    "year": 2019,
+    "description": "A UNESCO World Heritage mausoleum built by Emperor Shah Jahan, celebrated as a symbol of eternal love.",
+    "color": "#E6A5ED"
+  },
+  {
+    "name": "Cologne Cathedral",
+    "location": "Cologne, Germany",
+    "visitors_per_year": 6000000,
+    "year": 2018,
+    "description": "A Gothic masterpiece and Germany’s most visited landmark, housing the Shrine of the Three Kings.",
+    "color": "#F4E79B"
+  },
+  {
+    "name": "Sydney Opera House",
+    "location": "Sydney, Australia",
+    "visitors_per_year": 7400000,
+    "year": "approximate annual",
+    "description": "An architectural icon on Sydney Harbour, famous for its sail-like design and cultural performances.",
+    "color": "#F5B1C8"
+  },
+  {
+    "name": "Great Wall of China",
+    "location": "China",
+    "visitors_per_year": 9000000,
+    "year": "approximate annual",
+    "description": "A massive fortification stretching thousands of kilometers, symbolizing China’s strength and resilience.",
+    "color": "#B5F2AF"
+  },
+  {
+    "name": "Statue of Liberty",
+    "location": "New York City, USA",
+    "visitors_per_year": 4000000,
+    "year": "approximate annual",
+    "description": "A gift from France, this colossal statue is a universal symbol of freedom and democracy.",
+    "color": "#9CBDE8"
+  },
+  {
+    "name": "Sagrada Família",
+    "location": "Barcelona, Spain",
+    "visitors_per_year": 4700000,
+    "year": 2023,
+    "description": "Antoni Gaudí’s unfinished basilica, a blend of Gothic and Art Nouveau, and an emblem of Barcelona.",
+    "color": "#B09FF4"
+  },
+  {
+    "name": "Alhambra",
+    "location": "Granada, Spain",
+    "visitors_per_year": 2700000,
+    "year": 2018,
+    "description": "A Moorish palace and fortress complex, known for its intricate Islamic architecture and gardens.",
+    "color": "#EE95D9"
+  },
+  {
+    "name": "Pyramids of Giza",
+    "location": "Cairo, Egypt",
+    "visitors_per_year": 3000000,
+    "year": "approximate annual",
+    "description": "The last of the Seven Wonders of the Ancient World, built as monumental tombs for pharaohs.",
+    "color": "#9A9DEE"
+  },
+  {
+    "name": "Machu Picchu",
+    "location": "Peru",
+    "visitors_per_year": 1500000,
+    "year": "approximate annual",
+    "description": "A breathtaking Incan citadel in the Andes, often called the Lost City of the Incas.",
+    "color": "#F6B0B0"
+  },
+  {
+    "name": "Angkor Wat",
+    "location": "Siem Reap, Cambodia",
+    "visitors_per_year": 2500000,
+    "year": "approximate annual",
+    "description": "The largest religious monument in the world, originally built as a Hindu temple in the 12th century.",
+    "color": "#EDCBAF"
+  },
+  {
+    "name": "Petra",
+    "location": "Jordan",
+    "visitors_per_year": 905000,
+    "year": 2022,
+    "description": "An ancient Nabataean city carved into rose-red rock, often called the ‘Rose City’ and a UNESCO site.",
+    "color": "#A0C1E7"
+  },
+  {
+    "name": "British Museum",
+    "location": "London, United Kingdom",
+    "visitors_per_year": 5900000,
+    "year": 2023,
+    "description": "One of the world’s most comprehensive museums, showcasing human history, art, and culture with collections spanning over two million years.",
+    "color": "#A1A0E8"
+  },
+  {
+    "name": "Metropolitan Museum of Art",
+    "location": "New York City, USA",
+    "visitors_per_year": 5500000,
+    "year": 2023,
+    "description": "The largest art museum in the Americas, renowned for its vast collection from ancient times to modern art.",
+    "color": "#DCBEF3"
+  },
+  {
+    "name": "Versailles Palace",
+    "location": "Versailles, France",
+    "visitors_per_year": 8000000,
+    "year": 2019,
+    "description": "A grand French royal residence famous for its Hall of Mirrors, gardens, and role in European history.",
+    "color": "#D2AFED"
+  },
+  {
+    "name": "Christ the Redeemer",
+    "location": "Rio de Janeiro, Brazil",
+    "visitors_per_year": 2000000,
+    "year": 2023,
+    "description": "An iconic Art Deco statue of Jesus Christ overlooking Rio, symbolizing peace and Brazilian culture.",
+    "color": "#E8A1C8"
+  },
+  {
+    "name": "Pompeii Archaeological Site",
+    "location": "Pompeii, Italy",
+    "visitors_per_year": 4000000,
+    "year": 2019,
+    "description": "Ancient Roman city preserved under volcanic ash from Mount Vesuvius, offering a vivid snapshot of life nearly 2,000 years ago.",
+    "color": "#BCC4EE"
+  },
+  {
+    "name": "Smithsonian National Air and Space Museum",
+    "location": "Washington, D.C., USA",
+    "visitors_per_year": 3300000,
+    "year": 2023,
+    "description": "Part of the Smithsonian Institution, showcasing historic aircraft, spacecraft, and achievements in aviation and space exploration.",
+    "color": "#DBAEED"
+  },
+  {
+    "name": "Pantheon",
+    "location": "Rome, Italy",
+    "visitors_per_year": 9000000,
+    "year": 2019,
+    "description": "A remarkably preserved ancient Roman temple, now a church, known for its massive dome and central oculus.",
+    "color": "#C3ABF3"
+  },
+  {
+    "name": "Tower of London",
+    "location": "London, United Kingdom",
+    "visitors_per_year": 3000000,
+    "year": 2019,
+    "description": "Historic fortress on the River Thames, once a royal palace and prison, today home to the Crown Jewels.",
+    "color": "#E19CE9"
+  },
+  {
+    "name": "Golden Gate Bridge",
+    "location": "San Francisco, USA",
+    "visitors_per_year": 10000000,
+    "year": "approximate annual",
+    "description": "An engineering marvel and symbol of San Francisco, famous for its Art Deco design and striking orange-red color.",
+    "color": "#BDF3B4"
+  },
+  {
+    "name": "Disneyland Park (Anaheim)",
+    "location": "California, USA",
+    "visitors_per_year": 16500000,
+    "year": 2019,
+    "description": "The original Disney theme park, opened in 1955, combining fairy-tale attractions and modern entertainment.",
+    "color": "#AAF398"
+  },
+  {
+    "name": "Disney World (Magic Kingdom)",
+    "location": "Orlando, Florida, USA",
+    "visitors_per_year": 20960000,
+    "year": 2019,
+    "description": "The most visited theme park in the world, famous for Cinderella Castle and Disney’s magical attractions.",
+    "color": "#F2DD92"
+  },
+  {
+    "name": "Tokyo Disneyland",
+    "location": "Tokyo, Japan",
+    "visitors_per_year": 17890000,
+    "year": 2019,
+    "description": "A Japanese Disney resort blending classic attractions with unique cultural touches, beloved by families worldwide.",
+    "color": "#A491F2"
+  },
+  {
+    "name": "Tokyo DisneySea",
+    "location": "Tokyo, Japan",
+    "visitors_per_year": 14910000,
+    "year": 2019,
+    "description": "Themed around ocean exploration, this park is unique to Japan and known for immersive storytelling and design.",
+    "color": "#C4B9F1"
+  },
+  {
+    "name": "Universal Studios Japan",
+    "location": "Osaka, Japan",
+    "visitors_per_year": 14500000,
+    "year": 2019,
+    "description": "A theme park featuring popular attractions like Harry Potter, Minions, and Super Nintendo World.",
+    "color": "#AFEC9C"
+  },
+  {
+    "name": "Universal Studios Florida",
+    "location": "Orlando, Florida, USA",
+    "visitors_per_year": 10800000,
+    "year": 2019,
+    "description": "Part of the Universal Orlando Resort, known for movie-themed rides and attractions like Harry Potter and Jurassic Park.",
+    "color": "#D4A9EF"
+  },
+  {
+    "name": "Disney California Adventure",
+    "location": "California, USA",
+    "visitors_per_year": 9870000,
+    "year": 2019,
+    "description": "A Disney theme park inspired by California’s culture and history, home to Pixar Pier and Avengers Campus.",
+    "color": "#EEB4E0"
+  },
+  {
+    "name": "Ocean Park",
+    "location": "Hong Kong, China",
+    "visitors_per_year": 5700000,
+    "year": 2019,
+    "description": "A marine mammal park, oceanarium, and amusement park that combines education, conservation, and entertainment.",
+    "color": "#EFB294"
+  },
+  {
+    "name": "Shanghai Disneyland",
+    "location": "Shanghai, China",
+    "visitors_per_year": 11500000,
+    "year": 2019,
+    "description": "Disney’s first theme park in mainland China, featuring the largest Disney castle in the world.",
+    "color": "#AD9CEA"
+  },
+  {
+    "name": "Universal Studios Hollywood",
+    "location": "Los Angeles, California, USA",
+    "visitors_per_year": 9200000,
+    "year": 2019,
+    "description": "A film studio and theme park offering rides, attractions, and behind-the-scenes tours of movie sets.",
+    "color": "#F1A6D8"
+  },
+  {
+    "name": "Epcot (Disney World)",
+    "location": "Orlando, Florida, USA",
+    "visitors_per_year": 12400000,
+    "year": 2019,
+    "description": "Part of Walt Disney World, focusing on technological innovation, science, and cultural showcases from around the world.",
+    "color": "#D1EAA7"
+  },
+  {
+    "name": "Animal Kingdom (Disney World)",
+    "location": "Orlando, Florida, USA",
+    "visitors_per_year": 13900000,
+    "year": 2019,
+    "description": "A Disney theme park combining wildlife conservation with attractions like Pandora – The World of Avatar.",
+    "color": "#B49CE8"
+  },
+  {
+    "name": "Hollywood Studios (Disney World)",
+    "location": "Orlando, Florida, USA",
+    "visitors_per_year": 11500000,
+    "year": 2019,
+    "description": "A Disney park dedicated to movies and TV, home to Star Wars: Galaxy’s Edge and Toy Story Land.",
+    "color": "#AAABEA"
+  },
+  {
+    "name": "Hong Kong Disneyland",
+    "location": "Hong Kong, China",
+    "visitors_per_year": 6500000,
+    "year": 2019,
+    "description": "Disney’s first park in China, blending traditional Disney attractions with Asian cultural elements.",
+    "color": "#B7A4EE"
+  },
+  {
+    "name": "Chichen Itza",
+    "location": "Yucatán, Mexico",
+    "visitors_per_year": 2600000,
+    "year": 2019,
+    "description": "An ancient Mayan city and UNESCO site, famous for the Temple of Kukulcán pyramid.",
+    "color": "#AED2F1"
+  },
+  {
+    "name": "Grand Canyon National Park",
+    "location": "Arizona, USA",
+    "visitors_per_year": 4860000,
+    "year": 2023,
+    "description": "A natural wonder carved by the Colorado River, known for its vast landscapes and breathtaking views.",
+    "color": "#BFE1F0"
+  },
+  {
+    "name": "Niagara Falls",
+    "location": "Ontario, Canada / New York, USA",
+    "visitors_per_year": 12000000,
+    "year": "approximate annual",
+    "description": "One of the world’s most famous waterfalls, straddling the US–Canada border with massive tourist appeal.",
+    "color": "#F5ACF0"
+  },
+  {
+    "name": "Banff National Park",
+    "location": "Alberta, Canada",
+    "visitors_per_year": 4200000,
+    "year": 2019,
+    "description": "Canada’s oldest national park, renowned for its turquoise lakes, mountain scenery, and outdoor recreation.",
+    "color": "#CD95EE"
+  },
+  {
+    "name": "Times Square",
+    "location": "New York City, USA",
+    "visitors_per_year": 50000000,
+    "year": "approximate annual",
+    "description": "The bustling heart of Manhattan, known for its neon lights, Broadway theaters, and New Year’s Eve celebrations.",
+    "color": "#EDC79E"
+  },
+  {
+    "name": "Las Vegas Strip",
+    "location": "Las Vegas, Nevada, USA",
+    "visitors_per_year": 42000000,
+    "year": 2019,
+    "description": "A stretch of Las Vegas Boulevard famous for its casinos, hotels, and nightlife entertainment.",
+    "color": "#BBF6D0"
+  },
+  {
+    "name": "Meiji Shrine",
+    "location": "Tokyo, Japan",
+    "visitors_per_year": 10000000,
+    "year": "approximate annual",
+    "description": "A Shinto shrine dedicated to Emperor Meiji and Empress Shoken, surrounded by a peaceful forest in central Tokyo.",
+    "color": "#C0F0CC"
+  }
+]
