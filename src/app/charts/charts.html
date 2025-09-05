@@ -36,12 +36,26 @@
         </app-chart>
       </div>
       <div class="chart__pie">
-        <app-chart 
-          [chartType]="'pie'" 
-          [chartData]="categoryValue === 'tallest' ? tallestBuildingsPieData : mostVisitedPieData"
-          [chartOptions]="chartOptions"
-        >
-        </app-chart>
+        <div class="chart__pie__country">
+          <div class="title">Distribution by Country</div>
+          <app-chart
+            [chartType]="'pie'" 
+            [chartData]="categoryValue === 'tallest' ? tallesBuildingsCountryPieData : mostVisitedByCountryPieData"
+            [chartOptions]="chartOptions"
+          >
+          </app-chart>
+        </div>
+        @if (categoryValue === 'tallest') {
+          <div class="chart__pie__year">
+            <div class="title">Distribution by Year of Completion</div>
+            <app-chart 
+              [chartType]="'pie'" 
+              [chartData]="tallesBuildingsYearPieData"
+              [chartOptions]="chartOptions"
+            >
+            </app-chart>
+          </div>
+        }
       </div>
     </div>
   }

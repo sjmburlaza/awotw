@@ -34,7 +34,25 @@
     }
 
     &__pie {
-      width: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1260px;
+      margin-top: 36px;
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &__country {
+        width: 560px;
+      }
+
+      &__year {
+        width: 560px;
+      }
     }
   }
 
