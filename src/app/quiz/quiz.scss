@@ -85,6 +85,10 @@
               margin-left: 4px;
             }
           }
+
+          input, label {
+            cursor: pointer;
+          }
         }
 
         .incorrect {

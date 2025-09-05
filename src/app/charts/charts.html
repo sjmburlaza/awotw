@@ -31,10 +31,18 @@
       <div class="chart__bar" [class.small]="rankingValue === '20'">
         <app-chart 
           [chartType]="'bar'" 
-          [chartData]="categoryValue === 'tallest' ? tallestBuildings : mostVisited"
+          [chartData]="categoryValue === 'tallest' ? tallestBuildingsBarData : mostVisitedBarData"
         >
         </app-chart>
       </div>
-  </div>
+      <div class="chart__pie">
+        <app-chart 
+          [chartType]="'pie'" 
+          [chartData]="categoryValue === 'tallest' ? tallestBuildingsPieData : mostVisitedPieData"
+          [chartOptions]="chartOptions"
+        >
+        </app-chart>
+      </div>
+    </div>
   }
 </div>
