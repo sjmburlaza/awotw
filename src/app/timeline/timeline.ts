@@ -18,7 +18,7 @@ export class Timeline implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataService.getData().pipe(take(1)).subscribe((res: Item[]) => {
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
       this.groups = groupByYearBuilt(res);
       this.loading = false;
     });

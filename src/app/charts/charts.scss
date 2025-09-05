@@ -1,0 +1,78 @@
+.charts-container {
+  display: grid;
+  gap: 8px;
+  font-family: 'Barlow';
+  margin-top: -24px;
+
+  .nav {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    gap: 4px;
+
+    .categories {
+      display: flex;
+    }
+
+    .rankings {
+      display: flex;
+      justify-self: center;
+    }
+  }
+
+
+  .chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__bar {
+      width: 1260px;
+    }
+  }
+
+}
+
+label {
+  cursor: pointer;
+
+  &.category {
+    font-size: 24px;
+    padding: 4px 16px;
+  }
+
+  &.ranking {
+  font-size: 20px;
+  padding: 4px 16px;
+
+  }
+
+  &.selected {
+    // background-color: aqua;
+    background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+    color: whitesmoke;
+    border-radius: 12px;
+  }
+}
+
+input {
+  display: none;
+}
+
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #ff7ff4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}

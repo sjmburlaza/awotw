@@ -1,0 +1,40 @@
+<div class="charts-container">
+  <form [formGroup]="selectionForm" class="nav">
+    <div class="categories">
+      @for (category of categories; track category.name) {
+        <label class="category" 
+          [class.selected]="categoryValue === category.code"
+          [for]="category.code"
+        >
+          <input type="radio" formControlName="category" [value]="category.code" [id]="category.code">
+            {{ category.name }}
+        </label>
+      }
+    </div>
+    <div class="rankings">
+      @for (ranking of rankings; track ranking.name) {
+        <label class="ranking" 
+          [class.selected]="rankingValue === ranking.code"
+          [for]="ranking.code"
+        >
+          <input type="radio" formControlName="ranking" [value]="ranking.code" [id]="ranking.code">
+            {{ ranking.name }}
+        </label>
+      }
+    </div>
+  </form>
+
+  @if (isLoading) {
+    <div class="loader"></div>
+  } @else {
+    <div class="chart">
+      <div class="chart__bar" [class.small]="rankingValue === '20'">
+        <app-chart 
+          [chartType]="'bar'" 
+          [chartData]="categoryValue === 'tallest' ? tallestBuildings : mostVisited"
+        >
+        </app-chart>
+      </div>
+  </div>
+  }
+</div>

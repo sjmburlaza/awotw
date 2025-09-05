@@ -29,6 +29,24 @@ export interface Item {
   }
 }
 
+export interface TallestBuilding {
+  name: string;
+  city: string;
+  country: string;
+  height_m: string;
+  year_completed: string;
+  description: string;
+  color: string;
+}
+
+export interface MostVisited {
+  name: string;
+  location: string;
+  visitors_per_year: string;
+  year: string;
+  color: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +55,15 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<Item[]> {
+  getWonders(): Observable<Item[]> {
     return this.http.get<Item[]>('assets/json/wonders.json');
+  }
+
+  getTallestBuildings(): Observable<TallestBuilding[]> {
+    return this.http.get<TallestBuilding[]>('assets/json/tallestBuildings.json');
+  }
+
+  getMostVisited(): Observable<MostVisited[]> {
+    return this.http.get<MostVisited[]>('assets/json/mostVisited.json');
   }
 }
