@@ -3,6 +3,7 @@
   gap: 8px;
   font-family: 'Barlow';
   margin-top: -24px;
+  padding-bottom: 48px;
 
   .nav {
     display: grid;
@@ -23,11 +24,35 @@
 
   .chart {
     display: flex;
+    flex-direction: column;
+    gap: 24px;
     justify-content: center;
     align-items: center;
 
     &__bar {
       width: 1260px;
+    }
+
+    &__pie {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1260px;
+      margin-top: 36px;
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      &__country {
+        width: 560px;
+      }
+
+      &__year {
+        width: 560px;
+      }
     }
   }
 
@@ -48,11 +73,14 @@ label {
   }
 
   &.selected {
-    // background-color: aqua;
-    background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+    background: linear-gradient(135deg, #FF6F8C 0%, #6F8CFF 100%);
     color: whitesmoke;
     border-radius: 12px;
   }
+}
+
+label:hover {
+  filter: brightness(110%);
 }
 
 input {
