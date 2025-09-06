@@ -5,7 +5,8 @@
     "visitors_per_year": 17000000,
     "year": 2018,
     "description": "The imperial palace complex of the Ming and Qing dynasties, showcasing traditional Chinese architecture and history.",
-    "color": "#DDF0A7"
+    "color": "#DDF0A7",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hall_of_Supreme_Harmony_(20241127120000).jpg"
   },
   {
     "name": "St. Peter's Basilica",
@@ -13,7 +14,8 @@
     "visitors_per_year": 11000000,
     "year": 2018,
     "description": "The world’s largest church and a Renaissance masterpiece, serving as a spiritual center of Catholicism.",
-    "color": "#A4F2CE"
+    "color": "#A4F2CE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basilica_di_San_Pietro_in_Vaticano_September_2015-1a.jpg"
   },
   {
     "name": "Notre-Dame Cathedral",
@@ -21,7 +23,8 @@
     "visitors_per_year": 12000000,
     "year": "approximate annual",
     "description": "A Gothic architectural gem on the Île de la Cité, famed for its stained glass, towers, and cultural heritage.",
-    "color": "#9FE8BF"
+    "color": "#9FE8BF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Notre-Dame_de_Paris_2013-07-24.jpg"
   },
   {
     "name": "Louvre Museum",
@@ -29,7 +32,8 @@
     "visitors_per_year": 8700000,
     "year": 2024,
     "description": "The world’s largest and most visited art museum, home to masterpieces like the Mona Lisa and Venus de Milo.",
-    "color": "#F29AE1"
+    "color": "#F29AE1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cour_Napoléon_at_night_-_Louvre.jpg"
   },
   {
     "name": "Lincoln Memorial",
@@ -37,7 +41,8 @@
     "visitors_per_year": 7804683,
     "year": 2018,
     "description": "A national monument honoring Abraham Lincoln, symbolizing unity, freedom, and American ideals.",
-    "color": "#EDA5E1"
+    "color": "#EDA5E1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_Lincoln_Memorial_-_east_side_EDIT.jpeg"
   },
   {
     "name": "Colosseum (and Circuit)",
@@ -45,7 +50,8 @@
     "visitors_per_year": 7650519,
     "year": 2018,
     "description": "An ancient Roman amphitheater, famous for gladiatorial contests and its enduring symbol of Imperial Rome.",
-    "color": "#D595F0"
+    "color": "#D595F0",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Acropolis (Parthenon)",
@@ -53,7 +59,8 @@
     "visitors_per_year": 7200000,
     "year": 2016,
     "description": "A UNESCO site and ancient citadel featuring the Parthenon, a temple dedicated to the goddess Athena.",
-    "color": "#F1AAA8"
+    "color": "#F1AAA8",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Eiffel Tower",
@@ -61,7 +68,8 @@
     "visitors_per_year": 7000000,
     "year": 2017,
     "description": "The iron lattice tower and global symbol of France, originally built for the 1889 World’s Fair.",
-    "color": "#EFBAED"
+    "color": "#EFBAED",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg"
   },
   {
     "name": "Hagia Sophia",
@@ -69,7 +77,8 @@
     "visitors_per_year": 6250000,
     "year": 2024,
     "description": "A masterpiece of Byzantine architecture, serving as a cathedral, mosque, and now a mosque-museum hybrid.",
-    "color": "#ADF3D5"
+    "color": "#ADF3D5",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hagia_Sophia_Mars_2013.jpg"
   },
   {
     "name": "Taj Mahal",
@@ -77,7 +86,8 @@
     "visitors_per_year": 6532366,
     "year": 2019,
     "description": "A UNESCO World Heritage mausoleum built by Emperor Shah Jahan, celebrated as a symbol of eternal love.",
-    "color": "#E6A5ED"
+    "color": "#E6A5ED",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Taj_Mahal_(Edited).jpeg"
   },
   {
     "name": "Cologne Cathedral",
@@ -85,7 +95,8 @@
     "visitors_per_year": 6000000,
     "year": 2018,
     "description": "A Gothic masterpiece and Germany’s most visited landmark, housing the Shrine of the Three Kings.",
-    "color": "#F4E79B"
+    "color": "#F4E79B",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kölner_Dom_von_Osten.jpg"
   },
   {
     "name": "Sydney Opera House",
@@ -93,7 +104,8 @@
     "visitors_per_year": 7400000,
     "year": "approximate annual",
     "description": "An architectural icon on Sydney Harbour, famous for its sail-like design and cultural performances.",
-    "color": "#F5B1C8"
+    "color": "#F5B1C8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/00_1375_Sydney_Opera_House_(Australia).jpg"
   },
   {
     "name": "Great Wall of China",
@@ -101,7 +113,8 @@
     "visitors_per_year": 9000000,
     "year": "approximate annual",
     "description": "A massive fortification stretching thousands of kilometers, symbolizing China’s strength and resilience.",
-    "color": "#B5F2AF"
+    "color": "#B5F2AF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Badaling_China_Great-Wall-of-China-06.jpg"
   },
   {
     "name": "Statue of Liberty",
@@ -109,7 +122,8 @@
     "visitors_per_year": 4000000,
     "year": "approximate annual",
     "description": "A gift from France, this colossal statue is a universal symbol of freedom and democracy.",
-    "color": "#9CBDE8"
+    "color": "#9CBDE8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Statue_of_Liberty_7.jpg"
   },
   {
     "name": "Sagrada Família",
@@ -117,7 +131,8 @@
     "visitors_per_year": 4700000,
     "year": 2023,
     "description": "Antoni Gaudí’s unfinished basilica, a blend of Gothic and Art Nouveau, and an emblem of Barcelona.",
-    "color": "#B09FF4"
+    "color": "#B09FF4",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sagrada_Familia_8-12-21_(1).jpg"
   },
   {
     "name": "Alhambra",
@@ -125,7 +140,8 @@
     "visitors_per_year": 2700000,
     "year": 2018,
     "description": "A Moorish palace and fortress complex, known for its intricate Islamic architecture and gardens.",
-    "color": "#EE95D9"
+    "color": "#EE95D9",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Pyramids of Giza",
@@ -133,7 +149,8 @@
     "visitors_per_year": 3000000,
     "year": "approximate annual",
     "description": "The last of the Seven Wonders of the Ancient World, built as monumental tombs for pharaohs.",
-    "color": "#9A9DEE"
+    "color": "#9A9DEE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/All_Gizah_Pyramids.jpg"
   },
   {
     "name": "Machu Picchu",
@@ -141,7 +158,8 @@
     "visitors_per_year": 1500000,
     "year": "approximate annual",
     "description": "A breathtaking Incan citadel in the Andes, often called the Lost City of the Incas.",
-    "color": "#F6B0B0"
+    "color": "#F6B0B0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/80_-_Machu_Picchu_-_Juin_2009_-_edit.jpg"
   },
   {
     "name": "Angkor Wat",
@@ -149,7 +167,8 @@
     "visitors_per_year": 2500000,
     "year": "approximate annual",
     "description": "The largest religious monument in the world, originally built as a Hindu temple in the 12th century.",
-    "color": "#EDCBAF"
+    "color": "#EDCBAF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Angkor_Wat.jpg"
   },
   {
     "name": "Petra",
@@ -157,7 +176,8 @@
     "visitors_per_year": 905000,
     "year": 2022,
     "description": "An ancient Nabataean city carved into rose-red rock, often called the ‘Rose City’ and a UNESCO site.",
-    "color": "#A0C1E7"
+    "color": "#A0C1E7",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "British Museum",
@@ -165,7 +185,8 @@
     "visitors_per_year": 5900000,
     "year": 2023,
     "description": "One of the world’s most comprehensive museums, showcasing human history, art, and culture with collections spanning over two million years.",
-    "color": "#A1A0E8"
+    "color": "#A1A0E8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/British_Museum_from_NE_2_(cropped).JPG"
   },
   {
     "name": "Metropolitan Museum of Art",
@@ -173,7 +194,8 @@
     "visitors_per_year": 5500000,
     "year": 2023,
     "description": "The largest art museum in the Americas, renowned for its vast collection from ancient times to modern art.",
-    "color": "#DCBEF3"
+    "color": "#DCBEF3",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Metropolitan_Museum_of_Art_(The_Met)_-_Central_Park,_NYC.jpg"
   },
   {
     "name": "Versailles Palace",
@@ -181,7 +203,8 @@
     "visitors_per_year": 8000000,
     "year": 2019,
     "description": "A grand French royal residence famous for its Hall of Mirrors, gardens, and role in European history.",
-    "color": "#D2AFED"
+    "color": "#D2AFED",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vue_aérienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_083.jpg"
   },
   {
     "name": "Christ the Redeemer",
@@ -189,7 +212,8 @@
     "visitors_per_year": 2000000,
     "year": 2023,
     "description": "An iconic Art Deco statue of Jesus Christ overlooking Rio, symbolizing peace and Brazilian culture.",
-    "color": "#E8A1C8"
+    "color": "#E8A1C8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christ_the_Redeemer_-_Cristo_Redentor.jpg"
   },
   {
     "name": "Pompeii Archaeological Site",
@@ -197,7 +221,8 @@
     "visitors_per_year": 4000000,
     "year": 2019,
     "description": "Ancient Roman city preserved under volcanic ash from Mount Vesuvius, offering a vivid snapshot of life nearly 2,000 years ago.",
-    "color": "#BCC4EE"
+    "color": "#BCC4EE",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Smithsonian National Air and Space Museum",
@@ -205,7 +230,8 @@
     "visitors_per_year": 3300000,
     "year": 2023,
     "description": "Part of the Smithsonian Institution, showcasing historic aircraft, spacecraft, and achievements in aviation and space exploration.",
-    "color": "#DBAEED"
+    "color": "#DBAEED",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Smithsonian_Air_and_Space_Museum.jpg"
   },
   {
     "name": "Pantheon",
@@ -213,7 +239,8 @@
     "visitors_per_year": 9000000,
     "year": 2019,
     "description": "A remarkably preserved ancient Roman temple, now a church, known for its massive dome and central oculus.",
-    "color": "#C3ABF3"
+    "color": "#C3ABF3",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PKL-Gast206.jpg"
   },
   {
     "name": "Tower of London",
@@ -221,7 +248,8 @@
     "visitors_per_year": 3000000,
     "year": 2019,
     "description": "Historic fortress on the River Thames, once a royal palace and prison, today home to the Crown Jewels.",
-    "color": "#E19CE9"
+    "color": "#E19CE9",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tower_of_London_viewed_from_the_River_Thames.jpg"
   },
   {
     "name": "Golden Gate Bridge",
@@ -229,7 +257,8 @@
     "visitors_per_year": 10000000,
     "year": "approximate annual",
     "description": "An engineering marvel and symbol of San Francisco, famous for its Art Deco design and striking orange-red color.",
-    "color": "#BDF3B4"
+    "color": "#BDF3B4",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/GoldenGateBridge-001.jpg"
   },
   {
     "name": "Disneyland Park (Anaheim)",
@@ -237,7 +266,8 @@
     "visitors_per_year": 16500000,
     "year": 2019,
     "description": "The original Disney theme park, opened in 1955, combining fairy-tale attractions and modern entertainment.",
-    "color": "#AAF398"
+    "color": "#AAF398",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christmas_for_Sleeping_Beauty_Castle_(28017248690).jpg"
   },
   {
     "name": "Disney World (Magic Kingdom)",
@@ -245,7 +275,8 @@
     "visitors_per_year": 20960000,
     "year": 2019,
     "description": "The most visited theme park in the world, famous for Cinderella Castle and Disney’s magical attractions.",
-    "color": "#F2DD92"
+    "color": "#F2DD92",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Tokyo Disneyland",
@@ -253,7 +284,8 @@
     "visitors_per_year": 17890000,
     "year": 2019,
     "description": "A Japanese Disney resort blending classic attractions with unique cultural touches, beloved by families worldwide.",
-    "color": "#A491F2"
+    "color": "#A491F2",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo_Disneyland_Cinderella_Castle_2023-07-02.jpg"
   },
   {
     "name": "Tokyo DisneySea",
@@ -261,7 +293,8 @@
     "visitors_per_year": 14910000,
     "year": 2019,
     "description": "Themed around ocean exploration, this park is unique to Japan and known for immersive storytelling and design.",
-    "color": "#C4B9F1"
+    "color": "#C4B9F1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tokyo_Disney_Sea_Mountain.jpg"
   },
   {
     "name": "Universal Studios Japan",
@@ -269,7 +302,8 @@
     "visitors_per_year": 14500000,
     "year": 2019,
     "description": "A theme park featuring popular attractions like Harry Potter, Minions, and Super Nintendo World.",
-    "color": "#AFEC9C"
+    "color": "#AFEC9C",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Harry_Potter_and_the_Forbidden_Journey_USJ.JPG"
   },
   {
     "name": "Universal Studios Florida",
@@ -277,7 +311,8 @@
     "visitors_per_year": 10800000,
     "year": 2019,
     "description": "Part of the Universal Orlando Resort, known for movie-themed rides and attractions like Harry Potter and Jurassic Park.",
-    "color": "#D4A9EF"
+    "color": "#D4A9EF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/USF_Entrance.jpg"
   },
   {
     "name": "Disney California Adventure",
@@ -285,7 +320,8 @@
     "visitors_per_year": 9870000,
     "year": 2019,
     "description": "A Disney theme park inspired by California’s culture and history, home to Pixar Pier and Avengers Campus.",
-    "color": "#EEB4E0"
+    "color": "#EEB4E0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pixarpiersunset2019_(cropped).jpg"
   },
   {
     "name": "Ocean Park",
@@ -293,7 +329,8 @@
     "visitors_per_year": 5700000,
     "year": 2019,
     "description": "A marine mammal park, oceanarium, and amusement park that combines education, conservation, and entertainment.",
-    "color": "#EFB294"
+    "color": "#EFB294",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Main_Entrance_of_Ocean_Park.jpg"
   },
   {
     "name": "Shanghai Disneyland",
@@ -301,7 +338,8 @@
     "visitors_per_year": 11500000,
     "year": 2019,
     "description": "Disney’s first theme park in mainland China, featuring the largest Disney castle in the world.",
-    "color": "#AD9CEA"
+    "color": "#AD9CEA",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/上海迪士尼乐园奇幻童话城堡正面.jpg"
   },
   {
     "name": "Universal Studios Hollywood",
@@ -309,7 +347,8 @@
     "visitors_per_year": 9200000,
     "year": 2019,
     "description": "A film studio and theme park offering rides, attractions, and behind-the-scenes tours of movie sets.",
-    "color": "#F1A6D8"
+    "color": "#F1A6D8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Universal_Studios_Hollywood_(recorte).jpg"
   },
   {
     "name": "Epcot (Disney World)",
@@ -317,7 +356,8 @@
     "visitors_per_year": 12400000,
     "year": 2019,
     "description": "Part of Walt Disney World, focusing on technological innovation, science, and cultural showcases from around the world.",
-    "color": "#D1EAA7"
+    "color": "#D1EAA7",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Animal Kingdom (Disney World)",
@@ -325,7 +365,8 @@
     "visitors_per_year": 13900000,
     "year": 2019,
     "description": "A Disney theme park combining wildlife conservation with attractions like Pandora – The World of Avatar.",
-    "color": "#B49CE8"
+    "color": "#B49CE8",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Hollywood Studios (Disney World)",
@@ -333,7 +374,8 @@
     "visitors_per_year": 11500000,
     "year": 2019,
     "description": "A Disney park dedicated to movies and TV, home to Star Wars: Galaxy’s Edge and Toy Story Land.",
-    "color": "#AAABEA"
+    "color": "#AAABEA",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Hong Kong Disneyland",
@@ -341,7 +383,8 @@
     "visitors_per_year": 6500000,
     "year": 2019,
     "description": "Disney’s first park in China, blending traditional Disney attractions with Asian cultural elements.",
-    "color": "#B7A4EE"
+    "color": "#B7A4EE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/20201019_Castle_of_Magical_Dreams.jpg"
   },
   {
     "name": "Chichen Itza",
@@ -349,7 +392,8 @@
     "visitors_per_year": 2600000,
     "year": 2019,
     "description": "An ancient Mayan city and UNESCO site, famous for the Temple of Kukulcán pyramid.",
-    "color": "#AED2F1"
+    "color": "#AED2F1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Chichen_Itza_3.jpg"
   },
   {
     "name": "Grand Canyon National Park",
@@ -357,7 +401,8 @@
     "visitors_per_year": 4860000,
     "year": 2023,
     "description": "A natural wonder carved by the Colorado River, known for its vast landscapes and breathtaking views.",
-    "color": "#BFE1F0"
+    "color": "#BFE1F0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/10_Grand_Canyon_Navajo_Point_viewpoint_terrace,_Grand_Canyon_National_Park,_USA_-_American_nature.jpg"
   },
   {
     "name": "Niagara Falls",
@@ -365,7 +410,8 @@
     "visitors_per_year": 12000000,
     "year": "approximate annual",
     "description": "One of the world’s most famous waterfalls, straddling the US–Canada border with massive tourist appeal.",
-    "color": "#F5ACF0"
+    "color": "#F5ACF0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls_Skyline.jpg"
   },
   {
     "name": "Banff National Park",
@@ -373,7 +419,8 @@
     "visitors_per_year": 4200000,
     "year": 2019,
     "description": "Canada’s oldest national park, renowned for its turquoise lakes, mountain scenery, and outdoor recreation.",
-    "color": "#CD95EE"
+    "color": "#CD95EE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moraine_Lake_17092005.jpg"
   },
   {
     "name": "Times Square",
@@ -381,7 +428,8 @@
     "visitors_per_year": 50000000,
     "year": "approximate annual",
     "description": "The bustling heart of Manhattan, known for its neon lights, Broadway theaters, and New Year’s Eve celebrations.",
-    "color": "#EDC79E"
+    "color": "#EDC79E",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/New_york_times_square-terabass.jpg"
   },
   {
     "name": "Las Vegas Strip",
@@ -389,7 +437,8 @@
     "visitors_per_year": 42000000,
     "year": 2019,
     "description": "A stretch of Las Vegas Boulevard famous for its casinos, hotels, and nightlife entertainment.",
-    "color": "#BBF6D0"
+    "color": "#BBF6D0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Las_Vegas_63.jpg"
   },
   {
     "name": "Meiji Shrine",
@@ -397,6 +446,7 @@
     "visitors_per_year": 10000000,
     "year": "approximate annual",
     "description": "A Shinto shrine dedicated to Emperor Meiji and Empress Shoken, surrounded by a peaceful forest in central Tokyo.",
-    "color": "#C0F0CC"
+    "color": "#C0F0CC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Courtyard_of_Meiji_Shrine_20190717.jpg"
   }
 ]
