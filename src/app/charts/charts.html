@@ -58,6 +58,17 @@
           </div>
         }
       </div>
+      @if (categoryValue === 'tallest') {
+        <div class="chart__line">
+          <div class="title">Building Height Trends (by Year)</div>
+          <app-chart 
+            [chartType]="'line'" 
+            [chartData]="tallestBuildingsLineData"
+            [chartOptions]="tallestBuildingsLineChartOptions"
+          >
+          </app-chart>
+        </div>
+      }
     </div>
   }
 </div>

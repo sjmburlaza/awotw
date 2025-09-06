@@ -58,6 +58,7 @@ export class Charts implements OnInit {
   mostVisitedBarChartOptions!: ChartOptions<'bar'>;
   tallestBuildingsPieChartOptions!: ChartOptions<'pie'>;
   mostVisitedPieChartOptions!: ChartOptions<'pie'>;
+  tallestBuildingsLineChartOptions!: ChartOptions<'line'>;
 
   constructor(
     private fb: FormBuilder,
@@ -82,6 +83,8 @@ export class Charts implements OnInit {
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top50tallest);
+        this.tallestBuildingsLineData = this.getLineData(top50tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top50tallest);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
@@ -93,6 +96,8 @@ export class Charts implements OnInit {
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        this.tallestBuildingsLineData = this.getLineData(top20tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
       }
     });
 
@@ -112,6 +117,9 @@ export class Charts implements OnInit {
         this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        this.tallestBuildingsLineData = this.getLineData(top20tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
+
         this.isLoading = false;
       });
   }
@@ -134,6 +142,70 @@ export class Charts implements OnInit {
     const s = ["th", "st", "nd", "rd"];
     const v = n % 100;
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  getLineData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
+    const sortedData = rawData.sort((a:any, b: any) => a.year_completed - b.year_completed);
+    const map = new Map();
+
+    sortedData.forEach((item) => {
+      const key = item.year_completed;
+
+      if (map.has(key)) {
+        const value = map.get(key);
+        const maxHeight = Math.max(Number(item.height_m), value);
+        map.set(key, maxHeight);
+      } else {
+        map.set(key, Number(item.height_m));
+      }
+    })
+
+    const labels: string[] = Array.from(map.keys());
+    const data: number[] = Array.from(map.values());
+
+    return {
+      labels,
+      datasets: [
+        {
+          data,
+        }
+      ],
+    };
+  }
+
+  getLineChartOptions(data: TallestBuilding[]): ChartOptions<'line'> {
+    return {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          bodyFont: {
+            size: 12,
+          },
+          callbacks: {
+            title: (context) => `Year: ${context[0].label}`,
+            label: (context: TooltipItem<'line'>) => {
+              const tallestBldg = data.find((item) => Number(item.height_m) === Number(context.raw));
+              
+              return [
+                `Tallest Building: ${tallestBldg?.name}`,
+                `Building Location: ${tallestBldg?.city}, ${tallestBldg?.country}`,
+                `Height: ${context.raw} meters`
+              ];
+
+            }
+          }
+        }
+      }
+    }
   }
 
   getTallestBuildingsPieChartOptions(data: TallestBuilding[]): ChartOptions<'pie'> {
