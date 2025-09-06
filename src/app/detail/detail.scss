@@ -11,6 +11,10 @@
   i {
     font-size: 36px;
     color: gray;
+
+    &:hover {
+      color: blueviolet;
+    }
   }
 
   button {

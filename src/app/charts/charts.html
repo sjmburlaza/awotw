@@ -42,7 +42,7 @@
           <app-chart
             [chartType]="'pie'" 
             [chartData]="categoryValue === 'tallest' ? tallestBuildingsCountryPieData : mostVisitedByCountryPieData"
-            [chartOptions]="pieChartOptions"
+            [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsPieChartOptions : mostVisitedPieChartOptions"
           >
           </app-chart>
         </div>
@@ -51,13 +51,24 @@
             <div class="title">Distribution by Year of Completion</div>
             <app-chart 
               [chartType]="'pie'" 
-              [chartData]="tallesBuildingsYearPieData"
-              [chartOptions]="pieChartOptions"
+              [chartData]="tallestBuildingsYearPieData"
+              [chartOptions]="tallestBuildingsPieChartOptions"
             >
             </app-chart>
           </div>
         }
       </div>
+      @if (categoryValue === 'tallest') {
+        <div class="chart__line">
+          <div class="title">Building Height Trends (by Year)</div>
+          <app-chart 
+            [chartType]="'line'" 
+            [chartData]="tallestBuildingsLineData"
+            [chartOptions]="tallestBuildingsLineChartOptions"
+          >
+          </app-chart>
+        </div>
+      }
     </div>
   }
 </div>

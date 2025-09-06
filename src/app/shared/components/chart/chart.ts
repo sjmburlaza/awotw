@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-chart',
-  imports: [BaseChartDirective],
+  imports: [BaseChartDirective, CommonModule],
   templateUrl: './chart.html',
   styleUrl: './chart.scss'
 })
@@ -17,6 +18,7 @@ export class Chart implements OnChanges {
       legend: { position: 'top' }
     }
   }
+  @Input() height = 560;
 
   updatedData!: ChartConfiguration['data'];
   currentType!: ChartType;

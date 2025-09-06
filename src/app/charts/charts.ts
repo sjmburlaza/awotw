@@ -39,47 +39,26 @@ export class Charts implements OnInit {
   selectionForm!: FormGroup;
   tallestRawData = [];
   mostVisitedRawData = [];
-  tallestBuildingsBarData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  mostVisitedBarData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  tallestBuildingsCountryPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  mostVisitedByCountryPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  tallesBuildingsYearPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  mostVisitedByYearPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
+
+  // Bar chart data
+  tallestBuildingsBarData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+  mostVisitedBarData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+
+  // Pie chart data
+  tallestBuildingsCountryPieData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+  mostVisitedByCountryPieData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+  tallestBuildingsYearPieData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+  mostVisitedByYearPieData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+
+  // Line chart data
+  tallestBuildingsLineData: ChartConfiguration['data'] = { labels: [], datasets: [] };
+
+  // Chart Options
   tallestBuildingsBarChartOptions!: ChartOptions<'bar'>;
   mostVisitedBarChartOptions!: ChartOptions<'bar'>;
-  pieChartOptions: ChartOptions<'pie'> = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        font: {
-          family: 'Barlow',
-          size: 24,
-          weight: 'bold'
-        },
-        padding: {
-          top: 0,
-          bottom: 0
-        },
-        color: '#333'
-      },
-      legend: { 
-        position: 'bottom',
-        labels: {
-          padding: 8,
-          font: {
-            family: "barlow",
-            size: 16
-          }
-        }
-      }
-    },
-    layout: {
-      padding: {
-        // right: 120,
-      }
-    }
-  };
+  tallestBuildingsPieChartOptions!: ChartOptions<'pie'>;
+  mostVisitedPieChartOptions!: ChartOptions<'pie'>;
+  tallestBuildingsLineChartOptions!: ChartOptions<'line'>;
 
   constructor(
     private fb: FormBuilder,
@@ -89,7 +68,7 @@ export class Charts implements OnInit {
   ngOnInit(): void {
     this.selectionForm = this.fb.group({
       category: ['tallest', Validators.required],
-      ranking: ['50', Validators.required]
+      ranking: ['20', Validators.required]
     });
 
     this.selectionForm.get('ranking')?.valueChanges.subscribe((ranking )=> {
@@ -100,9 +79,12 @@ export class Charts implements OnInit {
         this.mostVisitedBarData = this.getBarChartData(top50mostVisited, 'visitors_per_year');
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top50mostVisited, 'location');
-        this.tallesBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top50tallest);
+        this.tallestBuildingsLineData = this.getLineData(top50tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top50tallest);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
@@ -110,9 +92,12 @@ export class Charts implements OnInit {
         this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
-        this.tallesBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        this.tallestBuildingsLineData = this.getLineData(top20tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
       }
     });
 
@@ -126,10 +111,15 @@ export class Charts implements OnInit {
       .subscribe((res) => {
         const sorted = this.sort(res, 'height_m');
         this.tallestRawData = sorted;
-        this.tallestBuildingsBarData = this.getBarChartData(sorted, 'height_m');
-        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(sorted, 'country');
-        this.tallesBuildingsYearPieData = this.getByYearPieChartData(sorted, 'year_completed');
-        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(sorted);
+        const top20tallest = [...this.tallestRawData].slice(0, 20);
+        this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        this.tallestBuildingsLineData = this.getLineData(top20tallest);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
+
         this.isLoading = false;
       });
   }
@@ -140,9 +130,11 @@ export class Charts implements OnInit {
       .subscribe((res) => {
         const sorted = this.sort(res, 'visitors_per_year');
         this.mostVisitedRawData = sorted;
-        this.mostVisitedBarData = this.getBarChartData(sorted, 'visitors_per_year');
-        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(sorted, 'location');
-        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(sorted);
+        const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
+        this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
+        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
+        this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions(top20mostVisited);
       });
   }
 
@@ -152,8 +144,161 @@ export class Charts implements OnInit {
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   }
 
+  getLineData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
+    const sortedData = rawData.sort((a:any, b: any) => a.year_completed - b.year_completed);
+    const map = new Map();
+
+    sortedData.forEach((item) => {
+      const key = item.year_completed;
+
+      if (map.has(key)) {
+        const value = map.get(key);
+        const maxHeight = Math.max(Number(item.height_m), value);
+        map.set(key, maxHeight);
+      } else {
+        map.set(key, Number(item.height_m));
+      }
+    })
+
+    const labels: string[] = Array.from(map.keys());
+    const data: number[] = Array.from(map.values());
+
+    return {
+      labels,
+      datasets: [
+        {
+          data,
+        }
+      ],
+    };
+  }
+
+  getLineChartOptions(data: TallestBuilding[]): ChartOptions<'line'> {
+    return {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          bodyFont: {
+            size: 12,
+          },
+          callbacks: {
+            title: (context) => `Year: ${context[0].label}`,
+            label: (context: TooltipItem<'line'>) => {
+              const tallestBldg = data.find((item) => Number(item.height_m) === Number(context.raw));
+              
+              return [
+                `Tallest Building: ${tallestBldg?.name}`,
+                `Building Location: ${tallestBldg?.city}, ${tallestBldg?.country}`,
+                `Height: ${context.raw} meters`
+              ];
+
+            }
+          }
+        }
+      }
+    }
+  }
+
+  getTallestBuildingsPieChartOptions(data: TallestBuilding[]): ChartOptions<'pie'> {
+    return {
+      responsive: true,
+      plugins: {
+        legend: { 
+          position: 'bottom',
+          labels: {
+            padding: 8,
+            font: {
+              family: 'Barlow',
+              size: 14
+            }
+          },
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          bodyFont: {
+            size: 12,
+          },
+          callbacks: {
+            title: (context) => {
+              const label = data.some((item) => item.country === context[0].label) ? 'Country:' : 'Year';
+              return `${label} ${context[0].label}`
+            },
+            label: (context: TooltipItem<'pie'>) => {
+              const items = data.filter((item) => item.country === context.label || item.year_completed === context.label);
+              const names = items.map((item) => item.name);
+              
+              return [
+                `Count: ${context.raw}`,
+                `Building(s):`,
+                ...names
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+
+  getMostVisitedPieChartOptions(data: MostVisited[]): ChartOptions<'pie'> {
+    return {
+      responsive: true,
+      plugins: {
+        legend: { 
+          position: 'bottom',
+          labels: {
+            padding: 8,
+            font: {
+              family: 'Barlow',
+              size: 14
+            }
+          },
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          bodyFont: {
+            size: 12,
+          },
+          callbacks: {
+            title: (context) => `Country: ${context[0].label}`,
+            label: (context: TooltipItem<'pie'>) => {
+              const items = data.filter((item) => item.location.split(', ').at(-1) === context.label);
+              const names = items.map((item) => item.name);
+              
+              return [
+                `Count: ${context.raw}`,
+                `Building(s):`,
+                ...names
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+
   getTallestBuildingsBarChartOptions(data: TallestBuilding[]): ChartOptions<'bar'> {
     return {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: false
@@ -170,7 +315,7 @@ export class Charts implements OnInit {
           },
           callbacks: {
             title: (context) => context[0].label,
-            label: (context: TooltipItem<"bar">) => {
+            label: (context: TooltipItem<'bar'>) => {
               const item = data[context.dataIndex];
               const rank = this.ordinalSuffix(context.dataIndex + 1);
               return [
@@ -188,6 +333,8 @@ export class Charts implements OnInit {
 
   getMostVisitedBarChartOptions(data: MostVisited[]): ChartOptions<'bar'> {
     return {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           display: false
@@ -204,7 +351,7 @@ export class Charts implements OnInit {
           },
           callbacks: {
             title: (context) => context[0].label,
-            label: (context: TooltipItem<"bar">) => {
+            label: (context: TooltipItem<'bar'>) => {
               const item = data[context.dataIndex];
               const rank = this.ordinalSuffix(context.dataIndex + 1);
               const numberFormatter = new Intl.NumberFormat('en-US', {
@@ -238,7 +385,6 @@ export class Charts implements OnInit {
 
   getByYearPieChartData(rawdata: (TallestBuilding | MostVisited)[], key: string): ChartConfiguration['data'] {
     const map = new Map();
-    const label = 'Tallest buildings';
 
     rawdata?.forEach((item: any) => {
       const keyName =  item[key];
@@ -260,7 +406,6 @@ export class Charts implements OnInit {
       datasets: [
         {
           data,
-          label
         }
       ],
     };
@@ -268,7 +413,6 @@ export class Charts implements OnInit {
 
   getByCountryPieChartData(rawdata: (TallestBuilding | MostVisited)[], key: string): ChartConfiguration['data'] {
     const map = new Map();
-    const label = key === 'country' ? 'Tallest buildings' : 'Most visited places';
 
     rawdata?.forEach((item: any) => {
       const country = (item[key])?.split(', ')?.at(-1);
@@ -291,7 +435,6 @@ export class Charts implements OnInit {
       datasets: [
         {
           data,
-          label
         }
       ],
     };
@@ -301,7 +444,6 @@ export class Charts implements OnInit {
     const labels: string[] = [];
     const data: number[] = [];
     const backgroundColor: string[] = [];
-    const title = key === 'height_m' ? 'Height in meters' : 'Visitors per year (approx.)'
 
     rawdata.forEach((item: any) => {
       labels.push(item.name);
@@ -315,7 +457,6 @@ export class Charts implements OnInit {
         {
           data,
           backgroundColor,
-          label: title
         }
       ]
     };

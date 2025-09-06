@@ -14,14 +14,15 @@
 
     .categories {
       display: flex;
+      gap: 4px;
     }
 
     .rankings {
       display: flex;
       justify-self: center;
+      gap: 4px;
     }
   }
-
 
   .chart {
     display: flex;
@@ -32,19 +33,23 @@
 
     &__bar {
       width: 1260px;
+      border-bottom: 1px solid gainsboro;
+      padding-bottom: 56px;
     }
 
     &__pie {
       display: flex;
       justify-content: center;
       width: 1260px;
-      margin-top: 36px;
+      border-bottom: 1px solid gainsboro;
+      padding-bottom: 56px;
 
       .title {
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-size: 20px;
         text-align: center;
+        margin: 36px 0;
       }
 
       &__country {
@@ -55,8 +60,23 @@
         width: 560px;
       }
     }
-  }
 
+    &__line {
+      width: 1260px;
+      border-bottom: 1px solid gainsboro;
+      padding-bottom: 56px;
+      padding-left: 56px;
+      background-color: whitesmoke;
+
+      .title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        margin: 36px 0;
+      }
+    }
+  }
 }
 
 label {
@@ -70,6 +90,11 @@ label {
   &.ranking {
     font-size: 16px;
     padding: 8px 16px;
+  }
+
+  &:hover {
+    border-radius: 12px;
+    background-color: lightblue;
   }
 
   &.selected {
@@ -87,7 +112,6 @@ label:hover {
 input {
   display: none;
 }
-
 
 .loader {
   position: absolute;
