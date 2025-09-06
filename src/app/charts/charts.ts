@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { ChartConfiguration, ChartOptions, plugins, TooltipItem } from 'chart.js';
 import { Chart } from '../shared/components/chart/chart';
 import { DataService, MostVisited, TallestBuilding } from '../services/data.service';
 import { take } from 'rxjs';
@@ -41,16 +41,17 @@ export class Charts implements OnInit {
   mostVisitedRawData = [];
   tallestBuildingsBarData: ChartConfiguration['data']= { labels: [], datasets: [] };
   mostVisitedBarData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  tallesBuildingsCountryPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
+  tallestBuildingsCountryPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
   mostVisitedByCountryPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
   tallesBuildingsYearPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
   mostVisitedByYearPieData: ChartConfiguration['data']= { labels: [], datasets: [] };
-  chartOptions: ChartOptions<'pie'> = {
+  tallestBuildingsBarChartOptions!: ChartOptions<'bar'>;
+  mostVisitedBarChartOptions!: ChartOptions<'bar'>;
+  pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
     plugins: {
       title: {
         display: true,
-        // text: 'Distribution by country',
         font: {
           family: 'Barlow',
           size: 24,
@@ -88,7 +89,7 @@ export class Charts implements OnInit {
   ngOnInit(): void {
     this.selectionForm = this.fb.group({
       category: ['tallest', Validators.required],
-      ranking: ['20', Validators.required]
+      ranking: ['50', Validators.required]
     });
 
     this.selectionForm.get('ranking')?.valueChanges.subscribe((ranking )=> {
@@ -97,17 +98,21 @@ export class Charts implements OnInit {
         const top50mostVisited = [...this.mostVisitedRawData];
         this.tallestBuildingsBarData = this.getBarChartData(top50tallest, 'height_m');
         this.mostVisitedBarData = this.getBarChartData(top50mostVisited, 'visitors_per_year');
-        this.tallesBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top50mostVisited, 'location');
         // this.tallesBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
         this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
         this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
-        this.tallesBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
         this.tallesBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
       }
     });
 
@@ -121,10 +126,10 @@ export class Charts implements OnInit {
       .subscribe((res) => {
         const sorted = this.sort(res, 'height_m');
         this.tallestRawData = sorted;
-        const top20 = sorted.slice(0, 20);
-        this.tallestBuildingsBarData = this.getBarChartData(top20, 'height_m');
-        this.tallesBuildingsCountryPieData = this.getByCountryPieChartData(top20, 'country');
-        this.tallesBuildingsYearPieData = this.getByYearPieChartData(top20, 'year_completed');
+        this.tallestBuildingsBarData = this.getBarChartData(sorted, 'height_m');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(sorted, 'country');
+        this.tallesBuildingsYearPieData = this.getByYearPieChartData(sorted, 'year_completed');
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(sorted);
         this.isLoading = false;
       });
   }
@@ -135,10 +140,89 @@ export class Charts implements OnInit {
       .subscribe((res) => {
         const sorted = this.sort(res, 'visitors_per_year');
         this.mostVisitedRawData = sorted;
-        const top20 = sorted.slice(0, 20);
-        this.mostVisitedBarData = this.getBarChartData(top20, 'visitors_per_year');
-        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20, 'location');
+        this.mostVisitedBarData = this.getBarChartData(sorted, 'visitors_per_year');
+        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(sorted, 'location');
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(sorted);
       });
+  }
+
+  ordinalSuffix(n: number): string {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  getTallestBuildingsBarChartOptions(data: TallestBuilding[]): ChartOptions<'bar'> {
+    return {
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          bodyFont: {
+            size: 12,
+          },
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          callbacks: {
+            title: (context) => context[0].label,
+            label: (context: TooltipItem<"bar">) => {
+              const item = data[context.dataIndex];
+              const rank = this.ordinalSuffix(context.dataIndex + 1);
+              return [
+                `Rank: ${rank}`,
+                `Location: ${item.city}, ${item.country}`,
+                `Height: ${item.height_m} meters`,
+                `Year completed: ${item.year_completed}`,
+              ];
+            }
+          }
+        }
+      }
+    }
+  }
+
+  getMostVisitedBarChartOptions(data: MostVisited[]): ChartOptions<'bar'> {
+    return {
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          displayColors: false,
+          padding: 12,
+          bodyFont: {
+            size: 12,
+          },
+          titleFont: {
+            size: 14,
+            weight: 'bold',
+          },
+          callbacks: {
+            title: (context) => context[0].label,
+            label: (context: TooltipItem<"bar">) => {
+              const item = data[context.dataIndex];
+              const rank = this.ordinalSuffix(context.dataIndex + 1);
+              const numberFormatter = new Intl.NumberFormat('en-US', {
+                notation: 'compact',
+                maximumFractionDigits: 1
+              });
+              const visitors = numberFormatter.format(Number(item.visitors_per_year));
+              
+              return [
+                `Rank: ${rank}`,
+                `Location: ${item.location}`,
+                `Visitors per year (approx.): ${visitors}`,
+              ];
+            }
+          }
+        }
+      }
+    }
   }
 
   sort(data: any, attribute: string) {
@@ -184,7 +268,7 @@ export class Charts implements OnInit {
 
   getByCountryPieChartData(rawdata: (TallestBuilding | MostVisited)[], key: string): ChartConfiguration['data'] {
     const map = new Map();
-    const label = key === 'country' ? 'Number of tallest buildings' : 'Number of most visited places';
+    const label = key === 'country' ? 'Tallest buildings' : 'Most visited places';
 
     rawdata?.forEach((item: any) => {
       const country = (item[key])?.split(', ')?.at(-1);

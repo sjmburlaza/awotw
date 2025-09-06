@@ -29,7 +29,8 @@ export interface Item {
   }
 }
 
-export interface TallestBuilding {
+export type TallestBuilding = {
+  type: "building";
   name: string;
   city: string;
   country: string;
@@ -39,7 +40,8 @@ export interface TallestBuilding {
   color: string;
 }
 
-export interface MostVisited {
+export type MostVisited = {
+  type: "visited";
   name: string;
   location: string;
   visitors_per_year: string;
