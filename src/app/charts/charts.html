@@ -28,10 +28,11 @@
     <div class="loader"></div>
   } @else {
     <div class="chart">
-      <div class="chart__bar" [class.small]="rankingValue === '20'">
+      <div class="chart__bar">
         <app-chart 
           [chartType]="'bar'" 
           [chartData]="categoryValue === 'tallest' ? tallestBuildingsBarData : mostVisitedBarData"
+          [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsBarChartOptions : mostVisitedBarChartOptions"
         >
         </app-chart>
       </div>
@@ -40,8 +41,8 @@
           <div class="title">Distribution by Country</div>
           <app-chart
             [chartType]="'pie'" 
-            [chartData]="categoryValue === 'tallest' ? tallesBuildingsCountryPieData : mostVisitedByCountryPieData"
-            [chartOptions]="chartOptions"
+            [chartData]="categoryValue === 'tallest' ? tallestBuildingsCountryPieData : mostVisitedByCountryPieData"
+            [chartOptions]="pieChartOptions"
           >
           </app-chart>
         </div>
@@ -51,7 +52,7 @@
             <app-chart 
               [chartType]="'pie'" 
               [chartData]="tallesBuildingsYearPieData"
-              [chartOptions]="chartOptions"
+              [chartOptions]="pieChartOptions"
             >
             </app-chart>
           </div>
