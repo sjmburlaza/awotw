@@ -120,6 +120,11 @@
 
   .mode {
     cursor: pointer;
+
+    &:hover {
+      color: blueviolet;
+      filter: brightness(70%);
+    }
   }
 
   .selected-mode {
