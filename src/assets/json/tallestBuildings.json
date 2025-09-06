@@ -6,7 +6,8 @@
     "height_m": 828,
     "year_completed": 2010,
     "description": "The Burj Khalifa is the tallest building in the world, featuring a neo-futuristic design inspired by Islamic architecture. It houses offices, residences, a hotel, and observation decks.",
-    "color": "#EDABD1"
+    "color": "#EDABD1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai_skyline_2015_(crop).jpg"
   },
   {
     "name": "Merdeka 118",
@@ -15,7 +16,8 @@
     "height_m": 678.9,
     "year_completed": 2023,
     "description": "Merdeka 118 is the tallest building in Southeast Asia and the second-tallest in the world. Its crystalline design symbolizes Malaysia’s independence, and it contains offices, retail, a hotel, and an observation deck.",
-    "color": "#F1C0B9"
+    "color": "#F1C0B9",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Merdeka_Tower_20241022_-_full_2.jpg"
   },
   {
     "name": "Shanghai Tower",
@@ -24,7 +26,8 @@
     "height_m": 632,
     "year_completed": 2015,
     "description": "Shanghai Tower’s twisting glass design reduces wind loads and improves energy efficiency. It features offices, retail, hotels, and the world’s highest indoor observation deck.",
-    "color": "#DC94EF"
+    "color": "#DC94EF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shanghai_Tower_in_2015_(2).jpg"
   },
   {
     "name": "Abraj Al-Bait Clock Tower",
@@ -33,7 +36,8 @@
     "height_m": 601,
     "year_completed": 2012,
     "description": "This tower complex overlooks the Great Mosque of Mecca. Its massive clock face is visible from 25 km away, and it provides hotel accommodations for pilgrims.",
-    "color": "#E2F3AE"
+    "color": "#E2F3AE",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Ping An International Finance Centre",
@@ -42,7 +46,8 @@
     "height_m": 599,
     "year_completed": 2017,
     "description": "Headquarters of Ping An Insurance, the tower is a modern glass-and-steel landmark. It includes offices, retail space, and an observation deck with panoramic views.",
-    "color": "#C0F1B6"
+    "color": "#C0F1B6",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pingan_International_Finance_Center2020.jpg"
   },
   {
     "name": "Lotte World Tower",
@@ -51,7 +56,8 @@
     "height_m": 554.5,
     "year_completed": 2017,
     "description": "South Korea’s tallest building, its sleek tapered design reflects traditional Korean ceramics. It houses luxury residences, offices, a hotel, and the Sky Deck, one of the world’s highest glass-floored observatories.",
-    "color": "#AAEFC1"
+    "color": "#AAEFC1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/제2롯데월드타워_01.jpg"
   },
   {
     "name": "One World Trade Center",
@@ -60,7 +66,8 @@
     "height_m": 541.3,
     "year_completed": 2014,
     "description": "Also known as the Freedom Tower, it was built on the original World Trade Center site. It symbolizes resilience and primarily serves as office space with an observation deck.",
-    "color": "#F29AF3"
+    "color": "#F29AF3",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/New_York_(33224081040).jpg"
   },
   {
     "name": "Guangzhou CTF Finance Centre",
@@ -69,7 +76,8 @@
     "height_m": 530,
     "year_completed": 2016,
     "description": "This mixed-use tower contains offices, residences, and a hotel. It is known for housing some of the fastest elevators in the world, traveling at nearly 72 km/h.",
-    "color": "#BAF7D6"
+    "color": "#BAF7D6",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Canton_CTF_Finance_Center_(2016-08-22).jpg"
   },
   {
     "name": "Tianjin CTF Finance Centre",
@@ -78,7 +86,8 @@
     "height_m": 530,
     "year_completed": 2019,
     "description": "Featuring a curved, tapering design for aerodynamic efficiency, the tower is home to offices, luxury residences, and a hotel. It is the tallest building in Tianjin.",
-    "color": "#F1D7B0"
+    "color": "#F1D7B0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tianjin_CTF_Finance_Centre,_21_of_24.jpg"
   },
   {
     "name": "CITIC Tower (China Zun)",
@@ -87,7 +96,8 @@
     "height_m": 528,
     "year_completed": 2018,
     "description": "Nicknamed 'China Zun' after an ancient wine vessel, its shape represents prosperity. The building contains offices and is the tallest structure in Beijing.",
-    "color": "#D7A9F0"
+    "color": "#D7A9F0",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Taipei 101",
@@ -96,7 +106,8 @@
     "height_m": 508,
     "year_completed": 2004,
     "description": "Once the world’s tallest building, Taipei 101 is designed to withstand typhoons and earthquakes. It has offices, restaurants, a shopping mall, and an observatory.",
-    "color": "#E8B6F5"
+    "color": "#E8B6F5",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/101.portrait.altonthompson.jpg"
   },
   {
     "name": "Shanghai World Financial Center",
@@ -105,7 +116,8 @@
     "height_m": 492,
     "year_completed": 2008,
     "description": "Nicknamed 'the bottle opener' due to its unique aperture at the top, this skyscraper hosts offices, hotels, and observation decks.",
-    "color": "#99EDF0"
+    "color": "#99EDF0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/上海国际金融中心.jpg"
   },
   {
     "name": "International Commerce Centre",
@@ -114,7 +126,8 @@
     "height_m": 484,
     "year_completed": 2010,
     "description": "Hong Kong’s tallest building, ICC houses offices, the Ritz-Carlton Hotel, and an observation deck with panoramic views of Victoria Harbour.",
-    "color": "#A195F2"
+    "color": "#A195F2",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/International_Commerce_Centre_200911.jpg"
   },
   {
     "name": "Central Park Tower",
@@ -123,7 +136,8 @@
     "height_m": 472,
     "year_completed": 2020,
     "description": "Also called the Nordstrom Tower, it is the world’s tallest residential building. Its luxury condominiums are among the most expensive real estate globally.",
-    "color": "#E6A2F4"
+    "color": "#E6A2F4",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/CentralParkTowerSep20.jpg"
   },
   {
     "name": "Lakhta Center",
@@ -132,7 +146,8 @@
     "height_m": 462.5,
     "year_completed": 2017,
     "description": "Europe’s tallest building, the Lakhta Center features a twisting glass design. It serves as the headquarters of Gazprom and includes offices, research facilities, and a public observation deck.",
-    "color": "#B6F3F3"
+    "color": "#B6F3F3",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lakhta_Center_(img4).jpg"
   },
   {
     "name": "Landmark 81",
@@ -141,7 +156,8 @@
     "height_m": 461.2,
     "year_completed": 2018,
     "description": "Vietnam’s tallest building, Landmark 81 contains residences, hotels, shopping, and entertainment spaces. Its design is inspired by bamboo clusters symbolizing growth and prosperity.",
-    "color": "#E8A0E8"
+    "color": "#E8A0E8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Landmark_81_in_2021.jpg"
   },
   {
     "name": "Changsha IFS Tower T1",
@@ -150,7 +166,8 @@
     "height_m": 452.1,
     "year_completed": 2018,
     "description": "Part of the Changsha IFS complex, this tower houses offices, luxury residences, and retail spaces. It is the tallest building in central China.",
-    "color": "#C9A0F0"
+    "color": "#C9A0F0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/长沙九龙仓国金中心.jpg"
   },
   {
     "name": "Petronas Tower 1",
@@ -159,7 +176,8 @@
     "height_m": 451.9,
     "year_completed": 1998,
     "description": "One of the famous twin towers, designed with Islamic-inspired motifs. It is connected to its twin by a skybridge at the 41st and 42nd floors.",
-    "color": "#E597EB"
+    "color": "#E597EB",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Petronas_Twin_Towers_(Right_Tower),_Kuala_Lumpur,_Malaysia_-_panoramio.jpg"
   },
   {
     "name": "Petronas Tower 2",
@@ -168,7 +186,8 @@
     "height_m": 451.9,
     "year_completed": 1998,
     "description": "The second of the iconic Petronas Twin Towers, once the tallest buildings in the world. It features office spaces and connects to Tower 1 via the skybridge.",
-    "color": "#F29EAF"
+    "color": "#F29EAF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2016_Kuala_Lumpur,_Petronas_Towers_(04).jpg"
   },
   {
     "name": "Zifeng Tower",
@@ -177,7 +196,8 @@
     "height_m": 450,
     "year_completed": 2009,
     "description": "Zifeng Tower combines offices, retail, a hotel, and a public observatory. Its stepped design reflects Nanjing’s history and traditional Chinese pagodas.",
-    "color": "#A3ECCB"
+    "color": "#A3ECCB",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nanjing_Zifeng_Tower.jpg"
   },
   {
     "name": "The Exchange 106",
@@ -186,7 +206,8 @@
     "height_m": 445.5,
     "year_completed": 2019,
     "description": "The tallest office building in Malaysia, The Exchange 106 has a crystalline façade with an illuminated crown. It serves as the centerpiece of the Tun Razak Exchange financial district.",
-    "color": "#F6B5BC"
+    "color": "#F6B5BC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The_Exchange_106_skyline_Nov_of_2021.jpg"
   },
   {
     "name": "Willis Tower (Sears Tower)",
@@ -195,7 +216,8 @@
     "height_m": 442.1,
     "year_completed": 1974,
     "description": "Formerly the tallest building in the world, Willis Tower remains a Chicago icon. It is famous for its Skydeck with glass balconies extending outward for thrilling views.",
-    "color": "#EDD3AD"
+    "color": "#EDD3AD",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "KK100",
@@ -204,7 +226,8 @@
     "height_m": 441.8,
     "year_completed": 2011,
     "description": "KK100 features a sleek curved profile and serves as a mixed-use tower. It contains offices, a hotel, and retail spaces, symbolizing Shenzhen’s rapid growth.",
-    "color": "#F4E0AC"
+    "color": "#F4E0AC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KK100_exterior_southeast.jpg"
   },
   {
     "name": "Guangzhou International Finance Center",
@@ -213,7 +236,8 @@
     "height_m": 438.6,
     "year_completed": 2010,
     "description": "Also known as the West Tower, it complements the Guangzhou CTF Finance Centre. The building has offices, a hotel, and a rooftop helipad.",
-    "color": "#EEA7BA"
+    "color": "#EEA7BA",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/GZIFC.jpg"
   },
   {
     "name": "Wuhan Center Tower",
@@ -222,7 +246,8 @@
     "height_m": 438,
     "year_completed": 2014,
     "description": "The tallest building in Wuhan, this tower is designed to resist seismic activity. It serves as a mixed-use skyscraper with offices, residences, and hotel facilities.",
-    "color": "#F3CABC"
+    "color": "#F3CABC",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "111 West 57th Street",
@@ -231,7 +256,8 @@
     "height_m": 435,
     "year_completed": 2021,
     "description": "Nicknamed the Steinway Tower, it is the world’s slenderest skyscraper with a dramatic height-to-width ratio. It houses ultra-luxury residential apartments overlooking Central Park.",
-    "color": "#F0D2AE"
+    "color": "#F0D2AE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/111_West_57th_Street.png"
   },
   {
     "name": "Jin Mao Tower",
@@ -240,7 +266,8 @@
     "height_m": 420.5,
     "year_completed": 1999,
     "description": "Blending modern design with traditional Chinese pagoda forms, Jin Mao Tower is an iconic Shanghai landmark. It contains offices, a shopping mall, and the Grand Hyatt hotel.",
-    "color": "#9DE9D9"
+    "color": "#9DE9D9",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jin_Mao_Tower.jpg"
   },
   {
     "name": "Marina 101",
@@ -249,7 +276,8 @@
     "height_m": 426.5,
     "year_completed": 2017,
     "description": "Marina 101 is Dubai’s tallest residential building. It combines hotel floors operated by Hard Rock with luxury apartments above.",
-    "color": "#CEF298"
+    "color": "#CEF298",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai_Marina_Aug2012.jpg"
   },
   {
     "name": "Princess Tower",
@@ -258,7 +286,8 @@
     "height_m": 414,
     "year_completed": 2012,
     "description": "Once the tallest residential building in the world, Princess Tower dominates Dubai Marina’s skyline. It houses over 700 luxury apartments and penthouses.",
-    "color": "#F2D5BA"
+    "color": "#F2D5BA",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai_Marina_Aug2012.jpg"
   },
   {
     "name": "Al Hamra Tower",
@@ -267,7 +296,8 @@
     "height_m": 412.6,
     "year_completed": 2011,
     "description": "The tallest building in Kuwait, Al Hamra Tower features a striking asymmetrical façade with a curving stone wall. It is primarily an office tower with retail and leisure spaces.",
-    "color": "#ADAAEC"
+    "color": "#ADAAEC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Al_Hamra_Kuwait_Mai_2010.jpg"
   },
   {
     "name": "23 Marina",
@@ -276,7 +306,8 @@
     "height_m": 392.8,
     "year_completed": 2012,
     "description": "A luxury residential skyscraper in Dubai Marina, 23 Marina offers duplex apartments, private elevators, and swimming pools, catering to high-end urban living.",
-    "color": "#E9D79A"
+    "color": "#E9D79A",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/23_Marina_Under_Construction_on_13_June_2008.jpg"
   },
   {
     "name": "CITIC Plaza",
@@ -285,7 +316,8 @@
     "height_m": 390.2,
     "year_completed": 1997,
     "description": "Once the world’s tallest concrete building, CITIC Plaza remains a Guangzhou landmark. It primarily houses offices and is surrounded by other commercial towers.",
-    "color": "#BEC4F0"
+    "color": "#BEC4F0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Guangzhou_CITIC_Plaza_DSC02461.jpg"
   },
   {
     "name": "Shun Hing Square",
@@ -294,7 +326,8 @@
     "height_m": 384,
     "year_completed": 1996,
     "description": "Also known as Diwang Building, this tower was Shenzhen’s tallest for many years. It includes offices, a shopping mall, and an observation deck.",
-    "color": "#D594EE"
+    "color": "#D594EE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shun_Hing_Square_exterior_southwest2021.jpg"
   },
   {
     "name": "Vincy Tower (Elite Residence)",
@@ -303,7 +336,8 @@
     "height_m": 380.5,
     "year_completed": 2012,
     "description": "Elite Residence, located near Dubai Marina, is a luxury residential tower offering over 600 private apartments and amenities such as pools, spas, and gyms.",
-    "color": "#ECA9B8"
+    "color": "#ECA9B8",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Empire State Building",
@@ -312,7 +346,8 @@
     "height_m": 381,
     "year_completed": 1931,
     "description": "An Art Deco masterpiece and former tallest building in the world, the Empire State Building is a cultural icon with offices, observatories, and illuminated spire lighting.",
-    "color": "#B6F5BC"
+    "color": "#B6F5BC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Empire_State_Building_(aerial_view).jpg"
   },
   {
     "name": "Elite Residence",
@@ -321,7 +356,8 @@
     "height_m": 380.5,
     "year_completed": 2012,
     "description": "Overlooking Palm Jumeirah, Elite Residence is a residential skyscraper with luxury apartments, health clubs, swimming pools, and panoramic sea views.",
-    "color": "#EFB6DE"
+    "color": "#EFB6DE",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "The Address Boulevard",
@@ -330,7 +366,8 @@
     "height_m": 368,
     "year_completed": 2017,
     "description": "A five-star hotel and serviced residence, The Address Boulevard connects directly to The Dubai Mall. It features luxurious suites, restaurants, and a spa.",
-    "color": "#E3B0EC"
+    "color": "#E3B0EC",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/View_from_Burj_Khalifah,_Dubai_(4).jpg"
   },
   {
     "name": "Almas Tower",
@@ -339,7 +376,8 @@
     "height_m": 360,
     "year_completed": 2009,
     "description": "Located in Jumeirah Lakes Towers, Almas Tower is home to the Dubai Multi Commodities Centre. Its diamond-inspired design reflects its role in the jewelry trade.",
-    "color": "#ABA2EE"
+    "color": "#ABA2EE",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_View_of_Jumeirah_Lakes_Towers.jpg"
   },
   {
     "name": "JW Marriott Marquis Hotel Dubai Tower 1",
@@ -348,7 +386,8 @@
     "height_m": 355,
     "year_completed": 2012,
     "description": "One of the world’s tallest hotels, Tower 1 of the JW Marriott Marquis features luxury rooms, restaurants, and event spaces for conferences and weddings.",
-    "color": "#A2DCF1"
+    "color": "#A2DCF1",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "JW Marriott Marquis Hotel Dubai Tower 2",
@@ -357,7 +396,8 @@
     "height_m": 355,
     "year_completed": 2013,
     "description": "Twin to Tower 1, this skyscraper completes the JW Marriott Marquis complex. Together, the towers offer over 1,600 hotel rooms and extensive hospitality facilities.",
-    "color": "#F4A6AF"
+    "color": "#F4A6AF",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Emirates Tower One",
@@ -366,7 +406,8 @@
     "height_m": 354.6,
     "year_completed": 2000,
     "description": "Part of the Emirates Towers complex, this triangular-shaped skyscraper primarily serves as an office building and is connected to its hotel twin by a shopping boulevard.",
-    "color": "#F4C8BB"
+    "color": "#F4C8BB",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dub-emtow.jpg"
   },
   {
     "name": "Bank of China Tower",
@@ -375,7 +416,8 @@
     "height_m": 367.4,
     "year_completed": 1990,
     "description": "A striking glass-clad tower with triangular frameworks, the Bank of China Tower was Hong Kong’s tallest building for years and remains a major symbol of the city’s skyline.",
-    "color": "#ECA8E8"
+    "color": "#ECA8E8",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/HK_Bank_of_China_Tower_View.jpg"
   },
   {
     "name": "Burj Mohammed Bin Rashid",
@@ -384,7 +426,8 @@
     "height_m": 381,
     "year_completed": 2014,
     "description": "The tallest building in Abu Dhabi, this tower is part of the World Trade Center complex and features luxury apartments, shopping, and leisure facilities.",
-    "color": "#B4E0F3"
+    "color": "#B4E0F3",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "OKO South Tower",
@@ -393,7 +436,8 @@
     "height_m": 354.1,
     "year_completed": 2015,
     "description": "Located in the Moscow International Business Center, the OKO South Tower is a mixed-use skyscraper with offices, residences, and restaurants.",
-    "color": "#BDECB1"
+    "color": "#BDECB1",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/OKO_Towers.jpg"
   },
   {
     "name": "The Torch",
@@ -402,7 +446,8 @@
     "height_m": 352,
     "year_completed": 2011,
     "description": "Once the world’s tallest residential building, The Torch is a prominent Dubai Marina tower with over 600 apartments. It has twice experienced significant fires but remains occupied.",
-    "color": "#EAF0B6"
+    "color": "#EAF0B6",
+    "image_url": "NO_IMAGE_FOUND"
   },
   {
     "name": "Princess Tower",
@@ -411,7 +456,8 @@
     "height_m": 414,
     "year_completed": 2012,
     "description": "An iconic residential skyscraper in Dubai Marina, Princess Tower has over 700 apartments, penthouses, and amenities such as swimming pools and gyms.",
-    "color": "#B5F0D6"
+    "color": "#B5F0D6",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dubai_Marina_Aug2012.jpg"
   },
   {
     "name": "Keangnam Hanoi Landmark Tower",
@@ -420,7 +466,8 @@
     "height_m": 350,
     "year_completed": 2011,
     "description": "Vietnam’s tallest building until Landmark 81, it features offices, luxury residences, and the InterContinental Hanoi Landmark72 Hotel.",
-    "color": "#BBE5F0"
+    "color": "#BBE5F0",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tòa_nhà_Keangnam,_Cầu_Giấy,_Hà_Nội_001.jpg"
   },
   {
     "name": "Four Seasons Place Kuala Lumpur",
@@ -429,7 +476,8 @@
     "height_m": 343,
     "year_completed": 2018,
     "description": "A luxury skyscraper next to the Petronas Towers, it includes the Four Seasons Hotel, residences, and retail spaces catering to high-end lifestyles.",
-    "color": "#B8BCEF"
+    "color": "#B8BCEF",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Four_Seasons_Place_KL.jpg"
   },
   {
     "name": "Kingkey 100",
@@ -438,7 +486,8 @@
     "height_m": 441.8,
     "year_completed": 2011,
     "description": "Kingkey 100 is a mixed-use skyscraper with offices, retail, and the five-star St. Regis Hotel. It features a unique tapered glass façade dominating Shenzhen’s skyline.",
-    "color": "#F195DD"
+    "color": "#F195DD",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/KK100_exterior_southeast.jpg"
   },
   {
     "name": "Nina Tower",
@@ -447,6 +496,7 @@
     "height_m": 319.8,
     "year_completed": 2006,
     "description": "Originally planned to be the world’s tallest tower, Nina Tower was scaled down after aviation restrictions. Today, it includes offices, hotels, and shopping areas.",
-    "color": "#D2EAA7"
+    "color": "#D2EAA7",
+    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/HK_Nina_Tower_200803.jpg"
   }
 ]
