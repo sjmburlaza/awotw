@@ -146,6 +146,12 @@ export class Charts implements OnInit {
     return data.sort((a: any, b: any) => b[attribute] - a[attribute]);
   }
 
+  sortMapObject(map: Map<string, number>): Map<string, number> {
+    const mapAsArray = [...map.entries()];
+    mapAsArray.sort((a, b) => b[1] - a[1]);
+    return new Map(mapAsArray);
+  }
+
   getByYearPieChartData(rawdata: (TallestBuilding | MostVisited)[], key: string): ChartConfiguration['data'] {
     const map = new Map();
     const label = 'Number of tallest buildings';
@@ -161,8 +167,9 @@ export class Charts implements OnInit {
       }
     });
 
-    const labels: string[] = Array.from(map.keys());
-    const data: number[] = Array.from(map.values());
+    const sortedMap = this.sortMapObject(map);
+    const labels: string[] = Array.from(sortedMap.keys());
+    const data: number[] = Array.from(sortedMap.values());
 
     return {
       labels,
@@ -191,8 +198,9 @@ export class Charts implements OnInit {
       }
     });
 
-    const labels: string[] = Array.from(map.keys());
-    const data: number[] = Array.from(map.values());
+    const sortedMap = this.sortMapObject(map);
+    const labels: string[] = Array.from(sortedMap.keys());
+    const data: number[] = Array.from(sortedMap.values());
 
     return {
       labels,
