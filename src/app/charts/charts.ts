@@ -100,7 +100,7 @@ export class Charts implements OnInit {
         this.mostVisitedBarData = this.getBarChartData(top50mostVisited, 'visitors_per_year');
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top50mostVisited, 'location');
-        // this.tallesBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
+        this.tallesBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
       } else {
@@ -238,7 +238,7 @@ export class Charts implements OnInit {
 
   getByYearPieChartData(rawdata: (TallestBuilding | MostVisited)[], key: string): ChartConfiguration['data'] {
     const map = new Map();
-    const label = 'Number of tallest buildings';
+    const label = 'Tallest buildings';
 
     rawdata?.forEach((item: any) => {
       const keyName =  item[key];
