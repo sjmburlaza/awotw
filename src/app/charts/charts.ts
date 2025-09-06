@@ -75,27 +75,35 @@ export class Charts implements OnInit {
       if (ranking === '50') {
         const top50tallest = [...this.tallestRawData];
         const top50mostVisited = [...this.mostVisitedRawData];
+        // Bar chart data
         this.tallestBuildingsBarData = this.getBarChartData(top50tallest, 'height_m');
         this.mostVisitedBarData = this.getBarChartData(top50mostVisited, 'visitors_per_year');
+        // Pie chart data
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top50mostVisited, 'location');
         this.tallestBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
+        // Chart options
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top50tallest);
+        // Line chart
         this.tallestBuildingsLineData = this.getLineData(top50tallest);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top50tallest);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
+        // Bar chart data
         this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
         this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
+        // Pie chart data
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
         this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
+        // Chart options
         this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        // Line chart
         this.tallestBuildingsLineData = this.getLineData(top20tallest);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
       }
@@ -112,6 +120,7 @@ export class Charts implements OnInit {
         const sorted = this.sort(res, 'height_m');
         this.tallestRawData = sorted;
         const top20tallest = [...this.tallestRawData].slice(0, 20);
+
         this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
         this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
         this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
@@ -131,6 +140,7 @@ export class Charts implements OnInit {
         const sorted = this.sort(res, 'visitors_per_year');
         this.mostVisitedRawData = sorted;
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
+
         this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
         this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
         this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
@@ -145,7 +155,7 @@ export class Charts implements OnInit {
   }
 
   getLineData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
-    const sortedData = rawData.sort((a:any, b: any) => a.year_completed - b.year_completed);
+    const sortedData = rawData.sort((a: TallestBuilding, b: TallestBuilding) => Number(a.year_completed) - Number(b.year_completed));
     const map = new Map();
 
     sortedData.forEach((item) => {
@@ -194,7 +204,7 @@ export class Charts implements OnInit {
             title: (context) => `Year: ${context[0].label}`,
             label: (context: TooltipItem<'line'>) => {
               const tallestBldg = data.find((item) => Number(item.height_m) === Number(context.raw));
-              
+
               return [
                 `Tallest Building: ${tallestBldg?.name}`,
                 `Building Location: ${tallestBldg?.city}, ${tallestBldg?.country}`,
@@ -316,8 +326,10 @@ export class Charts implements OnInit {
           callbacks: {
             title: (context) => context[0].label,
             label: (context: TooltipItem<'bar'>) => {
-              const item = data[context.dataIndex];
+              const sortedData = data.sort((a: TallestBuilding, b: TallestBuilding) => Number(b.height_m) - Number(a.height_m));
+              const item = sortedData[context.dataIndex];
               const rank = this.ordinalSuffix(context.dataIndex + 1);
+
               return [
                 `Rank: ${rank}`,
                 `Location: ${item.city}, ${item.country}`,
@@ -374,7 +386,7 @@ export class Charts implements OnInit {
 
   sort(data: any, attribute: string) {
     if (!data) return;
-    return data.sort((a: any, b: any) => b[attribute] - a[attribute]);
+    return data.sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
   }
 
   sortMapObject(map: Map<string, number>): Map<string, number> {
