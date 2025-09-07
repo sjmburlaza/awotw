@@ -38,6 +38,7 @@ export type TallestBuilding = {
   year_completed: string;
   description: string;
   color: string;
+  image_url: string;
 }
 
 export type MostVisited = {
@@ -47,6 +48,7 @@ export type MostVisited = {
   visitors_per_year: string;
   year: string;
   color: string;
+  image_url: string;
 }
 
 

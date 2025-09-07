@@ -37,8 +37,8 @@ export class Charts implements OnInit {
 
   isLoading = true;
   selectionForm!: FormGroup;
-  tallestRawData = [];
-  mostVisitedRawData = [];
+  tallestRawData: TallestBuilding[] = [];
+  mostVisitedRawData: MostVisited[] = [];
 
   // Bar chart data
   tallestBuildingsBarData: ChartConfiguration['data'] = { labels: [], datasets: [] };
@@ -60,6 +60,9 @@ export class Charts implements OnInit {
   mostVisitedPieChartOptions!: ChartOptions<'pie'>;
   tallestBuildingsLineChartOptions!: ChartOptions<'line'>;
 
+  currentListTallestBuilding: TallestBuilding[] = [];
+  currentListMostVisited: MostVisited[] = [];
+
   constructor(
     private fb: FormBuilder,
     private dataService: DataService,
@@ -75,37 +78,41 @@ export class Charts implements OnInit {
       if (ranking === '50') {
         const top50tallest = [...this.tallestRawData];
         const top50mostVisited = [...this.mostVisitedRawData];
+        this.currentListTallestBuilding = [...this.tallestRawData];
+        this.currentListMostVisited = [...this.mostVisitedRawData];
         // Bar chart data
-        this.tallestBuildingsBarData = this.getBarChartData(top50tallest, 'height_m');
-        this.mostVisitedBarData = this.getBarChartData(top50mostVisited, 'visitors_per_year');
+        this.tallestBuildingsBarData = this.getBarChartData([...top50tallest], 'height_m');
+        this.mostVisitedBarData = this.getBarChartData([...top50mostVisited], 'visitors_per_year');
         // Pie chart data
-        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top50tallest, 'country');
-        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top50mostVisited, 'location');
-        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top50tallest, 'year_completed');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData([...top50tallest], 'country');
+        this.mostVisitedByCountryPieData = this.getByCountryPieChartData([...top50mostVisited], 'location');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData([...top50tallest], 'year_completed');
         // Chart options
-        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top50tallest);
-        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top50mostVisited);
-        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top50tallest);
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions([...top50tallest]);
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions([...top50mostVisited]);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([...top50tallest]);
         // Line chart
-        this.tallestBuildingsLineData = this.getLineData(top50tallest);
-        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top50tallest);
+        this.tallestBuildingsLineData = this.getLineData([...top50tallest]);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top50tallest]);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
+        this.currentListTallestBuilding = [...this.tallestRawData].slice(0, 20);
+        this.currentListMostVisited = [...this.mostVisitedRawData].slice(0, 20);
         // Bar chart data
-        this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
-        this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
+        this.tallestBuildingsBarData = this.getBarChartData([...top20tallest], 'height_m');
+        this.mostVisitedBarData = this.getBarChartData([...top20mostVisited], 'visitors_per_year');
         // Pie chart data
-        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
-        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
-        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData([...top20tallest], 'country');
+        this.mostVisitedByCountryPieData = this.getByCountryPieChartData([...top20mostVisited], 'location');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData([...top20tallest], 'year_completed');
         // Chart options
-        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
-        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
-        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions([...top20tallest]);
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions([...top20mostVisited]);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([...top20tallest]);
         // Line chart
-        this.tallestBuildingsLineData = this.getLineData(top20tallest);
-        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
+        this.tallestBuildingsLineData = this.getLineData([...top20tallest]);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top20tallest]);
       }
     });
 
@@ -117,17 +124,17 @@ export class Charts implements OnInit {
     this.dataService.getTallestBuildings()
       .pipe(take(1))
       .subscribe((res) => {
-        const sorted = this.sort(res, 'height_m');
-        this.tallestRawData = sorted;
+        this.tallestRawData = [...res].sort((a, b) => Number(b.height_m) - Number(a.height_m));
         const top20tallest = [...this.tallestRawData].slice(0, 20);
+        this.currentListTallestBuilding = [...this.tallestRawData].slice(0, 20);
 
-        this.tallestBuildingsBarData = this.getBarChartData(top20tallest, 'height_m');
-        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData(top20tallest, 'country');
-        this.tallestBuildingsYearPieData = this.getByYearPieChartData(top20tallest, 'year_completed');
-        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(top20tallest);
-        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions(top20tallest);
-        this.tallestBuildingsLineData = this.getLineData(top20tallest);
-        this.tallestBuildingsLineChartOptions = this.getLineChartOptions(top20tallest);
+        this.tallestBuildingsBarData = this.getBarChartData([...top20tallest], 'height_m');
+        this.tallestBuildingsCountryPieData = this.getByCountryPieChartData([...top20tallest], 'country');
+        this.tallestBuildingsYearPieData = this.getByYearPieChartData([...top20tallest], 'year_completed');
+        this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions([...top20tallest]);
+        this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([...top20tallest]);
+        this.tallestBuildingsLineData = this.getLineData([...top20tallest]);
+        this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top20tallest]);
 
         this.isLoading = false;
       });
@@ -137,14 +144,14 @@ export class Charts implements OnInit {
     this.dataService.getMostVisited()
       .pipe(take(1))
       .subscribe((res) => {
-        const sorted = this.sort(res, 'visitors_per_year');
-        this.mostVisitedRawData = sorted;
+        this.mostVisitedRawData = res.sort((a, b) => Number(b.visitors_per_year) - Number(a.visitors_per_year));
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
+        this.currentListMostVisited = [...this.mostVisitedRawData].slice(0, 20);
 
-        this.mostVisitedBarData = this.getBarChartData(top20mostVisited, 'visitors_per_year');
-        this.mostVisitedByCountryPieData = this.getByCountryPieChartData(top20mostVisited, 'location');
-        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions(top20mostVisited);
-        this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions(top20mostVisited);
+        this.mostVisitedBarData = this.getBarChartData([...top20mostVisited], 'visitors_per_year');
+        this.mostVisitedByCountryPieData = this.getByCountryPieChartData([...top20mostVisited], 'location');
+        this.mostVisitedBarChartOptions= this.getMostVisitedBarChartOptions([...top20mostVisited]);
+        this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions([...top20mostVisited]);
       });
   }
 
@@ -245,7 +252,7 @@ export class Charts implements OnInit {
           callbacks: {
             title: (context) => {
               const label = data.some((item) => item.country === context[0].label) ? 'Country:' : 'Year';
-              return `${label} ${context[0].label}`
+              return `${label} ${context[0].label}`;
             },
             label: (context: TooltipItem<'pie'>) => {
               const items = data.filter((item) => item.country === context.label || item.year_completed === context.label);
@@ -255,7 +262,7 @@ export class Charts implements OnInit {
                 `Count: ${context.raw}`,
                 `Building(s):`,
                 ...names
-              ]
+              ];
             }
           }
         }
@@ -297,7 +304,7 @@ export class Charts implements OnInit {
                 `Count: ${context.raw}`,
                 `Building(s):`,
                 ...names
-              ]
+              ];
             }
           }
         }
