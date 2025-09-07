@@ -8,12 +8,6 @@
   gap: 20px;
   width: 900px;
 
-  @media (min-width: 1500px) {
-    bottom: 32px;
-    width: 1000px;
-    gap: 24px;
-  }
-
   @media (min-width: 1920px) {
     width: 1200px;
     gap: 28px;
@@ -33,10 +27,6 @@
   font-size: 12px;
   font-family: 'Barlow';
 
-  @media (min-width: 1500px) {
-    font-size: 14px;
-  }
-
   @media (min-width: 1920px) {
     font-size: 16px;
   }
@@ -49,10 +39,6 @@
     text-align: center;
     min-width: 40px;
 
-    @media (min-width: 1500px) {
-      min-width: 50px;
-    }
-
     @media (min-width: 1920px) {
       min-width: 60px;
     }
@@ -63,11 +49,6 @@
       row-gap: 8px;
       column-gap: 8px;
       justify-content: center;
-
-      @media (min-width: 1500px) {
-        row-gap: 12px;
-        column-gap: 12px;
-      }
 
       @media (min-width: 1920px) {
         row-gap: 20px;
@@ -82,12 +63,6 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-
-        @media (min-width: 1500px) {
-          // font-size: 18px;
-          width: 40px;
-          height: 40px;
-        }
 
         @media (min-width: 1920px) {
           // font-size: 20px;
