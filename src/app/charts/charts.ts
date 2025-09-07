@@ -5,10 +5,11 @@ import { ChartConfiguration, ChartOptions, plugins, TooltipItem } from 'chart.js
 import { Chart } from '../shared/components/chart/chart';
 import { DataService, MostVisited, TallestBuilding } from '../services/data.service';
 import { take } from 'rxjs';
+import { CompactNumberPipe } from '../shared/pipes/compact-number-pipe';
 
 @Component({
   selector: 'app-charts',
-  imports: [CommonModule, ReactiveFormsModule, Chart],
+  imports: [CommonModule, ReactiveFormsModule, Chart, CompactNumberPipe],
   templateUrl: './charts.html',
   styleUrl: './charts.scss'
 })

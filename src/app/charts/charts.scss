@@ -102,14 +102,15 @@ label {
 
   &:hover {
     border-radius: 12px;
-    background-color: lightblue;
+    outline: 1px solid lightblue;
+
   }
 
   &.selected {
-    // background: linear-gradient(135deg, #FF6F8C 0%, #6F8CFF 100%);
-    color: whitesmoke;
     border-radius: 12px;
-    background-color: deepskyblue;
+    outline: 1px solid blueviolet;
+    @extend %gradient-text;
+    font-weight: bold;
   }
 }
 
@@ -129,7 +130,7 @@ input {
   margin: 36px 0;
 }
 
-.list {
+.list-tallest {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,8 +142,8 @@ input {
 
   .item {
     display: grid;
-    width: 220px;
     height: 500px;
+    width: 220px;
 
     &__image {
       display: flex;
@@ -158,39 +159,72 @@ input {
         object-fit: cover;
       }
     }
+  }
+}
 
-    &__desc {
-      height: 120px;
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      justify-content: start;
-      align-items: start;
-      padding: 8px;
-      padding-top: 16px;
-      gap: 4px;
+.list-visited {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 36px;
+  column-gap: 16px;
+  padding: 0 36px;
+  font-family: 'Barlow';
 
-      &__rank {
-        button {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 32px;
-          height: 32px;
-          border-radius: 16px;
-          border: 1px solid gainsboro;
-          font-size: 16px;
-        }
+  .item {
+    display: grid;
+    height: 400px;
+    width: 300px;
+
+    &__image {
+      display: flex;
+      justify-content: center;
+      height: 280px;
+      width: 300px;
+      overflow: hidden;
+      border: 1px solid gainsboro;
+
+      img {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
       }
+    }
 
-      &__labels {
-        font-size: 14px;
+  }
+}
 
-        .name {
-          font-size: 16px;
-          font-weight: bold;
-          @extend %gradient-text;
-        }
-      }
+.item__desc {
+  height: 120px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  justify-content: start;
+  align-items: start;
+  padding: 8px;
+  padding-top: 16px;
+  gap: 4px;
+
+  &__rank {
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      border: 1px solid gainsboro;
+      font-size: 16px;
+    }
+  }
+
+  &__labels {
+    font-size: 14px;
+
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+      @extend %gradient-text;
     }
   }
 }

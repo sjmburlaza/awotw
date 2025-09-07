@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import { DataService, Item } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
+import { HighlightPipe } from '../shared/pipes/highlight-pipe';
 
 @Component({
   selector: 'app-search',
-  imports: [],
+  imports: [HighlightPipe],
   templateUrl: './search.html',
   styleUrl: './search.scss'
 })
 export class Search {
   searchResults: Item[] = [];
+  searchQuery = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +22,8 @@ export class Search {
   ngOnInit() {
     this.dataService.getWonders().pipe(take(1)).subscribe(res => {
       this.route.queryParams.subscribe(params => {
-        const searchQuery = params['q'];
-        this.performSearch(res, searchQuery)
+        this.searchQuery = params['q'];
+        this.performSearch(res, this.searchQuery);
       })
     });
   }

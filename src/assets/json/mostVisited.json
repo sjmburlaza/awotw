@@ -51,7 +51,7 @@
     "year": 2018,
     "description": "An ancient Roman amphitheater, famous for gladiatorial contests and its enduring symbol of Imperial Rome.",
     "color": "#D595F0",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Colosseo_2020.jpg"
   },
   {
     "name": "Acropolis (Parthenon)",
@@ -60,7 +60,7 @@
     "year": 2016,
     "description": "A UNESCO site and ancient citadel featuring the Parthenon, a temple dedicated to the goddess Athena.",
     "color": "#F1AAA8",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/The_Parthenon_in_Athens.jpg"
   },
   {
     "name": "Eiffel Tower",
@@ -105,7 +105,7 @@
     "year": "approximate annual",
     "description": "An architectural icon on Sydney Harbour, famous for its sail-like design and cultural performances.",
     "color": "#F5B1C8",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/00_1375_Sydney_Opera_House_(Australia).jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Sydney_Australia._%2821339175489%29.jpg"
   },
   {
     "name": "Great Wall of China",
@@ -132,7 +132,7 @@
     "year": 2023,
     "description": "Antoni Gaudí’s unfinished basilica, a blend of Gothic and Art Nouveau, and an emblem of Barcelona.",
     "color": "#B09FF4",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sagrada_Familia_8-12-21_(1).jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/%CE%A3%CE%B1%CE%B3%CF%81%CE%AC%CE%B4%CE%B1_%CE%A6%CE%B1%CE%BC%CE%AF%CE%BB%CE%B9%CE%B1_2941_%28cropped%29.jpg"
   },
   {
     "name": "Alhambra",
@@ -141,7 +141,7 @@
     "year": 2018,
     "description": "A Moorish palace and fortress complex, known for its intricate Islamic architecture and gardens.",
     "color": "#EE95D9",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Dawn_Charles_V_Palace_Alhambra_Granada_Andalusia_Spain.jpg"
   },
   {
     "name": "Pyramids of Giza",
@@ -177,7 +177,7 @@
     "year": 2022,
     "description": "An ancient Nabataean city carved into rose-red rock, often called the ‘Rose City’ and a UNESCO site.",
     "color": "#A0C1E7",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Treasury_petra_crop.jpeg"
   },
   {
     "name": "British Museum",
@@ -222,7 +222,7 @@
     "year": 2019,
     "description": "Ancient Roman city preserved under volcanic ash from Mount Vesuvius, offering a vivid snapshot of life nearly 2,000 years ago.",
     "color": "#BCC4EE",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Theathres_of_Pompeii.jpg"
   },
   {
     "name": "Smithsonian National Air and Space Museum",
@@ -240,7 +240,7 @@
     "year": 2019,
     "description": "A remarkably preserved ancient Roman temple, now a church, known for its massive dome and central oculus.",
     "color": "#C3ABF3",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PKL-Gast206.jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Pantheon_Rom_1_cropped.jpg"
   },
   {
     "name": "Tower of London",
@@ -276,7 +276,7 @@
     "year": 2019,
     "description": "The most visited theme park in the world, famous for Cinderella Castle and Disney’s magical attractions.",
     "color": "#F2DD92",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Cinderella_Castle%2C_Magic_Kingdom_Walt_Disney_World_%282024%29.jpg"
   },
   {
     "name": "Tokyo Disneyland",
@@ -348,7 +348,7 @@
     "year": 2019,
     "description": "A film studio and theme park offering rides, attractions, and behind-the-scenes tours of movie sets.",
     "color": "#F1A6D8",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Universal_Studios_Hollywood_(recorte).jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Universal_archway_2019.jpg"
   },
   {
     "name": "Epcot (Disney World)",
@@ -357,7 +357,7 @@
     "year": 2019,
     "description": "Part of Walt Disney World, focusing on technological innovation, science, and cultural showcases from around the world.",
     "color": "#D1EAA7",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Spaceship_Earth%2C_EPCOT.jpg"
   },
   {
     "name": "Animal Kingdom (Disney World)",
@@ -366,7 +366,7 @@
     "year": 2019,
     "description": "A Disney theme park combining wildlife conservation with attractions like Pandora – The World of Avatar.",
     "color": "#B49CE8",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Tree_of_Life%2C_Disney%27s_Animal_Kingdom.jpg"
   },
   {
     "name": "Hollywood Studios (Disney World)",
@@ -375,7 +375,7 @@
     "year": 2019,
     "description": "A Disney park dedicated to movies and TV, home to Star Wars: Galaxy’s Edge and Toy Story Land.",
     "color": "#AAABEA",
-    "image_url": "NO_IMAGE_FOUND"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/The_Twilight_Zone_Tower_of_Terror%2C_2024.jpg"
   },
   {
     "name": "Hong Kong Disneyland",
@@ -402,7 +402,7 @@
     "year": 2023,
     "description": "A natural wonder carved by the Colorado River, known for its vast landscapes and breathtaking views.",
     "color": "#BFE1F0",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/10_Grand_Canyon_Navajo_Point_viewpoint_terrace,_Grand_Canyon_National_Park,_USA_-_American_nature.jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Canyon_River_Tree_%28165872763%29.jpeg"
   },
   {
     "name": "Niagara Falls",
@@ -411,7 +411,7 @@
     "year": "approximate annual",
     "description": "One of the world’s most famous waterfalls, straddling the US–Canada border with massive tourist appeal.",
     "color": "#F5ACF0",
-    "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls_Skyline.jpg"
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/3Falls_Niagara.jpg"
   },
   {
     "name": "Banff National Park",

@@ -1,3 +1,11 @@
+%gradient-text {
+  background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .search-container {
   display: flex;
   flex-direction: column;
@@ -45,12 +53,29 @@
         }
       }
 
-      &__name {
-        font-family: "Barlow Condensed";
-        font-size: 18px;
+      &__label {
+        display: flex;
+        gap: 4px;
+
+        span.name {
+          font-family: "Barlow Condensed";
+          font-size: 18px;
+        }
+
+        .icon {
+          padding-top: 2px;
+
+          i {
+            font-size: 14px;
+            @extend %gradient-text;
+          }
+        }
+
+        &:hover {
+          color: blueviolet;
+        }
       }
     }
-
   }
 
   .nothing-found {
