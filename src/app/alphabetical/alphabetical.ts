@@ -24,14 +24,14 @@ export class Alphabetical {
   ) {}
 
   ngOnInit(): void {
-      this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-        const groups = sortAlphabetical(res, 'name');
-        this.groups = groupByAttribute(groups, 'name');
-        this.loading = false;
-      });
-  
-      this.activatedRoute.fragment.subscribe((fragment: string | null) => {
-        if (fragment) this.scrollService.scrollToFragment(fragment, 50);
-      });
-    }
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
+      const groups = sortAlphabetical(res, 'name');
+      this.groups = groupByAttribute(groups, 'name');
+      this.loading = false;
+    });
+
+    this.activatedRoute.fragment.subscribe((fragment: string | null) => {
+      if (fragment) this.scrollService.scrollToFragment(fragment, 50);
+    });
+  }
 }

@@ -24,14 +24,14 @@ export class Programmatic {
   ) {}
 
   ngOnInit(): void {
-      this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-        const groups = sortAlphabetical(res, 'buildingType');
-        this.groups = groupByAttribute(groups, 'buildingType');
-        this.loading = false;
-      });
-  
-      this.activatedRoute.fragment.subscribe((fragment: string | null) => {
-        if (fragment) this.scrollService.scrollToFragment(fragment, 50);
-      });
-    }
+    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
+      const groups = sortAlphabetical(res, 'buildingType');
+      this.groups = groupByAttribute(groups, 'buildingType');
+      this.loading = false;
+    });
+
+    this.activatedRoute.fragment.subscribe((fragment: string | null) => {
+      if (fragment) this.scrollService.scrollToFragment(fragment, 50);
+    });
+  }
 }
