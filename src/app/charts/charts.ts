@@ -6,10 +6,19 @@ import { Chart } from '../shared/components/chart/chart';
 import { DataService, MostVisited, TallestBuilding } from '../services/data.service';
 import { take } from 'rxjs';
 import { CompactNumberPipe } from '../shared/pipes/compact-number-pipe';
+import { FadeInOnScrollDirective } from '../shared/directives/fade-in-on-scroll.directive';
+import { SlideInOnScrollDirective } from "../shared/directives/slide-in-on-scroll.directive";
 
 @Component({
   selector: 'app-charts',
-  imports: [CommonModule, ReactiveFormsModule, Chart, CompactNumberPipe],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    Chart, 
+    CompactNumberPipe, 
+    FadeInOnScrollDirective, 
+    SlideInOnScrollDirective
+  ],
   templateUrl: './charts.html',
   styleUrl: './charts.scss'
 })

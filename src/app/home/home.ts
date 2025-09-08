@@ -173,5 +173,27 @@ export class Home implements OnInit, AfterViewInit {
   goToDetailPage(itemId: number): void {
     this.router.navigate([URL.DETAIL + '/' + itemId]);
   }
+
+  goToSection(fragment: string): void {
+    const mode = this.sortModes.find((mode) => mode.isSelected);
+
+    switch(mode?.name) {
+      case Mode.CHRONOLOGICAL:
+        this.router.navigate([URL.TIMELINE], { fragment }); 
+        break;
+      case Mode.ALPHABETICAL:
+        this.router.navigate([URL.ALPHABETICAL], { fragment }); 
+        break;
+      case Mode.LOCATION:
+        this.router.navigate([URL.LOCATION], { fragment }); 
+        break;
+      case Mode.PROGRAMMATIC:
+        this.router.navigate([URL.PROGRAMMATIC], { fragment }); 
+        break;
+      case Mode.STYLE:
+        this.router.navigate([URL.STYLE], { fragment }); 
+        break;
+    }
+  }
   
 }

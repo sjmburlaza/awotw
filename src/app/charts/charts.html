@@ -78,7 +78,7 @@
     </div>
     <div class="list-tallest">
       @for (item of currentListTallestBuilding; track item?.name) {
-        <div class="item">
+        <div class="item" fadeInOnScroll slideInOnScroll>
           <div class="item__image">
             <img [src]="item.image_url" [alt]="item.name" loading="lazy">
           </div>
@@ -104,7 +104,7 @@
     </div>
     <div class="list-visited">
       @for (item of currentListMostVisited; track item?.name) {
-        <div class="item">
+        <div class="item" fadeInOnScroll>
           <div class="item__image">
             <img [src]="item.image_url" [alt]="item.name" loading="lazy">
           </div>

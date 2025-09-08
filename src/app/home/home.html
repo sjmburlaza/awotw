@@ -18,7 +18,7 @@
               </div>
             }
           </div>
-          <div class="group__name">
+          <div class="group__name" (click)="goToSection(group.groupName)">
             {{ group.groupName }}
           </div>
         </div>
@@ -29,6 +29,8 @@
         <div class="mode" 
           [ngClass]="{'selected-mode': mode.isSelected}" 
           (click)="sort(mode)"
+          tabindex="0"
+          (keydown)="sort(mode)"
         >
           {{ mode.name }}
         </div>
