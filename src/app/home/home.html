@@ -29,6 +29,8 @@
         <div class="mode" 
           [ngClass]="{'selected-mode': mode.isSelected}" 
           (click)="sort(mode)"
+          tabindex="0"
+          (keydown)="sort(mode)"
         >
           {{ mode.name }}
         </div>

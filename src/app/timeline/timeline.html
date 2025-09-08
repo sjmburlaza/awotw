@@ -10,10 +10,10 @@
     </div>
     <div class="timeline">
       @for (group of groups; track group.groupName) {
-        <div class="group">
+        <div class="group" slideInOnScroll>
           <div class="group__name">
             <span class="circle"></span>
-            <span>
+            <span class="section" [id]="group.groupName">
             {{ group.groupName }}
             </span>
           </div>

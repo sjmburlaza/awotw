@@ -4,10 +4,11 @@ import { take } from 'rxjs';
 import { groupByYearBuilt } from '../shared/utils-helper';
 import { Loader } from '../shared/components/loader/loader';
 import { TooltipDirective } from '../shared/components/tooltip/tooltip.directive';
+import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scroll.directive';
 
 @Component({
   selector: 'app-timeline',
-  imports: [Loader, TooltipDirective],
+  imports: [Loader, TooltipDirective, SlideInOnScrollDirective],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss'
 })

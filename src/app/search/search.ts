@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService, Item } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { map, switchMap, take } from 'rxjs';
 import { HighlightPipe } from '../shared/pipes/highlight-pipe';
 
 @Component({
@@ -10,7 +10,7 @@ import { HighlightPipe } from '../shared/pipes/highlight-pipe';
   templateUrl: './search.html',
   styleUrl: './search.scss'
 })
-export class Search {
+export class Search implements OnInit {
   searchResults: Item[] = [];
   searchQuery = '';
 
@@ -19,13 +19,19 @@ export class Search {
     private dataService: DataService
   ) {}
 
-  ngOnInit() {
-    this.dataService.getWonders().pipe(take(1)).subscribe(res => {
-      this.route.queryParams.subscribe(params => {
-        this.searchQuery = params['q'];
+  ngOnInit(): void {
+    this.dataService.getWonders()
+      .pipe(
+        take(1),
+        switchMap((res) =>
+          this.route.queryParams.pipe(
+            map((params) => ({ res, query: params['q'] }))
+          )
+        ))
+      .subscribe(({ res, query }) => {
+        this.searchQuery = query;
         this.performSearch(res, this.searchQuery);
-      })
-    });
+      });
   }
 
   performSearch(data: Item[], query: string): void {
