@@ -6,6 +6,7 @@ import { Search } from './search/search';
 import { Map } from './map/map';
 import { Timeline } from './timeline/timeline';
 import { Charts } from './charts/charts';
+import { Style } from './style/style';
 
 export const routes: Routes = [
   { path: 'home', component: Home },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'map', component: Map },
   { path: 'timeline', component: Timeline },
   { path: 'charts', component: Charts },
+  { path: 'style', component: Style },
   { path: '**', redirectTo: 'home' }
 ];

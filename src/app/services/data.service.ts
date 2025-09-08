@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 export interface Group {
   groupName: string;
   items: Item[];
+  description?: string;
 }
 
 export interface Item {

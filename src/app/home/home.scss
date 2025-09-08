@@ -80,6 +80,11 @@
       margin-top: 12px;
       height: 32px;
       font-family: 'Barlow Condensed';
+      cursor: pointer;
+
+      &:hover {
+        color: blueviolet;
+      }
     }
   }
 }

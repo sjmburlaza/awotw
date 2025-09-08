@@ -1,0 +1,46 @@
+@if (groups) {
+  <div class="groups-container">
+    <div class="title">
+      {{ title }}
+    </div>
+    @for (group of groups; track group.groupName) {
+      <div [id]="group.groupName" class="group">
+        <div class="group__header">
+          <div class="group__header__name">
+            {{ 
+              group.groupName === 'Decon...'
+                ? 'Deconstructivism'
+                : group.groupName
+            }}
+            @if (group.description) {
+              <span 
+                class="tooltip" 
+                [appTooltip]="'No description available.'"
+              >
+                <i class="bi bi-info-circle"></i>
+              </span>
+            }
+          </div>
+        </div>
+        <div class="group__items">
+          @for (item of group.items; track item.name) {
+            <div class="item">
+              <div class="item__image">
+                <img [src]="item.imageURL" alt="">
+              </div>
+              <div class="item__label">
+                {{ item.name }}
+                <span 
+                  class="tooltip" 
+                  [appTooltip]="item.wiki?.extract ?? 'No description available.'"
+                >
+                  <i class="bi bi-info-circle"></i>
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
