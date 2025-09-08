@@ -155,13 +155,13 @@
       width: 400px;
       font-size: 32px;
       border-radius: 12px;
-      border: 1px solid gray;
+      outline: 1px solid gray;
+      border: none;
       font-family: "Edu NSW ACT Cursive", cursive;
     }
 
     button:hover {
-      background-color: #ccc;
-      border-width: 2px;
+      outline-width: 4px;
     }
   }
 }
