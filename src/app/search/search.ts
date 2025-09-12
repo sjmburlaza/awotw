@@ -35,8 +35,22 @@ export class Search implements OnInit {
   }
 
   performSearch(data: Item[], query: string): void {
-    this.searchResults = data?.filter(item => {
-      return item.name?.toLocaleLowerCase()?.includes(query?.toLocaleLowerCase());
-    })
+    const q = query.toLowerCase();
+
+    this.searchResults = data
+      ?.filter((item) => item.name?.toLowerCase().includes(q))
+      ?.sort((a, b) => {
+        const aName = a.name.toLowerCase();
+        const bName = b.name.toLowerCase();
+
+        const score = (name: string): number => {
+          if (name === q) return 3;
+          if (name.startsWith(q)) return 2;
+          return 1;
+        };
+
+        return score(bName) - score(aName);
+      });
   }
+
 }
