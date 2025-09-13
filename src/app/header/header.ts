@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { URL } from '../shared/constants/routes.const';
 import { LoaderService } from '../services/loader-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,9 +11,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   selector: 'app-header',
   imports: [CommonModule, FormsModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrl: './header.scss',
 })
 export class Header implements OnInit {
+  private router = inject(Router);
+  private loaderService = inject(LoaderService);
+  private destroyRef = inject(DestroyRef);
+
   readonly URL = URL;
   currentUrl = URL.HOME;
   isDarkMode = false;
@@ -22,15 +26,9 @@ export class Header implements OnInit {
   searchQuery = '';
   isLoading = true;
 
-  constructor(
-    private router: Router,
-    private loaderService: LoaderService,
-    private destroyRef: DestroyRef,
-  ) {}
-
   ngOnInit() {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.currentUrl = event.urlAfterRedirects;
         if (this.currentUrl === URL.HOME) {
@@ -41,16 +39,16 @@ export class Header implements OnInit {
         if (!event.url.includes(URL.SEARCH)) {
           this.searchQuery = '';
         }
-    });
+      });
 
     this.loaderService.isLoading$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((state) => this.isLoading = state);
+      .subscribe((state) => (this.isLoading = state));
   }
 
   onSearch(): void {
     if (this.searchQuery) {
-      this.router.navigate([URL.SEARCH], { queryParams: { q: this.searchQuery }});
+      this.router.navigate([URL.SEARCH], { queryParams: { q: this.searchQuery } });
     } else {
       this.router.navigate([URL.HOME]);
     }
@@ -84,5 +82,4 @@ export class Header implements OnInit {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-mode');
   }
-
 }

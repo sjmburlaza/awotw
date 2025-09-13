@@ -1,16 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'highlight'
+  name: 'highlight',
 })
 export class HighlightPipe implements PipeTransform {
   transform(value: string, search: string): string {
-    if (!search) return value;
+    if (!search || !search.trim()) return value;
 
     // Escape special regex chars
     const escaped = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(escaped, 'gi');
 
-    return value.replace(regex, match => `<mark>${match}</mark>`);
+    return value.replace(regex, (match) => `<mark>${match}</mark>`);
   }
 }

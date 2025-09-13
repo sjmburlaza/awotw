@@ -5,22 +5,24 @@ import {
   Input,
   ComponentRef,
   ViewContainerRef,
-  TemplateRef
+  TemplateRef,
+  inject,
 } from '@angular/core';
 import { Tooltip } from './tooltip';
 
 type Position = 'top' | 'bottom' | 'left' | 'right';
 
 @Directive({
-  selector: '[appTooltip]'
+  selector: '[appTooltip]',
 })
 export class TooltipDirective {
+  private el = inject(ElementRef);
+  private vcr = inject(ViewContainerRef);
+
   @Input('appTooltip') tooltipContent: string | TemplateRef<any> = '';
   @Input() tooltipPosition: Position = 'bottom';
 
   private tooltipRef?: ComponentRef<Tooltip>;
-
-  constructor(private el: ElementRef, private vcr: ViewContainerRef) {}
 
   @HostListener('mouseenter')
   onMouseEnter() {
@@ -58,7 +60,8 @@ export class TooltipDirective {
     document.body.appendChild(tooltipEl);
     const tooltipRect = tooltipEl.getBoundingClientRect();
 
-    let top = 0, left = 0;
+    let top = 0,
+      left = 0;
     const spaceBetweenTooltipAndTarget = 0;
     const tooltipWidth = 300;
 
@@ -69,7 +72,7 @@ export class TooltipDirective {
         break;
       case 'bottom':
         top = targetRect.bottom + spaceBetweenTooltipAndTarget + window.scrollY;
-        left = targetRect.left - (tooltipWidth / 2);
+        left = targetRect.left - tooltipWidth / 2;
         break;
       case 'left':
         top = targetRect.top + (targetRect.height - tooltipRect.height) / 2 + window.scrollY;

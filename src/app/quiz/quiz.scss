@@ -86,7 +86,8 @@
             }
           }
 
-          input, label {
+          input,
+          label {
             cursor: pointer;
           }
         }
@@ -107,7 +108,8 @@
         }
       }
 
-      .see-answer__btn, .next__btn {
+      .see-answer__btn,
+      .next__btn {
         padding: 8px 12px;
         width: 150px;
       }
@@ -133,9 +135,9 @@
   font-size: 36px;
 
   .title {
-    font-family: "Michroma", sans-serif;
+    font-family: 'Michroma', sans-serif;
     font-weight: bold;
-    background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+    background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -157,7 +159,7 @@
       border-radius: 12px;
       outline: 1px solid gray;
       border: none;
-      font-family: "Edu NSW ACT Cursive", cursive;
+      font-family: 'Edu NSW ACT Cursive', cursive;
     }
 
     button:hover {
@@ -197,9 +199,15 @@ button {
 }
 
 @keyframes stretch {
-  0%   { transform: scaleX(1); }
-  50%  { transform: scaleX(1.4); }
-  100% { transform: scaleX(1); }
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.4);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 .stretch-text {

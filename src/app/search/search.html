@@ -1,32 +1,30 @@
 <div class="search-container">
-  <div class="title">
-    Your search results...
-  </div>
+  <div class="title">Your search results...</div>
   @if (searchResults.length) {
-    <div class="results">
-      @for (item of searchResults; track item.id) {
-        <a class="results__item" [href]="item.descriptionURL" target="_blank">
-          <div class="results__item__img">
-            <img [src]="item.imageURL" [alt]="item.name" loading="lazy">
-          </div>
-          <div class="results__item__label">
-            <span class="name" [innerHTML]="item.name | highlight: searchQuery"></span>
-            <span class="icon"><i class="bi bi-box-arrow-up-right"></i></span>
-          </div>
-        </a>
-      }
-    </div>
+  <div class="results">
+    @for (item of searchResults; track item.id) {
+    <a class="results__item" [href]="item.descriptionURL" target="_blank">
+      <div class="results__item__img">
+        <img [src]="item.imageURL" [alt]="item.name" loading="lazy" />
+      </div>
+      <div class="results__item__label">
+        <span class="name" [innerHTML]="item.name | highlight: searchQuery"></span>
+        <span class="icon"><i class="bi bi-box-arrow-up-right"></i></span>
+      </div>
+    </a>
+    }
+  </div>
   } @else {
-    <div class="nothing-found">
-      <div class="nothing-found__label">
-        <p>
-          Nothing found.
-          <span><i class="bi bi-emoji-frown"></i></span>
-        </p>
-      </div>
-      <div class="nothing-found__gif">
-        <img src="assets/images/empty.gif" alt="">
-      </div>
+  <div class="nothing-found">
+    <div class="nothing-found__label">
+      <p>
+        Nothing found.
+        <span><i class="bi bi-emoji-frown"></i></span>
+      </p>
     </div>
+    <div class="nothing-found__gif">
+      <img src="assets/images/empty.gif" alt="" />
+    </div>
+  </div>
   }
 </div>

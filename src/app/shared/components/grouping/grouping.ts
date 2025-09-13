@@ -6,10 +6,9 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
   selector: 'app-grouping',
   imports: [TooltipDirective],
   templateUrl: './grouping.html',
-  styleUrl: './grouping.scss'
+  styleUrl: './grouping.scss',
 })
 export class Grouping {
   @Input() groups: Group[] | undefined;
   @Input() title: string = '';
-
 }

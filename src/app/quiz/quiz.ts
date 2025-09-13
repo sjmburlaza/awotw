@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService, Item } from '../services/data.service';
 import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from '@angular/common';
 
 interface QuizModel {
@@ -15,36 +14,38 @@ interface QuizModel {
   selector: 'app-quiz',
   imports: [FormsModule, CommonModule],
   templateUrl: './quiz.html',
-  styleUrl: './quiz.scss'
+  styleUrl: './quiz.scss',
 })
 export class Quiz implements OnInit {
+  private dataService = inject(DataService);
+
   quizzes = [
     {
       code: 'name',
       title: 'What is the name?',
-      color: 'red'
+      color: 'red',
     },
     {
       code: 'location',
       title: 'Where is it located?',
-      color: 'green'
+      color: 'green',
     },
     {
       code: 'style',
       title: 'What is the style?',
-      color: 'blue'
+      color: 'blue',
     },
     {
       code: 'yearBuilt',
       title: 'When was it built?',
-      color: 'orange'
+      color: 'orange',
     },
     {
       code: 'buildingType',
       title: 'What is the use?',
-      color: 'violet'
+      color: 'violet',
     },
-  ]
+  ];
   data: Item[] = [];
   selectedQuiz: QuizModel | undefined | null;
   item: Item | undefined;
@@ -57,13 +58,11 @@ export class Quiz implements OnInit {
   currentCount = 0;
   disableSeeAnswerBtn = true;
 
-
-  constructor(
-    private dataService: DataService
-  ) {}
-
   ngOnInit() {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => this.data = res);
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => (this.data = res));
   }
 
   onSelectQuiz(quiz: QuizModel): void {
@@ -96,7 +95,7 @@ export class Quiz implements OnInit {
       }
     }
 
-    const shuffledOptions = this.shuffleArray([...options])
+    const shuffledOptions = this.shuffleArray([...options]);
 
     return shuffledOptions;
   }
@@ -134,5 +133,4 @@ export class Quiz implements OnInit {
     this.currentScore = 0;
     this.hasSeenAnswer = false;
   }
-
 }

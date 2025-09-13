@@ -23,5 +23,5 @@ export const routes: Routes = [
   { path: 'alphabetical', component: Alphabetical },
   { path: 'location', component: Location },
   { path: 'programmatic', component: Programmatic },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 ];

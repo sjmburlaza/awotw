@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Group {
@@ -27,11 +27,11 @@ export interface Item {
     description?: string;
     extract?: string;
     wikipedia?: string;
-  }
+  };
 }
 
 export type TallestBuilding = {
-  type: "building";
+  type: 'building';
   name: string;
   city: string;
   country: string;
@@ -40,25 +40,23 @@ export type TallestBuilding = {
   description: string;
   color: string;
   image_url: string;
-}
+};
 
 export type MostVisited = {
-  type: "visited";
+  type: 'visited';
   name: string;
   location: string;
   visitors_per_year: string;
   year: string;
   color: string;
   image_url: string;
-}
-
+};
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
 
   getWonders(): Observable<Item[]> {
     return this.http.get<Item[]>('assets/json/wonders.json');

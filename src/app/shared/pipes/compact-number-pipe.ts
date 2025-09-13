@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'compactNumber'
+  name: 'compactNumber',
 })
 export class CompactNumberPipe implements PipeTransform {
   transform(value: number | string, fractionDigits: number = 1, locale: string = 'en-US'): string {
     if (value == null) return '';
-    
+
     return new Intl.NumberFormat(locale, {
       notation: 'compact',
-      maximumFractionDigits: fractionDigits
+      maximumFractionDigits: fractionDigits,
     }).format(Number(value));
   }
 }

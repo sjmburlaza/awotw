@@ -1,5 +1,5 @@
 %gradient-text {
-  background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -48,8 +48,6 @@
     column-gap: 36px;
 
     .item {
-      
-
       &__image {
         display: flex;
         justify-content: center;

@@ -11,7 +11,7 @@ html {
 
 body.dark-mode {
   background-color: #222222;
-  color: #FFF5EE;
+  color: #fff5ee;
 
   i {
     color: white;
@@ -19,7 +19,7 @@ body.dark-mode {
 
   button {
     background-color: transparent;
-    color: #FFF5EE;
+    color: #fff5ee;
     border: 1px solid white;
   }
 
@@ -41,7 +41,6 @@ body.dark-mode {
   }
 
   input:not(:placeholder-shown) {
-    color: #FFF5EE;
+    color: #fff5ee;
   }
 }
-

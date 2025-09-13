@@ -10,4 +10,4 @@ export const URL = {
   QUIZ: '/quiz',
   SEARCH: '/search',
   DETAIL: '/detail',
-}
+};

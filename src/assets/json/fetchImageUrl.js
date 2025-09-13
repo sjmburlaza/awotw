@@ -1,19 +1,16 @@
-import fetch from "node-fetch";
-import fs from "fs";
+import fetch from 'node-fetch';
+import fs from 'fs';
 
 // Load JSON file
 const buildings = JSON.parse(
-  fs.readFileSync(
-    new URL("./mostVisited.json", import.meta.url),
-    "utf-8"
-  )
+  fs.readFileSync(new URL('./mostVisited.json', import.meta.url), 'utf-8'),
 );
 
 // Function to fetch image from Wikidata
 async function getWikidataImage(name) {
   // Step 1: Search for the entity by name
   const searchUrl = `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${encodeURIComponent(
-    name
+    name,
   )}&language=en&format=json&limit=1`;
 
   try {
@@ -33,10 +30,10 @@ async function getWikidataImage(name) {
     if (!imageName) return null;
 
     // Step 3: Build image URL
-    const cleanName = imageName.replace(/ /g, "_");
+    const cleanName = imageName.replace(/ /g, '_');
     return `https://commons.wikimedia.org/wiki/Special:FilePath/${cleanName}`;
   } catch (err) {
-    console.error("Error fetching Wikidata image:", name, err);
+    console.error('Error fetching Wikidata image:', name, err);
     return null;
   }
 }
@@ -50,14 +47,11 @@ async function addImages() {
       image = await getWikidataImage(`${item.name}, ${item.city}`);
     }
 
-    item.image_url = image || "NO_IMAGE_FOUND";
+    item.image_url = image || 'NO_IMAGE_FOUND';
     console.log(`✔ ${item.name} → ${item.image_url}`);
   }
 
-  fs.writeFileSync(
-    "./buildings_with_images.json",
-    JSON.stringify(buildings, null, 2)
-  );
+  fs.writeFileSync('./buildings_with_images.json', JSON.stringify(buildings, null, 2));
 }
 
 addImages();

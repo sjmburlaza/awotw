@@ -2,126 +2,118 @@
   <form [formGroup]="selectionForm" class="nav">
     <div class="categories">
       @for (category of categories; track category.name) {
-        <label class="category" 
-          [class.selected]="categoryValue === category.code"
-          [for]="category.code"
-        >
-          <input type="radio" formControlName="category" [value]="category.code" [id]="category.code">
-            {{ category.name }}
-        </label>
+      <label
+        class="category"
+        [class.selected]="categoryValue === category.code"
+        [for]="category.code"
+      >
+        <input
+          type="radio"
+          formControlName="category"
+          [value]="category.code"
+          [id]="category.code"
+        />
+        {{ category.name }}
+      </label>
       }
     </div>
     <div class="rankings">
       @for (ranking of rankings; track ranking.name) {
-        <label class="ranking" 
-          [class.selected]="rankingValue === ranking.code"
-          [for]="ranking.code"
-        >
-          <input type="radio" formControlName="ranking" [value]="ranking.code" [id]="ranking.code">
-            {{ ranking.name }}
-        </label>
+      <label class="ranking" [class.selected]="rankingValue === ranking.code" [for]="ranking.code">
+        <input type="radio" formControlName="ranking" [value]="ranking.code" [id]="ranking.code" />
+        {{ ranking.name }}
+      </label>
       }
     </div>
   </form>
 
   @if (isLoading) {
-    <div class="loader"></div>
+  <div class="loader"></div>
   } @else {
-    <div class="chart">
-      <div class="chart__bar">
-        <app-chart 
-          [chartType]="'bar'" 
-          [chartData]="categoryValue === 'tallest' ? tallestBuildingsBarData : mostVisitedBarData"
-          [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsBarChartOptions : mostVisitedBarChartOptions"
+  <div class="chart">
+    <div class="chart__bar">
+      <app-chart
+        [chartType]="'bar'"
+        [chartData]="categoryValue === 'tallest' ? tallestBuildingsBarData : mostVisitedBarData"
+        [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsBarChartOptions : mostVisitedBarChartOptions"
+      >
+      </app-chart>
+    </div>
+    <div class="chart__pie">
+      <div class="chart__pie__country">
+        <div class="title">Distribution by Country</div>
+        <app-chart
+          [chartType]="'pie'"
+          [chartData]="categoryValue === 'tallest' ? tallestBuildingsCountryPieData : mostVisitedByCountryPieData"
+          [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsPieChartOptions : mostVisitedPieChartOptions"
         >
         </app-chart>
       </div>
-      <div class="chart__pie">
-        <div class="chart__pie__country">
-          <div class="title">Distribution by Country</div>
-          <app-chart
-            [chartType]="'pie'" 
-            [chartData]="categoryValue === 'tallest' ? tallestBuildingsCountryPieData : mostVisitedByCountryPieData"
-            [chartOptions]="categoryValue === 'tallest' ? tallestBuildingsPieChartOptions : mostVisitedPieChartOptions"
-          >
-          </app-chart>
-        </div>
-        @if (categoryValue === 'tallest') {
-          <div class="chart__pie__year">
-            <div class="title">Distribution by Year of Completion</div>
-            <app-chart 
-              [chartType]="'pie'" 
-              [chartData]="tallestBuildingsYearPieData"
-              [chartOptions]="tallestBuildingsPieChartOptions"
-            >
-            </app-chart>
-          </div>
-        }
-      </div>
       @if (categoryValue === 'tallest') {
-        <div class="chart__line">
-          <div class="title">Building Height Trends (by Year)</div>
-          <app-chart 
-            [chartType]="'line'" 
-            [chartData]="tallestBuildingsLineData"
-            [chartOptions]="tallestBuildingsLineChartOptions"
-          >
-          </app-chart>
-        </div>
+      <div class="chart__pie__year">
+        <div class="title">Distribution by Year of Completion</div>
+        <app-chart
+          [chartType]="'pie'"
+          [chartData]="tallestBuildingsYearPieData"
+          [chartOptions]="tallestBuildingsPieChartOptions"
+        >
+        </app-chart>
+      </div>
       }
     </div>
-  }
-
-  @if (categoryValue === 'tallest' && currentListTallestBuilding) {
-    <div class="list-title">
-      Gallery of the Tallest Buildings
+    @if (categoryValue === 'tallest') {
+    <div class="chart__line">
+      <div class="title">Building Height Trends (by Year)</div>
+      <app-chart
+        [chartType]="'line'"
+        [chartData]="tallestBuildingsLineData"
+        [chartOptions]="tallestBuildingsLineChartOptions"
+      >
+      </app-chart>
     </div>
-    <div class="list-tallest">
-      @for (item of currentListTallestBuilding; track item?.name) {
-        <div class="item" fadeInOnScroll slideInOnScroll>
-          <div class="item__image">
-            <img [src]="item.image_url" [alt]="item.name" loading="lazy">
-          </div>
-          <div class="item__desc">
-            <div class="item__desc__rank">
-              <button>
-                {{ $index + 1 }}
-              </button>
-            </div>
-            <div class="item__desc__labels">
-              <p class="name">{{ item.name }}</p>
-              <p>{{ item.city }}, {{ item.country }}</p>
-              <p>Height: {{ item.height_m }} meters</p>
-            </div>
-          </div>
+    }
+  </div>
+  } @if (categoryValue === 'tallest' && currentListTallestBuilding) {
+  <div class="list-title">Gallery of the Tallest Buildings</div>
+  <div class="list-tallest">
+    @for (item of currentListTallestBuilding; track item?.name) {
+    <div class="item" fadeInOnScroll slideInOnScroll>
+      <div class="item__image">
+        <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
+      </div>
+      <div class="item__desc">
+        <div class="item__desc__rank">
+          <button>{{ $index + 1 }}</button>
         </div>
-      }
-    </div>
-  }
-  @if (categoryValue === 'mostVisited' && currentListMostVisited) {
-    <div class="list-title">
-      Gallery of the Most Visited Places
-    </div>
-    <div class="list-visited">
-      @for (item of currentListMostVisited; track item?.name) {
-        <div class="item" fadeInOnScroll>
-          <div class="item__image">
-            <img [src]="item.image_url" [alt]="item.name" loading="lazy">
-          </div>
-          <div class="item__desc">
-            <div class="item__desc__rank">
-              <button>
-                {{ $index + 1 }}
-              </button>
-            </div>
-            <div class="item__desc__labels">
-              <p class="name">{{ item.name }}</p>
-              <p>{{ item.location }}</p>
-              <p>Visitors (approx.): {{ item.visitors_per_year | compactNumber }} annually</p>
-            </div>
-          </div>
+        <div class="item__desc__labels">
+          <p class="name">{{ item.name }}</p>
+          <p>{{ item.city }}, {{ item.country }}</p>
+          <p>Height: {{ item.height_m }} meters</p>
         </div>
-      }
+      </div>
     </div>
+    }
+  </div>
+  } @if (categoryValue === 'mostVisited' && currentListMostVisited) {
+  <div class="list-title">Gallery of the Most Visited Places</div>
+  <div class="list-visited">
+    @for (item of currentListMostVisited; track item?.name) {
+    <div class="item" fadeInOnScroll slideInOnScroll>
+      <div class="item__image">
+        <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
+      </div>
+      <div class="item__desc">
+        <div class="item__desc__rank">
+          <button>{{ $index + 1 }}</button>
+        </div>
+        <div class="item__desc__labels">
+          <p class="name">{{ item.name }}</p>
+          <p>{{ item.location }}</p>
+          <p>Visitors (approx.): {{ item.visitors_per_year | compactNumber }} annually</p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
   }
 </div>
