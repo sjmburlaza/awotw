@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
-import fetch from "node-fetch";
-import { fileURLToPath } from "url";
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,9 +20,9 @@ async function getWikiSummary(title) {
   const data = await res.json();
   return {
     title: data.title,
-    description: data.description || "",
-    extract: data.extract || "",
-    wikipedia: data.content_urls?.desktop?.page || ""
+    description: data.description || '',
+    extract: data.extract || '',
+    wikipedia: data.content_urls?.desktop?.page || '',
   };
 }
 
@@ -32,7 +32,7 @@ async function getWikiSummary(title) {
 async function getWikidataDescription(title) {
   // First, search for the entity ID
   const searchUrl = `https://www.wikidata.org/w/api.php?action=wbsearchentities&language=en&format=json&search=${encodeURIComponent(
-    title
+    title,
   )}`;
   const searchRes = await fetch(searchUrl);
   const searchData = await searchRes.json();
@@ -49,9 +49,9 @@ async function getWikidataDescription(title) {
   const entity = entityData.entities[entityId];
   return {
     title: entity.labels.en?.value || title,
-    description: entity.descriptions.en?.value || "",
-    extract: "", // Wikidata doesn’t provide extracts
-    wikipedia: entity.sitelinks?.enwiki?.url || ""
+    description: entity.descriptions.en?.value || '',
+    extract: '', // Wikidata doesn’t provide extracts
+    wikipedia: entity.sitelinks?.enwiki?.url || '',
   };
 }
 
@@ -59,7 +59,7 @@ async function getWikidataDescription(title) {
  * Main script
  */
 async function enrichData() {
-  const wonders = JSON.parse(fs.readFileSync(inputFile, "utf8"));
+  const wonders = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
   const enriched = [];
 
   for (const wonder of wonders) {
@@ -74,15 +74,15 @@ async function enrichData() {
 
     enriched.push({
       ...wonder,
-      wiki: wikiData
+      wiki: wikiData,
     });
 
     // small delay to avoid rate limiting
-    await new Promise(r => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 500));
   }
 
   fs.writeFileSync(outputFile, JSON.stringify(enriched, null, 2));
   console.log(`✅ Enriched data saved to ${outputFile}`);
 }
 
-enrichData().catch(err => console.error(err));
+enrichData().catch((err) => console.error(err));

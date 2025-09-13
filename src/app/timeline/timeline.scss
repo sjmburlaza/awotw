@@ -13,7 +13,7 @@
 .title {
   font-size: 28px;
   text-align: center;
-  font-family: "Barlow";
+  font-family: 'Barlow';
 }
 
 .timeline {
@@ -43,7 +43,7 @@
 
       span {
         font-size: 24px;
-        font-family: "Barlow";
+        font-family: 'Barlow';
       }
     }
 
@@ -55,7 +55,6 @@
     }
   }
 }
-
 
 .item {
   &__img {
@@ -79,7 +78,7 @@
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    font-family: "Barlow Condensed";
+    font-family: 'Barlow Condensed';
     font-size: 18px;
     margin-left: 12px;
 
@@ -94,5 +93,5 @@
   padding-top: 24px;
   justify-self: center;
   font-size: 24px;
-  font-family: "Barlow";
+  font-family: 'Barlow';
 }

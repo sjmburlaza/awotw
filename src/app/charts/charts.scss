@@ -1,5 +1,5 @@
 %gradient-text {
-  background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%);
+  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -103,7 +103,6 @@ label {
   &:hover {
     border-radius: 12px;
     outline: 1px solid lightblue;
-
   }
 
   &.selected {
@@ -191,7 +190,6 @@ input {
         object-fit: cover;
       }
     }
-
   }
 }
 
@@ -243,5 +241,7 @@ input {
 }
 
 @keyframes spin {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }

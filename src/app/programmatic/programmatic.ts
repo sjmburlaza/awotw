@@ -10,7 +10,7 @@ import { Grouping } from '../shared/components/grouping/grouping';
   selector: 'app-programmatic',
   imports: [Grouping],
   templateUrl: './programmatic.html',
-  styleUrl: './programmatic.scss'
+  styleUrl: './programmatic.scss',
 })
 export class Programmatic {
   groups: Group[] = [];
@@ -18,17 +18,20 @@ export class Programmatic {
   title = 'Grouping by Use';
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      const groups = sortAlphabetical(res, 'buildingType');
-      this.groups = groupByAttribute(groups, 'buildingType');
-      this.loading = false;
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        const groups = sortAlphabetical(res, 'buildingType');
+        this.groups = groupByAttribute(groups, 'buildingType');
+        this.loading = false;
+      });
 
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       if (fragment) this.scrollService.scrollToFragment(fragment, 50);

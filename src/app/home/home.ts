@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from '@angular/core';
 import { DataService, Group, Item } from '../services/data.service';
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -13,14 +21,14 @@ enum Mode {
   CHRONOLOGICAL = 'CHRONOLOGICAL',
   LOCATION = 'LOCATION',
   PROGRAMMATIC = 'PROGRAMMATIC',
-  STYLE = 'STYLE'
+  STYLE = 'STYLE',
 }
 
 @Component({
   selector: 'app-home',
   imports: [CommonModule, Loader],
   templateUrl: './home.html',
-  styleUrl: './home.scss'
+  styleUrl: './home.scss',
 })
 export class Home implements OnInit, AfterViewInit {
   @ViewChildren('animatedItem', { read: ElementRef })
@@ -32,24 +40,24 @@ export class Home implements OnInit, AfterViewInit {
   sortModes = [
     {
       name: Mode.ALPHABETICAL,
-      isSelected: false
+      isSelected: false,
     },
     {
       name: Mode.CHRONOLOGICAL,
-      isSelected: false
+      isSelected: false,
     },
     {
       name: Mode.LOCATION,
-      isSelected: false
+      isSelected: false,
     },
     {
       name: Mode.PROGRAMMATIC,
-      isSelected: false
+      isSelected: false,
     },
     {
       name: Mode.STYLE,
-      isSelected: true
-    }
+      isSelected: true,
+    },
   ];
   data: Item[] = [];
   groups: Group[] = [];
@@ -63,12 +71,15 @@ export class Home implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      this.data = res;
-      this.groups = groupByAttribute(this.data, 'style');
-      this.isLoading = false;
-      this.loaderService.setLoading(false);
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        this.data = res;
+        this.groups = groupByAttribute(this.data, 'style');
+        this.isLoading = false;
+        this.loaderService.setLoading(false);
+      });
   }
 
   ngAfterViewInit(): void {
@@ -107,21 +118,21 @@ export class Home implements OnInit, AfterViewInit {
     });
   }
 
-  updateSelectedMode(selectedMode: {name: string; isSelected: boolean}): void {
-    this.sortModes = this.sortModes.map(mode => {
+  updateSelectedMode(selectedMode: { name: string; isSelected: boolean }): void {
+    this.sortModes = this.sortModes.map((mode) => {
       return {
         name: mode.name,
         isSelected: mode.name === selectedMode.name,
-      }
-    })
+      };
+    });
   }
 
-  sort(mode: {name: string; isSelected: boolean}): void {
+  sort(mode: { name: string; isSelected: boolean }): void {
     this.capturePositions();
     this.updateSelectedMode(mode);
     const items = [...this.data];
 
-    switch(mode.name) {
+    switch (mode.name) {
       case Mode.ALPHABETICAL:
         sortAlphabetical(items, 'name');
         this.groups = groupByAttribute(items, 'name');
@@ -146,23 +157,23 @@ export class Home implements OnInit, AfterViewInit {
       this.playAnimations();
     });
   }
- 
-  getDynamicStyle(item: Item): {color: string, backgroundColor: string} {
+
+  getDynamicStyle(item: Item): { color: string; backgroundColor: string } {
     const fontColor = this.getColor(item.color);
     return {
       color: fontColor,
-      backgroundColor: item.color
-    }
+      backgroundColor: item.color,
+    };
   }
 
   getColor(hexcode: string): string {
     const c = hexcode.substring(1);
     const rgb = parseInt(c, 16);
     const r = (rgb >> 16) & 0xff;
-    const g = (rgb >>  8) & 0xff;
-    const b = (rgb >>  0) & 0xff;
+    const g = (rgb >> 8) & 0xff;
+    const b = (rgb >> 0) & 0xff;
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    
+
     if (luma < 100) {
       return 'white';
     } else {
@@ -177,23 +188,22 @@ export class Home implements OnInit, AfterViewInit {
   goToSection(fragment: string): void {
     const mode = this.sortModes.find((mode) => mode.isSelected);
 
-    switch(mode?.name) {
+    switch (mode?.name) {
       case Mode.CHRONOLOGICAL:
-        this.router.navigate([URL.TIMELINE], { fragment }); 
+        this.router.navigate([URL.TIMELINE], { fragment });
         break;
       case Mode.ALPHABETICAL:
-        this.router.navigate([URL.ALPHABETICAL], { fragment }); 
+        this.router.navigate([URL.ALPHABETICAL], { fragment });
         break;
       case Mode.LOCATION:
-        this.router.navigate([URL.LOCATION], { fragment }); 
+        this.router.navigate([URL.LOCATION], { fragment });
         break;
       case Mode.PROGRAMMATIC:
-        this.router.navigate([URL.PROGRAMMATIC], { fragment }); 
+        this.router.navigate([URL.PROGRAMMATIC], { fragment });
         break;
       case Mode.STYLE:
-        this.router.navigate([URL.STYLE], { fragment }); 
+        this.router.navigate([URL.STYLE], { fragment });
         break;
     }
   }
-  
 }

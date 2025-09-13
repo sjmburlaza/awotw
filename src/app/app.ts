@@ -6,7 +6,7 @@ import { Header } from './header/header';
   selector: 'app-root',
   imports: [RouterOutlet, Header],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected title = 'architectural-wonders-v2';

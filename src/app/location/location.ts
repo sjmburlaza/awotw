@@ -10,7 +10,7 @@ import { Grouping } from '../shared/components/grouping/grouping';
   selector: 'app-location',
   imports: [Grouping],
   templateUrl: './location.html',
-  styleUrl: './location.scss'
+  styleUrl: './location.scss',
 })
 export class Location {
   groups: Group[] = [];
@@ -18,17 +18,20 @@ export class Location {
   title = 'Grouping by Continent';
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      const groups = sortAlphabetical(res, 'continent');
-      this.groups = groupByAttribute(groups, 'continent');
-      this.loading = false;
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        const groups = sortAlphabetical(res, 'continent');
+        this.groups = groupByAttribute(groups, 'continent');
+        this.loading = false;
+      });
 
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       if (fragment) this.scrollService.scrollToFragment(fragment, 50);

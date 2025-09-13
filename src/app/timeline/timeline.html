@@ -1,46 +1,39 @@
 <div class="timeline-container">
   @if (loading) {
-    <div class="loader">
-      <app-loader></app-loader>
-    </div>
+  <div class="loader">
+    <app-loader></app-loader>
+  </div>
   } @else {
-    <div class="title">
-      Architecture through the millennia…
-      <i class="bi bi-hourglass-split"></i>
-    </div>
-    <div class="timeline">
-      @for (group of groups; track group.groupName) {
-        <div [id]="group.groupName" class="group" slideInOnScroll>
-          <div class="group__header">
-            <span class="circle"></span>
-            <span>
-            {{ group.groupName }}
+  <div class="title">
+    Architecture through the millennia…
+    <i class="bi bi-hourglass-split"></i>
+  </div>
+  <div class="timeline">
+    @for (group of groups; track group.groupName) {
+    <div [id]="group.groupName" class="group" slideInOnScroll>
+      <div class="group__header">
+        <span class="circle"></span>
+        <span> {{ group.groupName }} </span>
+      </div>
+      <div class="group__items">
+        @for (item of group.items; track item.id) {
+        <div class="item">
+          <div class="item__img">
+            <img [src]="item.imageURL" alt="" loading="lazy" />
+          </div>
+          <div class="item__name">
+            {{ item.name }}
+            <span class="tooltip" [appTooltip]="item.wiki?.extract || 'No description available.'">
+              <i class="bi bi-info-circle"></i>
             </span>
           </div>
-          <div class="group__items">
-            @for (item of group.items; track item.id) {
-              <div class="item">
-                <div class="item__img">
-                  <img [src]="item.imageURL" alt="" loading="lazy">
-                </div>
-                <div class="item__name">
-                    {{ item.name }}
-                    <span 
-                      class="tooltip" 
-                      [appTooltip]="item.wiki?.extract || 'No description available.'"
-                    >
-                      <i class="bi bi-info-circle"></i>
-                    </span>
-                </div>
-              </div>
-            }
-          </div>
         </div>
+        }
+      </div>
+    </div>
 
-      }
-    </div>
-    <div id="end" class="footer">
-      End.
-    </div>
+    }
+  </div>
+  <div id="end" class="footer">End.</div>
   }
 </div>

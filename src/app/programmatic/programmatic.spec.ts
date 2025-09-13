@@ -8,9 +8,8 @@ describe('Programmatic', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Programmatic]
-    })
-    .compileComponents();
+      imports: [Programmatic],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Programmatic);
     component = fixture.componentInstance;

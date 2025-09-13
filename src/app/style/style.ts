@@ -10,7 +10,7 @@ import { groupByAttribute } from '../shared/utils-helper';
   selector: 'app-style',
   imports: [Grouping],
   templateUrl: './style.html',
-  styleUrl: './style.scss'
+  styleUrl: './style.scss',
 })
 export class Style {
   groups: Group[] = [];
@@ -18,20 +18,22 @@ export class Style {
   title = 'Architectural Styles';
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      this.groups = groupByAttribute(res, 'style');
-      this.loading = false;
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        this.groups = groupByAttribute(res, 'style');
+        this.loading = false;
+      });
 
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       if (fragment) this.scrollService.scrollToFragment(fragment, 50);
     });
   }
-
 }

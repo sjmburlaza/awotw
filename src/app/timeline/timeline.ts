@@ -12,23 +12,26 @@ import { ScrollService } from '../services/scroll.service';
   selector: 'app-timeline',
   imports: [Loader, TooltipDirective, SlideInOnScrollDirective],
   templateUrl: './timeline.html',
-  styleUrl: './timeline.scss'
+  styleUrl: './timeline.scss',
 })
 export class Timeline implements OnInit {
   groups: Group[] = [];
   loading = true;
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      this.groups = groupByYearBuilt(res);
-      this.loading = false;
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        this.groups = groupByYearBuilt(res);
+        this.loading = false;
+      });
 
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       if (fragment) this.scrollService.scrollToFragment(fragment);

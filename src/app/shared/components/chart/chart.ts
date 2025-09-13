@@ -7,7 +7,7 @@ import { BaseChartDirective } from 'ng2-charts';
   selector: 'app-chart',
   imports: [BaseChartDirective, CommonModule],
   templateUrl: './chart.html',
-  styleUrl: './chart.scss'
+  styleUrl: './chart.scss',
 })
 export class Chart implements OnChanges {
   @Input() chartType: ChartType = 'bar';
@@ -15,9 +15,9 @@ export class Chart implements OnChanges {
   @Input() chartOptions: ChartConfiguration['options'] = {
     responsive: true,
     plugins: {
-      legend: { position: 'top' }
-    }
-  }
+      legend: { position: 'top' },
+    },
+  };
   @Input() height = 560;
 
   updatedData!: ChartConfiguration['data'];
@@ -25,11 +25,10 @@ export class Chart implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['chartData'] && this.chartData) {
-      this.updatedData = { ...this.chartData }
+      this.updatedData = { ...this.chartData };
     }
     if (changes['chartType']) {
       this.currentType = this.chartType;
     }
   }
-
 }

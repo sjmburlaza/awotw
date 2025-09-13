@@ -1,42 +1,40 @@
 <div class="home-container">
   @if (isLoading) {
-    <div class="loader">
-      <app-loader></app-loader>
-    </div>
+  <div class="loader">
+    <app-loader></app-loader>
+  </div>
   } @else {
-    <div class="content">
-      @for (group of groups; track group.groupName) {
-        <div class="group">
-          <div class="items">
-            @for (item of group.items; track item.id) {
-              <div #animatedItem 
-                class="item" 
-                [ngStyle]="getDynamicStyle(item)"
-                (click)="goToDetailPage(item.id)"
-              >
-                  {{ item.codename }}
-              </div>
-            }
-          </div>
-          <div class="group__name" (click)="goToSection(group.groupName)">
-            {{ group.groupName }}
-          </div>
-        </div>
-      }
-    </div>
-    <div class="modes">
-      @for (mode of sortModes; track $index) {
-        <div class="mode" 
-          [ngClass]="{'selected-mode': mode.isSelected}" 
-          (click)="sort(mode)"
-          tabindex="0"
-          (keydown)="sort(mode)"
+  <div class="content">
+    @for (group of groups; track group.groupName) {
+    <div class="group">
+      <div class="items">
+        @for (item of group.items; track item.id) {
+        <div
+          #animatedItem
+          class="item"
+          [ngStyle]="getDynamicStyle(item)"
+          (click)="goToDetailPage(item.id)"
         >
-          {{ mode.name }}
+          {{ item.codename }}
         </div>
-      }
+        }
+      </div>
+      <div class="group__name" (click)="goToSection(group.groupName)">{{ group.groupName }}</div>
     </div>
+    }
+  </div>
+  <div class="modes">
+    @for (mode of sortModes; track $index) {
+    <div
+      class="mode"
+      [ngClass]="{'selected-mode': mode.isSelected}"
+      (click)="sort(mode)"
+      tabindex="0"
+      (keydown)="sort(mode)"
+    >
+      {{ mode.name }}
+    </div>
+    }
+  </div>
   }
 </div>
-
-

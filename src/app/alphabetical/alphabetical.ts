@@ -10,7 +10,7 @@ import { Grouping } from '../shared/components/grouping/grouping';
   selector: 'app-alphabetical',
   imports: [Grouping],
   templateUrl: './alphabetical.html',
-  styleUrl: './alphabetical.scss'
+  styleUrl: './alphabetical.scss',
 })
 export class Alphabetical {
   groups: Group[] = [];
@@ -18,17 +18,20 @@ export class Alphabetical {
   title = 'Alphabetical Grouping';
 
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private scrollService: ScrollService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      const groups = sortAlphabetical(res, 'name');
-      this.groups = groupByAttribute(groups, 'name');
-      this.loading = false;
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        const groups = sortAlphabetical(res, 'name');
+        this.groups = groupByAttribute(groups, 'name');
+        this.loading = false;
+      });
 
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       if (fragment) this.scrollService.scrollToFragment(fragment, 50);

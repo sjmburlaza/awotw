@@ -1,62 +1,53 @@
 @if (!isLoading) {
-  <div class="header">
-    <div class="header__globe">
-      <button class="header__globe__home" (click)="goToHomePage()">
-        <i class="bi bi-globe"></i>
-        @if (currentUrl !== URL.HOME) {
-          <span [ngClass]="{'move-right': isHomeClicked}">AWOTW</span>
+<div class="header">
+  <div class="header__globe">
+    <button class="header__globe__home" (click)="goToHomePage()">
+      <i class="bi bi-globe"></i>
+      @if (currentUrl !== URL.HOME) {
+      <span [ngClass]="{'move-right': isHomeClicked}">AWOTW</span>
+      }
+    </button>
+    @if (currentUrl === URL.HOME) {
+    <button (click)="goToMapPage()">
+      <p>Map View</p>
+    </button>
+    <button (click)="goToTimelinePage()">
+      <p>Timeline View</p>
+    </button>
+    <button (click)="goToChartsPage()">
+      <p>Charts</p>
+    </button>
+    }
+  </div>
+  <div class="title" [ngClass]="{'zoom-in-text': zoomInText}">
+    @if (currentUrl === URL.HOME) { {{ 'Architectural Wonders of the World' | uppercase }} }
+  </div>
+  <div class="button">
+    <div class="button__search-bar">
+      <button>
+        <i class="bi bi-search"></i>
+      </button>
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearch()"
+      />
+    </div>
+    <div class="button__quiz">
+      <button (click)="goToQuizPage()">
+        <p>Quiz Me!!</p>
+      </button>
+    </div>
+    <div class="button__bg-mode">
+      <button (click)="onToggleBgMode()">
+        @if (isDarkMode) {
+        <i class="bi bi-sun"></i>
+        } @else {
+        <i class="bi bi-moon"></i>
         }
       </button>
-      @if (currentUrl === URL.HOME) {
-        <button (click)="goToMapPage()">
-          <p>
-            Map View
-          </p>
-        </button>
-        <button (click)="goToTimelinePage()">
-          <p>
-            Timeline View
-          </p>
-        </button>
-        <button (click)="goToChartsPage()">
-          <p>
-            Charts
-          </p>
-        </button>
-      }
-    </div>
-    <div class="title" [ngClass]="{'zoom-in-text': zoomInText}">
-      @if (currentUrl === URL.HOME) {
-        {{ 'Architectural Wonders of the World' | uppercase }}
-      }
-    </div>
-    <div class="button">
-      <div class="button__search-bar">
-        <button>
-          <i class="bi bi-search"></i>
-        </button>
-        <input type="text" 
-          placeholder="Search..."
-          [(ngModel)]="searchQuery"
-          (ngModelChange)="onSearch()"
-        >
-      </div>
-      <div class="button__quiz">
-        <button (click)="goToQuizPage()">
-          <p>
-            Quiz Me!!
-          </p>
-        </button>
-      </div>
-      <div class="button__bg-mode">
-        <button (click)="onToggleBgMode()">
-          @if (isDarkMode) {
-            <i class="bi bi-sun"></i>
-          } @else {
-            <i class="bi bi-moon"></i>
-          }
-        </button>
-      </div>
     </div>
   </div>
+</div>
 }

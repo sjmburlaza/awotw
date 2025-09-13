@@ -5,7 +5,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
   selector: 'app-tooltip',
   imports: [CommonModule],
   templateUrl: './tooltip.html',
-  styleUrl: './tooltip.scss'
+  styleUrl: './tooltip.scss',
 })
 export class Tooltip {
   @Input() text = '';

@@ -8,7 +8,7 @@ import { HighlightPipe } from '../shared/pipes/highlight-pipe';
   selector: 'app-search',
   imports: [HighlightPipe],
   templateUrl: './search.html',
-  styleUrl: './search.scss'
+  styleUrl: './search.scss',
 })
 export class Search implements OnInit {
   searchResults: Item[] = [];
@@ -16,18 +16,18 @@ export class Search implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getWonders()
+    this.dataService
+      .getWonders()
       .pipe(
         take(1),
         switchMap((res) =>
-          this.route.queryParams.pipe(
-            map((params) => ({ res, query: params['q'] }))
-          )
-        ))
+          this.route.queryParams.pipe(map((params) => ({ res, query: params['q'] }))),
+        ),
+      )
       .subscribe(({ res, query }) => {
         this.searchQuery = query;
         this.performSearch(res, this.searchQuery);
@@ -52,5 +52,4 @@ export class Search implements OnInit {
         return score(bName) - score(aName);
       });
   }
-
 }

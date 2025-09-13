@@ -8,9 +8,8 @@ describe('Timeline', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Timeline]
-    })
-    .compileComponents();
+      imports: [Timeline],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Timeline);
     component = fixture.componentInstance;

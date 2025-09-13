@@ -1,101 +1,88 @@
 <div class="quiz-container">
   @if (selectedQuiz?.code) {
-    <div class="quiz-selected">
-      <div class="header">
-        <div class="header__title">
-          {{ selectedQuiz?.title }}
-        </div>
-        <div class="header__score">
-          Your score: 
-          <span>
-            {{ currentScore }}/{{ currentCount }}
-          </span>
-        </div>
+  <div class="quiz-selected">
+    <div class="header">
+      <div class="header__title">{{ selectedQuiz?.title }}</div>
+      <div class="header__score">
+        Your score:
+        <span> {{ currentScore }}/{{ currentCount }} </span>
       </div>
-      @if (loading) {
-        <div class="loader-wrapper">
-          <div class="loader">
-          </div>
-          <p>Generating question...</p>
-        </div>
-      }
-      <div class="content">
-        <div class="content__image">
-          <img [src]="item?.imageURL + '?w=200&format=webp'" 
-            (load)="loading = false" 
-            (error)="loading = false" 
-            [hidden]="loading"
-          >
-        </div>
-        @if (!loading) {
-          <div class="content__controls">
-            <div class="options">
-              <div class="options__label">
-                Select the correct answer:
-              </div>
-              @for (option of options; track $index) {
-                <div class="option" 
-                  [ngClass]="{
+    </div>
+    @if (loading) {
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+      <p>Generating question...</p>
+    </div>
+    }
+    <div class="content">
+      <div class="content__image">
+        <img
+          [src]="item?.imageURL + '?w=200&format=webp'"
+          (load)="loading = false"
+          (error)="loading = false"
+          [hidden]="loading"
+        />
+      </div>
+      @if (!loading) {
+      <div class="content__controls">
+        <div class="options">
+          <div class="options__label">Select the correct answer:</div>
+          @for (option of options; track $index) {
+          <div
+            class="option"
+            [ngClass]="{
                     'correct': hasSeenAnswer && option === correctAnswer,
                     'incorrect': hasSeenAnswer && option === selectedOption && selectedOption !== correctAnswer
                   }"
-                >
-                  <input [id]="option" 
-                    type="radio" 
-                    [value]="option" 
-                    [(ngModel)]="selectedOption" 
-                    (ngModelChange)="onSelectOption()"
-                    [disabled]="hasSeenAnswer"
-                  >
-                  <label [for]="option">
-                    {{ option }}
-                    @if (hasSeenAnswer && option === correctAnswer) {
-                      <a class="option__url" [href]="item?.descriptionURL" target="_blank">
-                        <i class="bi bi-box-arrow-up-right"></i>
-                      </a>
-                    }
-                  </label>
-                </div>
-              }
-            </div>
-            <div class="see-answer">
-              <button class="see-answer__btn" [disabled]="disableSeeAnswerBtn" (click)="seeAnswer()">
-                See answer
-                <span [hidden]="hasSeenAnswer"><i class="bi bi-eye-slash"></i></span>
-                <span [hidden]="!hasSeenAnswer"><i class="bi bi-eye"></i></span>
-              </button>
-            </div>
-            <div class="next">
-              <button class="next__btn" [disabled]="!hasSeenAnswer" (click)="goNext()">
-                Next question
-                <span><i class="bi bi-arrow-right-circle"></i></span>
-              </button>
-            </div>
-            <div class="exit">
-              <button (click)="exit()" class="exit__btn">
-                Exit quiz
-              </button>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  } @else {
-    <div class="quiz-home">
-      <div class="title stretch-text">
-        Quiz Me!!
-      </div>
-      <div class="quizzes">
-        @for (quiz of quizzes; track $index) {
-          <button 
-            class="quiz"
-            (click)="onSelectQuiz(quiz)" 
-            [ngStyle]="{'outline-color': quiz.color}"
           >
-            {{ quiz.title }}
+            <input
+              [id]="option"
+              type="radio"
+              [value]="option"
+              [(ngModel)]="selectedOption"
+              (ngModelChange)="onSelectOption()"
+              [disabled]="hasSeenAnswer"
+            />
+            <label [for]="option">
+              {{ option }} @if (hasSeenAnswer && option === correctAnswer) {
+              <a class="option__url" [href]="item?.descriptionURL" target="_blank">
+                <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+              }
+            </label>
+          </div>
+          }
+        </div>
+        <div class="see-answer">
+          <button class="see-answer__btn" [disabled]="disableSeeAnswerBtn" (click)="seeAnswer()">
+            See answer
+            <span [hidden]="hasSeenAnswer"><i class="bi bi-eye-slash"></i></span>
+            <span [hidden]="!hasSeenAnswer"><i class="bi bi-eye"></i></span>
           </button>
-        }
+        </div>
+        <div class="next">
+          <button class="next__btn" [disabled]="!hasSeenAnswer" (click)="goNext()">
+            Next question
+            <span><i class="bi bi-arrow-right-circle"></i></span>
+          </button>
+        </div>
+        <div class="exit">
+          <button (click)="exit()" class="exit__btn">Exit quiz</button>
+        </div>
       </div>
+      }
     </div>
+  </div>
+  } @else {
+  <div class="quiz-home">
+    <div class="title stretch-text">Quiz Me!!</div>
+    <div class="quizzes">
+      @for (quiz of quizzes; track $index) {
+      <button class="quiz" (click)="onSelectQuiz(quiz)" [ngStyle]="{'outline-color': quiz.color}">
+        {{ quiz.title }}
+      </button>
+      }
+    </div>
+  </div>
   }
 </div>

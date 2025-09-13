@@ -8,7 +8,7 @@ import { URL } from '../shared/constants/routes.const';
   selector: 'app-detail',
   imports: [],
   templateUrl: './detail.html',
-  styleUrl: './detail.scss'
+  styleUrl: './detail.scss',
 })
 export class Detail implements OnInit {
   readonly URL = URL;
@@ -16,7 +16,7 @@ export class Detail implements OnInit {
   loading = true;
   currentDetailId: number | undefined;
   wondersData: Item[] = [];
-  
+
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -25,12 +25,15 @@ export class Detail implements OnInit {
 
   ngOnInit() {
     this.currentDetailId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.dataService.getWonders().pipe(take(1)).subscribe((res: Item[]) => {
-      this.wondersData = res;
-      if (this.currentDetailId) {
-        this.getDetails(this.currentDetailId, res);
-      }
-    });
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe((res: Item[]) => {
+        this.wondersData = res;
+        if (this.currentDetailId) {
+          this.getDetails(this.currentDetailId, res);
+        }
+      });
   }
 
   getDetails(id: number, data: Item[]): void {
