@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService, Item } from '../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
@@ -11,17 +11,15 @@ import { URL } from '../shared/constants/routes.const';
   styleUrl: './detail.scss',
 })
 export class Detail implements OnInit {
+  private dataService = inject(DataService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
   readonly URL = URL;
   details: Item | undefined;
   loading = true;
   currentDetailId: number | undefined;
   wondersData: Item[] = [];
-
-  constructor(
-    private dataService: DataService,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {}
 
   ngOnInit() {
     this.currentDetailId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);

@@ -1,13 +1,11 @@
-import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnInit, inject } from '@angular/core';
 
 @Directive({
   selector: '[slideInOnScroll]',
 })
 export class SlideInOnScrollDirective implements OnInit {
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  private el = inject(ElementRef);
+  private renderer = inject(Renderer2);
 
   ngOnInit() {
     this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');

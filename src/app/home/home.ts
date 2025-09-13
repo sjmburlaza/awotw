@@ -31,6 +31,10 @@ enum Mode {
   styleUrl: './home.scss',
 })
 export class Home implements OnInit, AfterViewInit {
+  private dataService = inject(DataService);
+  private router = inject(Router);
+  private loaderService = inject(LoaderService);
+
   @ViewChildren('animatedItem', { read: ElementRef })
   animatedItems!: QueryList<ElementRef<HTMLLIElement>>;
 
@@ -62,12 +66,6 @@ export class Home implements OnInit, AfterViewInit {
   data: Item[] = [];
   groups: Group[] = [];
   isLoading = true;
-
-  constructor(
-    private dataService: DataService,
-    private router: Router,
-    private loaderService: LoaderService,
-  ) {}
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);

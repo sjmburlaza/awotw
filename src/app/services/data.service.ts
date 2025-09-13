@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Group {
@@ -56,7 +56,7 @@ export type MostVisited = {
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getWonders(): Observable<Item[]> {
     return this.http.get<Item[]>('assets/json/wonders.json');

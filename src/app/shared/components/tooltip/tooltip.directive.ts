@@ -6,6 +6,7 @@ import {
   ComponentRef,
   ViewContainerRef,
   TemplateRef,
+  inject,
 } from '@angular/core';
 import { Tooltip } from './tooltip';
 
@@ -15,15 +16,13 @@ type Position = 'top' | 'bottom' | 'left' | 'right';
   selector: '[appTooltip]',
 })
 export class TooltipDirective {
+  private el = inject(ElementRef);
+  private vcr = inject(ViewContainerRef);
+
   @Input('appTooltip') tooltipContent: string | TemplateRef<any> = '';
   @Input() tooltipPosition: Position = 'bottom';
 
   private tooltipRef?: ComponentRef<Tooltip>;
-
-  constructor(
-    private el: ElementRef,
-    private vcr: ViewContainerRef,
-  ) {}
 
   @HostListener('mouseenter')
   onMouseEnter() {

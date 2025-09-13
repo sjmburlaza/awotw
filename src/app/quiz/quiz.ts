@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService, Item } from '../services/data.service';
 import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 interface QuizModel {
@@ -18,6 +17,8 @@ interface QuizModel {
   styleUrl: './quiz.scss',
 })
 export class Quiz implements OnInit {
+  private dataService = inject(DataService);
+
   quizzes = [
     {
       code: 'name',
@@ -56,8 +57,6 @@ export class Quiz implements OnInit {
   currentScore = 0;
   currentCount = 0;
   disableSeeAnswerBtn = true;
-
-  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.dataService

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './header.scss',
 })
 export class Header implements OnInit {
+  private router = inject(Router);
+  private loaderService = inject(LoaderService);
+  private destroyRef = inject(DestroyRef);
+
   readonly URL = URL;
   currentUrl = URL.HOME;
   isDarkMode = false;
@@ -21,12 +25,6 @@ export class Header implements OnInit {
   zoomInText = false;
   searchQuery = '';
   isLoading = true;
-
-  constructor(
-    private router: Router,
-    private loaderService: LoaderService,
-    private destroyRef: DestroyRef,
-  ) {}
 
   ngOnInit() {
     this.router.events

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { groupByAttribute, sortAlphabetical } from '../shared/utils-helper';
 import { take } from 'rxjs';
 import { DataService, Group, Item } from '../services/data.service';
@@ -12,16 +12,14 @@ import { Grouping } from '../shared/components/grouping/grouping';
   templateUrl: './location.html',
   styleUrl: './location.scss',
 })
-export class Location {
+export class Location implements OnInit {
+  private dataService = inject(DataService);
+  private activatedRoute = inject(ActivatedRoute);
+  private scrollService = inject(ScrollService);
+
   groups: Group[] = [];
   loading = true;
   title = 'Grouping by Continent';
-
-  constructor(
-    private dataService: DataService,
-    private activatedRoute: ActivatedRoute,
-    private scrollService: ScrollService,
-  ) {}
 
   ngOnInit(): void {
     this.dataService

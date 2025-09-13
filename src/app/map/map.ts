@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import * as L from 'leaflet';
 import { DataService, Item } from '../services/data.service';
 
@@ -9,9 +9,9 @@ import { DataService, Item } from '../services/data.service';
   styleUrl: './map.scss',
 })
 export class Map implements AfterViewInit {
-  private map!: L.Map;
+  private dataService = inject(DataService);
 
-  constructor(private dataService: DataService) {}
+  private map!: L.Map;
 
   ngAfterViewInit(): void {
     this.initMap();

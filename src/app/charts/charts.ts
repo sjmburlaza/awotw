@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { Chart } from '../shared/components/chart/chart';
@@ -23,6 +23,9 @@ import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scrol
   styleUrl: './charts.scss',
 })
 export class Charts implements OnInit {
+  private fb = inject(FormBuilder);
+  private dataService = inject(DataService);
+
   categories = [
     {
       name: 'Tallest Buildings',
@@ -72,11 +75,6 @@ export class Charts implements OnInit {
 
   currentListTallestBuilding: TallestBuilding[] = [];
   currentListMostVisited: MostVisited[] = [];
-
-  constructor(
-    private fb: FormBuilder,
-    private dataService: DataService,
-  ) {}
 
   ngOnInit(): void {
     this.selectionForm = this.fb.group({
