@@ -112,6 +112,7 @@ export class Charts implements OnInit {
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([
           ...top50tallest,
         ]);
+        this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions([...top50mostVisited]);
         // Line chart
         this.tallestBuildingsLineData = this.getLineData([...top50tallest]);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top50tallest]);
@@ -144,6 +145,7 @@ export class Charts implements OnInit {
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([
           ...top20tallest,
         ]);
+        this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions([...top20mostVisited]);
         // Line chart
         this.tallestBuildingsLineData = this.getLineData([...top20tallest]);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top20tallest]);
