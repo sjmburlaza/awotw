@@ -1,20 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DataService, Group, Item } from '../services/data.service';
-import { groupByYearBuilt } from '../shared/utils-helper';
-import { Loader } from '../shared/components/loader/loader';
-import { TooltipDirective } from '../shared/components/tooltip/tooltip.directive';
-import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scroll.directive';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
-import { ScrollService } from '../services/scroll.service';
+import { DataService, Group, Item } from 'src/app/services/data.service';
+import { ScrollService } from 'src/app/services/scroll.service';
+import { LoaderComponent } from 'src/app/shared/components/loader/loader';
+import { TooltipDirective } from 'src/app/shared/components/tooltip/tooltip.directive';
+import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
+import { groupByYearBuilt } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-timeline',
-  imports: [Loader, TooltipDirective, SlideInOnScrollDirective],
+  imports: [LoaderComponent, TooltipDirective, SlideInOnScrollDirective],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss',
 })
-export class Timeline implements OnInit {
+export class TimelineComponent implements OnInit {
   private dataService = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private scrollService = inject(ScrollService);

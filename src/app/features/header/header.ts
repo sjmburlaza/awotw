@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { URL } from '../shared/constants/routes.const';
-import { LoaderService } from '../services/loader-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
+import { LoaderService } from 'src/app/services/loader-service';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +13,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header implements OnInit {
+export class HeaderComponent implements OnInit {
   private router = inject(Router);
   private loaderService = inject(LoaderService);
   private destroyRef = inject(DestroyRef);
 
-  readonly URL = URL;
-  currentUrl = URL.HOME;
+  readonly URL_PATH = URL_PATH;
+  currentUrl = URL_PATH.HOME;
   isDarkMode = false;
   isHomeClicked = false;
   zoomInText = false;
@@ -31,12 +31,12 @@ export class Header implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.currentUrl = event.urlAfterRedirects;
-        if (this.currentUrl === URL.HOME) {
+        if (this.currentUrl === URL_PATH.HOME) {
           this.zoomInText = true;
         } else {
           this.zoomInText = false;
         }
-        if (!event.url.includes(URL.SEARCH)) {
+        if (!event.url.includes(URL_PATH.SEARCH)) {
           this.searchQuery = '';
         }
       });
@@ -48,34 +48,34 @@ export class Header implements OnInit {
 
   onSearch(): void {
     if (this.searchQuery) {
-      this.router.navigate([URL.SEARCH], { queryParams: { q: this.searchQuery } });
+      this.router.navigate([URL_PATH.SEARCH], { queryParams: { q: this.searchQuery } });
     } else {
-      this.router.navigate([URL.HOME]);
+      this.router.navigate([URL_PATH.HOME]);
     }
   }
 
   goToMapPage(): void {
-    this.router.navigate([URL.MAP]);
+    this.router.navigate([URL_PATH.MAP]);
   }
 
   goToTimelinePage(): void {
-    this.router.navigate([URL.TIMELINE]);
+    this.router.navigate([URL_PATH.TIMELINE]);
   }
 
   goToChartsPage(): void {
-    this.router.navigate([URL.CHARTS]);
+    this.router.navigate([URL_PATH.CHARTS]);
   }
 
   goToHomePage(): void {
     this.isHomeClicked = true;
     setTimeout(() => {
-      this.router.navigate([URL.HOME]);
+      this.router.navigate([URL_PATH.HOME]);
       this.isHomeClicked = false;
     }, 500);
   }
 
   goToQuizPage(): void {
-    this.router.navigate([URL.QUIZ]);
+    this.router.navigate([URL_PATH.QUIZ]);
   }
 
   onToggleBgMode(): void {

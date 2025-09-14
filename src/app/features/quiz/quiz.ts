@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DataService, Item } from '../services/data.service';
 import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DataService, Item } from 'src/app/services/data.service';
 
 interface QuizModel {
   code: string;
@@ -16,7 +16,7 @@ interface QuizModel {
   templateUrl: './quiz.html',
   styleUrl: './quiz.scss',
 })
-export class Quiz implements OnInit {
+export class QuizComponent implements OnInit {
   private dataService = inject(DataService);
 
   quizzes = [

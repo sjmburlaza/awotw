@@ -1,33 +1,33 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { groupByAttribute, sortAlphabetical } from '../shared/utils-helper';
 import { take } from 'rxjs';
-import { DataService, Group, Item } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
-import { ScrollService } from '../services/scroll.service';
-import { Grouping } from '../shared/components/grouping/grouping';
+import { GroupingComponent } from 'src/app/shared/components/grouping/grouping';
+import { DataService, Group, Item } from 'src/app/services/data.service';
+import { ScrollService } from 'src/app/services/scroll.service';
+import { groupByAttribute, sortAlphabetical } from 'src/app/shared/utils-helper';
 
 @Component({
-  selector: 'app-location',
-  imports: [Grouping],
-  templateUrl: './location.html',
-  styleUrl: './location.scss',
+  selector: 'app-programmatic',
+  imports: [GroupingComponent],
+  templateUrl: './programmatic.html',
+  styleUrl: './programmatic.scss',
 })
-export class Location implements OnInit {
+export class ProgrammaticComponent implements OnInit {
   private dataService = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private scrollService = inject(ScrollService);
 
   groups: Group[] = [];
   loading = true;
-  title = 'Grouping by Continent';
+  title = 'Grouping by Use';
 
   ngOnInit(): void {
     this.dataService
       .getWonders()
       .pipe(take(1))
       .subscribe((res: Item[]) => {
-        const groups = sortAlphabetical(res, 'continent');
-        this.groups = groupByAttribute(groups, 'continent');
+        const groups = sortAlphabetical(res, 'buildingType');
+        this.groups = groupByAttribute(groups, 'buildingType');
         this.loading = false;
       });
 

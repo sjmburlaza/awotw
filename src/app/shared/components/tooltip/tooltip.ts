@@ -7,7 +7,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
   templateUrl: './tooltip.html',
   styleUrl: './tooltip.scss',
 })
-export class Tooltip {
+export class TooltipComponent {
   @Input() text = '';
   @Input() template?: TemplateRef<any>;
   @Input() top = 0;

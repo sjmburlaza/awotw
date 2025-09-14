@@ -8,7 +8,7 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
   templateUrl: './grouping.html',
   styleUrl: './grouping.scss',
 })
-export class Grouping {
+export class GroupingComponent {
   @Input() groups: Group[] | undefined;
-  @Input() title: string = '';
+  @Input() title = '';
 }

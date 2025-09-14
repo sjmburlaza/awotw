@@ -2,19 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
-import { Chart } from '../shared/components/chart/chart';
-import { DataService, MostVisited, TallestBuilding } from '../services/data.service';
 import { take } from 'rxjs';
-import { CompactNumberPipe } from '../shared/pipes/compact-number-pipe';
-import { FadeInOnScrollDirective } from '../shared/directives/fade-in-on-scroll.directive';
-import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scroll.directive';
+import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
+import { ChartComponent } from 'src/app/shared/components/chart/chart';
+import { FadeInOnScrollDirective } from 'src/app/shared/directives/fade-in-on-scroll.directive';
+import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
+import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
 
 @Component({
   selector: 'app-charts',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    Chart,
+    ChartComponent,
     CompactNumberPipe,
     FadeInOnScrollDirective,
     SlideInOnScrollDirective,
@@ -22,7 +22,7 @@ import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scrol
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
 })
-export class Charts implements OnInit {
+export class ChartsComponent implements OnInit {
   private fb = inject(FormBuilder);
   private dataService = inject(DataService);
 

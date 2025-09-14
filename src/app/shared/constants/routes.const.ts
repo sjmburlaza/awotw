@@ -1,4 +1,4 @@
-export const URL = {
+export const URL_PATH = {
   HOME: '/home',
   MAP: '/map',
   TIMELINE: '/timeline',

@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DataService, Item } from '../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
-import { URL } from '../shared/constants/routes.const';
+import { DataService, Item } from 'src/app/services/data.service';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
 @Component({
   selector: 'app-detail',
@@ -10,12 +10,12 @@ import { URL } from '../shared/constants/routes.const';
   templateUrl: './detail.html',
   styleUrl: './detail.scss',
 })
-export class Detail implements OnInit {
+export class DetailComponent implements OnInit {
   private dataService = inject(DataService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  readonly URL = URL;
+  readonly URL_PATH = URL_PATH;
   details: Item | undefined;
   loading = true;
   currentDetailId: number | undefined;
@@ -41,7 +41,7 @@ export class Detail implements OnInit {
   goBack(): void {
     if (this.currentDetailId) {
       this.currentDetailId--;
-      this.router.navigate([URL.DETAIL + '/' + this.currentDetailId]);
+      this.router.navigate([URL_PATH.DETAIL + '/' + this.currentDetailId]);
       this.loading = true;
       this.getDetails(this.currentDetailId, this.wondersData);
     }
@@ -50,7 +50,7 @@ export class Detail implements OnInit {
   goNext(): void {
     if (this.currentDetailId) {
       this.currentDetailId++;
-      this.router.navigate([URL.DETAIL + '/' + this.currentDetailId]);
+      this.router.navigate([URL_PATH.DETAIL + '/' + this.currentDetailId]);
       this.loading = true;
       this.getDetails(this.currentDetailId, this.wondersData);
     }

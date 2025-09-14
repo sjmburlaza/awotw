@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './loader.html',
   styleUrl: './loader.scss',
 })
-export class Loader {}
+export class LoaderComponent {}

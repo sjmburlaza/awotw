@@ -3,11 +3,11 @@
   <div class="header__globe">
     <button class="header__globe__home" (click)="goToHomePage()">
       <i class="bi bi-globe"></i>
-      @if (currentUrl !== URL.HOME) {
+      @if (currentUrl !== URL_PATH.HOME) {
       <span [ngClass]="{'move-right': isHomeClicked}">AWOTW</span>
       }
     </button>
-    @if (currentUrl === URL.HOME) {
+    @if (currentUrl === URL_PATH.HOME) {
     <button (click)="goToMapPage()">
       <p>Map View</p>
     </button>
@@ -20,7 +20,7 @@
     }
   </div>
   <div class="title" [ngClass]="{'zoom-in-text': zoomInText}">
-    @if (currentUrl === URL.HOME) { {{ 'Architectural Wonders of the World' | uppercase }} }
+    @if (currentUrl === URL_PATH.HOME) { {{ 'Architectural Wonders of the World' | uppercase }} }
   </div>
   <div class="button">
     <div class="button__search-bar">

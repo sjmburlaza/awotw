@@ -1,18 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { DataService, Group, Item } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
-import { ScrollService } from '../services/scroll.service';
-import { groupByAttribute, sortAlphabetical } from '../shared/utils-helper';
 import { take } from 'rxjs';
-import { Grouping } from '../shared/components/grouping/grouping';
+import { DataService, Group, Item } from 'src/app/services/data.service';
+import { ScrollService } from 'src/app/services/scroll.service';
+import { GroupingComponent } from 'src/app/shared/components/grouping/grouping';
+import { groupByAttribute, sortAlphabetical } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-alphabetical',
-  imports: [Grouping],
+  imports: [GroupingComponent],
   templateUrl: './alphabetical.html',
   styleUrl: './alphabetical.scss',
 })
-export class Alphabetical implements OnInit {
+export class AlphabeticalComponent implements OnInit {
   private dataService = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private scrollService = inject(ScrollService);

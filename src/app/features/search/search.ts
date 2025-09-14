@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DataService, Item } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, take } from 'rxjs';
-import { HighlightPipe } from '../shared/pipes/highlight-pipe';
+import { DataService, Item } from 'src/app/services/data.service';
+import { HighlightPipe } from 'src/app/shared/pipes/highlight-pipe';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,7 @@ import { HighlightPipe } from '../shared/pipes/highlight-pipe';
   templateUrl: './search.html',
   styleUrl: './search.scss',
 })
-export class Search implements OnInit {
+export class SearchComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private dataService = inject(DataService);
 
