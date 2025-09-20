@@ -2,19 +2,19 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
-import { Chart } from '../shared/components/chart/chart';
-import { DataService, MostVisited, TallestBuilding } from '../services/data.service';
 import { take } from 'rxjs';
-import { CompactNumberPipe } from '../shared/pipes/compact-number-pipe';
-import { FadeInOnScrollDirective } from '../shared/directives/fade-in-on-scroll.directive';
-import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scroll.directive';
+import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
+import { ChartComponent } from 'src/app/shared/components/chart/chart';
+import { FadeInOnScrollDirective } from 'src/app/shared/directives/fade-in-on-scroll.directive';
+import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
+import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
 
 @Component({
   selector: 'app-charts',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    Chart,
+    ChartComponent,
     CompactNumberPipe,
     FadeInOnScrollDirective,
     SlideInOnScrollDirective,
@@ -22,7 +22,7 @@ import { SlideInOnScrollDirective } from '../shared/directives/slide-in-on-scrol
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
 })
-export class Charts implements OnInit {
+export class ChartsComponent implements OnInit {
   private fb = inject(FormBuilder);
   private dataService = inject(DataService);
 
@@ -215,7 +215,7 @@ export class Charts implements OnInit {
   }
 
   getLineData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
-    const sortedData = rawData.sort(
+    const sortedData = [...rawData].sort(
       (a: TallestBuilding, b: TallestBuilding) =>
         Number(a.year_completed) - Number(b.year_completed),
     );
@@ -388,7 +388,7 @@ export class Charts implements OnInit {
           callbacks: {
             title: (context) => context[0].label,
             label: (context: TooltipItem<'bar'>) => {
-              const sortedData = data.sort(
+              const sortedData = [...data].sort(
                 (a: TallestBuilding, b: TallestBuilding) => Number(b.height_m) - Number(a.height_m),
               );
               const item = sortedData[context.dataIndex];
@@ -450,7 +450,7 @@ export class Charts implements OnInit {
 
   sort(data: any, attribute: string) {
     if (!data) return;
-    return data.sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
+    return [...data].sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
   }
 
   sortMapObject(map: Map<string, number>): Map<string, number> {

@@ -9,7 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './chart.html',
   styleUrl: './chart.scss',
 })
-export class Chart implements OnChanges {
+export class ChartComponent implements OnChanges {
   @Input() chartType: ChartType = 'bar';
   @Input() chartData!: ChartConfiguration['data'];
   @Input() chartOptions: ChartConfiguration['options'] = {

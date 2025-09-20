@@ -8,7 +8,7 @@ import {
   TemplateRef,
   inject,
 } from '@angular/core';
-import { Tooltip } from './tooltip';
+import { TooltipComponent } from './tooltip';
 
 type Position = 'top' | 'bottom' | 'left' | 'right';
 
@@ -22,13 +22,13 @@ export class TooltipDirective {
   @Input('appTooltip') tooltipContent: string | TemplateRef<any> = '';
   @Input() tooltipPosition: Position = 'bottom';
 
-  private tooltipRef?: ComponentRef<Tooltip>;
+  private tooltipRef?: ComponentRef<TooltipComponent>;
 
   @HostListener('mouseenter')
   onMouseEnter() {
     if (this.tooltipRef) return;
 
-    this.tooltipRef = this.vcr.createComponent(Tooltip);
+    this.tooltipRef = this.vcr.createComponent(TooltipComponent);
 
     // If template passed, use it; otherwise text
     if (this.tooltipContent instanceof TemplateRef) {

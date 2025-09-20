@@ -1,27 +1,27 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { Detail } from './detail/detail';
-import { Quiz } from './quiz/quiz';
-import { Search } from './search/search';
-import { Map } from './map/map';
-import { Timeline } from './timeline/timeline';
-import { Charts } from './charts/charts';
-import { Style } from './style/style';
-import { Alphabetical } from './alphabetical/alphabetical';
-import { Location } from './location/location';
-import { Programmatic } from './programmatic/programmatic';
+import { HomeComponent } from './features/home/home';
+import { DetailComponent } from './features/detail/detail';
+import { AlphabeticalComponent } from './features/alphabetical/alphabetical';
+import { ChartsComponent } from './features/charts/charts';
+import { ProgrammaticComponent } from './features/programmatic/programmatic';
+import { QuizComponent } from './features/quiz/quiz';
+import { SearchComponent } from './features/search/search';
+import { StyleComponent } from './features/style/style';
+import { TimelineComponent } from './features/timeline/timeline';
+import { MapComponent } from './features/map/map';
+import { LocationComponent } from './features/location/location';
 
 export const routes: Routes = [
-  { path: 'home', component: Home },
-  { path: 'detail/:id', component: Detail },
-  { path: 'search', component: Search },
-  { path: 'quiz', component: Quiz },
-  { path: 'map', component: Map },
-  { path: 'timeline', component: Timeline },
-  { path: 'charts', component: Charts },
-  { path: 'style', component: Style },
-  { path: 'alphabetical', component: Alphabetical },
-  { path: 'location', component: Location },
-  { path: 'programmatic', component: Programmatic },
+  { path: 'home', component: HomeComponent },
+  { path: 'detail/:id', component: DetailComponent },
+  { path: 'search', component: SearchComponent },
+  { path: 'quiz', component: QuizComponent },
+  { path: 'map', component: MapComponent },
+  { path: 'timeline', component: TimelineComponent },
+  { path: 'charts', component: ChartsComponent },
+  { path: 'style', component: StyleComponent },
+  { path: 'alphabetical', component: AlphabeticalComponent },
+  { path: 'location', component: LocationComponent },
+  { path: 'programmatic', component: ProgrammaticComponent },
   { path: '**', redirectTo: 'home' },
 ];

@@ -1,33 +1,32 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { groupByAttribute, sortAlphabetical } from '../shared/utils-helper';
 import { take } from 'rxjs';
-import { DataService, Group, Item } from '../services/data.service';
-import { ScrollService } from '../services/scroll.service';
 import { ActivatedRoute } from '@angular/router';
-import { Grouping } from '../shared/components/grouping/grouping';
+import { GroupingComponent } from 'src/app/shared/components/grouping/grouping';
+import { DataService, Group, Item } from 'src/app/services/data.service';
+import { ScrollService } from 'src/app/services/scroll.service';
+import { groupByAttribute } from 'src/app/shared/utils-helper';
 
 @Component({
-  selector: 'app-programmatic',
-  imports: [Grouping],
-  templateUrl: './programmatic.html',
-  styleUrl: './programmatic.scss',
+  selector: 'app-style',
+  imports: [GroupingComponent],
+  templateUrl: './style.html',
+  styleUrl: './style.scss',
 })
-export class Programmatic implements OnInit {
+export class StyleComponent implements OnInit {
   private dataService = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private scrollService = inject(ScrollService);
 
   groups: Group[] = [];
   loading = true;
-  title = 'Grouping by Use';
+  title = 'Architectural Styles';
 
   ngOnInit(): void {
     this.dataService
       .getWonders()
       .pipe(take(1))
       .subscribe((res: Item[]) => {
-        const groups = sortAlphabetical(res, 'buildingType');
-        this.groups = groupByAttribute(groups, 'buildingType');
+        this.groups = groupByAttribute(res, 'style');
         this.loading = false;
       });
 

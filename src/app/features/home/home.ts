@@ -7,14 +7,14 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { DataService, Group, Item } from '../services/data.service';
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Loader } from '../shared/components/loader/loader';
-import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from '../shared/utils-helper';
-import { LoaderService } from '../services/loader-service';
-import { URL } from '../shared/constants/routes.const';
+import { LoaderComponent } from 'src/app/shared/components/loader/loader';
+import { DataService, Group, Item } from 'src/app/services/data.service';
+import { LoaderService } from 'src/app/services/loader-service';
+import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from 'src/app/shared/utils-helper';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
 enum Mode {
   ALPHABETICAL = 'ALPHABETICAL',
@@ -26,11 +26,11 @@ enum Mode {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, Loader],
+  imports: [CommonModule, LoaderComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   private dataService = inject(DataService);
   private router = inject(Router);
   private loaderService = inject(LoaderService);
@@ -180,7 +180,7 @@ export class Home implements OnInit, AfterViewInit {
   }
 
   goToDetailPage(itemId: number): void {
-    this.router.navigate([URL.DETAIL + '/' + itemId]);
+    this.router.navigate([URL_PATH.DETAIL + '/' + itemId]);
   }
 
   goToSection(fragment: string): void {
@@ -188,19 +188,19 @@ export class Home implements OnInit, AfterViewInit {
 
     switch (mode?.name) {
       case Mode.CHRONOLOGICAL:
-        this.router.navigate([URL.TIMELINE], { fragment });
+        this.router.navigate([URL_PATH.TIMELINE], { fragment });
         break;
       case Mode.ALPHABETICAL:
-        this.router.navigate([URL.ALPHABETICAL], { fragment });
+        this.router.navigate([URL_PATH.ALPHABETICAL], { fragment });
         break;
       case Mode.LOCATION:
-        this.router.navigate([URL.LOCATION], { fragment });
+        this.router.navigate([URL_PATH.LOCATION], { fragment });
         break;
       case Mode.PROGRAMMATIC:
-        this.router.navigate([URL.PROGRAMMATIC], { fragment });
+        this.router.navigate([URL_PATH.PROGRAMMATIC], { fragment });
         break;
       case Mode.STYLE:
-        this.router.navigate([URL.STYLE], { fragment });
+        this.router.navigate([URL_PATH.STYLE], { fragment });
         break;
     }
   }
