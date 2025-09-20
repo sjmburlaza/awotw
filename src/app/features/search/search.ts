@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
   performSearch(data: Item[], query: string): void {
     const q = query.toLowerCase();
 
-    this.searchResults = data
+    this.searchResults = [...data]
       ?.filter((item) => item.name?.toLowerCase().includes(q))
       ?.sort((a, b) => {
         const aName = a.name.toLowerCase();

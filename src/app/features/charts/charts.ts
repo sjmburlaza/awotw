@@ -215,7 +215,7 @@ export class ChartsComponent implements OnInit {
   }
 
   getLineData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
-    const sortedData = rawData.sort(
+    const sortedData = [...rawData].sort(
       (a: TallestBuilding, b: TallestBuilding) =>
         Number(a.year_completed) - Number(b.year_completed),
     );
@@ -388,7 +388,7 @@ export class ChartsComponent implements OnInit {
           callbacks: {
             title: (context) => context[0].label,
             label: (context: TooltipItem<'bar'>) => {
-              const sortedData = data.sort(
+              const sortedData = [...data].sort(
                 (a: TallestBuilding, b: TallestBuilding) => Number(b.height_m) - Number(a.height_m),
               );
               const item = sortedData[context.dataIndex];
@@ -450,7 +450,7 @@ export class ChartsComponent implements OnInit {
 
   sort(data: any, attribute: string) {
     if (!data) return;
-    return data.sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
+    return [...data].sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
   }
 
   sortMapObject(map: Map<string, number>): Map<string, number> {
