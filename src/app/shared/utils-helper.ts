@@ -1,7 +1,7 @@
 import { Group, Item } from '../services/data.service';
 
 export function sortAlphabetical(data: Item[], attribute: keyof Item): Item[] {
-  return data.sort((a, b) => {
+  return [...data].sort((a, b) => {
     const keyA = String(a[attribute]);
     const keyB = String(b[attribute]);
     return keyA.localeCompare(keyB);
@@ -49,7 +49,7 @@ export function groupByYearBuilt(data: Item[]): Group[] {
     map.get(century)!.push(item);
   }
 
-  const groups: Group[] = [
+  let groups: Group[] = [
     { groupName: 'BC', items: BC },
     ...Array.from(map.entries()).map(([groupName, items]) => ({
       groupName,
@@ -69,7 +69,7 @@ export function groupByYearBuilt(data: Item[]): Group[] {
   }
 
   const bcGroup = groups.shift();
-  groups.sort((a, b) => a.groupName.localeCompare(b.groupName));
+  [...groups].sort((a, b) => a.groupName.localeCompare(b.groupName));
   const combinedGroups = bcGroup ? [bcGroup, ...groups] : groups;
 
   combinedGroups.map((group) => {
