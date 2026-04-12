@@ -10,6 +10,7 @@ import { StyleComponent } from './features/style/style';
 import { TimelineComponent } from './features/timeline/timeline';
 import { MapComponent } from './features/map/map';
 import { LocationComponent } from './features/location/location';
+import { GlobeComponent } from './features/globe/globe';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'quiz', component: QuizComponent },
   { path: 'map', component: MapComponent },
+  { path: 'globe', component: GlobeComponent},
   { path: 'timeline', component: TimelineComponent },
   { path: 'charts', component: ChartsComponent },
   { path: 'style', component: StyleComponent },

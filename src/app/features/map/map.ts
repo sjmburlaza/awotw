@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
 import * as L from 'leaflet';
+import { take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   private loadWonders(): void {
-    this.dataService.getWonders().subscribe((wonders: Item[]) => {
+    this.dataService.getWonders().pipe(take(1)).subscribe((wonders: Item[]) => {
       wonders.forEach((wonder) => {
         if (!wonder.lat || !wonder.lon) return;
 
