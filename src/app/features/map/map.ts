@@ -1,16 +1,17 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import * as L from 'leaflet';
 import { take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-map',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './map.html',
   styleUrl: './map.scss',
 })
 export class MapComponent implements AfterViewInit {
-  private dataService = inject(DataService);
+  private readonly dataService = inject(DataService);
 
   private map!: L.Map;
 

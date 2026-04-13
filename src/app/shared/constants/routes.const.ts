@@ -1,6 +1,7 @@
 export const URL_PATH = {
   HOME: '/home',
   MAP: '/map',
+  GLOBE: '/globe',
   TIMELINE: '/timeline',
   CHARTS: '/charts',
   STYLE: '/style',

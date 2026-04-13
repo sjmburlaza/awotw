@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import Globe from 'globe.gl';
 import { take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
@@ -10,7 +11,7 @@ type WonderMarker = Item & {
 
 @Component({
   selector: 'app-globe',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './globe.html',
   styleUrl: './globe.scss'
 })

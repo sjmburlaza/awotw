@@ -132,9 +132,11 @@ export class TimelineChartV2Component implements AfterViewInit {
           .attr('fill', d3.color(d.color)?.darker(0.7)?.toString() || d.color);
 
         this.tooltip
-          .style('opacity', 1)
+          .style('opacity', 0.8)
+          .style('font-family', 'Montserrat')
+          .style('padding', '12px')
           .html(`
-            <div><strong>${d.label} style</strong></div>
+            <h4>${d.label} style</h4>
             <div>${this.formatYear(d.startYear)} → ${this.formatYear(d.endYear)}</div>
           `);
 
