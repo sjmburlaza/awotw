@@ -1,0 +1,17 @@
+[
+  { "label": "Ancient Egypt", "startYear": -3100, "endYear": -30, "color": "#8e44ad" },
+  { "label": "Ancient Greek", "startYear": -900, "endYear": -100, "color": "#f39c12" },
+  { "label": "Roman", "startYear": -500, "endYear": 476, "color": "#d35400" },
+  { "label": "Byzantine", "startYear": 330, "endYear": 1453, "color": "#c0392b" },
+  { "label": "Romanesque", "startYear": 800, "endYear": 1200, "color": "#8e6e53" },
+  { "label": "Gothic", "startYear": 1140, "endYear": 1600, "color": "#2c3e50" },
+  { "label": "Renaissance", "startYear": 1400, "endYear": 1600, "color": "#e67e22" },
+  { "label": "Baroque", "startYear": 1600, "endYear": 1750, "color": "#e74c3c" },
+  { "label": "Neoclassical", "startYear": 1750, "endYear": 1850, "color": "#34495e" },
+  { "label": "Art Nouveau", "startYear": 1890, "endYear": 1914, "color": "#00b894" },
+  { "label": "Art Deco", "startYear": 1920, "endYear": 1940, "color": "#fdcb6e" },
+  { "label": "Modernism", "startYear": 1910, "endYear": 1970, "color": "#00cec9" },
+  { "label": "Brutalism", "startYear": 1950, "endYear": 1980, "color": "#636e72" },
+  { "label": "Postmodernism", "startYear": 1970, "endYear": 2000, "color": "#ff7675" },
+  { "label": "Contemporary", "startYear": 1980, "endYear": 2026, "color": "#00b894" }
+]

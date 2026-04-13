@@ -53,6 +53,13 @@ export type MostVisited = {
   image_url: string;
 };
 
+export interface StyleRange {
+  label: string;
+  startYear: number;
+  endYear: number;
+  color?: string;
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -69,5 +76,9 @@ export class DataService {
 
   getMostVisited(): Observable<MostVisited[]> {
     return this.http.get<MostVisited[]>('assets/json/mostVisited.json');
+  }
+
+  getStylesTimeline(): Observable<StyleRange[]> {
+    return this.http.get<StyleRange[]>('assets/json/stylesTimeline.json');
   }
 }

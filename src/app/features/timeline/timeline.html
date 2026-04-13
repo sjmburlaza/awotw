@@ -8,6 +8,7 @@
       Architecture through the millennia…
       <i class="bi bi-hourglass-split"></i>
     </div>
+    <app-timeline-chart [styles]="styles"></app-timeline-chart>
     <div class="timeline">
       @for (group of groups; track group.groupName) {
         <div [id]="group.groupName" class="group" slideInOnScroll>
