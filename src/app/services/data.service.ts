@@ -57,7 +57,7 @@ export interface StyleRange {
   label: string;
   startYear: number;
   endYear: number;
-  color?: string;
+  color: string;
 };
 
 @Injectable({

@@ -4,14 +4,14 @@ import { forkJoin } from 'rxjs';
 import { DataService, Group, StyleRange } from 'src/app/services/data.service';
 import { ScrollService } from 'src/app/services/scroll.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
+import { TimelineChartV2Component } from 'src/app/shared/components/timeline-chart-v2/timeline-chart-v2';
 import { TooltipDirective } from 'src/app/shared/components/tooltip/tooltip.directive';
 import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
 import { groupByYearBuilt } from 'src/app/shared/utils-helper';
-import { TimelineChartComponent } from 'src/app/features/timeline-chart/timeline-chart';
 
 @Component({
   selector: 'app-timeline',
-  imports: [LoaderComponent, TooltipDirective, SlideInOnScrollDirective, TimelineChartComponent],
+  imports: [LoaderComponent, TooltipDirective, SlideInOnScrollDirective, TimelineChartV2Component],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss',
 })
