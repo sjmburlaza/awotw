@@ -5,6 +5,7 @@ import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { ChartComponent } from 'src/app/shared/components/chart/chart';
+import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth';
 import { FadeInOnScrollDirective } from 'src/app/shared/directives/fade-in-on-scroll.directive';
 import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
 import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
@@ -18,6 +19,7 @@ import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
     CompactNumberPipe,
     FadeInOnScrollDirective,
     SlideInOnScrollDirective,
+    GlobalChoroplethComponent,
   ],
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
@@ -76,6 +78,9 @@ export class ChartsComponent implements OnInit {
   currentListTallestBuilding: TallestBuilding[] = [];
   currentListMostVisited: MostVisited[] = [];
 
+  tallestBuildingsChoropleth: Record<string, number> = {};
+  mostVisitedChoropleth: Record<string, number> = {};
+
   ngOnInit(): void {
     this.selectionForm = this.fb.group({
       category: ['tallest', Validators.required],
@@ -116,6 +121,9 @@ export class ChartsComponent implements OnInit {
         // Line chart
         this.tallestBuildingsLineData = this.getLineData([...top50tallest]);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top50tallest]);
+
+        this.tallestBuildingsChoropleth = this.getChoroplethData(top50tallest);
+        this.mostVisitedChoropleth = this.getChoroplethData(top50mostVisited);
       } else {
         const top20tallest = [...this.tallestRawData].slice(0, 20);
         const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
@@ -149,6 +157,9 @@ export class ChartsComponent implements OnInit {
         // Line chart
         this.tallestBuildingsLineData = this.getLineData([...top20tallest]);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top20tallest]);
+
+        this.tallestBuildingsChoropleth = this.getChoroplethData(top20tallest);
+        this.mostVisitedChoropleth = this.getChoroplethData(top20mostVisited);
       }
     });
 
@@ -180,6 +191,7 @@ export class ChartsComponent implements OnInit {
         this.tallestBuildingsPieChartOptions = this.getTallestBuildingsPieChartOptions([
           ...top20tallest,
         ]);
+        this.tallestBuildingsChoropleth = this.getChoroplethData(top20tallest);
         this.tallestBuildingsLineData = this.getLineData([...top20tallest]);
         this.tallestBuildingsLineChartOptions = this.getLineChartOptions([...top20tallest]);
 
@@ -205,7 +217,31 @@ export class ChartsComponent implements OnInit {
         );
         this.mostVisitedBarChartOptions = this.getMostVisitedBarChartOptions([...top20mostVisited]);
         this.mostVisitedPieChartOptions = this.getMostVisitedPieChartOptions([...top20mostVisited]);
+        this.mostVisitedChoropleth = this.getChoroplethData(top20mostVisited);
       });
+  }
+
+  getChoroplethData(rawdata: (TallestBuilding | MostVisited)[]): Record<string, number> {
+    const data = [...rawdata];
+    const map: Record<string, number> = {};
+
+    data?.forEach((item: TallestBuilding | MostVisited) => {
+      let key: string;
+
+      if ('country' in item) {
+        key = item.country?.split(', ')?.at(-1) || '';
+      } else {
+        key = item.location?.split(', ')?.at(-1) || '';
+      }
+
+      if (key.toUpperCase() === 'USA') {
+        key = 'United States of America'
+      }
+
+      map[key] = (map[key] ?? 0) + 1;
+    });
+
+    return map;
   }
 
   ordinalSuffix(n: number): string {

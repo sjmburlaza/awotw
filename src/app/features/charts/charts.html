@@ -82,6 +82,12 @@
           </div>
         }
       </div>
+      <div class="chart__global-map">
+        <app-global-choropleth 
+          [countryValues]="categoryValue === 'tallest' ? tallestBuildingsChoropleth : mostVisitedChoropleth"
+        >
+        </app-global-choropleth>
+      </div>
       @if (categoryValue === 'tallest') {
         <div class="chart__line">
           <div class="title">Building Height Trends (by Year)</div>
