@@ -69,6 +69,14 @@
       }
     }
 
+    &__global-map {
+      display: flex;
+      justify-content: center;
+      width: 1260px;
+      border-bottom: 1px solid gainsboro;
+      padding-bottom: 24px;
+    }
+
     &__line {
       width: 1260px;
       border-bottom: 1px solid gainsboro;
