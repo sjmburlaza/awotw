@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import * as d3 from 'd3';
 import { StyleRange } from 'src/app/services/data.service';
 
@@ -6,7 +13,7 @@ import { StyleRange } from 'src/app/services/data.service';
   selector: 'app-timeline-chart-v2',
   imports: [],
   templateUrl: './timeline-chart-v2.html',
-  styleUrl: './timeline-chart-v2.scss'
+  styleUrl: './timeline-chart-v2.scss',
 })
 export class TimelineChartV2Component implements AfterViewInit {
   @Input() data: StyleRange[] = [];
@@ -42,11 +49,7 @@ export class TimelineChartV2Component implements AfterViewInit {
 
     d3.select(container).select('svg').remove();
 
-    this.svg = d3
-      .select(container)
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+    this.svg = d3.select(container).append('svg').attr('width', width).attr('height', height);
 
     const chartWidth = width - margin.left - margin.right;
     const chartHeight = height - margin.top - margin.bottom;
@@ -107,7 +110,7 @@ export class TimelineChartV2Component implements AfterViewInit {
       .attr('y1', (d) => (yScale(d.label) ?? 0) + yScale.bandwidth() / 2)
       .attr('y2', (d) => (yScale(d.label) ?? 0) + yScale.bandwidth() / 2)
       .attr('stroke', '#e5e7eb')
-      .attr('stroke-width', 1)
+      .attr('stroke-width', 1);
 
     const rowGroups = this.svg
       .append('g')
@@ -134,8 +137,7 @@ export class TimelineChartV2Component implements AfterViewInit {
         this.tooltip
           .style('opacity', 0.8)
           .style('font-family', 'Montserrat')
-          .style('padding', '12px')
-          .html(`
+          .style('padding', '12px').html(`
             <h4>${d.label} style</h4>
             <div>${this.formatYear(d.startYear)} → ${this.formatYear(d.endYear)}</div>
           `);
@@ -164,30 +166,25 @@ export class TimelineChartV2Component implements AfterViewInit {
       const estimatedTextWidth = this.estimateTextWidth(d.label, 13);
       const gap = 10;
 
-      const leftSpace = barStartX - margin.left;
-      const rightSpace = margin.left + chartWidth - barEndX;
+      const svgLeftEdge = margin.left;
+      const fitsOnLeft = barStartX - gap - estimatedTextWidth >= svgLeftEdge;
 
-      let textX = barEndX + gap;
-      let textAnchor: 'start' | 'end' = 'start';
+      let textX: number;
+      let textAnchor: 'start' | 'end';
 
-      if (rightSpace >= estimatedTextWidth + gap) {
-        textX = barEndX + gap;
-        textAnchor = 'start';
-      } else if (leftSpace >= estimatedTextWidth + gap) {
+      if (fitsOnLeft) {
         textX = barStartX - gap;
         textAnchor = 'end';
       } else {
-        if (rightSpace >= leftSpace) {
-          textX = barEndX + gap;
-          textAnchor = 'start';
-        } else {
-          textX = barStartX - gap;
-          textAnchor = 'end';
-        }
+        textX = barEndX + gap;
+        textAnchor = 'start';
       }
 
       group
-        .append('text')
+        .selectAll('text.bar-label')
+        .data([d])
+        .join('text')
+        .attr('class', 'bar-label')
         .attr('x', textX)
         .attr('y', centerY)
         .attr('text-anchor', textAnchor)
@@ -253,8 +250,6 @@ export class TimelineChartV2Component implements AfterViewInit {
   }
 
   private moveTooltip(event: MouseEvent): void {
-    this.tooltip
-      .style('left', `${event.clientX + 14}px`)
-      .style('top', `${event.clientY + 14}px`);
+    this.tooltip.style('left', `${event.clientX + 14}px`).style('top', `${event.clientY + 14}px`);
   }
 }
