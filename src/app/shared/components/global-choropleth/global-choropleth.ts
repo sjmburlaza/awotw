@@ -7,7 +7,7 @@ import { GeoService } from 'src/app/services/geo.service';
   selector: 'app-global-choropleth',
   imports: [],
   templateUrl: './global-choropleth.html',
-  styleUrl: './global-choropleth.scss'
+  styleUrl: './global-choropleth.scss',
 })
 export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
   @Input() countryValues: Record<string, number> = {};
@@ -16,6 +16,15 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
 
   private map!: L.Map;
   private countriesLayer?: L.GeoJSON;
+
+  legend = [
+    { label: '0%', color: '#f3f4f6' },
+    { label: '1-20%', color: '#fda4af' },
+    { label: '21-40%', color: '#fb7185' },
+    { label: '41-60%', color: '#fc466b' },
+    { label: '61-80%', color: '#be123c' },
+    { label: '81-100%', color: '#881337' },
+  ];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['countryValues'] && this.countriesLayer) {
@@ -51,19 +60,22 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
   }
 
   private loadCountries(): void {
-    this.geoService.getCountries().pipe(take(1)).subscribe({
-      next: (geoJson) => {
-        this.countriesLayer = L.geoJSON(geoJson as GeoJSON.FeatureCollection, {
-          style: (feature) => this.countryStyle(feature),
-          onEachFeature: (feature, layer) => {
-            this.bindCountryLayerEvents(feature, layer);
-          },
-        }).addTo(this.map);
-      },
-      error: (error) => {
-        console.error('Failed to load countries GeoJSON:', error);
-      },
-    });
+    this.geoService
+      .getCountries()
+      .pipe(take(1))
+      .subscribe({
+        next: (geoJson) => {
+          this.countriesLayer = L.geoJSON(geoJson as GeoJSON.FeatureCollection, {
+            style: (feature) => this.countryStyle(feature),
+            onEachFeature: (feature, layer) => {
+              this.bindCountryLayerEvents(feature, layer);
+            },
+          }).addTo(this.map);
+        },
+        error: (error) => {
+          console.error('Failed to load countries GeoJSON:', error);
+        },
+      });
   }
 
   private bindCountryLayerEvents(feature: any, layer: L.Layer): void {
@@ -71,21 +83,36 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
     const value = this.countryValues[countryName] ?? 0;
 
     if (value > 0) {
-      layer.bindPopup(`
+      layer.bindPopup(
+        `
         <strong>${countryName}</strong><br />
         Count: ${value}
-      `);
+        `,
+        {
+          closeButton: false,
+          autoClose: false,
+          closeOnClick: false,
+        },
+      );
 
-      layer.on('mouseover', () => {
-        (layer as L.Path).setStyle({
-          weight: 2,
-          color: '#111827',
-          fillOpacity: 0.9,
+      layer.on('mouseover', (e: L.LeafletMouseEvent) => {
+        const path = layer as L.Path;
+
+        path.setStyle({
+          fillOpacity: 1,
         });
+
+        if (countryName === 'Russia') {
+          layer.openPopup(e.latlng);
+        } else {
+          const center = (layer as L.Polygon).getBounds().getCenter();
+          layer.openPopup(center);
+        }
       });
 
       layer.on('mouseout', () => {
-        (layer as L.Path).setStyle(this.countryStyle(feature));
+        (this.countriesLayer as L.GeoJSON).resetStyle(layer);
+        layer.closePopup();
       });
     } else {
       layer.unbindPopup();
@@ -94,7 +121,10 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
   }
 
   private getFeatureName(feature: any): string {
-    return (feature as GeoJSON.Feature<GeoJSON.Geometry, { name?: string }>).properties?.name ?? 'Unknown';
+    return (
+      (feature as GeoJSON.Feature<GeoJSON.Geometry, { name?: string }>).properties?.name ??
+      'Unknown'
+    );
   }
 
   private updateMapStyles(): void {
@@ -104,20 +134,9 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
       const feature = (layer as L.GeoJSON<any>).feature;
       if (!feature) return;
 
-      const countryName = this.getFeatureName(feature);
-      const value = this.countryValues[countryName] ?? 0;
-
       (layer as L.Path).setStyle(this.countryStyle(feature));
 
-      if (value > 0) {
-        layer.bindPopup(`
-          <strong>${countryName}</strong><br />
-          Count: ${value}
-        `);
-      } else {
-        layer.unbindPopup();
-        layer.closePopup();
-      }
+      this.bindCountryLayerEvents(feature, layer);
     });
   }
 
