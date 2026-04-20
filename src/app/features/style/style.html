@@ -1,4 +1,5 @@
-@if (loading) {
-} @else {
+@let groups = groups$ | async;
+
+@if (groups) {
   <app-grouping [groups]="groups" [title]="title"> </app-grouping>
 }

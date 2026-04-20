@@ -11,9 +11,9 @@ import { URL_PATH } from 'src/app/shared/constants/routes.const';
   styleUrl: './detail.scss',
 })
 export class DetailComponent implements OnInit {
-  private dataService = inject(DataService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly dataService = inject(DataService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly URL_PATH = URL_PATH;
   details: Item | undefined;
@@ -21,16 +21,19 @@ export class DetailComponent implements OnInit {
   currentDetailId: number | undefined;
   wondersData: Item[] = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.currentDetailId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.dataService
       .getWonders()
       .pipe(take(1))
-      .subscribe((res: Item[]) => {
-        this.wondersData = res;
-        if (this.currentDetailId) {
-          this.getDetails(this.currentDetailId, res);
-        }
+      .subscribe({
+        next: (res: Item[]) => {
+          this.wondersData = res;
+          if (this.currentDetailId) {
+            this.getDetails(this.currentDetailId, res);
+          }
+        },
+        error: (err) => console.error(err),
       });
   }
 
