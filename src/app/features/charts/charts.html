@@ -41,16 +41,11 @@
   } @else {
     <div class="chart">
       <div class="chart__bar">
-        <app-chart
-          [chartType]="'bar'"
-          [chartData]="categoryValue === 'tallest' ? tallestBuildingsBarData : mostVisitedBarData"
-          [chartOptions]="
-            categoryValue === 'tallest'
-              ? tallestBuildingsBarChartOptions
-              : mostVisitedBarChartOptions
-          "
-        >
-        </app-chart>
+        <app-bar-chart
+          [data]="categoryValue === 'tallest' ? currentListTallestBuilding : currentListMostVisited"
+          [category]="categoryValue"
+          [key]="categoryValue === 'tallest' ? 'height_m' : 'visitors_per_year'"
+        ></app-bar-chart>
       </div>
       <div class="chart__pie">
         <div class="chart__pie__country">

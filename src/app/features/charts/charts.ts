@@ -4,13 +4,13 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
+import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart';
 import { ChartComponent } from 'src/app/shared/components/chart/chart';
 import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth';
 import { PieChartComponent } from 'src/app/shared/components/pie-chart/pie-chart';
 import { FadeInOnScrollDirective } from 'src/app/shared/directives/fade-in-on-scroll.directive';
 import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
 import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
-import { ordinalSuffix } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-charts',
@@ -23,6 +23,7 @@ import { ordinalSuffix } from 'src/app/shared/utils-helper';
     SlideInOnScrollDirective,
     GlobalChoroplethComponent,
     PieChartComponent,
+    BarChartComponent,
   ],
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
@@ -58,16 +59,10 @@ export class ChartsComponent implements OnInit {
   tallestRawData: TallestBuilding[] = [];
   mostVisitedRawData: MostVisited[] = [];
 
-  // Bar chart data
-  tallestBuildingsBarData: ChartConfiguration['data'] = { labels: [], datasets: [] };
-  mostVisitedBarData: ChartConfiguration['data'] = { labels: [], datasets: [] };
-
   // Line chart data
   tallestBuildingsLineData: ChartConfiguration['data'] = { labels: [], datasets: [] };
 
   // Chart Options
-  tallestBuildingsBarChartOptions!: ChartOptions<'bar'>;
-  mostVisitedBarChartOptions!: ChartOptions<'bar'>;
   tallestBuildingsLineChartOptions!: ChartOptions<'line'>;
 
   currentListTallestBuilding: TallestBuilding[] = [];
@@ -132,16 +127,12 @@ export class ChartsComponent implements OnInit {
   }
 
   getTallestBuildingsData(data: TallestBuilding[]): void {
-    this.tallestBuildingsBarData = this.getBarChartData(data, 'height_m');
-    this.tallestBuildingsBarChartOptions = this.getTallestBuildingsBarChartOptions(data);
     this.tallestBuildingsChoropleth = this.getChoroplethData(data);
     this.tallestBuildingsLineData = this.getLineData(data);
     this.tallestBuildingsLineChartOptions = this.getLineChartOptions(data);
   }
 
   getMostVisitedData(data: MostVisited[]): void {
-    this.mostVisitedBarData = this.getBarChartData(data, 'visitors_per_year');
-    this.mostVisitedBarChartOptions = this.getMostVisitedBarChartOptions(data);
     this.mostVisitedChoropleth = this.getChoroplethData(data);
   }
 
@@ -238,119 +229,9 @@ export class ChartsComponent implements OnInit {
     };
   }
 
-  getTallestBuildingsBarChartOptions(rawData: TallestBuilding[]): ChartOptions<'bar'> {
-    const data = [...rawData];
-
-    return {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          displayColors: false,
-          padding: 12,
-          bodyFont: {
-            size: 12,
-          },
-          titleFont: {
-            size: 14,
-            weight: 'bold',
-          },
-          callbacks: {
-            title: (context) => context[0].label,
-            label: (context: TooltipItem<'bar'>) => {
-              const sortedData = [...data].sort(
-                (a: TallestBuilding, b: TallestBuilding) => Number(b.height_m) - Number(a.height_m),
-              );
-              const item = sortedData[context.dataIndex];
-              const rank = ordinalSuffix(context.dataIndex + 1);
-
-              return [
-                `Rank: ${rank}`,
-                `Location: ${item.city}, ${item.country}`,
-                `Height: ${item.height_m} meters`,
-                `Year completed: ${item.year_completed}`,
-              ];
-            },
-          },
-        },
-      },
-    };
-  }
-
-  getMostVisitedBarChartOptions(rawData: MostVisited[]): ChartOptions<'bar'> {
-    const data = [...rawData];
-
-    return {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          displayColors: false,
-          padding: 12,
-          bodyFont: {
-            size: 12,
-          },
-          titleFont: {
-            size: 14,
-            weight: 'bold',
-          },
-          callbacks: {
-            title: (context) => context[0].label,
-            label: (context: TooltipItem<'bar'>) => {
-              const item = data[context.dataIndex];
-              const rank = ordinalSuffix(context.dataIndex + 1);
-              const numberFormatter = new Intl.NumberFormat('en-US', {
-                notation: 'compact',
-                maximumFractionDigits: 1,
-              });
-              const visitors = numberFormatter.format(Number(item.visitors_per_year));
-
-              return [
-                `Rank: ${rank}`,
-                `Location: ${item.location}`,
-                `Visitors per year (approx.): ${visitors}`,
-              ];
-            },
-          },
-        },
-      },
-    };
-  }
-
   sort(data: any, attribute: string) {
     if (!data) return;
     return [...data].sort((a: any, b: any) => Number(b[attribute]) - Number(a[attribute]));
-  }
-
-  getBarChartData(
-    rawdata: (TallestBuilding | MostVisited)[],
-    key: string,
-  ): ChartConfiguration['data'] {
-    const labels: string[] = [];
-    const data: number[] = [];
-    const backgroundColor: string[] = [];
-
-    [...rawdata].forEach((item: any) => {
-      labels.push(item.name);
-      data.push(item[key]);
-      backgroundColor.push(item.color);
-    });
-
-    return {
-      labels,
-      datasets: [
-        {
-          data,
-          backgroundColor,
-        },
-      ],
-    };
   }
 
   get categoryValue() {
