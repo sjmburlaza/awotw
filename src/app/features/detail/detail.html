@@ -17,6 +17,7 @@
           (load)="loading = false"
           (error)="loading = false"
           [hidden]="loading"
+          [alt]="details.name"
         />
       </div>
       @if (!loading) {

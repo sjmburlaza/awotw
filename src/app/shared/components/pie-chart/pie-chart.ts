@@ -1,8 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Chart, ChartConfiguration, ChartOptions, registerables, TooltipItem } from 'chart.js';
 import { MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { sortMapObject } from '../../utils-helper';
 import { ChartComponent } from '../chart/chart';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(...registerables, ChartDataLabels);
 
 @Component({
   selector: 'app-pie-chart',
@@ -70,9 +73,19 @@ export class PieChartComponent implements OnChanges {
 
     return {
       responsive: true,
+      layout: {
+        padding: {
+          top: 32,
+          bottom: 40,
+        },
+      },
       plugins: {
         legend: {
           position: 'bottom',
+          title: {
+            display: true,
+            padding: 16,
+          },
           labels: {
             padding: 8,
             font: {
@@ -80,6 +93,28 @@ export class PieChartComponent implements OnChanges {
               size: 14,
             },
           },
+        },
+        datalabels: {
+          display: true,
+          color: '#111827',
+          font: {
+            family: 'Barlow',
+            size: 14,
+            weight: 'bold',
+          },
+          formatter: (value, context) => {
+            const dataset = context.chart.data.datasets[0].data as number[];
+            const total = dataset.reduce((sum, current) => sum + Number(current), 0);
+
+            if (!total) return '';
+
+            const percentage = (Number(value) / total) * 100;
+            return `${percentage}%`;
+          },
+          anchor: 'end',
+          align: 'end',
+          offset: 2,
+          clamp: true,
         },
         tooltip: {
           displayColors: false,
@@ -112,9 +147,18 @@ export class PieChartComponent implements OnChanges {
 
     return {
       responsive: true,
+      layout: {
+        padding: {
+          top: 32,
+        },
+      },
       plugins: {
         legend: {
           position: 'bottom',
+          title: {
+            display: true,
+            padding: 16,
+          },
           labels: {
             padding: 8,
             font: {
@@ -122,6 +166,28 @@ export class PieChartComponent implements OnChanges {
               size: 14,
             },
           },
+        },
+        datalabels: {
+          display: true,
+          color: '#111827',
+          font: {
+            family: 'Barlow',
+            size: 14,
+            weight: 'bold',
+          },
+          formatter: (value, context) => {
+            const dataset = context.chart.data.datasets[0].data as number[];
+            const total = dataset.reduce((sum, current) => sum + Number(current), 0);
+
+            if (!total) return '';
+
+            const percentage = (Number(value) / total) * 100;
+            return `${percentage}%`;
+          },
+          anchor: 'end',
+          align: 'end',
+          offset: 2,
+          clamp: true,
         },
         tooltip: {
           displayColors: false,

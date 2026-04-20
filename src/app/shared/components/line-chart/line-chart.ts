@@ -60,6 +60,9 @@ export class LineChartComponent implements OnChanges {
     return {
       responsive: true,
       plugins: {
+        datalabels: {
+          display: false,
+        },
         legend: {
           display: false,
         },
