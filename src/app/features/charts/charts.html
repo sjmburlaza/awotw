@@ -85,49 +85,9 @@
         </div>
       }
     </div>
-  }
-  @if (categoryValue === 'tallest' && currentListTallestBuilding) {
-    <div class="list-title">Gallery of the Tallest Buildings</div>
-    <div class="list-tallest">
-      @for (item of currentListTallestBuilding; track item?.name) {
-        <div class="item" fadeInOnScroll slideInOnScroll>
-          <div class="item__image">
-            <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
-          </div>
-          <div class="item__desc">
-            <div class="item__desc__rank">
-              <button>{{ $index + 1 }}</button>
-            </div>
-            <div class="item__desc__labels">
-              <p class="name">{{ item.name }}</p>
-              <p>{{ item.city }}, {{ item.country }}</p>
-              <p>Height: {{ item.height_m }} meters</p>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  }
-  @if (categoryValue === 'mostVisited' && currentListMostVisited) {
-    <div class="list-title">Gallery of the Most Visited Places</div>
-    <div class="list-visited">
-      @for (item of currentListMostVisited; track item?.name) {
-        <div class="item" fadeInOnScroll slideInOnScroll>
-          <div class="item__image">
-            <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
-          </div>
-          <div class="item__desc">
-            <div class="item__desc__rank">
-              <button>{{ $index + 1 }}</button>
-            </div>
-            <div class="item__desc__labels">
-              <p class="name">{{ item.name }}</p>
-              <p>{{ item.location }}</p>
-              <p>Visitors (approx.): {{ item.visitors_per_year | compactNumber }} annually</p>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
+    <app-gallery
+      [data]="categoryValue === 'tallest' ? currentListTallestBuilding : currentListMostVisited"
+      [category]="categoryValue"
+    ></app-gallery>
   }
 </div>

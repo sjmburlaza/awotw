@@ -1,0 +1,113 @@
+%gradient-text {
+  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.list-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  margin: 36px 0;
+}
+
+.list-tallest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 36px;
+  column-gap: 16px;
+  padding: 0 36px;
+  font-family: 'Barlow';
+
+  .item {
+    display: grid;
+    height: 500px;
+    width: 220px;
+
+    &__image {
+      display: flex;
+      justify-content: center;
+      height: 380px;
+      width: 220px;
+      overflow: hidden;
+      border: 1px solid gainsboro;
+
+      img {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.list-visited {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 36px;
+  column-gap: 16px;
+  padding: 0 36px;
+  font-family: 'Barlow';
+
+  .item {
+    display: grid;
+    height: 400px;
+    width: 300px;
+
+    &__image {
+      display: flex;
+      justify-content: center;
+      height: 280px;
+      width: 300px;
+      overflow: hidden;
+      border: 1px solid gainsboro;
+
+      img {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.item__desc {
+  height: 120px;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  justify-content: start;
+  align-items: start;
+  padding: 8px;
+  padding-top: 16px;
+  gap: 4px;
+
+  &__rank {
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      border: 1px solid gainsboro;
+      font-size: 16px;
+    }
+  }
+
+  &__labels {
+    font-size: 14px;
+
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+      @extend %gradient-text;
+    }
+  }
+}
