@@ -4,25 +4,21 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart';
+import { GalleryComponent } from 'src/app/shared/components/gallery/gallery';
 import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth';
 import { LineChartComponent } from 'src/app/shared/components/line-chart/line-chart';
 import { PieChartComponent } from 'src/app/shared/components/pie-chart/pie-chart';
-import { FadeInOnScrollDirective } from 'src/app/shared/directives/fade-in-on-scroll.directive';
-import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
-import { CompactNumberPipe } from 'src/app/shared/pipes/compact-number-pipe';
 
 @Component({
   selector: 'app-charts',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CompactNumberPipe,
-    FadeInOnScrollDirective,
-    SlideInOnScrollDirective,
     GlobalChoroplethComponent,
     PieChartComponent,
     BarChartComponent,
     LineChartComponent,
+    GalleryComponent,
   ],
   templateUrl: './charts.html',
   styleUrl: './charts.scss',
