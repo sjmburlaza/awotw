@@ -87,8 +87,8 @@ export class BarChartComponent implements OnChanges {
 
               return [
                 `Rank: ${rank}`,
-                `Location: ${item.city}, ${item.country}`,
                 `Height: ${item.height_m} meters`,
+                `Location: ${item.city}, ${item.country}`,
                 `Year completed: ${item.year_completed}`,
               ];
             },
@@ -134,8 +134,8 @@ export class BarChartComponent implements OnChanges {
 
               return [
                 `Rank: ${rank}`,
-                `Location: ${item.location}`,
                 `Visitors per year (approx.): ${visitors}`,
+                `Location: ${item.location}`,
               ];
             },
           },
