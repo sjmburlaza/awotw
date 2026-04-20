@@ -81,3 +81,15 @@ export function groupByYearBuilt(data: Item[]): Group[] {
 
   return combinedGroups;
 }
+
+export function sortMapObject(map: Map<string, number>): Map<string, number> {
+  const mapAsArray = [...map.entries()];
+  mapAsArray.sort((a, b) => b[1] - a[1]);
+  return new Map(mapAsArray);
+}
+
+export function ordinalSuffix(n: number): string {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
