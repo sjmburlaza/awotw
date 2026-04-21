@@ -24,33 +24,22 @@ import { PieChartComponent } from 'src/app/shared/components/pie-chart/pie-chart
   styleUrl: './charts.scss',
 })
 export class ChartsComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private dataService = inject(DataService);
+  private readonly fb = inject(FormBuilder);
+  private readonly dataService = inject(DataService);
 
   categories = [
-    {
-      name: 'Tallest Buildings',
-      code: 'tallest',
-    },
-    {
-      name: 'Most Visited',
-      code: 'mostVisited',
-    },
+    { name: 'Tallest Buildings', code: 'tallest' },
+    { name: 'Most Visited', code: 'mostVisited' },
   ];
 
   rankings = [
-    {
-      name: 'Top 20',
-      code: '20',
-    },
-    {
-      name: 'Top 50',
-      code: '50',
-    },
+    { name: 'Top 20', code: '20' },
+    { name: 'Top 50', code: '50' },
   ];
 
   isLoading = true;
   selectionForm!: FormGroup;
+
   tallestRawData: TallestBuilding[] = [];
   mostVisitedRawData: MostVisited[] = [];
 
@@ -66,22 +55,8 @@ export class ChartsComponent implements OnInit {
       ranking: ['20', Validators.required],
     });
 
-    this.selectionForm.get('ranking')?.valueChanges.subscribe((ranking) => {
-      if (ranking === '50') {
-        const top50tallest = [...this.tallestRawData];
-        const top50mostVisited = [...this.mostVisitedRawData];
-        this.currentListTallestBuilding = top50tallest;
-        this.currentListMostVisited = top50mostVisited;
-        this.getTallestBuildingsData(top50tallest);
-        this.getMostVisitedData(top50mostVisited);
-      } else {
-        const top20tallest = [...this.tallestRawData].slice(0, 20);
-        const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
-        this.currentListTallestBuilding = top20tallest;
-        this.currentListMostVisited = top20mostVisited;
-        this.getTallestBuildingsData(top20tallest);
-        this.getMostVisitedData(top20mostVisited);
-      }
+    this.selectionForm.valueChanges.subscribe(() => {
+      this.updateDisplayedData();
     });
 
     this.initTallestBuildings();
@@ -92,12 +67,13 @@ export class ChartsComponent implements OnInit {
     this.dataService
       .getTallestBuildings()
       .pipe(take(1))
-      .subscribe((res) => {
-        this.tallestRawData = res.sort((a, b) => Number(b.height_m) - Number(a.height_m));
-        const top20tallest = [...this.tallestRawData].slice(0, 20);
-        this.currentListTallestBuilding = top20tallest;
-        this.getTallestBuildingsData(top20tallest);
-        this.isLoading = false;
+      .subscribe({
+        next: (res) => {
+          this.tallestRawData = [...res].sort((a, b) => Number(b.height_m) - Number(a.height_m));
+          this.updateDisplayedData();
+          this.isLoading = false;
+        },
+        error: (err) => console.error(err),
       });
   }
 
@@ -105,22 +81,24 @@ export class ChartsComponent implements OnInit {
     this.dataService
       .getMostVisited()
       .pipe(take(1))
-      .subscribe((res) => {
-        this.mostVisitedRawData = res.sort(
-          (a, b) => Number(b.visitors_per_year) - Number(a.visitors_per_year),
-        );
-        const top20mostVisited = [...this.mostVisitedRawData].slice(0, 20);
-        this.currentListMostVisited = top20mostVisited;
-        this.getMostVisitedData(top20mostVisited);
+      .subscribe({
+        next: (res) => {
+          this.mostVisitedRawData = [...res].sort(
+            (a, b) => Number(b.visitors_per_year) - Number(a.visitors_per_year),
+          );
+        },
+        error: (err) => console.error(err),
       });
   }
 
-  getTallestBuildingsData(data: TallestBuilding[]): void {
-    this.tallestBuildingsChoropleth = this.getChoroplethData(data);
-  }
+  updateDisplayedData() {
+    const limit = Number(this.rankingValue);
 
-  getMostVisitedData(data: MostVisited[]): void {
-    this.mostVisitedChoropleth = this.getChoroplethData(data);
+    this.currentListTallestBuilding = this.tallestRawData.slice(0, limit);
+    this.currentListMostVisited = this.mostVisitedRawData.slice(0, limit);
+
+    this.tallestBuildingsChoropleth = this.getChoroplethData(this.currentListTallestBuilding);
+    this.mostVisitedChoropleth = this.getChoroplethData(this.currentListMostVisited);
   }
 
   getChoroplethData(rawdata: (TallestBuilding | MostVisited)[]): Record<string, number> {
