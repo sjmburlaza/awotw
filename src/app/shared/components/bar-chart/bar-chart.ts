@@ -1,8 +1,17 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
-import { ordinalSuffix } from '../../utils-helper';
-import { MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { ChartComponent } from '../chart/chart';
+
+interface ChartItemBase {
+  name: string;
+  color: string;
+}
+
+type NumericKeys<T> = {
+  [K in keyof T]: T[K] extends number | string ? K : never;
+}[keyof T];
+
+export type BarChartTooltipBuilder<T> = (item: T, index: number) => string[];
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,10 +19,10 @@ import { ChartComponent } from '../chart/chart';
   templateUrl: './bar-chart.html',
   styleUrl: './bar-chart.scss',
 })
-export class BarChartComponent implements OnChanges {
-  @Input() data: any;
-  @Input() category!: string;
-  @Input() key!: string;
+export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
+  @Input({ required: true }) data: T[] = [];
+  @Input({ required: true }) key!: NumericKeys<T>;
+  @Input({ required: true }) tooltipBuilder!: BarChartTooltipBuilder<T>;
 
   chartData: ChartConfiguration['data'] = { labels: [], datasets: [] };
   chartOptions!: ChartOptions<'bar'>;
@@ -21,84 +30,23 @@ export class BarChartComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.chartData = this.getBarChartData(this.data, this.key);
-      this.chartOptions =
-        this.category === 'tallest'
-          ? this.getTallestBuildingsBarChartOptions(this.data)
-          : this.getMostVisitedBarChartOptions(this.data);
+      this.chartOptions = this.getBarChartOptions(this.data);
     }
   }
 
-  getBarChartData(
-    rawdata: (TallestBuilding | MostVisited)[],
-    key: string,
-  ): ChartConfiguration['data'] {
-    const labels: string[] = [];
-    const data: number[] = [];
-    const backgroundColor: string[] = [];
-
-    [...rawdata].forEach((item: any) => {
-      labels.push(item.name);
-      data.push(item[key]);
-      backgroundColor.push(item.color);
-    });
-
+  private getBarChartData(rawData: T[], key: NumericKeys<T>): ChartConfiguration<'bar'>['data'] {
     return {
-      labels,
+      labels: rawData.map((item) => item.name),
       datasets: [
         {
-          data,
-          backgroundColor,
+          data: rawData.map((item) => Number(item[key])),
+          backgroundColor: rawData.map((item) => item.color),
         },
       ],
     };
   }
 
-  getTallestBuildingsBarChartOptions(rawData: TallestBuilding[]): ChartOptions<'bar'> {
-    const data = [...rawData];
-
-    return {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        datalabels: {
-          display: false,
-        },
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          displayColors: false,
-          padding: 12,
-          bodyFont: {
-            size: 12,
-          },
-          titleFont: {
-            size: 14,
-            weight: 'bold',
-          },
-          callbacks: {
-            title: (context) => context[0].label,
-            label: (context: TooltipItem<'bar'>) => {
-              const sortedData = [...data].sort(
-                (a: TallestBuilding, b: TallestBuilding) => Number(b.height_m) - Number(a.height_m),
-              );
-              const item = sortedData[context.dataIndex];
-              const rank = ordinalSuffix(context.dataIndex + 1);
-
-              return [
-                `Rank: ${rank}`,
-                `Height: ${item.height_m} meters`,
-                `Location: ${item.city}, ${item.country}`,
-                `Year completed: ${item.year_completed}`,
-              ];
-            },
-          },
-        },
-      },
-    };
-  }
-
-  getMostVisitedBarChartOptions(rawData: MostVisited[]): ChartOptions<'bar'> {
+  private getBarChartOptions(rawData: T[]): ChartOptions<'bar'> {
     const data = [...rawData];
 
     return {
@@ -125,18 +73,7 @@ export class BarChartComponent implements OnChanges {
             title: (context) => context[0].label,
             label: (context: TooltipItem<'bar'>) => {
               const item = data[context.dataIndex];
-              const rank = ordinalSuffix(context.dataIndex + 1);
-              const numberFormatter = new Intl.NumberFormat('en-US', {
-                notation: 'compact',
-                maximumFractionDigits: 1,
-              });
-              const visitors = numberFormatter.format(Number(item.visitors_per_year));
-
-              return [
-                `Rank: ${rank}`,
-                `Visitors per year (approx.): ${visitors}`,
-                `Location: ${item.location}`,
-              ];
+              return this.tooltipBuilder(item, context.dataIndex);
             },
           },
         },

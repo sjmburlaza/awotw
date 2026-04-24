@@ -41,32 +41,53 @@
   } @else {
     <div class="chart">
       <div class="chart__bar">
-        <app-bar-chart
-          [data]="categoryValue === 'tallest' ? currentListTallestBuilding : currentListMostVisited"
-          [category]="categoryValue"
-          [key]="categoryValue === 'tallest' ? 'height_m' : 'visitors_per_year'"
-        ></app-bar-chart>
+        @if (categoryValue === 'tallest') {
+          <app-bar-chart
+            [data]="currentListTallestBuilding"
+            key="height_m"
+            [tooltipBuilder]="tallestTooltipBarChart"
+          />
+        }
+        @if (categoryValue === 'mostVisited') {
+          <app-bar-chart
+            [data]="currentListMostVisited"
+            key="visitors_per_year"
+            [tooltipBuilder]="mostVisitedTooltipBarChart"
+          />
+        }
       </div>
       <div class="chart__pie">
         <div class="chart__pie__country">
           <div class="title">Distribution by Country</div>
-          <app-pie-chart
-            [data]="
-              categoryValue === 'tallest' ? currentListTallestBuilding : currentListMostVisited
-            "
-            [category]="categoryValue"
-            [grouping]="'byCountry'"
-            [key]="categoryValue === 'tallest' ? 'country' : 'location'"
-          ></app-pie-chart>
+          @if (categoryValue === 'tallest') {
+            <app-pie-chart
+              [data]="currentListTallestBuilding"
+              key="country"
+              [groupingFn]="groupByCountry"
+              [tooltipBuilder]="tallestTooltipPieChart"
+              [titlePrefix]="'Country'"
+            />
+          }
+          @if (categoryValue === 'mostVisited') {
+            <app-pie-chart
+              [data]="currentListMostVisited"
+              key="location"
+              [groupingFn]="groupByCountryVisited"
+              [tooltipBuilder]="mostVisitedTooltipPieChart"
+              [titlePrefix]="'Country'"
+            />
+          }
         </div>
         @if (categoryValue === 'tallest') {
           <div class="chart__pie__year">
             <div class="title">Distribution by Year of Completion</div>
             <app-pie-chart
               [data]="currentListTallestBuilding"
-              [category]="categoryValue"
-              [key]="'year_completed'"
-            ></app-pie-chart>
+              key="year_completed"
+              [groupingFn]="groupByYear"
+              [tooltipBuilder]="tallestTooltipPieChart"
+              [titlePrefix]="'Year'"
+            />
           </div>
         }
       </div>
@@ -81,13 +102,32 @@
       @if (categoryValue === 'tallest') {
         <div class="chart__line">
           <div class="title">Building Height Trends (by Year)</div>
-          <app-line-chart [data]="currentListTallestBuilding"></app-line-chart>
+          <app-line-chart
+            [data]="currentListTallestBuilding"
+            labelKey="year_completed"
+            valueKey="height_m"
+            titlePrefix="Year"
+            [tooltipBuilder]="tallestBuildingTooltipLineChart"
+          />
         </div>
       }
     </div>
-    <app-gallery
-      [data]="categoryValue === 'tallest' ? currentListTallestBuilding : currentListMostVisited"
-      [category]="categoryValue"
-    ></app-gallery>
+
+    @if (categoryValue === 'tallest') {
+      <app-gallery
+        [config]="{
+          category: 'tallest',
+          data: currentListTallestBuilding,
+        }"
+      />
+    }
+    @if (categoryValue === 'mostVisited') {
+      <app-gallery
+        [config]="{
+          category: 'mostVisited',
+          data: currentListMostVisited,
+        }"
+      />
+    }
   }
 </div>
