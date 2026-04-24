@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TooltipItem } from 'chart.js';
 import { take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart';
@@ -8,6 +9,7 @@ import { GalleryComponent } from 'src/app/shared/components/gallery/gallery';
 import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth';
 import { LineChartComponent } from 'src/app/shared/components/line-chart/line-chart';
 import { PieChartComponent } from 'src/app/shared/components/pie-chart/pie-chart';
+import { ordinalSuffix } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-charts',
@@ -48,6 +50,69 @@ export class ChartsComponent implements OnInit {
 
   tallestBuildingsChoropleth: Record<string, number> = {};
   mostVisitedChoropleth: Record<string, number> = {};
+
+  tallestTooltipBarChart = (item: TallestBuilding, index: number): string[] => {
+    const rank = ordinalSuffix(index + 1);
+
+    return [
+      `Rank: ${rank}`,
+      `Height: ${item.height_m} meters`,
+      `Location: ${item.city}, ${item.country}`,
+      `Year completed: ${item.year_completed}`,
+    ];
+  };
+
+  mostVisitedTooltipBarChart = (item: MostVisited, index: number): string[] => {
+    const rank = ordinalSuffix(index + 1);
+
+    const visitors = new Intl.NumberFormat('en-US', {
+      notation: 'compact',
+      maximumFractionDigits: 1,
+    }).format(Number(item.visitors_per_year));
+
+    return [
+      `Rank: ${rank}`,
+      `Visitors per year (approx.): ${visitors}`,
+      `Location: ${item.location}`,
+    ];
+  };
+
+  groupByCountry = (item: TallestBuilding) => item.country;
+  groupByYear = (item: TallestBuilding) => item.year_completed;
+  groupByCountryVisited = (item: MostVisited) => item.location.split(', ').at(-1) ?? '';
+
+  tallestTooltipPieChart = (
+    item: TallestBuilding,
+    context: TooltipItem<'pie'>,
+    allData: TallestBuilding[],
+  ) => {
+    const filtered = allData.filter(
+      (i) => i.country === context.label || i.year_completed === context.label,
+    );
+
+    return [`Count: ${context.raw}`, 'Building(s):', ...filtered.map((i) => i.name)];
+  };
+
+  mostVisitedTooltipPieChart = (
+    item: MostVisited,
+    context: TooltipItem<'pie'>,
+    allData: MostVisited[],
+  ) => {
+    const filtered = allData.filter((i) => i.location.split(', ').at(-1) === context.label);
+
+    return [`Count: ${context.raw}`, 'Places:', ...filtered.map((i) => i.name)];
+  };
+
+  tallestBuildingTooltipLineChart = (
+    item: TallestBuilding | undefined,
+    context: TooltipItem<'line'>,
+  ): string[] => {
+    return [
+      `Tallest Building: ${item?.name ?? 'N/A'}`,
+      `Building Location: ${item?.city ?? 'N/A'}, ${item?.country ?? 'N/A'}`,
+      `Height: ${context.raw} meters`,
+    ];
+  };
 
   ngOnInit(): void {
     this.selectionForm = this.fb.group({
@@ -91,7 +156,7 @@ export class ChartsComponent implements OnInit {
       });
   }
 
-  updateDisplayedData() {
+  updateDisplayedData(): void {
     const limit = Number(this.rankingValue);
 
     this.currentListTallestBuilding = this.tallestRawData.slice(0, limit);

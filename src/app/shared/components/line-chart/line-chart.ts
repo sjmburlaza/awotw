@@ -1,7 +1,16 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
-import { TallestBuilding } from 'src/app/services/data.service';
 import { ChartComponent } from '../chart/chart';
+
+interface LineChartItemBase {
+  name: string;
+}
+
+type NumericLikeKeys<T> = {
+  [K in keyof T]: T[K] extends number | string ? K : never;
+}[keyof T];
+
+export type LineTooltipBuilder<T> = (item: T | undefined, context: TooltipItem<'line'>) => string[];
 
 @Component({
   selector: 'app-line-chart',
@@ -9,54 +18,59 @@ import { ChartComponent } from '../chart/chart';
   templateUrl: './line-chart.html',
   styleUrl: './line-chart.scss',
 })
-export class LineChartComponent implements OnChanges {
-  @Input() data: any;
+export class LineChartComponent<T extends LineChartItemBase> implements OnChanges {
+  @Input({ required: true }) data: T[] = [];
+
+  @Input({ required: true }) labelKey!: NumericLikeKeys<T>;
+  @Input({ required: true }) valueKey!: NumericLikeKeys<T>;
+
+  @Input({ required: true }) titlePrefix = 'Value';
+  @Input({ required: true }) tooltipBuilder!: LineTooltipBuilder<T>;
 
   chartData: ChartConfiguration['data'] = { labels: [], datasets: [] };
   chartOptions!: ChartOptions<'line'>;
 
+  private groupedItems = new Map<string, T>();
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && this.data) {
       this.chartData = this.getLineChartData(this.data);
-      this.chartOptions = this.getLineChartOptions(this.data);
+      this.chartOptions = this.getLineChartOptions();
     }
   }
 
-  getLineChartData(rawData: TallestBuilding[]): ChartConfiguration['data'] {
+  private getLineChartData(rawData: T[]): ChartConfiguration<'line'>['data'] {
+    this.groupedItems.clear();
+
     const sortedData = [...rawData].sort(
-      (a: TallestBuilding, b: TallestBuilding) =>
-        Number(a.year_completed) - Number(b.year_completed),
+      (a, b) => Number(a[this.labelKey]) - Number(b[this.labelKey]),
     );
-    const map = new Map();
+
+    const map = new Map<string, number>();
 
     sortedData.forEach((item) => {
-      const key = item.year_completed;
+      const label = String(item[this.labelKey]);
+      const value = Number(item[this.valueKey]);
 
-      if (map.has(key)) {
-        const value = map.get(key);
-        const maxHeight = Math.max(Number(item.height_m), value);
-        map.set(key, maxHeight);
-      } else {
-        map.set(key, Number(item.height_m));
+      const existingValue = map.get(label);
+
+      if (existingValue === undefined || value > existingValue) {
+        map.set(label, value);
+        this.groupedItems.set(label, item);
       }
     });
 
-    const labels: string[] = Array.from(map.keys());
-    const data: number[] = Array.from(map.values());
-
     return {
-      labels,
+      labels: Array.from(map.keys()),
       datasets: [
         {
-          data,
+          data: Array.from(map.values()),
         },
       ],
     };
   }
 
-  getLineChartOptions(rawData: TallestBuilding[]): ChartOptions<'line'> {
-    const data = [...rawData];
-
+  getLineChartOptions(): ChartOptions<'line'> {
     return {
       responsive: true,
       plugins: {
@@ -77,17 +91,15 @@ export class LineChartComponent implements OnChanges {
             size: 12,
           },
           callbacks: {
-            title: (context) => `Year: ${context[0].label}`,
+            title: (context: TooltipItem<'line'>[]) => {
+              const label = context[0]?.label ?? '';
+              return `${this.titlePrefix}: ${label}`;
+            },
             label: (context: TooltipItem<'line'>) => {
-              const tallestBldg = data.find(
-                (item) => Number(item.height_m) === Number(context.raw),
-              );
+              const label = context.label;
+              const item = this.groupedItems.get(label);
 
-              return [
-                `Tallest Building: ${tallestBldg?.name}`,
-                `Building Location: ${tallestBldg?.city}, ${tallestBldg?.country}`,
-                `Height: ${context.raw} meters`,
-              ];
+              return this.tooltipBuilder(item, context);
             },
           },
         },

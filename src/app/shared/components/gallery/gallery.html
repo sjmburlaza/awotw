@@ -1,7 +1,7 @@
-@if (category === 'tallest' && data) {
+@if (config.category === 'tallest') {
   <div class="list-title">Gallery of the Tallest Buildings</div>
   <div class="list-tallest">
-    @for (item of data; track item?.name) {
+    @for (item of config.data; track item?.name) {
       <div class="item" fadeInOnScroll slideInOnScroll>
         <div class="item__image">
           <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
@@ -20,10 +20,10 @@
     }
   </div>
 }
-@if (category === 'mostVisited' && data) {
+@if (config.category === 'mostVisited') {
   <div class="list-title">Gallery of the Most Visited Places</div>
   <div class="list-visited">
-    @for (item of data; track item?.name) {
+    @for (item of config.data; track item?.name) {
       <div class="item" fadeInOnScroll slideInOnScroll>
         <div class="item__image">
           <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
