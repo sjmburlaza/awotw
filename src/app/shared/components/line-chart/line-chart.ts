@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
 
@@ -17,6 +17,7 @@ export type LineTooltipBuilder<T> = (item: T | undefined, context: TooltipItem<'
   imports: [ChartComponent],
   templateUrl: './line-chart.html',
   styleUrl: './line-chart.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LineChartComponent<T extends LineChartItemBase> implements OnChanges {
   @Input({ required: true }) data: T[] = [];
@@ -33,7 +34,13 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
   private groupedItems = new Map<string, T>();
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data) {
+    if (
+      changes['data'] ||
+      changes['labelKey'] ||
+      changes['valueKey'] ||
+      changes['titlePrefix'] ||
+      changes['tooltipBuilder']
+    ) {
       this.chartData = this.getLineChartData(this.data);
       this.chartOptions = this.getLineChartOptions();
     }
@@ -70,7 +77,7 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
     };
   }
 
-  getLineChartOptions(): ChartOptions<'line'> {
+  private getLineChartOptions(): ChartOptions<'line'> {
     return {
       responsive: true,
       plugins: {

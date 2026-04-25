@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
 
@@ -18,6 +18,7 @@ export type BarChartTooltipBuilder<T> = (item: T, index: number) => string[];
   imports: [ChartComponent],
   templateUrl: './bar-chart.html',
   styleUrl: './bar-chart.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
   @Input({ required: true }) data: T[] = [];
@@ -28,7 +29,7 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
   chartOptions!: ChartOptions<'bar'>;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data) {
+    if (changes['data'] || changes['key'] || changes['tooltipBuilder']) {
       this.chartData = this.getBarChartData(this.data, this.key);
       this.chartOptions = this.getBarChartOptions(this.data);
     }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions, registerables, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -17,6 +17,7 @@ export type PieTooltipBuilder<T> = (item: T, context: TooltipItem<'pie'>, allDat
   imports: [ChartComponent],
   templateUrl: './pie-chart.html',
   styleUrl: './pie-chart.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PieChartComponent<T> implements OnChanges {
   @Input({ required: true }) data: T[] = [];
@@ -30,7 +31,13 @@ export class PieChartComponent<T> implements OnChanges {
   chartOptions!: ChartOptions<'pie'>;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data) {
+    if (
+      changes['data'] ||
+      changes['key'] ||
+      changes['groupingFn'] ||
+      changes['titlePrefix'] ||
+      changes['tooltipBuilder']
+    ) {
       this.chartData = this.getPieChartData(this.data);
       this.chartOptions = this.getChartOptions(this.data);
     }
@@ -55,7 +62,7 @@ export class PieChartComponent<T> implements OnChanges {
     };
   }
 
-  getChartOptions(rawData: T[]): ChartOptions<'pie'> {
+  private getChartOptions(rawData: T[]): ChartOptions<'pie'> {
     const data = [...rawData];
 
     return {

@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -14,6 +15,7 @@ import { StyleRange } from 'src/app/services/data.service';
   imports: [],
   templateUrl: './timeline-chart-v2.html',
   styleUrl: './timeline-chart-v2.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TimelineChartV2Component implements AfterViewInit {
   @Input() data: StyleRange[] = [];

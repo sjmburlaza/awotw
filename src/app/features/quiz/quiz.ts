@@ -17,7 +17,7 @@ interface QuizModel {
   styleUrl: './quiz.scss',
 })
 export class QuizComponent implements OnInit {
-  private dataService = inject(DataService);
+  private readonly dataService = inject(DataService);
 
   quizzes = [
     {

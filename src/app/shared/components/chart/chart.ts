@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -8,6 +8,7 @@ import { BaseChartDirective } from 'ng2-charts';
   imports: [BaseChartDirective, CommonModule],
   templateUrl: './chart.html',
   styleUrl: './chart.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartComponent implements OnChanges {
   @Input() chartType: ChartType = 'bar';

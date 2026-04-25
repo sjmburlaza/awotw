@@ -31,9 +31,9 @@ enum Mode {
   styleUrl: './home.scss',
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  private dataService = inject(DataService);
-  private router = inject(Router);
-  private loaderService = inject(LoaderService);
+  private readonly dataService = inject(DataService);
+  private readonly router = inject(Router);
+  private readonly loaderService = inject(LoaderService);
 
   @ViewChildren('animatedItem', { read: ElementRef })
   animatedItems!: QueryList<ElementRef<HTMLLIElement>>;
