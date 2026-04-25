@@ -43,16 +43,16 @@
       <div class="chart__bar">
         @if (categoryValue === 'tallest') {
           <app-bar-chart
-            [data]="currentListTallestBuilding"
+            [data]="currentListTallestBuildings"
             key="height_m"
-            [tooltipBuilder]="tallestTooltipBarChart"
+            [tooltipBuilder]="tallestBuildingsBarChartTooltip"
           />
         }
         @if (categoryValue === 'mostVisited') {
           <app-bar-chart
             [data]="currentListMostVisited"
             key="visitors_per_year"
-            [tooltipBuilder]="mostVisitedTooltipBarChart"
+            [tooltipBuilder]="mostVisitedBarChartTooltip"
           />
         }
       </div>
@@ -61,10 +61,10 @@
           <div class="title">Distribution by Country</div>
           @if (categoryValue === 'tallest') {
             <app-pie-chart
-              [data]="currentListTallestBuilding"
+              [data]="currentListTallestBuildings"
               key="country"
               [groupingFn]="groupByCountry"
-              [tooltipBuilder]="tallestTooltipPieChart"
+              [tooltipBuilder]="tallestBuildingsPieChartTooltip"
               [titlePrefix]="'Country'"
             />
           }
@@ -73,7 +73,7 @@
               [data]="currentListMostVisited"
               key="location"
               [groupingFn]="groupByCountryVisited"
-              [tooltipBuilder]="mostVisitedTooltipPieChart"
+              [tooltipBuilder]="mostVisitedPieChartTooltip"
               [titlePrefix]="'Country'"
             />
           }
@@ -82,10 +82,10 @@
           <div class="chart__pie__year">
             <div class="title">Distribution by Year of Completion</div>
             <app-pie-chart
-              [data]="currentListTallestBuilding"
+              [data]="currentListTallestBuildings"
               key="year_completed"
               [groupingFn]="groupByYear"
-              [tooltipBuilder]="tallestTooltipPieChart"
+              [tooltipBuilder]="tallestBuildingsPieChartTooltip"
               [titlePrefix]="'Year'"
             />
           </div>
@@ -103,11 +103,11 @@
         <div class="chart__line">
           <div class="title">Building Height Trends (by Year)</div>
           <app-line-chart
-            [data]="currentListTallestBuilding"
+            [data]="currentListTallestBuildings"
             labelKey="year_completed"
             valueKey="height_m"
             titlePrefix="Year"
-            [tooltipBuilder]="tallestBuildingTooltipLineChart"
+            [tooltipBuilder]="tallestBuildingsLineChartTooltip"
           />
         </div>
       }
@@ -117,7 +117,7 @@
       <app-gallery
         [config]="{
           category: 'tallest',
-          data: currentListTallestBuilding,
+          data: currentListTallestBuildings,
         }"
       />
     }

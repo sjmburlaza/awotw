@@ -11,8 +11,8 @@ import { HighlightPipe } from 'src/app/shared/pipes/highlight-pipe';
   styleUrl: './search.scss',
 })
 export class SearchComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  private dataService = inject(DataService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly dataService = inject(DataService);
 
   searchResults: Item[] = [];
   searchQuery = '';

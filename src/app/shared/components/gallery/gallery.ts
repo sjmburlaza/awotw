@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CompactNumberPipe } from '../../pipes/compact-number-pipe';
 import { FadeInOnScrollDirective } from '../../directives/fade-in-on-scroll.directive';
 import { SlideInOnScrollDirective } from '../../directives/slide-in-on-scroll.directive';
@@ -19,6 +19,7 @@ type GalleryConfig =
   imports: [CompactNumberPipe, FadeInOnScrollDirective, SlideInOnScrollDirective],
   templateUrl: './gallery.html',
   styleUrl: './gallery.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent {
   @Input({ required: true }) config!: GalleryConfig;

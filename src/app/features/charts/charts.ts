@@ -42,16 +42,16 @@ export class ChartsComponent implements OnInit {
   isLoading = true;
   selectionForm!: FormGroup;
 
-  tallestRawData: TallestBuilding[] = [];
+  tallestBuildingsRawData: TallestBuilding[] = [];
   mostVisitedRawData: MostVisited[] = [];
 
-  currentListTallestBuilding: TallestBuilding[] = [];
+  currentListTallestBuildings: TallestBuilding[] = [];
   currentListMostVisited: MostVisited[] = [];
 
   tallestBuildingsChoropleth: Record<string, number> = {};
   mostVisitedChoropleth: Record<string, number> = {};
 
-  tallestTooltipBarChart = (item: TallestBuilding, index: number): string[] => {
+  tallestBuildingsBarChartTooltip = (item: TallestBuilding, index: number): string[] => {
     const rank = ordinalSuffix(index + 1);
 
     return [
@@ -62,7 +62,7 @@ export class ChartsComponent implements OnInit {
     ];
   };
 
-  mostVisitedTooltipBarChart = (item: MostVisited, index: number): string[] => {
+  mostVisitedBarChartTooltip = (item: MostVisited, index: number): string[] => {
     const rank = ordinalSuffix(index + 1);
 
     const visitors = new Intl.NumberFormat('en-US', {
@@ -81,11 +81,11 @@ export class ChartsComponent implements OnInit {
   groupByYear = (item: TallestBuilding) => item.year_completed;
   groupByCountryVisited = (item: MostVisited) => item.location.split(', ').at(-1) ?? '';
 
-  tallestTooltipPieChart = (
+  tallestBuildingsPieChartTooltip = (
     item: TallestBuilding,
     context: TooltipItem<'pie'>,
     allData: TallestBuilding[],
-  ) => {
+  ): string[] => {
     const filtered = allData.filter(
       (i) => i.country === context.label || i.year_completed === context.label,
     );
@@ -93,17 +93,17 @@ export class ChartsComponent implements OnInit {
     return [`Count: ${context.raw}`, 'Building(s):', ...filtered.map((i) => i.name)];
   };
 
-  mostVisitedTooltipPieChart = (
+  mostVisitedPieChartTooltip = (
     item: MostVisited,
     context: TooltipItem<'pie'>,
     allData: MostVisited[],
-  ) => {
+  ): string[] => {
     const filtered = allData.filter((i) => i.location.split(', ').at(-1) === context.label);
 
     return [`Count: ${context.raw}`, 'Places:', ...filtered.map((i) => i.name)];
   };
 
-  tallestBuildingTooltipLineChart = (
+  tallestBuildingsLineChartTooltip = (
     item: TallestBuilding | undefined,
     context: TooltipItem<'line'>,
   ): string[] => {
@@ -134,7 +134,9 @@ export class ChartsComponent implements OnInit {
       .pipe(take(1))
       .subscribe({
         next: (res) => {
-          this.tallestRawData = [...res].sort((a, b) => Number(b.height_m) - Number(a.height_m));
+          this.tallestBuildingsRawData = [...res].sort(
+            (a, b) => Number(b.height_m) - Number(a.height_m),
+          );
           this.updateDisplayedData();
           this.isLoading = false;
         },
@@ -159,10 +161,10 @@ export class ChartsComponent implements OnInit {
   updateDisplayedData(): void {
     const limit = Number(this.rankingValue);
 
-    this.currentListTallestBuilding = this.tallestRawData.slice(0, limit);
+    this.currentListTallestBuildings = this.tallestBuildingsRawData.slice(0, limit);
     this.currentListMostVisited = this.mostVisitedRawData.slice(0, limit);
 
-    this.tallestBuildingsChoropleth = this.getChoroplethData(this.currentListTallestBuilding);
+    this.tallestBuildingsChoropleth = this.getChoroplethData(this.currentListTallestBuildings);
     this.mostVisitedChoropleth = this.getChoroplethData(this.currentListMostVisited);
   }
 

@@ -14,9 +14,9 @@ import { LoaderService } from 'src/app/services/loader-service';
   styleUrl: './header.scss',
 })
 export class HeaderComponent implements OnInit {
-  private router = inject(Router);
-  private loaderService = inject(LoaderService);
-  private destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
+  private readonly loaderService = inject(LoaderService);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly URL_PATH = URL_PATH;
   currentUrl = URL_PATH.HOME;
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
+      .subscribe((event) => {
         this.currentUrl = event.urlAfterRedirects;
         if (this.currentUrl === URL_PATH.HOME) {
           this.zoomInText = true;
