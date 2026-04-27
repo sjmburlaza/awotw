@@ -1,8 +1,9 @@
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import Globe from 'globe.gl';
-import { take } from 'rxjs';
+import Globe, { GlobeInstance } from 'globe.gl';
+import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
+import { LoaderComponent } from 'src/app/shared/components/loader/loader';
 
 type WonderMarker = Item & {
   latNum: number;
@@ -11,9 +12,9 @@ type WonderMarker = Item & {
 
 @Component({
   selector: 'app-globe',
-  imports: [RouterModule],
+  imports: [RouterModule, LoaderComponent],
   templateUrl: './globe.html',
-  styleUrl: './globe.scss'
+  styleUrl: './globe.scss',
 })
 export class GlobeComponent implements AfterViewInit, OnDestroy {
   private readonly dataService = inject(DataService);
@@ -21,10 +22,10 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('globeContainer', { static: true })
   globeContainer!: ElementRef<HTMLDivElement>;
 
-  selectedWonder: WonderMarker | null = null;
+  private globe!: GlobeInstance;
+  isLoading = true;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private globe: any;
+  selectedWonder: WonderMarker | null = null;
 
   ngAfterViewInit(): void {
     this.initGlobe();
@@ -32,7 +33,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.globeContainer.nativeElement.innerHTML = ''; 
+    this.globeContainer.nativeElement.innerHTML = '';
   }
 
   private initGlobe(): void {
@@ -42,30 +43,37 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       .htmlElementsData([])
       .htmlLat('latNum')
       .htmlLng('lonNum')
-      .htmlElement((d: object) => this.createMarkerElement(d as WonderMarker));
-
-    this.globe.pointOfView(
-      { lat: 40, lng: 0, altitude: 1.5 },
-      1000
-    );
+      .htmlElement((d: object) => this.createMarkerElement(d as WonderMarker))
+      .onGlobeReady(() => (this.isLoading = false))
+      .pointOfView({ lat: 40, lng: 0, altitude: 1.5 }, 1000);
   }
 
-   private loadWonders(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((wonders: Item[]) => {
-      const validWonders: WonderMarker[] = wonders
-        .filter((wonder) => wonder.lat && wonder.lon)
-        .map((wonder) => ({
-          ...wonder,
-          latNum: Number(wonder.lat),
-          lonNum: Number(wonder.lon),
-        }))
-        .filter(
-          (wonder) =>
-            !Number.isNaN(wonder.latNum) && !Number.isNaN(wonder.lonNum)
-        );
-
-      this.globe.htmlElementsData(validWonders);
-    });
+  private loadWonders(): void {
+    this.dataService
+      .getWonders()
+      .pipe(
+        take(1),
+        map((wonders) =>
+          wonders
+            .filter((wonder) => wonder.lat && wonder.lon)
+            .map(
+              (wonder): WonderMarker => ({
+                ...wonder,
+                latNum: Number(wonder.lat),
+                lonNum: Number(wonder.lon),
+              }),
+            )
+            .filter((wonder) => !Number.isNaN(wonder.latNum) && !Number.isNaN(wonder.lonNum)),
+        ),
+        tap((validWonders) => {
+          this.globe.htmlElementsData(validWonders);
+        }),
+        catchError((error) => {
+          console.error('Failed to load wonders:', error);
+          return EMPTY;
+        }),
+      )
+      .subscribe();
   }
 
   private createMarkerElement(wonder: WonderMarker): HTMLElement {
@@ -95,7 +103,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
           lng: wonder.lonNum,
           altitude: 0.5,
         },
-        1200
+        1200,
       );
     });
 
