@@ -1,28 +1,27 @@
-<div class="globe-wrapper">
-    <div #globeContainer class="globe-container"></div>
+@if (isLoading) {
+  <div class="loader">
+    <app-loader></app-loader>
+  </div>
+}
+<div class="globe-wrapper" [class.hidden]="isLoading">
+  <div #globeContainer class="globe-container"></div>
 
-    @if (selectedWonder) {
-        <div class="popup-card">
-            <button class="close-btn" (click)="selectedWonder = null">x</button>
-            <strong>{{ selectedWonder.name }}</strong>
-            <div><em>{{ selectedWonder.location }}</em></div>
-            <img
-                [src]="selectedWonder.imageURL"
-                [alt]="selectedWonder.name"
-                width="180"
-            />
-            <div>
-            <a
-                [href]="selectedWonder.descriptionURL"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Learn more
-            </a>
-            </div>
-        </div>
-    }
+  @if (selectedWonder) {
+    <div class="popup-card">
+      <button class="close-btn" (click)="selectedWonder = null">x</button>
+      <strong>{{ selectedWonder.name }}</strong>
+      <div>
+        <em>{{ selectedWonder.location }}</em>
+      </div>
+      <img [src]="selectedWonder.imageURL" [alt]="selectedWonder.name" width="180" />
+      <div>
+        <a [href]="selectedWonder.descriptionURL" target="_blank" rel="noopener noreferrer">
+          Learn more
+        </a>
+      </div>
+    </div>
+  }
 </div>
-<div class="navigator">
-    <a routerLink="/map">Switch to 2d map</a>
+<div class="navigator" [class.hidden]="isLoading">
+  <a routerLink="/map">Switch to 2d map</a>
 </div>
