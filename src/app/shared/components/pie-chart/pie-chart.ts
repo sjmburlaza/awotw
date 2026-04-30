@@ -82,6 +82,7 @@ export class PieChartComponent<T> implements OnChanges {
           },
           labels: {
             padding: 8,
+            boxWidth: 16,
             font: {
               family: 'Barlow',
               size: 14,
