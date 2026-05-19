@@ -1,1 +1,5 @@
-<p>back-to-top works!</p>
+@if (isVisible) {
+  <button type="button" class="back-to-top" aria-label="Back to top" (click)="scrollToTop()">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+}

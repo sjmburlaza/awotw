@@ -122,6 +122,38 @@ export class TimelineChartV2Component implements AfterViewInit {
       .append('g')
       .attr('class', 'timeline-row');
 
+    // Cursor guide line
+    const cursorLine = this.svg
+      .append('line')
+      .attr('class', 'cursor-line')
+      .attr('y1', margin.top)
+      .attr('y2', margin.top + chartHeight)
+      .attr('stroke', '#9ca3af')
+      .attr('stroke-width', 1)
+      .style('pointer-events', 'none')
+      .style('opacity', 0);
+
+    this.svg
+      .append('rect')
+      .attr('x', margin.left)
+      .attr('y', margin.top)
+      .attr('width', chartWidth)
+      .attr('height', chartHeight)
+      .attr('fill', 'transparent')
+      .style('pointer-events', 'all')
+      .lower()
+      .on('mousemove', (event) => {
+        const [x] = d3.pointer(event, this.svg.node());
+
+        cursorLine.attr('x1', x).attr('x2', x).style('opacity', 1);
+
+        this.moveTooltip(event);
+      })
+      .on('mouseleave', () => {
+        cursorLine.style('opacity', 0);
+        this.tooltip.style('opacity', 0);
+      });
+
     rowGroups
       .append('rect')
       .attr('x', (d) => xScale(d.startYear))
@@ -148,6 +180,10 @@ export class TimelineChartV2Component implements AfterViewInit {
       })
       .on('mousemove', (event) => {
         this.moveTooltip(event);
+
+        const [x] = d3.pointer(event, this.svg.node());
+
+        cursorLine.attr('x1', x).attr('x2', x).style('opacity', 1);
       })
       .on('mouseleave', (event, d) => {
         d3.select(event.currentTarget as SVGRectElement)
@@ -156,6 +192,8 @@ export class TimelineChartV2Component implements AfterViewInit {
           .attr('fill', d.color);
 
         this.tooltip.style('opacity', '0');
+
+        cursorLine.style('opacity', 0);
       });
 
     rowGroups.each((d, i, nodes) => {

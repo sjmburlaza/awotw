@@ -21,6 +21,7 @@
             (load)="loading = false"
             (error)="loading = false"
             [hidden]="loading"
+            [alt]="item?.name"
           />
         </div>
         @if (!loading) {

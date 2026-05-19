@@ -16,7 +16,7 @@
         @for (item of group.items; track item.name) {
           <div class="item">
             <div class="item__image">
-              <img [src]="item.imageURL" [alt]="item.name" />
+              <img [src]="item.imageURL" loading="lazy" decoding="async" [alt]="item.name" />
             </div>
             <div class="item__label">
               {{ item.name }}

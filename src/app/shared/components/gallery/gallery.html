@@ -4,7 +4,7 @@
     @for (item of config.data; track item?.name) {
       <div class="item" fadeInOnScroll slideInOnScroll>
         <div class="item__image">
-          <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
+          <img [src]="item.image_url" loading="lazy" decoding="async" [alt]="item.name" />
         </div>
         <div class="item__desc">
           <div class="item__desc__rank">
@@ -26,7 +26,7 @@
     @for (item of config.data; track item?.name) {
       <div class="item" fadeInOnScroll slideInOnScroll>
         <div class="item__image">
-          <img [src]="item.image_url" [alt]="item.name" loading="lazy" />
+          <img [src]="item.image_url" [alt]="item.name" loading="lazy" decoding="async" />
         </div>
         <div class="item__desc">
           <div class="item__desc__rank">
