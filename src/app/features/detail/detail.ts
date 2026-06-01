@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { combineLatest, take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
@@ -14,48 +15,80 @@ export class DetailComponent implements OnInit {
   private readonly dataService = inject(DataService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly URL_PATH = URL_PATH;
   details: Item | undefined;
   loading = true;
   currentDetailId: number | undefined;
+  currentDetailIndex = -1;
   wondersData: Item[] = [];
+  errorMessage = '';
 
   ngOnInit(): void {
-    this.currentDetailId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.dataService
-      .getWonders()
-      .pipe(take(1))
+    combineLatest({
+      wonders: this.dataService.getWonders().pipe(take(1)),
+      params: this.route.paramMap,
+    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (res: Item[]) => {
-          this.wondersData = res;
-          if (this.currentDetailId) {
-            this.getDetails(this.currentDetailId, res);
+        next: ({ wonders, params }) => {
+          this.wondersData = wonders;
+          const id = this.parseDetailId(params.get('id'));
+
+          if (id === null) {
+            this.showError('This wonder link is invalid.');
+            return;
           }
+
+          this.getDetails(id, wonders);
         },
-        error: (err) => console.error(err),
+        error: () => {
+          this.wondersData = [];
+          this.showError('Unable to load this wonder.');
+        },
       });
   }
 
+  private parseDetailId(rawId: string | null): number | null {
+    const id = Number(rawId);
+    return Number.isInteger(id) && id > 0 ? id : null;
+  }
+
+  private showError(message: string): void {
+    this.errorMessage = message;
+    this.details = undefined;
+    this.currentDetailId = undefined;
+    this.currentDetailIndex = -1;
+    this.loading = false;
+  }
+
   getDetails(id: number, data: Item[]): void {
-    this.details = data.find((d: Item) => d.id === id);
+    const detailIndex = data.findIndex((d: Item) => d.id === id);
+
+    if (detailIndex === -1) {
+      this.showError('Wonder not found.');
+      return;
+    }
+
+    this.errorMessage = '';
+    this.currentDetailId = id;
+    this.currentDetailIndex = detailIndex;
+    this.details = data[detailIndex];
+    this.loading = true;
   }
 
   goBack(): void {
-    if (this.currentDetailId) {
-      this.currentDetailId--;
-      this.router.navigate([URL_PATH.DETAIL + '/' + this.currentDetailId]);
-      this.loading = true;
-      this.getDetails(this.currentDetailId, this.wondersData);
+    if (this.currentDetailIndex > 0) {
+      const previous = this.wondersData[this.currentDetailIndex - 1];
+      this.router.navigate([`${URL_PATH.DETAIL}/${previous.id}`]);
     }
   }
 
   goNext(): void {
-    if (this.currentDetailId) {
-      this.currentDetailId++;
-      this.router.navigate([URL_PATH.DETAIL + '/' + this.currentDetailId]);
-      this.loading = true;
-      this.getDetails(this.currentDetailId, this.wondersData);
+    if (this.currentDetailIndex >= 0 && this.currentDetailIndex < this.wondersData.length - 1) {
+      const next = this.wondersData[this.currentDetailIndex + 1];
+      this.router.navigate([`${URL_PATH.DETAIL}/${next.id}`]);
     }
   }
 }

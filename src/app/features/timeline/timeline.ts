@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DataService, Group, StyleRange } from 'src/app/services/data.service';
@@ -19,26 +20,38 @@ export class TimelineComponent implements OnInit {
   private readonly dataService = inject(DataService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly scrollService = inject(ScrollService);
+  private readonly destroyRef = inject(DestroyRef);
   styles: StyleRange[] = [];
 
   groups: Group[] = [];
   loading = true;
+  errorMessage = '';
 
   ngOnInit(): void {
     forkJoin({
       wonders: this.dataService.getWonders(),
-      styles: this.dataService.getStylesTimeline()
-    }).subscribe({
-      next: (result) => {
-        this.groups = groupByYearBuilt(result.wonders);
-        this.styles = result.styles;
-        this.loading = false;
-      },
-      error: (err) => console.error(err)
-    });
-    
-    this.activatedRoute.fragment.subscribe((fragment: string | null) => {
-      if (fragment) this.scrollService.scrollToFragment(fragment);
-    });
+      styles: this.dataService.getStylesTimeline(),
+    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (result) => {
+          this.groups = groupByYearBuilt(result.wonders);
+          this.styles = result.styles;
+          this.errorMessage = '';
+          this.loading = false;
+        },
+        error: () => {
+          this.groups = [];
+          this.styles = [];
+          this.errorMessage = 'Unable to load timeline data.';
+          this.loading = false;
+        },
+      });
+
+    this.activatedRoute.fragment
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((fragment: string | null) => {
+        if (fragment) this.scrollService.scrollToFragment(fragment);
+      });
   }
 }

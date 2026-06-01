@@ -3,6 +3,10 @@
     <div class="loader">
       <app-loader></app-loader>
     </div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (!groups.length) {
+    <div class="state-message">No wonders available.</div>
   } @else {
     <div class="content">
       @for (group of groups; track group.groupName) {
@@ -14,12 +18,21 @@
                 class="item"
                 [ngStyle]="getDynamicStyle(item)"
                 (click)="goToDetailPage(item.id)"
+                tabindex="0"
+                (keydown.enter)="goToDetailPage(item.id)"
+                (keydown.space)="$event.preventDefault(); goToDetailPage(item.id)"
               >
                 {{ item.codename }}
               </div>
             }
           </div>
-          <div class="group__name" (click)="goToSection(group.groupName)">
+          <div
+            class="group__name"
+            (click)="goToSection(group.groupName)"
+            tabindex="0"
+            (keydown.enter)="goToSection(group.groupName)"
+            (keydown.space)="$event.preventDefault(); goToSection(group.groupName)"
+          >
             {{ group.groupName }}
           </div>
         </div>

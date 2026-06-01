@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TooltipItem } from 'chart.js';
-import { take } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart';
 import { GalleryComponent } from 'src/app/shared/components/gallery/gallery';
@@ -28,6 +29,7 @@ import { ordinalSuffix } from 'src/app/shared/utils-helper';
 export class ChartsComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly dataService = inject(DataService);
+  private readonly destroyRef = inject(DestroyRef);
 
   categories = [
     { name: 'Tallest Buildings', code: 'tallest' },
@@ -50,6 +52,7 @@ export class ChartsComponent implements OnInit {
 
   tallestBuildingsChoropleth: Record<string, number> = {};
   mostVisitedChoropleth: Record<string, number> = {};
+  errorMessage = '';
 
   tallestBuildingsBarChartTooltip = (item: TallestBuilding, index: number): string[] => {
     const rank = ordinalSuffix(index + 1);
@@ -120,41 +123,42 @@ export class ChartsComponent implements OnInit {
       ranking: ['20', Validators.required],
     });
 
-    this.selectionForm.valueChanges.subscribe(() => {
-      this.updateDisplayedData();
-    });
+    this.selectionForm.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.updateDisplayedData();
+      });
 
-    this.initTallestBuildings();
-    this.initMostVisited();
+    this.initChartData();
   }
 
-  initTallestBuildings(): void {
-    this.dataService
-      .getTallestBuildings()
-      .pipe(take(1))
+  initChartData(): void {
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    forkJoin({
+      tallestBuildings: this.dataService.getTallestBuildings().pipe(take(1)),
+      mostVisited: this.dataService.getMostVisited().pipe(take(1)),
+    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (res) => {
-          this.tallestBuildingsRawData = [...res].sort(
+        next: ({ tallestBuildings, mostVisited }) => {
+          this.tallestBuildingsRawData = [...tallestBuildings].sort(
             (a, b) => Number(b.height_m) - Number(a.height_m),
+          );
+          this.mostVisitedRawData = [...mostVisited].sort(
+            (a, b) => Number(b.visitors_per_year) - Number(a.visitors_per_year),
           );
           this.updateDisplayedData();
           this.isLoading = false;
         },
-        error: (err) => console.error(err),
-      });
-  }
-
-  initMostVisited(): void {
-    this.dataService
-      .getMostVisited()
-      .pipe(take(1))
-      .subscribe({
-        next: (res) => {
-          this.mostVisitedRawData = [...res].sort(
-            (a, b) => Number(b.visitors_per_year) - Number(a.visitors_per_year),
-          );
+        error: () => {
+          this.tallestBuildingsRawData = [];
+          this.mostVisitedRawData = [];
+          this.updateDisplayedData();
+          this.errorMessage = 'Unable to load chart data.';
+          this.isLoading = false;
         },
-        error: (err) => console.error(err),
       });
   }
 
@@ -197,5 +201,11 @@ export class ChartsComponent implements OnInit {
 
   get rankingValue() {
     return this.selectionForm.get('ranking')?.value;
+  }
+
+  get hasCurrentData(): boolean {
+    return this.categoryValue === 'tallest'
+      ? this.currentListTallestBuildings.length > 0
+      : this.currentListMostVisited.length > 0;
   }
 }

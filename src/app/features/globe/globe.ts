@@ -24,6 +24,8 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
   private globe!: GlobeInstance;
   isLoading = true;
+  errorMessage = '';
+  hasMarkers = true;
 
   selectedWonder: WonderMarker | null = null;
 
@@ -66,10 +68,14 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
             .filter((wonder) => !Number.isNaN(wonder.latNum) && !Number.isNaN(wonder.lonNum)),
         ),
         tap((validWonders) => {
+          this.errorMessage = '';
+          this.hasMarkers = validWonders.length > 0;
           this.globe.htmlElementsData(validWonders);
         }),
-        catchError((error) => {
-          console.error('Failed to load wonders:', error);
+        catchError(() => {
+          this.errorMessage = 'Unable to load globe markers.';
+          this.hasMarkers = false;
+          this.isLoading = false;
           return EMPTY;
         }),
       )

@@ -38,6 +38,10 @@
 
   @if (isLoading) {
     <div class="loader"></div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (!hasCurrentData) {
+    <div class="state-message">No chart data available for this selection.</div>
   } @else {
     <div class="chart">
       <div class="chart__bar">

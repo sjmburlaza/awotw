@@ -6,6 +6,12 @@
 <div class="globe-wrapper" [class.hidden]="isLoading">
   <div #globeContainer class="globe-container"></div>
 
+  @if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (!hasMarkers) {
+    <div class="state-message">No globe markers available.</div>
+  }
+
   @if (selectedWonder) {
     <div class="popup-card">
       <button class="close-btn" (click)="selectedWonder = null">x</button>

@@ -3,6 +3,10 @@
     <div class="loader">
       <app-loader></app-loader>
     </div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (!groups.length) {
+    <div class="state-message">No timeline entries available.</div>
   } @else {
     <div class="title">
       Architecture through the millennia…

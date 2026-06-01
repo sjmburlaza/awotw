@@ -1,5 +1,8 @@
 <div class="map-wrapper">
   <div class="title">Distribution by country in map view</div>
+  @if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  }
   <div class="legend">
     <div class="legend-title">Min-Max Scale</div>
     @for (item of legend; track item.label) {

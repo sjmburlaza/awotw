@@ -66,17 +66,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
   data: Item[] = [];
   groups: Group[] = [];
   isLoading = true;
+  errorMessage = '';
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);
     this.dataService
       .getWonders()
       .pipe(take(1))
-      .subscribe((res: Item[]) => {
-        this.data = res;
-        this.groups = groupByAttribute(this.data, 'style');
-        this.isLoading = false;
-        this.loaderService.setLoading(false);
+      .subscribe({
+        next: (res: Item[]) => {
+          this.data = res;
+          this.groups = groupByAttribute(this.data, 'style');
+          this.errorMessage = '';
+          this.isLoading = false;
+          this.loaderService.setLoading(false);
+        },
+        error: () => {
+          this.data = [];
+          this.groups = [];
+          this.errorMessage = 'Unable to load wonders.';
+          this.isLoading = false;
+          this.loaderService.setLoading(false);
+        },
       });
   }
 

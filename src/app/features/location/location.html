@@ -1,5 +1,7 @@
 @let groups = groups$ | async;
 
 @if (groups) {
-  <app-grouping [groups]="groups" [title]="title"> </app-grouping>
+  <app-grouping [groups]="groups" [title]="title" [errorMessage]="errorMessage"> </app-grouping>
+} @else {
+  <div class="state-message">Loading groups...</div>
 }
