@@ -4,6 +4,11 @@
     <i class="bi bi-pin-map"></i>
   </div>
   <div id="map"></div>
+  @if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (!hasMarkers) {
+    <div class="state-message">No map markers available.</div>
+  }
   <div class="navigator">
     <a routerLink="/globe">Switch to globe</a>
   </div>

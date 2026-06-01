@@ -1,5 +1,9 @@
 <div class="quiz-container">
-  @if (selectedQuiz?.code) {
+  @if (dataLoadError) {
+    <div class="state-message error-message">{{ dataLoadError }}</div>
+  } @else if (isDataLoading) {
+    <div class="state-message">Loading quiz data...</div>
+  } @else if (selectedQuiz?.code) {
     <div class="quiz-selected">
       <div class="header">
         <div class="header__title">{{ selectedQuiz?.title }}</div>

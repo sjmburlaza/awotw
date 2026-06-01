@@ -16,6 +16,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
 
   private map!: L.Map;
   private countriesLayer?: L.GeoJSON;
+  errorMessage = '';
 
   legend = [
     { label: '0%', color: '#f3f4f6' },
@@ -65,6 +66,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
       .pipe(take(1))
       .subscribe({
         next: (geoJson) => {
+          this.errorMessage = '';
           this.countriesLayer = L.geoJSON(geoJson as GeoJSON.FeatureCollection, {
             style: (feature) => this.countryStyle(feature),
             onEachFeature: (feature, layer) => {
@@ -72,8 +74,8 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
             },
           }).addTo(this.map);
         },
-        error: (error) => {
-          console.error('Failed to load countries GeoJSON:', error);
+        error: () => {
+          this.errorMessage = 'Unable to load country map data.';
         },
       });
   }

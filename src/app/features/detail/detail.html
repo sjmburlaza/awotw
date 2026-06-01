@@ -1,7 +1,9 @@
 <div class="container">
-  @if (details && currentDetailId) {
+  @if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (details && currentDetailId) {
     <div class="back-btn control-btn">
-      @if (currentDetailId > 1) {
+      @if (currentDetailIndex > 0) {
         <button (click)="goBack()">
           <i class="bi bi-arrow-left-circle"></i>
         </button>
@@ -45,11 +47,13 @@
       }
     </div>
     <div class="next-btn control-btn">
-      @if (currentDetailId < wondersData.length) {
+      @if (currentDetailIndex < wondersData.length - 1) {
         <button (click)="goNext()">
           <i class="bi bi-arrow-right-circle"></i>
         </button>
       }
     </div>
+  } @else {
+    <div class="state-message">Loading wonder...</div>
   }
 </div>

@@ -12,4 +12,5 @@ import { TooltipDirective } from '../tooltip/tooltip.directive';
 export class GroupingComponent {
   @Input({ required: true }) groups!: Group[];
   @Input({ required: true }) title = '';
+  @Input() errorMessage = '';
 }

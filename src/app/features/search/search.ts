@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
@@ -13,9 +14,12 @@ import { HighlightPipe } from 'src/app/shared/pipes/highlight-pipe';
 export class SearchComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly dataService = inject(DataService);
+  private readonly destroyRef = inject(DestroyRef);
 
   searchResults: Item[] = [];
   searchQuery = '';
+  errorMessage = '';
+  emptyMessage = 'Enter a search term to find a wonder.';
 
   ngOnInit(): void {
     this.dataService
@@ -23,16 +27,33 @@ export class SearchComponent implements OnInit {
       .pipe(
         take(1),
         switchMap((res) =>
-          this.route.queryParams.pipe(map((params) => ({ res, query: params['q'] }))),
+          this.route.queryParamMap.pipe(
+            map((params) => ({ res, query: params.get('q')?.trim() ?? '' })),
+          ),
         ),
+        takeUntilDestroyed(this.destroyRef),
       )
-      .subscribe(({ res, query }) => {
-        this.searchQuery = query;
-        this.performSearch(res, this.searchQuery);
+      .subscribe({
+        next: ({ res, query }) => {
+          this.errorMessage = '';
+          this.searchQuery = query;
+          this.performSearch(res, this.searchQuery);
+        },
+        error: () => {
+          this.searchResults = [];
+          this.errorMessage = 'Unable to load wonders for search.';
+          this.emptyMessage = '';
+        },
       });
   }
 
   performSearch(data: Item[], query: string): void {
+    if (!query) {
+      this.searchResults = [];
+      this.emptyMessage = 'Enter a search term to find a wonder.';
+      return;
+    }
+
     const q = query.toLowerCase();
 
     this.searchResults = [...data]
@@ -49,5 +70,7 @@ export class SearchComponent implements OnInit {
 
         return score(bName) - score(aName);
       });
+
+    this.emptyMessage = this.searchResults.length ? '' : `No wonders found for "${query}".`;
   }
 }

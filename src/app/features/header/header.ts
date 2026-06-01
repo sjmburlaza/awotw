@@ -28,7 +28,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe((event) => {
         this.currentUrl = event.urlAfterRedirects;
         if (this.currentUrl === URL_PATH.HOME) {
@@ -47,8 +50,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(): void {
-    if (this.searchQuery) {
-      this.router.navigate([URL_PATH.SEARCH], { queryParams: { q: this.searchQuery } });
+    const query = this.searchQuery.trim();
+
+    if (query) {
+      this.router.navigate([URL_PATH.SEARCH], { queryParams: { q: query } });
     } else {
       this.router.navigate([URL_PATH.HOME]);
     }

@@ -57,20 +57,41 @@ export class QuizComponent implements OnInit {
   currentScore = 0;
   currentCount = 0;
   disableSeeAnswerBtn = true;
+  isDataLoading = true;
+  dataLoadError = '';
 
   ngOnInit() {
     this.dataService
       .getWonders()
       .pipe(take(1))
-      .subscribe((res: Item[]) => (this.data = res));
+      .subscribe({
+        next: (res: Item[]) => {
+          this.data = res;
+          this.dataLoadError = res.length ? '' : 'No quiz data available.';
+          this.isDataLoading = false;
+        },
+        error: () => {
+          this.data = [];
+          this.dataLoadError = 'Unable to load quiz data.';
+          this.isDataLoading = false;
+        },
+      });
   }
 
   onSelectQuiz(quiz: QuizModel): void {
+    if (!this.data.length) return;
+
     this.selectedQuiz = quiz;
     this.generateQuiz(this.selectedQuiz?.code as keyof Item);
   }
 
   generateQuiz(quizType: keyof Item): void {
+    if (!this.data.length) {
+      this.loading = false;
+      this.dataLoadError = 'No quiz data available.';
+      return;
+    }
+
     this.loading = true;
     const itemIdx = this.generateRandomNum(this.data.length);
     this.item = this.data[itemIdx];
@@ -82,17 +103,22 @@ export class QuizComponent implements OnInit {
   }
 
   generateOptions(item: Item, quizType: keyof Item): string[] {
-    const options = [] as string[];
-    this.correctAnswer = item[quizType] as string;
-    options.push(this.correctAnswer);
+    const correctAnswer = String(item[quizType] ?? '');
+    const options = [correctAnswer];
+    const optionPool = Array.from(
+      new Set(
+        this.data
+          .map((dataItem) => String(dataItem[quizType] ?? ''))
+          .filter((option) => option && option !== correctAnswer),
+      ),
+    );
 
-    while (options.length < 5) {
-      const idx = this.generateRandomNum(this.data.length);
-      const item = this.data[idx];
-      const option = item[quizType] as string;
-      if (!options.includes(option)) {
-        options.push(option);
-      }
+    this.correctAnswer = correctAnswer;
+
+    while (options.length < 5 && optionPool.length) {
+      const idx = this.generateRandomNum(optionPool.length);
+      const [option] = optionPool.splice(idx, 1);
+      options.push(option);
     }
 
     const shuffledOptions = this.shuffleArray([...options]);

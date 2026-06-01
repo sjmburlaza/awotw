@@ -14,6 +14,8 @@ export class MapComponent implements AfterViewInit {
   private readonly dataService = inject(DataService);
 
   private map!: L.Map;
+  errorMessage = '';
+  hasMarkers = true;
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -39,22 +41,37 @@ export class MapComponent implements AfterViewInit {
   }
 
   private loadWonders(): void {
-    this.dataService.getWonders().pipe(take(1)).subscribe((wonders: Item[]) => {
-      wonders.forEach((wonder) => {
-        if (!wonder.lat || !wonder.lon) return;
+    this.dataService
+      .getWonders()
+      .pipe(take(1))
+      .subscribe({
+        next: (wonders: Item[]) => {
+          let markerCount = 0;
 
-        const marker = L.marker([+wonder.lat, +wonder.lon], {
-          icon: this.createColoredIcon(wonder.color),
-        }).addTo(this.map);
+          wonders.forEach((wonder) => {
+            if (!wonder.lat || !wonder.lon) return;
 
-        marker.bindPopup(`
-          <strong>${wonder.name}</strong><br>
-          <em>${wonder.location}</em><br>
-          <img src="${wonder.imageURL}" width="150" /><br>
-          <a href="${wonder.descriptionURL}" target="_blank">Learn more</a>
-        `);
+            const marker = L.marker([+wonder.lat, +wonder.lon], {
+              icon: this.createColoredIcon(wonder.color),
+            }).addTo(this.map);
+
+            marker.bindPopup(`
+              <strong>${wonder.name}</strong><br>
+              <em>${wonder.location}</em><br>
+              <img src="${wonder.imageURL}" width="150" /><br>
+              <a href="${wonder.descriptionURL}" target="_blank">Learn more</a>
+            `);
+            markerCount++;
+          });
+
+          this.errorMessage = '';
+          this.hasMarkers = markerCount > 0;
+        },
+        error: () => {
+          this.errorMessage = 'Unable to load map markers.';
+          this.hasMarkers = false;
+        },
       });
-    });
   }
 
   private createColoredIcon(color: string): L.DivIcon {
