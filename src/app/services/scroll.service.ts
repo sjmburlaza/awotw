@@ -4,20 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ScrollService {
-  scrollToFragment(fragment: string, offset = 100): void {
-    let attempts = 0;
-    const maxAttempts = 20;
+  scrollToFragment(fragment: string, offset = 100, timeoutMs = 2000): void {
+    const pollIntervalMs = 100;
+    const timeoutAt = Date.now() + timeoutMs;
 
     const interval = setInterval(() => {
-      attempts++;
       const el = document.getElementById(fragment);
       if (el) {
         const y = el.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({ top: y, behavior: 'smooth' });
         clearInterval(interval);
-      } else if (attempts >= maxAttempts) {
+      } else if (Date.now() >= timeoutAt) {
         clearInterval(interval);
       }
-    }, 100);
+    }, pollIntervalMs);
   }
 }
