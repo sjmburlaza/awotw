@@ -13,16 +13,9 @@ import { Router } from '@angular/router';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
 import { DataService, Group, Item } from 'src/app/services/data.service';
 import { LoaderService } from 'src/app/services/loader-service';
-import { groupByAttribute, groupByYearBuilt, sortAlphabetical } from 'src/app/shared/utils-helper';
+import { SortMode } from 'src/app/shared/constants/sort-mode.const';
+import { groupWondersBySortMode } from 'src/app/shared/utils-helper';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
-
-enum Mode {
-  ALPHABETICAL = 'ALPHABETICAL',
-  CHRONOLOGICAL = 'CHRONOLOGICAL',
-  LOCATION = 'LOCATION',
-  PROGRAMMATIC = 'PROGRAMMATIC',
-  STYLE = 'STYLE',
-}
 
 @Component({
   selector: 'app-home',
@@ -43,23 +36,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   sortModes = [
     {
-      name: Mode.ALPHABETICAL,
+      name: SortMode.ALPHABETICAL,
       isSelected: false,
     },
     {
-      name: Mode.CHRONOLOGICAL,
+      name: SortMode.CHRONOLOGICAL,
       isSelected: false,
     },
     {
-      name: Mode.LOCATION,
+      name: SortMode.LOCATION,
       isSelected: false,
     },
     {
-      name: Mode.PROGRAMMATIC,
+      name: SortMode.PROGRAMMATIC,
       isSelected: false,
     },
     {
-      name: Mode.STYLE,
+      name: SortMode.STYLE,
       isSelected: true,
     },
   ];
@@ -76,7 +69,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       .subscribe({
         next: (res: Item[]) => {
           this.data = res;
-          this.groups = groupByAttribute(this.data, 'style');
+          this.groups = groupWondersBySortMode(this.data, SortMode.STYLE);
           this.errorMessage = '';
           this.isLoading = false;
           this.loaderService.setLoading(false);
@@ -127,7 +120,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  updateSelectedMode(selectedMode: { name: string; isSelected: boolean }): void {
+  updateSelectedMode(selectedMode: { name: SortMode; isSelected: boolean }): void {
     this.sortModes = this.sortModes.map((mode) => {
       return {
         name: mode.name,
@@ -136,31 +129,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
   }
 
-  sort(mode: { name: string; isSelected: boolean }): void {
+  sort(mode: { name: SortMode; isSelected: boolean }): void {
     this.capturePositions();
     this.updateSelectedMode(mode);
-    const items = [...this.data];
-
-    switch (mode.name) {
-      case Mode.ALPHABETICAL:
-        sortAlphabetical(items, 'name');
-        this.groups = groupByAttribute(items, 'name');
-        break;
-      case Mode.CHRONOLOGICAL:
-        this.groups = groupByYearBuilt(items);
-        break;
-      case Mode.LOCATION:
-        sortAlphabetical(items, 'continent');
-        this.groups = groupByAttribute(items, 'continent');
-        break;
-      case Mode.PROGRAMMATIC:
-        sortAlphabetical(items, 'buildingType');
-        this.groups = groupByAttribute(items, 'buildingType');
-        break;
-      case Mode.STYLE:
-        this.groups = groupByAttribute(items, 'style');
-        break;
-    }
+    this.groups = groupWondersBySortMode(this.data, mode.name);
 
     requestAnimationFrame(() => {
       this.playAnimations();
@@ -191,26 +163,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   goToDetailPage(itemId: number): void {
-    this.router.navigate([URL_PATH.DETAIL + '/' + itemId]);
+    const sortMode = this.sortModes.find((mode) => mode.isSelected)?.name ?? SortMode.STYLE;
+
+    this.router.navigate([URL_PATH.DETAIL, itemId], {
+      queryParams: { sortMode },
+    });
   }
 
   goToSection(fragment: string): void {
     const mode = this.sortModes.find((mode) => mode.isSelected);
 
     switch (mode?.name) {
-      case Mode.CHRONOLOGICAL:
+      case SortMode.CHRONOLOGICAL:
         this.router.navigate([URL_PATH.TIMELINE], { fragment });
         break;
-      case Mode.ALPHABETICAL:
+      case SortMode.ALPHABETICAL:
         this.router.navigate([URL_PATH.ALPHABETICAL], { fragment });
         break;
-      case Mode.LOCATION:
+      case SortMode.LOCATION:
         this.router.navigate([URL_PATH.LOCATION], { fragment });
         break;
-      case Mode.PROGRAMMATIC:
+      case SortMode.PROGRAMMATIC:
         this.router.navigate([URL_PATH.PROGRAMMATIC], { fragment });
         break;
-      case Mode.STYLE:
+      case SortMode.STYLE:
         this.router.navigate([URL_PATH.STYLE], { fragment });
         break;
     }

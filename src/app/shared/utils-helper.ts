@@ -1,4 +1,5 @@
 import { Group, Item } from '../services/data.service';
+import { SortMode } from './constants/sort-mode.const';
 
 export function sortAlphabetical(data: Item[], attribute: keyof Item): Item[] {
   return data.sort((a, b) => {
@@ -49,7 +50,7 @@ export function groupByYearBuilt(data: Item[]): Group[] {
     map.get(century)!.push(item);
   }
 
-  let groups: Group[] = [
+  const groups: Group[] = [
     { groupName: 'BC', items: BC },
     ...Array.from(map.entries()).map(([groupName, items]) => ({
       groupName,
@@ -80,6 +81,30 @@ export function groupByYearBuilt(data: Item[]): Group[] {
   });
 
   return combinedGroups;
+}
+
+export function groupWondersBySortMode(data: Item[], mode: SortMode): Group[] {
+  const items = [...data];
+
+  switch (mode) {
+    case SortMode.ALPHABETICAL:
+      sortAlphabetical(items, 'name');
+      return groupByAttribute(items, 'name');
+    case SortMode.CHRONOLOGICAL:
+      return groupByYearBuilt(items);
+    case SortMode.LOCATION:
+      sortAlphabetical(items, 'continent');
+      return groupByAttribute(items, 'continent');
+    case SortMode.PROGRAMMATIC:
+      sortAlphabetical(items, 'buildingType');
+      return groupByAttribute(items, 'buildingType');
+    case SortMode.STYLE:
+      return groupByAttribute(items, 'style');
+  }
+}
+
+export function sortWondersByMode(data: Item[], mode: SortMode): Item[] {
+  return groupWondersBySortMode(data, mode).flatMap((group) => group.items);
 }
 
 export function sortMapObject(map: Map<string, number>): Map<string, number> {
