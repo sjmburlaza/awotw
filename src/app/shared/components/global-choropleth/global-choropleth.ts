@@ -1,7 +1,24 @@
-import { AfterViewInit, Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DestroyRef,
+  inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
-import { take } from 'rxjs';
 import { GeoService } from 'src/app/services/geo.service';
+
+interface CountryProperties {
+  name?: string;
+}
+
+type CountryFeature = GeoJSON.Feature<GeoJSON.Geometry, CountryProperties>;
+type CountryFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Geometry, CountryProperties>;
+type CountryLayer = L.Layer & { feature?: CountryFeature };
 
 @Component({
   selector: 'app-global-choropleth',
@@ -9,13 +26,15 @@ import { GeoService } from 'src/app/services/geo.service';
   templateUrl: './global-choropleth.html',
   styleUrl: './global-choropleth.scss',
 })
-export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
+export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() countryValues: Record<string, number> = {};
 
   private readonly geoService = inject(GeoService);
+  private readonly destroyRef = inject(DestroyRef);
 
-  private map!: L.Map;
-  private countriesLayer?: L.GeoJSON;
+  private map?: L.Map;
+  private countriesLayer?: L.GeoJSON<CountryProperties>;
+  private resizeTimer?: ReturnType<typeof setTimeout>;
   errorMessage = '';
 
   legend = [
@@ -37,9 +56,22 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
     this.initMap();
     this.loadCountries();
 
-    setTimeout(() => {
-      this.map.invalidateSize();
+    this.resizeTimer = setTimeout(() => {
+      this.map?.invalidateSize();
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    if (this.resizeTimer) {
+      clearTimeout(this.resizeTimer);
+    }
+
+    this.countriesLayer?.off();
+    this.countriesLayer?.remove();
+    this.map?.off();
+    this.map?.remove();
+    this.countriesLayer = undefined;
+    this.map = undefined;
   }
 
   private initMap(): void {
@@ -63,11 +95,13 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
   private loadCountries(): void {
     this.geoService
       .getCountries()
-      .pipe(take(1))
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (geoJson) => {
+          if (!this.map) return;
+
           this.errorMessage = '';
-          this.countriesLayer = L.geoJSON(geoJson as GeoJSON.FeatureCollection, {
+          this.countriesLayer = L.geoJSON<CountryProperties>(geoJson as CountryFeatureCollection, {
             style: (feature) => this.countryStyle(feature),
             onEachFeature: (feature, layer) => {
               this.bindCountryLayerEvents(feature, layer);
@@ -80,22 +114,21 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
       });
   }
 
-  private bindCountryLayerEvents(feature: any, layer: L.Layer): void {
+  private bindCountryLayerEvents(feature: CountryFeature | undefined, layer: L.Layer): void {
     const countryName = this.getFeatureName(feature);
     const value = this.countryValues[countryName] ?? 0;
 
+    layer.off('mouseover');
+    layer.off('mouseout');
+    layer.unbindPopup();
+    layer.closePopup();
+
     if (value > 0) {
-      layer.bindPopup(
-        `
-        <strong>${countryName}</strong><br />
-        Count: ${value}
-        `,
-        {
-          closeButton: false,
-          autoClose: false,
-          closeOnClick: false,
-        },
-      );
+      layer.bindPopup(this.createCountryPopup(countryName, value), {
+        closeButton: false,
+        autoClose: false,
+        closeOnClick: false,
+      });
 
       layer.on('mouseover', (e: L.LeafletMouseEvent) => {
         const path = layer as L.Path;
@@ -113,27 +146,33 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
       });
 
       layer.on('mouseout', () => {
-        (this.countriesLayer as L.GeoJSON).resetStyle(layer);
+        this.countriesLayer?.resetStyle(layer);
         layer.closePopup();
       });
-    } else {
-      layer.unbindPopup();
-      layer.closePopup();
     }
   }
 
-  private getFeatureName(feature: any): string {
-    return (
-      (feature as GeoJSON.Feature<GeoJSON.Geometry, { name?: string }>).properties?.name ??
-      'Unknown'
-    );
+  private getFeatureName(feature: CountryFeature | undefined): string {
+    return feature?.properties?.name ?? 'Unknown';
+  }
+
+  private createCountryPopup(countryName: string, value: number): HTMLElement {
+    const popup = document.createElement('div');
+    const name = document.createElement('strong');
+    name.textContent = countryName;
+
+    popup.appendChild(name);
+    popup.appendChild(document.createElement('br'));
+    popup.appendChild(document.createTextNode(`Count: ${value}`));
+
+    return popup;
   }
 
   private updateMapStyles(): void {
     if (!this.countriesLayer) return;
 
     this.countriesLayer.eachLayer((layer) => {
-      const feature = (layer as L.GeoJSON<any>).feature;
+      const feature = (layer as CountryLayer).feature;
       if (!feature) return;
 
       (layer as L.Path).setStyle(this.countryStyle(feature));
@@ -142,7 +181,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges {
     });
   }
 
-  private countryStyle(feature: any): L.PathOptions {
+  private countryStyle(feature: CountryFeature | undefined): L.PathOptions {
     const countryName = this.getFeatureName(feature);
     const value = this.countryValues[countryName] ?? 0;
     const values = Object.values(this.countryValues);

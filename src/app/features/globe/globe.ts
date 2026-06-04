@@ -22,7 +22,8 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('globeContainer', { static: true })
   globeContainer!: ElementRef<HTMLDivElement>;
 
-  private globe!: GlobeInstance;
+  private globe?: GlobeInstance;
+  private readonly markerListeners = new Map<HTMLElement, EventListener>();
   isLoading = true;
   errorMessage = '';
   hasMarkers = true;
@@ -35,7 +36,10 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.globeContainer.nativeElement.innerHTML = '';
+    this.removeMarkerListeners();
+    this.globe?.htmlElementsData([]);
+    this.globe = undefined;
+    this.globeContainer.nativeElement.replaceChildren();
   }
 
   private initGlobe(): void {
@@ -68,9 +72,10 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
             .filter((wonder) => !Number.isNaN(wonder.latNum) && !Number.isNaN(wonder.lonNum)),
         ),
         tap((validWonders) => {
+          this.removeMarkerListeners();
           this.errorMessage = '';
           this.hasMarkers = validWonders.length > 0;
-          this.globe.htmlElementsData(validWonders);
+          this.globe?.htmlElementsData(validWonders);
         }),
         catchError(() => {
           this.errorMessage = 'Unable to load globe markers.';
@@ -91,19 +96,13 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     el.style.pointerEvents = 'auto';
     el.title = wonder.name;
 
-    el.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="${wonder.color || '#ff5722'}" viewBox="0 0 24 24">
-        <path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5
-                c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5
-                2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-      </svg>
-    `;
+    el.appendChild(this.createPinSvg(this.getSafeHexColor(wonder.color)));
 
-    el.addEventListener('click', (event) => {
+    const clickHandler: EventListener = (event) => {
       event.stopPropagation();
       this.selectedWonder = wonder;
 
-      this.globe.pointOfView(
+      this.globe?.pointOfView(
         {
           lat: wonder.latNum,
           lng: wonder.lonNum,
@@ -111,8 +110,39 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
         },
         1200,
       );
-    });
+    };
+
+    el.addEventListener('click', clickHandler);
+    this.markerListeners.set(el, clickHandler);
 
     return el;
+  }
+
+  private createPinSvg(color: string): SVGSVGElement {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '30');
+    svg.setAttribute('height', '30');
+    svg.setAttribute('fill', color);
+    svg.setAttribute('viewBox', '0 0 24 24');
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute(
+      'd',
+      'M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+    );
+    svg.appendChild(path);
+
+    return svg;
+  }
+
+  private getSafeHexColor(color?: string): string {
+    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color) ? color : '#ff5722';
+  }
+
+  private removeMarkerListeners(): void {
+    this.markerListeners.forEach((listener, element) => {
+      element.removeEventListener('click', listener);
+    });
+    this.markerListeners.clear();
   }
 }

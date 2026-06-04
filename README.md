@@ -1,59 +1,181 @@
-# ArchitecturalWondersV3
+# Architectural Wonders of the World
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+An Angular data-visualization app for exploring notable architectural works across history. The app combines a sortable wonder index, detail pages, search, quiz interactions, map and globe views, timelines, and chart dashboards backed by local JSON datasets.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Interactive home grid of architectural wonders grouped by style, year, location, use, or alphabetical order.
+- Detail pages with images, location metadata, Wikipedia links, and enriched wiki excerpts.
+- Search page with highlighted matches and relevance sorting.
+- Quiz mode for testing names, locations, styles, years built, and building uses.
+- Leaflet map view with colored markers and popups for wonders with coordinates.
+- 3D globe view with clickable wonder pins and focused camera movement.
+- Timeline and grouping views for chronological, style, continent, alphabetical, and use-based exploration.
+- Charts dashboard for tallest buildings and most visited landmarks, including bar charts, pie charts, line trends, image galleries, and a global choropleth.
+- Dark mode toggle and animated navigation states.
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 20
+- TypeScript
+- SCSS
+- RxJS
+- Leaflet
+- globe.gl
+- D3
+- Chart.js and ng2-charts
+- ESLint and Prettier for code quality
 
-## Code scaffolding
+## Requirements
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js `^20.19.0`, `^22.12.0`, or `>=24.0.0`
+- npm
 
-```bash
-ng generate component component-name
-```
+## Getting Started
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Install dependencies:
 
 ```bash
-ng test
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Start the local development server:
 
 ```bash
-ng e2e
+npm start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Open the app at:
 
-## Additional Resources
+```text
+http://localhost:4200/
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The app redirects unknown routes to `/home`.
+
+## Available Scripts
+
+```bash
+npm start
+```
+
+Runs the Angular development server.
+
+```bash
+npm run build
+```
+
+Builds the app into the `dist/` directory.
+
+```bash
+npm test
+```
+
+Runs unit tests with Karma and Jasmine.
+
+```bash
+npm run lint
+```
+
+Runs Angular ESLint over TypeScript and template files.
+
+```bash
+npm run format
+```
+
+Formats the project with Prettier.
+
+```bash
+npm run geocode
+```
+
+Generates `src/assets/json/wonders.with-coords.json` by looking up coordinates for each wonder location through OpenStreetMap Nominatim.
+
+## App Routes
+
+| Route            | Description                                                      |
+| ---------------- | ---------------------------------------------------------------- |
+| `/home`          | Main interactive wonder grid.                                    |
+| `/detail/:id`    | Detail page for a selected wonder.                               |
+| `/search?q=term` | Search results for wonder names.                                 |
+| `/quiz`          | Quiz mode.                                                       |
+| `/map`           | 2D Leaflet map with wonder markers.                              |
+| `/globe`         | 3D globe with wonder markers.                                    |
+| `/timeline`      | Chronological wonder timeline.                                   |
+| `/charts`        | Data dashboard for tallest buildings and most visited landmarks. |
+| `/style`         | Wonders grouped by architectural style.                          |
+| `/alphabetical`  | Wonders grouped alphabetically.                                  |
+| `/location`      | Wonders grouped by continent.                                    |
+| `/programmatic`  | Wonders grouped by building use.                                 |
+
+## Project Structure
+
+```text
+src/
+  app/
+    features/              Feature pages and route-level components
+    services/              Shared data, loading, geolocation, and scroll services
+    shared/
+      components/          Reusable chart, map, tooltip, gallery, loader, and grouping UI
+      constants/           Route constants
+      directives/          Scroll animation directives
+      pipes/               Display and highlight pipes
+      utils-helper.ts      Grouping, sorting, and formatting helpers
+  assets/
+    images/                Static images and SVG assets
+    json/                  Local datasets used by the app
+scripts/                   Data enrichment and geocoding scripts
+public/                    Public Angular assets
+```
+
+## Data Sources
+
+The app reads local JSON files through `DataService`:
+
+| File                                    | Purpose                                                     |
+| --------------------------------------- | ----------------------------------------------------------- |
+| `src/assets/json/wonders.json`          | Main list of 161 architectural wonders.                     |
+| `src/assets/json/tallestBuildings.json` | Top 50 tallest buildings dataset.                           |
+| `src/assets/json/mostVisited.json`      | Top 50 most visited landmarks dataset.                      |
+| `src/assets/json/stylesTimeline.json`   | Architectural style ranges used by timeline visualizations. |
+
+Main wonder entries include fields such as:
+
+```ts
+{
+  id: number;
+  name: string;
+  yearBuilt: string;
+  style: string;
+  buildingType: string;
+  location: string;
+  continent: string;
+  descriptionURL: string;
+  imageURL: string;
+  codename: string;
+  color: string;
+  lat?: string;
+  lon?: string;
+  wiki?: {
+    title?: string;
+    description?: string;
+    extract?: string;
+    wikipedia?: string;
+  };
+}
+```
+
+## Data Maintenance
+
+The repository includes helper scripts for enriching the main wonders dataset:
+
+- `scripts/geocode.js` reads `wonders.json`, fetches latitude and longitude values from OpenStreetMap Nominatim, and writes `wonders.with-coords.json`.
+- `scripts/wikidata.js` reads `wonders.json`, fetches summary metadata from Wikipedia with a Wikidata fallback, and writes `wonders.wiki.json`.
+
+These scripts call external APIs, so run them only when you need to refresh or expand the dataset. Review generated files before replacing the active `wonders.json`.
+
+## Notes
+
+- Some visual features depend on network-loaded assets, including OpenStreetMap tiles, external wonder images, Wikipedia links, and globe textures from `unpkg.com`.
+- The current app layout displays a mobile message and is intended primarily for laptop or desktop viewing.
+- Production builds use Angular's default production configuration and output to `dist/`.
