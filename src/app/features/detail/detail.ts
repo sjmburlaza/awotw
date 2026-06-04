@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
+import { SortMode } from 'src/app/shared/constants/sort-mode.const';
+import { sortWondersByMode } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-detail',
@@ -22,6 +24,7 @@ export class DetailComponent implements OnInit {
   loading = true;
   currentDetailId: number | undefined;
   currentDetailIndex = -1;
+  currentSortMode = SortMode.STYLE;
   wondersData: Item[] = [];
   errorMessage = '';
 
@@ -29,11 +32,16 @@ export class DetailComponent implements OnInit {
     combineLatest({
       wonders: this.dataService.getWonders().pipe(take(1)),
       params: this.route.paramMap,
+      queryParams: this.route.queryParamMap,
     })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: ({ wonders, params }) => {
-          this.wondersData = wonders;
+        next: ({ wonders, params, queryParams }) => {
+          const sortMode = this.parseSortMode(queryParams.get('sortMode'));
+          const sortedWonders = sortWondersByMode(wonders, sortMode);
+
+          this.currentSortMode = sortMode;
+          this.wondersData = sortedWonders;
           const id = this.parseDetailId(params.get('id'));
 
           if (id === null) {
@@ -41,7 +49,7 @@ export class DetailComponent implements OnInit {
             return;
           }
 
-          this.getDetails(id, wonders);
+          this.getDetails(id, sortedWonders);
         },
         error: () => {
           this.wondersData = [];
@@ -53,6 +61,12 @@ export class DetailComponent implements OnInit {
   private parseDetailId(rawId: string | null): number | null {
     const id = Number(rawId);
     return Number.isInteger(id) && id > 0 ? id : null;
+  }
+
+  private parseSortMode(rawSortMode: string | null): SortMode {
+    return Object.values(SortMode).includes(rawSortMode as SortMode)
+      ? (rawSortMode as SortMode)
+      : SortMode.STYLE;
   }
 
   private showError(message: string): void {
@@ -81,14 +95,18 @@ export class DetailComponent implements OnInit {
   goBack(): void {
     if (this.currentDetailIndex > 0) {
       const previous = this.wondersData[this.currentDetailIndex - 1];
-      this.router.navigate([`${URL_PATH.DETAIL}/${previous.id}`]);
+      this.router.navigate([URL_PATH.DETAIL, previous.id], {
+        queryParams: { sortMode: this.currentSortMode },
+      });
     }
   }
 
   goNext(): void {
     if (this.currentDetailIndex >= 0 && this.currentDetailIndex < this.wondersData.length - 1) {
       const next = this.wondersData[this.currentDetailIndex + 1];
-      this.router.navigate([`${URL_PATH.DETAIL}/${next.id}`]);
+      this.router.navigate([URL_PATH.DETAIL, next.id], {
+        queryParams: { sortMode: this.currentSortMode },
+      });
     }
   }
 }
