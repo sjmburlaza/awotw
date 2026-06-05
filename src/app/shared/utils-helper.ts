@@ -59,7 +59,7 @@ export function groupByYearBuilt(data: Item[]): Group[] {
   ];
 
   const idx1900s = groups.findIndex((g) => g.groupName === '1900s');
-  if (idx1900s !== -1) {
+  if (idx1900s !== -1 && groups[idx1900s].items.length > 13) {
     const items = groups[idx1900s].items;
     const partA = items.slice(0, 13);
     const partB = items.slice(13, 26);
@@ -73,11 +73,8 @@ export function groupByYearBuilt(data: Item[]): Group[] {
   groups.sort((a, b) => a.groupName.localeCompare(b.groupName));
   const combinedGroups = bcGroup ? [bcGroup, ...groups] : groups;
 
-  combinedGroups.map((group) => {
-    return {
-      groupName: group.groupName,
-      items: sortAlphabetical(group.items, 'name'),
-    };
+  combinedGroups.forEach((group) => {
+    group.items = sortAlphabetical(group.items, 'name');
   });
 
   return combinedGroups;

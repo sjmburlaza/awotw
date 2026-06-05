@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'compactNumber',
 })
 export class CompactNumberPipe implements PipeTransform {
-  transform(value: number | string, fractionDigits: number = 1, locale: string = 'en-US'): string {
+  transform(value: number | string, fractionDigits = 1, locale = 'en-US'): string {
     if (value == null) return '';
 
     return new Intl.NumberFormat(locale, {

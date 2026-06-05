@@ -1,19 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarChart } from './bar-chart';
+import { BarChartComponent } from './bar-chart';
 
-describe('BarChart', () => {
-  let component: BarChart;
-  let fixture: ComponentFixture<BarChart>;
+interface TestBarChartItem {
+  name: string;
+  color: string;
+  value: string;
+}
+
+describe('BarChartComponent', () => {
+  let component: BarChartComponent<TestBarChartItem>;
+  let fixture: ComponentFixture<BarChartComponent<TestBarChartItem>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BarChart]
-    })
-    .compileComponents();
+      imports: [BarChartComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(BarChart);
+    fixture = TestBed.createComponent(BarChartComponent) as unknown as ComponentFixture<
+      BarChartComponent<TestBarChartItem>
+    >;
     component = fixture.componentInstance;
+    component.data = [];
+    component.key = 'value';
+    component.tooltipBuilder = () => [];
     fixture.detectChanges();
   });
 

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Alphabetical } from './alphabetical';
+import { AlphabeticalComponent } from './alphabetical';
 
-describe('Alphabetical', () => {
-  let component: Alphabetical;
-  let fixture: ComponentFixture<Alphabetical>;
+describe('AlphabeticalComponent', () => {
+  let component: AlphabeticalComponent;
+  let fixture: ComponentFixture<AlphabeticalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Alphabetical],
+      imports: [AlphabeticalComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Alphabetical);
+    fixture = TestBed.createComponent(AlphabeticalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

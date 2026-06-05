@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Renderer2, OnInit, inject } from '@angular/core';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[fadeInOnScroll]',
 })
 export class FadeInOnScrollDirective implements OnInit {

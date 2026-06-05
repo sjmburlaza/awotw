@@ -19,7 +19,7 @@ export class TooltipDirective {
   private el = inject(ElementRef);
   private vcr = inject(ViewContainerRef);
 
-  @Input('appTooltip') tooltipContent: string | TemplateRef<any> = '';
+  @Input('appTooltip') tooltipContent: string | TemplateRef<unknown> = '';
   @Input() tooltipPosition: Position = 'bottom';
 
   private tooltipRef?: ComponentRef<TooltipComponent>;

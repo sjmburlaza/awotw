@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GlobalChoropleth } from './global-choropleth';
+import { GlobalChoroplethComponent } from './global-choropleth';
 
-describe('GlobalChoropleth', () => {
-  let component: GlobalChoropleth;
-  let fixture: ComponentFixture<GlobalChoropleth>;
+describe('GlobalChoroplethComponent', () => {
+  let component: GlobalChoroplethComponent;
+  let fixture: ComponentFixture<GlobalChoroplethComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GlobalChoropleth]
+      imports: [GlobalChoroplethComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GlobalChoropleth);
+    fixture = TestBed.createComponent(GlobalChoroplethComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

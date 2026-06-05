@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimelineChart } from './timeline-chart';
+import { TimelineChartComponent } from './timeline-chart';
 
-describe('TimelineChart', () => {
-  let component: TimelineChart;
-  let fixture: ComponentFixture<TimelineChart>;
+describe('TimelineChartComponent', () => {
+  let component: TimelineChartComponent;
+  let fixture: ComponentFixture<TimelineChartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimelineChart]
+      imports: [TimelineChartComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TimelineChart);
+    fixture = TestBed.createComponent(TimelineChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

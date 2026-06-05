@@ -48,13 +48,15 @@ export class SearchComponent implements OnInit {
   }
 
   performSearch(data: Item[], query: string): void {
-    if (!query) {
+    const trimmedQuery = query.trim();
+
+    if (!trimmedQuery) {
       this.searchResults = [];
       this.emptyMessage = 'Enter a search term to find a wonder.';
       return;
     }
 
-    const q = query.toLowerCase();
+    const q = trimmedQuery.toLowerCase();
 
     this.searchResults = [...data]
       ?.filter((item) => item.name?.toLowerCase().includes(q))
@@ -71,6 +73,6 @@ export class SearchComponent implements OnInit {
         return score(bName) - score(aName);
       });
 
-    this.emptyMessage = this.searchResults.length ? '' : `No wonders found for "${query}".`;
+    this.emptyMessage = this.searchResults.length ? '' : `No wonders found for "${trimmedQuery}".`;
   }
 }

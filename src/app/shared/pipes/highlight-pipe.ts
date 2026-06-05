@@ -8,7 +8,7 @@ export class HighlightPipe implements PipeTransform {
     if (!search || !search.trim()) return value;
 
     // Escape special regex chars
-    const escaped = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const escaped = search.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(escaped, 'gi');
 
     return value.replace(regex, (match) => `<mark>${match}</mark>`);
