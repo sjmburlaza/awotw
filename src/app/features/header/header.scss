@@ -14,7 +14,7 @@
 
   &__globe {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 
     &__home {
       display: flex;
@@ -46,6 +46,7 @@
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-decoration-color: lightcoral;
+        font-family: 'Barlow';
 
         &:hover {
           color: blueviolet;
