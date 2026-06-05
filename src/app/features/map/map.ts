@@ -68,6 +68,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
 
             const marker = L.marker([+wonder.lat, +wonder.lon], {
               icon: this.createColoredIcon(wonder.color),
+              keyboard: true,
+              title: wonder.name,
+              alt: wonder.name,
             }).addTo(markersLayer);
 
             marker.bindPopup(this.createWonderPopup(wonder));
@@ -129,6 +132,7 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       link.href = descriptionUrl;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
+      link.ariaLabel = `Open reference page for ${wonder.name}`;
       link.textContent = 'Learn more';
       popup.appendChild(link);
     }

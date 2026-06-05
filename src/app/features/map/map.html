@@ -3,7 +3,7 @@
     Explore the global landmarks...
     <i class="bi bi-pin-map"></i>
   </div>
-  <div id="map"></div>
+  <div id="map" role="region" aria-label="Interactive 2D map of architectural wonders"></div>
   @if (errorMessage) {
     <div class="state-message error-message">{{ errorMessage }}</div>
   } @else if (!hasMarkers) {

@@ -1,6 +1,7 @@
 <div class="charts-container">
   <form [formGroup]="selectionForm" class="nav">
-    <div class="categories">
+    <fieldset class="categories">
+      <legend class="visually-hidden">Chart category</legend>
       @for (category of categories; track category.name) {
         <label
           class="category"
@@ -16,8 +17,9 @@
           {{ category.name }}
         </label>
       }
-    </div>
-    <div class="rankings">
+    </fieldset>
+    <fieldset class="rankings">
+      <legend class="visually-hidden">Ranking size</legend>
       @for (ranking of rankings; track ranking.name) {
         <label
           class="ranking"
@@ -33,7 +35,7 @@
           {{ ranking.name }}
         </label>
       }
-    </div>
+    </fieldset>
   </form>
 
   @if (isLoading) {

@@ -63,6 +63,10 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        padding: 0;
+        border: none;
+        font: inherit;
+        appearance: none;
 
         @media (min-width: 1920px) {
           width: 44px;
@@ -80,7 +84,12 @@
       margin-top: 12px;
       height: 32px;
       font-family: 'Barlow Condensed';
+      font-size: inherit;
       cursor: pointer;
+      padding: 0;
+      border: none;
+      background: transparent;
+      appearance: none;
 
       &:hover {
         color: blueviolet;
@@ -98,6 +107,12 @@
 
   .mode {
     cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    appearance: none;
 
     &:hover {
       color: blueviolet;

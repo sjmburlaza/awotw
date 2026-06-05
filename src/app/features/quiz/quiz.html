@@ -7,13 +7,13 @@
     <div class="quiz-selected">
       <div class="header">
         <div class="header__title">{{ selectedQuiz?.title }}</div>
-        <div class="header__score">
+        <div class="header__score" aria-live="polite">
           Your score:
           <span> {{ currentScore }}/{{ currentCount }} </span>
         </div>
       </div>
       @if (loading) {
-        <div class="loader-wrapper">
+        <div class="loader-wrapper" role="status" aria-live="polite">
           <div class="loader"></div>
           <p>Generating question...</p>
         </div>
@@ -30,8 +30,8 @@
         </div>
         @if (!loading) {
           <div class="content__controls">
-            <div class="options">
-              <div class="options__label">Select the correct answer:</div>
+            <fieldset class="options">
+              <legend class="options__label">Select the correct answer:</legend>
               @for (option of options; track $index) {
                 <div
                   class="option"
@@ -44,26 +44,33 @@
                   }"
                 >
                   <input
-                    [id]="option"
+                    [id]="'quiz-option-' + $index"
                     type="radio"
                     [value]="option"
                     [(ngModel)]="selectedOption"
                     (ngModelChange)="onSelectOption()"
                     [disabled]="hasSeenAnswer"
                   />
-                  <label [for]="option">
+                  <label [for]="'quiz-option-' + $index">
                     {{ option }}
                     @if (hasSeenAnswer && option === correctAnswer) {
-                      <a class="option__url" [href]="item?.descriptionURL" target="_blank">
+                      <a
+                        class="option__url"
+                        [href]="item?.descriptionURL"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="'Open reference page for ' + item?.name"
+                      >
                         <i class="bi bi-box-arrow-up-right"></i>
                       </a>
                     }
                   </label>
                 </div>
               }
-            </div>
+            </fieldset>
             <div class="see-answer">
               <button
+                type="button"
                 class="see-answer__btn"
                 [disabled]="disableSeeAnswerBtn"
                 (click)="seeAnswer()"
@@ -74,13 +81,18 @@
               </button>
             </div>
             <div class="next">
-              <button class="next__btn" [disabled]="!hasSeenAnswer" (click)="goNext()">
+              <button
+                type="button"
+                class="next__btn"
+                [disabled]="!hasSeenAnswer"
+                (click)="goNext()"
+              >
                 Next question
                 <span><i class="bi bi-arrow-right-circle"></i></span>
               </button>
             </div>
             <div class="exit">
-              <button (click)="exit()" class="exit__btn">Exit quiz</button>
+              <button type="button" (click)="exit()" class="exit__btn">Exit quiz</button>
             </div>
           </div>
         }
@@ -92,6 +104,7 @@
       <div class="quizzes">
         @for (quiz of quizzes; track $index) {
           <button
+            type="button"
             class="quiz"
             (click)="onSelectQuiz(quiz)"
             [ngStyle]="{ 'outline-color': quiz.color }"

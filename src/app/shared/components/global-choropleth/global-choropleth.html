@@ -1,16 +1,16 @@
-<div class="map-wrapper">
-  <div class="title">Distribution by country in map view</div>
+<div class="map-wrapper" role="region" aria-labelledby="choropleth-title">
+  <div id="choropleth-title" class="title">Distribution by country in map view</div>
   @if (errorMessage) {
     <div class="state-message error-message">{{ errorMessage }}</div>
   }
-  <div class="legend">
+  <div class="legend" aria-label="Map scale">
     <div class="legend-title">Min-Max Scale</div>
     @for (item of legend; track item.label) {
       <div class="legend-item">
-        <span class="legend-color" [style.background]="item.color"></span>
+        <span class="legend-color" [style.background]="item.color" aria-hidden="true"></span>
         <span class="legend-label">{{ item.label }}</span>
       </div>
     }
   </div>
-  <div id="world-map"></div>
+  <div id="world-map" role="img" aria-label="Country distribution choropleth map"></div>
 </div>

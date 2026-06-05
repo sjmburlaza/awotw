@@ -71,7 +71,13 @@ Builds the app into the `dist/` directory.
 npm test
 ```
 
-Runs unit tests with Karma and Jasmine.
+Runs unit tests with Jest.
+
+```bash
+npm run e2e
+```
+
+Runs Playwright end-to-end smoke tests for the main app flows.
 
 ```bash
 npm run lint

@@ -41,7 +41,7 @@
       background-color: transparent;
       height: 28px;
 
-      p {
+      .url-path {
         font-size: 14px;
         text-decoration: underline;
         text-decoration-thickness: 1px;
@@ -121,7 +121,7 @@
       font-family: 'Michroma', sans-serif;
       font-size: 12px;
 
-      p {
+      span {
         margin-top: -2px;
       }
     }

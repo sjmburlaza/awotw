@@ -13,42 +13,40 @@
         <div class="group">
           <div class="items">
             @for (item of group.items; track item.id) {
-              <div
+              <button
                 #animatedItem
+                type="button"
                 class="item"
                 [ngStyle]="getDynamicStyle(item)"
                 (click)="goToDetailPage(item.id)"
-                tabindex="0"
-                (keydown.enter)="goToDetailPage(item.id)"
-                (keydown.space)="$event.preventDefault(); goToDetailPage(item.id)"
+                [attr.aria-label]="'Open details for ' + item.name"
               >
                 {{ item.codename }}
-              </div>
+              </button>
             }
           </div>
-          <div
+          <button
+            type="button"
             class="group__name"
             (click)="goToSection(group.groupName)"
-            tabindex="0"
-            (keydown.enter)="goToSection(group.groupName)"
-            (keydown.space)="$event.preventDefault(); goToSection(group.groupName)"
+            [attr.aria-label]="'Open ' + group.groupName + ' group'"
           >
             {{ group.groupName }}
-          </div>
+          </button>
         </div>
       }
     </div>
     <div class="modes">
       @for (mode of sortModes; track $index) {
-        <div
+        <button
+          type="button"
           class="mode"
           [ngClass]="{ 'selected-mode': mode.isSelected }"
           (click)="sort(mode)"
-          tabindex="0"
-          (keydown)="sort(mode)"
+          [attr.aria-pressed]="mode.isSelected"
         >
           {{ mode.name }}
-        </div>
+        </button>
       }
     </div>
   }
