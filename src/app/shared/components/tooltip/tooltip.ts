@@ -9,7 +9,7 @@ import { Component, Input, TemplateRef } from '@angular/core';
 })
 export class TooltipComponent {
   @Input() text = '';
-  @Input() template?: TemplateRef<any>;
+  @Input() template?: TemplateRef<unknown>;
   @Input() top = 0;
   @Input() left = 0;
   visible = false;

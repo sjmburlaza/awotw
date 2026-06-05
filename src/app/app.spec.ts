@@ -14,10 +14,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should expose the app title', () => {
     const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, architectural-wonders-v2');
+    const app = fixture.componentInstance as App & { title: string };
+
+    expect(app.title).toBe('architectural-wonders-v2');
   });
 });

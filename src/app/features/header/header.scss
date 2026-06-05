@@ -14,7 +14,7 @@
 
   &__globe {
     display: flex;
-    gap: 12px;
+    gap: 8px;
 
     &__home {
       display: flex;
@@ -42,7 +42,7 @@
       height: 28px;
 
       p {
-        font-size: 16px;
+        font-size: 14px;
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-decoration-color: lightcoral;
@@ -56,7 +56,7 @@
 
   .title {
     font-family: 'Londrina Outline', sans-serif;
-    font-size: 44px;
+    font-size: 42px;
     text-align: center;
     margin-top: -12px;
     @extend %gradient-text;

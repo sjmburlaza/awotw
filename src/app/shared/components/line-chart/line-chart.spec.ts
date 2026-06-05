@@ -1,19 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LineChart } from './line-chart';
+import { LineChartComponent } from './line-chart';
 
-describe('LineChart', () => {
-  let component: LineChart;
-  let fixture: ComponentFixture<LineChart>;
+interface TestLineChartItem {
+  name: string;
+  year: string;
+  height: string;
+}
+
+describe('LineChartComponent', () => {
+  let component: LineChartComponent<TestLineChartItem>;
+  let fixture: ComponentFixture<LineChartComponent<TestLineChartItem>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LineChart]
-    })
-    .compileComponents();
+      imports: [LineChartComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(LineChart);
+    fixture = TestBed.createComponent(LineChartComponent) as unknown as ComponentFixture<
+      LineChartComponent<TestLineChartItem>
+    >;
     component = fixture.componentInstance;
+    component.data = [];
+    component.labelKey = 'year';
+    component.valueKey = 'height';
+    component.tooltipBuilder = () => [];
     fixture.detectChanges();
   });
 
