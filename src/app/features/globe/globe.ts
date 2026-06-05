@@ -23,7 +23,10 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   globeContainer!: ElementRef<HTMLDivElement>;
 
   private globe?: GlobeInstance;
-  private readonly markerListeners = new Map<HTMLElement, EventListener>();
+  private readonly markerListeners = new Map<
+    HTMLElement,
+    { click: EventListener; keydown: EventListener }
+  >();
   isLoading = true;
   errorMessage = '';
   hasMarkers = true;
@@ -95,27 +98,43 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     el.style.transform = 'translate(-50%, -100%)';
     el.style.pointerEvents = 'auto';
     el.title = wonder.name;
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', `Show details for ${wonder.name}`);
 
     el.appendChild(this.createPinSvg(this.getSafeHexColor(wonder.color)));
 
     const clickHandler: EventListener = (event) => {
       event.stopPropagation();
-      this.selectedWonder = wonder;
+      this.selectWonder(wonder);
+    };
 
-      this.globe?.pointOfView(
-        {
-          lat: wonder.latNum,
-          lng: wonder.lonNum,
-          altitude: 0.5,
-        },
-        1200,
-      );
+    const keydownHandler: EventListener = (event) => {
+      const keyboardEvent = event as KeyboardEvent;
+      if (keyboardEvent.key !== 'Enter' && keyboardEvent.key !== ' ') return;
+
+      keyboardEvent.preventDefault();
+      this.selectWonder(wonder);
     };
 
     el.addEventListener('click', clickHandler);
-    this.markerListeners.set(el, clickHandler);
+    el.addEventListener('keydown', keydownHandler);
+    this.markerListeners.set(el, { click: clickHandler, keydown: keydownHandler });
 
     return el;
+  }
+
+  private selectWonder(wonder: WonderMarker): void {
+    this.selectedWonder = wonder;
+
+    this.globe?.pointOfView(
+      {
+        lat: wonder.latNum,
+        lng: wonder.lonNum,
+        altitude: 0.5,
+      },
+      1200,
+    );
   }
 
   private createPinSvg(color: string): SVGSVGElement {
@@ -140,8 +159,9 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   private removeMarkerListeners(): void {
-    this.markerListeners.forEach((listener, element) => {
-      element.removeEventListener('click', listener);
+    this.markerListeners.forEach((listeners, element) => {
+      element.removeEventListener('click', listeners.click);
+      element.removeEventListener('keydown', listeners.keydown);
     });
     this.markerListeners.clear();
   }

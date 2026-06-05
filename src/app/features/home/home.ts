@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   private readonly loaderService = inject(LoaderService);
 
   @ViewChildren('animatedItem', { read: ElementRef })
-  animatedItems!: QueryList<ElementRef<HTMLLIElement>>;
+  animatedItems!: QueryList<ElementRef<HTMLButtonElement>>;
 
   private positions = new Map<number, DOMRect>();
   readonly URL = URL;

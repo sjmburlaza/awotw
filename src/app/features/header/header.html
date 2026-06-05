@@ -1,48 +1,61 @@
 @if (!isLoading) {
-  <div class="header">
-    <div class="header__globe">
-      <button class="header__globe__home" (click)="goToHomePage()">
+  <header class="header">
+    <nav class="header__globe" aria-label="Primary navigation">
+      <button
+        type="button"
+        class="header__globe__home"
+        (click)="goToHomePage()"
+        aria-label="Go to home page"
+      >
         <i class="bi bi-globe"></i>
         @if (currentUrl !== URL_PATH.HOME) {
           <span [ngClass]="{ 'move-right': isHomeClicked }">AWOTW</span>
         }
       </button>
       @if (currentUrl === URL_PATH.HOME) {
-        <button (click)="goToMapPage()">
-          <p>Map View</p>
+        <button type="button" (click)="goToMapPage()">
+          <span class="url-path">Map View</span>
         </button>
-        <button (click)="goToTimelinePage()">
-          <p>Timeline View</p>
+        <button type="button" (click)="goToTimelinePage()">
+          <span class="url-path">Timeline View</span>
         </button>
-        <button (click)="goToChartsPage()">
-          <p>Charts</p>
+        <button type="button" (click)="goToChartsPage()">
+          <span class="url-path">Charts</span>
         </button>
       }
-    </div>
+    </nav>
     <div class="title" [ngClass]="{ 'zoom-in-text': zoomInText }">
       @if (currentUrl === URL_PATH.HOME) {
         {{ 'Architectural Wonders of the World' | uppercase }}
       }
     </div>
     <div class="button">
-      <div class="button__search-bar">
-        <button>
+      <form class="button__search-bar" role="search" (ngSubmit)="onSearch()">
+        <label class="visually-hidden" for="site-search">Search architectural wonders</label>
+        <button type="submit" aria-label="Submit search">
           <i class="bi bi-search"></i>
         </button>
         <input
+          id="site-search"
+          name="searchQuery"
           type="text"
           placeholder="Search..."
           [(ngModel)]="searchQuery"
           (ngModelChange)="onSearch()"
         />
-      </div>
+      </form>
       <div class="button__quiz">
-        <button (click)="goToQuizPage()">
-          <p>Quiz Me!!</p>
+        <button type="button" (click)="goToQuizPage()">
+          <span>Quiz Me!!</span>
         </button>
       </div>
       <div class="button__bg-mode">
-        <button (click)="onToggleBgMode()">
+        <button
+          type="button"
+          (click)="onToggleBgMode()"
+          [attr.aria-pressed]="isDarkMode"
+          [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
           @if (isDarkMode) {
             <i class="bi bi-sun"></i>
           } @else {
@@ -51,5 +64,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </header>
 }

@@ -4,7 +4,7 @@
   } @else if (details && currentDetailId) {
     <div class="back-btn control-btn">
       @if (currentDetailIndex > 0) {
-        <button (click)="goBack()">
+        <button type="button" (click)="goBack()" aria-label="Previous wonder">
           <i class="bi bi-arrow-left-circle"></i>
         </button>
       }
@@ -26,7 +26,12 @@
         <div class="details__texts">
           <div class="left-section">
             <div class="name">
-              <a [href]="details.descriptionURL" target="_blank">
+              <a
+                [href]="details.descriptionURL"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="'Open reference page for ' + details.name"
+              >
                 <span> {{ details.name }} </span>
                 <!-- <i class="bi bi-box-arrow-up-right"></i> -->
               </a>
@@ -48,7 +53,7 @@
     </div>
     <div class="next-btn control-btn">
       @if (currentDetailIndex < wondersData.length - 1) {
-        <button (click)="goNext()">
+        <button type="button" (click)="goNext()" aria-label="Next wonder">
           <i class="bi bi-arrow-right-circle"></i>
         </button>
       }

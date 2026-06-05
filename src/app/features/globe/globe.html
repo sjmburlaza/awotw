@@ -4,7 +4,12 @@
   </div>
 }
 <div class="globe-wrapper" [class.hidden]="isLoading">
-  <div #globeContainer class="globe-container"></div>
+  <div
+    #globeContainer
+    class="globe-container"
+    role="region"
+    aria-label="Interactive 3D globe of architectural wonder locations"
+  ></div>
 
   @if (errorMessage) {
     <div class="state-message error-message">{{ errorMessage }}</div>
@@ -13,15 +18,27 @@
   }
 
   @if (selectedWonder) {
-    <div class="popup-card">
-      <button class="close-btn" (click)="selectedWonder = null">x</button>
+    <div class="popup-card" role="dialog" aria-label="Selected wonder details">
+      <button
+        type="button"
+        class="close-btn"
+        (click)="selectedWonder = null"
+        aria-label="Close selected wonder details"
+      >
+        x
+      </button>
       <strong>{{ selectedWonder.name }}</strong>
       <div>
         <em>{{ selectedWonder.location }}</em>
       </div>
       <img [src]="selectedWonder.imageURL" [alt]="selectedWonder.name" width="180" />
       <div>
-        <a [href]="selectedWonder.descriptionURL" target="_blank" rel="noopener noreferrer">
+        <a
+          [href]="selectedWonder.descriptionURL"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="'Open reference page for ' + selectedWonder.name"
+        >
           Learn more
         </a>
       </div>
@@ -29,5 +46,5 @@
   }
 </div>
 <div class="navigator" [class.hidden]="isLoading">
-  <a routerLink="/map">Switch to 2d map</a>
+  <a routerLink="/map">Switch to 2D map</a>
 </div>

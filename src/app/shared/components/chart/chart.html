@@ -1,3 +1,11 @@
 <div class="canvas-container" [ngStyle]="{ 'height.px': height }">
-  <canvas baseChart [data]="updatedData" [options]="chartOptions" [type]="currentType"> </canvas>
+  <canvas
+    baseChart
+    [data]="updatedData"
+    [options]="chartOptions"
+    [type]="currentType"
+    role="img"
+    [attr.aria-label]="ariaLabel"
+  >
+  </canvas>
 </div>

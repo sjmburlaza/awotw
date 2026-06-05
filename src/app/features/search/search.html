@@ -1,11 +1,17 @@
 <div class="search-container">
-  <div class="title">Your search results...</div>
+  <h1 class="title">Your search results...</h1>
   @if (errorMessage) {
     <div class="state-message error-message">{{ errorMessage }}</div>
   } @else if (searchResults.length) {
     <div class="results">
       @for (item of searchResults; track item.id) {
-        <a class="results__item" [href]="item.descriptionURL" target="_blank">
+        <a
+          class="results__item"
+          [href]="item.descriptionURL"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="'Open reference page for ' + item.name"
+        >
           <div class="results__item__img">
             <img [src]="item.imageURL" loading="lazy" decoding="async" [alt]="item.name" />
           </div>

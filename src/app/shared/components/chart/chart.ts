@@ -20,6 +20,7 @@ export class ChartComponent implements OnChanges {
     },
   };
   @Input() height = 560;
+  @Input() ariaLabel = 'Data chart';
 
   updatedData!: ChartConfiguration['data'];
   currentType!: ChartType;
