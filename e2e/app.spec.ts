@@ -3,11 +3,12 @@ import { expect, test } from '@playwright/test';
 test.describe('Architectural Wonders app', () => {
   test('loads the home page with primary navigation', async ({ page }) => {
     await page.goto('/');
+    const primaryNav = page.getByRole('navigation', { name: 'Primary navigation' });
 
     await expect(page.getByText('ARCHITECTURAL WONDERS OF THE WORLD')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Map View' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Timeline View' })).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Charts' })).toBeVisible();
+    await expect(primaryNav.getByRole('button', { name: 'Map', exact: true })).toBeVisible();
+    await expect(primaryNav.getByRole('button', { name: 'Timeline', exact: true })).toBeVisible();
+    await expect(primaryNav.getByRole('button', { name: 'Charts', exact: true })).toBeVisible();
     await expect(page.getByText('Style')).toHaveClass(/selected-mode/);
   });
 
