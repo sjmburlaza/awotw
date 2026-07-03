@@ -14,7 +14,7 @@
 
   &__globe {
     display: flex;
-    gap: 10px;
+    gap: 16px;
 
     &__home {
       display: flex;
@@ -42,10 +42,7 @@
       height: 28px;
 
       .url-path {
-        font-size: 14px;
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-decoration-color: lightcoral;
+        font-size: 16px;
         font-family: 'Barlow';
 
         &:hover {
