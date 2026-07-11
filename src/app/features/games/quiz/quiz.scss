@@ -357,16 +357,16 @@
 
   .quizzes {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 24px;
     width: 900px;
 
     button {
-      padding: 24px 0;
-      width: 400px;
-      font-size: 32px;
+      padding: 12px 0;
+      width: 640px;
+      font-size: 28px;
       border-radius: 12px;
       outline: 1px solid var(--app-border);
       border: none;
