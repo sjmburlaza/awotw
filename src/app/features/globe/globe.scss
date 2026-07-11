@@ -13,9 +13,8 @@
 
 .popup-card {
   position: absolute;
-  top: 20px;
-  right: 20px;
   width: 240px;
+  transform: translate(-50%, calc(-100% - 8px));
   background: rgba(20, 20, 20, 0.95);
   color: #fff;
   font-family: 'Montserrat', sans-serif;

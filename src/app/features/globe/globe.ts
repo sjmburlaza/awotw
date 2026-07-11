@@ -5,10 +5,15 @@ import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
 
-type WonderMarker = Item & {
+interface WonderMarker extends Item {
   latNum: number;
   lonNum: number;
-};
+}
+
+interface PopupPosition {
+  left: number;
+  top: number;
+}
 
 @Component({
   selector: 'app-globe',
@@ -32,6 +37,10 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   hasMarkers = true;
 
   selectedWonder: WonderMarker | null = null;
+  popupPosition: PopupPosition | null = null;
+
+  private selectedMarkerElement?: HTMLElement;
+  private popupTrackingFrameId?: number;
 
   ngAfterViewInit(): void {
     this.initGlobe();
@@ -39,6 +48,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clearSelectedWonder();
     this.removeMarkerListeners();
     this.globe?.htmlElementsData([]);
     this.globe = undefined;
@@ -75,6 +85,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
             .filter((wonder) => !Number.isNaN(wonder.latNum) && !Number.isNaN(wonder.lonNum)),
         ),
         tap((validWonders) => {
+          this.clearSelectedWonder();
           this.removeMarkerListeners();
           this.errorMessage = '';
           this.hasMarkers = validWonders.length > 0;
@@ -106,7 +117,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
     const clickHandler: EventListener = (event) => {
       event.stopPropagation();
-      this.selectWonder(wonder);
+      this.selectWonder(wonder, el);
     };
 
     const keydownHandler: EventListener = (event) => {
@@ -114,7 +125,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       if (keyboardEvent.key !== 'Enter' && keyboardEvent.key !== ' ') return;
 
       keyboardEvent.preventDefault();
-      this.selectWonder(wonder);
+      this.selectWonder(wonder, el);
     };
 
     el.addEventListener('click', clickHandler);
@@ -124,8 +135,18 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     return el;
   }
 
-  private selectWonder(wonder: WonderMarker): void {
+  clearSelectedWonder(): void {
+    this.stopPopupTracking();
+    this.selectedWonder = null;
+    this.selectedMarkerElement = undefined;
+    this.popupPosition = null;
+  }
+
+  private selectWonder(wonder: WonderMarker, markerElement: HTMLElement): void {
     this.selectedWonder = wonder;
+    this.selectedMarkerElement = markerElement;
+    this.updatePopupPosition();
+    this.startPopupTracking();
 
     this.globe?.pointOfView(
       {
@@ -135,6 +156,44 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       },
       1200,
     );
+  }
+
+  private startPopupTracking(): void {
+    this.stopPopupTracking();
+
+    const trackPopupPosition = () => {
+      if (!this.selectedMarkerElement) {
+        this.popupTrackingFrameId = undefined;
+        return;
+      }
+
+      this.updatePopupPosition();
+      this.popupTrackingFrameId = requestAnimationFrame(trackPopupPosition);
+    };
+
+    this.popupTrackingFrameId = requestAnimationFrame(trackPopupPosition);
+  }
+
+  private stopPopupTracking(): void {
+    if (this.popupTrackingFrameId === undefined) return;
+
+    cancelAnimationFrame(this.popupTrackingFrameId);
+    this.popupTrackingFrameId = undefined;
+  }
+
+  private updatePopupPosition(): void {
+    if (!this.selectedMarkerElement) {
+      this.popupPosition = null;
+      return;
+    }
+
+    const globeRect = this.globeContainer.nativeElement.getBoundingClientRect();
+    const markerRect = this.selectedMarkerElement.getBoundingClientRect();
+
+    this.popupPosition = {
+      left: markerRect.left - globeRect.left + markerRect.width / 2,
+      top: markerRect.top - globeRect.top,
+    };
   }
 
   private createPinSvg(color: string): SVGSVGElement {
