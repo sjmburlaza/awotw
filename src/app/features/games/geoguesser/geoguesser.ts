@@ -2,6 +2,7 @@ import { AfterViewInit, Component, DestroyRef, OnDestroy, OnInit, inject } from 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
 import { DataService, Item } from 'src/app/services/data.service';
+import { InfoTooltipComponent } from 'src/app/shared/components/info-tooltip/info-tooltip';
 
 interface MappableWonder extends Item {
   lat: string;
@@ -18,7 +19,7 @@ interface RoundScore {
 
 @Component({
   selector: 'app-geoguesser',
-  imports: [],
+  imports: [InfoTooltipComponent],
   templateUrl: './geoguesser.html',
   styleUrl: './geoguesser.scss',
 })

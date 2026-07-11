@@ -16,7 +16,7 @@
           <strong class="prompt-question">
             Place the pin where
             <mark class="wonder-name">{{ wonder.name }}</mark>
-            is.
+            is located.
           </strong>
         } @else {
           <strong class="prompt-question">Place the pin on the map.</strong>
@@ -24,15 +24,22 @@
       </div>
       <div class="scoreboard" aria-live="polite">
         <div class="score-stat">
-          <span>Total</span>
+          <span class="score-label">Total</span>
           <strong>{{ totalScore }}</strong>
         </div>
         <div class="score-stat">
-          <span>Time</span>
+          <span class="score-label">Time</span>
           <strong>{{ formatDuration(elapsedSeconds) }}</strong>
         </div>
         <div class="score-stat">
-          <span>Max</span>
+          <span class="score-label">
+            Max
+            <app-info-tooltip
+              text="Highest possible round score: distance points plus time bonus."
+              ariaLabel="What Max means"
+              tooltipId="max-score-tooltip"
+            />
+          </span>
           <strong>{{ maxRoundScore }}</strong>
         </div>
       </div>

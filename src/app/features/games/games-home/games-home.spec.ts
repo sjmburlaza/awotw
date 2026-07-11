@@ -33,6 +33,7 @@ describe('GamesHomeComponent', () => {
       'GeoGuesser',
       'Recreate Timeline',
       'Architecture Puzzle',
+      'Quizzes',
     ]);
   });
 

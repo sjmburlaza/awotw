@@ -63,6 +63,7 @@
 }
 
 .score-stat {
+  position: relative;
   display: grid;
   place-items: center;
   min-width: 76px;
@@ -72,7 +73,10 @@
   border-radius: 8px;
   background: var(--app-surface-muted);
 
-  span {
+  .score-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     color: var(--app-muted);
     font-size: 11px;
     text-transform: uppercase;
