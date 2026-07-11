@@ -17,32 +17,50 @@
     <div class="state-message">No globe markers available.</div>
   }
 
-  @if (selectedWonder) {
-    <div class="popup-card" role="dialog" aria-label="Selected wonder details">
-      <button
-        type="button"
-        class="close-btn"
-        (click)="selectedWonder = null"
-        aria-label="Close selected wonder details"
+  @if (selectedWonder; as wonder) {
+    @if (popupPosition; as position) {
+      <div
+        class="popup-card"
+        role="dialog"
+        aria-label="Selected wonder details"
+        [style.left.px]="position.left"
+        [style.top.px]="position.top"
       >
-        x
-      </button>
-      <strong>{{ selectedWonder.name }}</strong>
-      <div>
-        <em>{{ selectedWonder.location }}</em>
-      </div>
-      <img [src]="selectedWonder.imageURL" [alt]="selectedWonder.name" width="180" />
-      <div>
-        <a
-          [href]="selectedWonder.descriptionURL"
-          target="_blank"
-          rel="noopener noreferrer"
-          [attr.aria-label]="'Open reference page for ' + selectedWonder.name"
+        <button
+          type="button"
+          class="close-btn"
+          (click)="clearSelectedWonder()"
+          aria-label="Close selected wonder details"
         >
-          Learn more
-        </a>
+          x
+        </button>
+        <strong>{{ wonder.name }}</strong>
+        <div>
+          <em>{{ wonder.location }}</em>
+        </div>
+        <div class="popup-card__image-frame">
+          @if (isPopupImageLoading) {
+            <div class="popup-card__image-loader" role="status" aria-label="Loading image">
+              <app-loader></app-loader>
+            </div>
+          } @else if (hasPopupImageError) {
+            <div class="popup-card__image-error">Image unavailable</div>
+          } @else {
+            <img class="popup-card__image" [src]="popupImageSrc" [alt]="wonder.name" />
+          }
+        </div>
+        <div>
+          <a
+            [href]="wonder.descriptionURL"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'Open reference page for ' + wonder.name"
+          >
+            Learn more
+          </a>
+        </div>
       </div>
-    </div>
+    }
   }
 </div>
 <div class="navigator" [class.hidden]="isLoading">
