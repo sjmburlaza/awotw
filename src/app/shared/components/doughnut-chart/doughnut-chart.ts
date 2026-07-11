@@ -14,6 +14,7 @@ import {
   Chart,
   ChartConfiguration,
   ChartOptions,
+  Plugin,
   registerables,
   Tooltip,
   TooltipItem,
@@ -26,8 +27,6 @@ import { ChartComponent } from '../chart/chart';
 import { getThemeColors, ThemeColors } from '../../theme-colors';
 import { sortMapObject } from '../../utils-helper';
 
-Chart.register(...registerables, ChartDataLabels);
-
 declare module 'chart.js' {
   interface TooltipPositionerMap {
     doughnutOutside: TooltipPositionerFunction<'doughnut'>;
@@ -37,6 +36,8 @@ declare module 'chart.js' {
 const TOOLTIP_EDGE_PADDING = 16;
 const TOOLTIP_TARGET_OFFSET = 2;
 const EXTERNAL_TOOLTIP_GAP = 12;
+const CENTER_TEXT_TITLE_SIZE = 13;
+const CENTER_TEXT_COUNT_SIZE = 28;
 
 Tooltip.positioners.doughnutOutside = function (
   items: readonly ActiveElement[],
@@ -58,6 +59,74 @@ Tooltip.positioners.doughnutOutside = function (
     yAlign: isHorizontalSlice ? 'center' : yDirection >= 0 ? 'top' : 'bottom',
   };
 };
+
+const doughnutCenterTextPlugin: Plugin<'doughnut'> = {
+  id: 'doughnutCenterText',
+  afterDraw(chart): void {
+    const meta = chart.getDatasetMeta(0);
+
+    if (meta.type !== 'doughnut') return;
+
+    const centerArc = meta.data[0] as ArcElement | undefined;
+
+    if (!centerArc) return;
+
+    const { title, count } = getDoughnutCenterText(chart);
+    const maxTextWidth = centerArc.innerRadius * 1.65;
+    const { ctx } = chart;
+    const theme = getThemeColors();
+
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    ctx.fillStyle = theme.muted;
+    ctx.font = `600 ${CENTER_TEXT_TITLE_SIZE}px Barlow, sans-serif`;
+    ctx.fillText(fitCanvasText(ctx, title, maxTextWidth), centerArc.x, centerArc.y - 15);
+
+    ctx.fillStyle = theme.text;
+    ctx.font = `700 ${CENTER_TEXT_COUNT_SIZE}px Montserrat, sans-serif`;
+    ctx.fillText(String(count), centerArc.x, centerArc.y + 14);
+
+    ctx.restore();
+  },
+};
+
+Chart.register(...registerables, ChartDataLabels, doughnutCenterTextPlugin);
+
+function getDoughnutCenterText(chart: Chart<'doughnut'>): { title: string; count: number } {
+  const dataset = chart.data.datasets[0];
+  const values = dataset.data.map((value) => Number(value));
+  const active = chart.getActiveElements()[0];
+
+  if (active) {
+    return {
+      title: String(chart.data.labels?.[active.index] ?? dataset.label ?? 'Total'),
+      count: values[active.index] ?? 0,
+    };
+  }
+
+  return {
+    title: dataset.label ?? 'Total',
+    count: values.reduce((sum, value) => sum + value, 0),
+  };
+}
+
+function fitCanvasText(ctx: CanvasRenderingContext2D, text: string, maxTextWidth: number): string {
+  if (ctx.measureText(text).width <= maxTextWidth) return text;
+
+  const suffix = '...';
+  let trimmedText = text;
+
+  while (
+    trimmedText.length > 0 &&
+    ctx.measureText(`${trimmedText}${suffix}`).width > maxTextWidth
+  ) {
+    trimmedText = trimmedText.slice(0, -1);
+  }
+
+  return trimmedText ? `${trimmedText}${suffix}` : suffix;
+}
 
 type KeyOf<T> = keyof T;
 
@@ -123,6 +192,7 @@ export class DoughnutChartComponent<T> implements OnChanges {
       datasets: [
         {
           data: Array.from(map.values()),
+          label: this.titlePrefix || 'Total',
         },
       ],
     };
