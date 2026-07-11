@@ -29,7 +29,11 @@ describe('GamesHomeComponent', () => {
   });
 
   it('shows the available games', () => {
-    expect(component.games.map((game) => game.title)).toEqual(['GeoGuesser', 'Recreate Timeline']);
+    expect(component.games.map((game) => game.title)).toEqual([
+      'GeoGuesser',
+      'Recreate Timeline',
+      'Architecture Puzzle',
+    ]);
   });
 
   it('navigates to the selected game', () => {

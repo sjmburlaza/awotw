@@ -36,6 +36,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/games/geoguesser/geoguesser').then((m) => m.GeoguesserComponent),
       },
+      {
+        path: 'architecture-puzzle',
+        loadComponent: () =>
+          import('./features/games/architecture-puzzle/architecture-puzzle').then(
+            (m) => m.ArchitecturePuzzleComponent,
+          ),
+      },
     ],
   },
   {

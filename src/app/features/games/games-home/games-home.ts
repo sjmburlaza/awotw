@@ -28,6 +28,11 @@ export class GamesHomeComponent {
       route: URL_PATH.RECREATE_TIMELINE,
       color: '#f97316',
     },
+    {
+      title: 'Architecture Puzzle',
+      route: URL_PATH.ARCHITECTURE_PUZZLE,
+      color: '#0f766e',
+    },
   ];
 
   onSelectGame(game: GameOption): void {
