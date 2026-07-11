@@ -34,6 +34,7 @@ describe('GamesHomeComponent', () => {
       'Recreate Timeline',
       'Architecture Puzzle',
       'Quizzes',
+      'World Tour Mode',
     ]);
   });
 

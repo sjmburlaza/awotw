@@ -10,6 +10,7 @@ export const URL_PATH = {
   PROGRAMMATIC: '/programmatic',
   QUIZ: '/games/quiz',
   GAMES: '/games',
+  WORLD_TOUR_MODE: '/games/world-tour-mode',
   RECREATE_TIMELINE: '/games/recreate-timeline',
   GEOGUESSER: '/games/geoguesser',
   ARCHITECTURE_PUZZLE: '/games/architecture-puzzle',

@@ -36,7 +36,12 @@ export class GamesHomeComponent {
     {
       title: 'Quizzes',
       route: URL_PATH.QUIZ,
-      color: '#5b1414',
+      color: '#cc3e3e',
+    },
+    {
+      title: 'World Tour Mode',
+      route: URL_PATH.WORLD_TOUR_MODE,
+      color: '#0891b2',
     },
   ];
 

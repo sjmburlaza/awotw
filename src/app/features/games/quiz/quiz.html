@@ -5,37 +5,58 @@
     <div class="state-message">Loading quiz data...</div>
   } @else if (selectedQuiz?.code) {
     <div class="quiz-selected">
-      <div class="header">
-        <div class="header__title">{{ selectedQuiz?.title }}</div>
-        <div class="header__score" aria-live="polite">
-          Your score:
-          <span> {{ currentScore }}/{{ currentCount }} </span>
+      <div class="game-header">
+        <div class="title-group">
+          <span class="round-label">Quiz mode</span>
+          <h1>{{ selectedQuiz?.title }}</h1>
+        </div>
+
+        <div class="game-status" aria-live="polite">
+          <div>
+            <span>Score</span>
+            <strong>{{ currentScore }}/{{ currentCount }}</strong>
+          </div>
+        </div>
+
+        <div class="game-actions">
+          <button type="button" (click)="exit()" aria-label="Exit quiz" title="Exit quiz">
+            <i class="bi bi-x-lg"></i>
+          </button>
         </div>
       </div>
+
       @if (loading) {
         <div class="loader-wrapper" role="status" aria-live="polite">
           <div class="loader"></div>
           <p>Generating question...</p>
         </div>
       }
-      <div class="content">
+
+      <div class="content" [class.is-loading]="loading">
         <div class="content__image">
-          <img
-            [src]="item?.imageURL + '?w=200&format=webp'"
-            (load)="loading = false"
-            (error)="loading = false"
-            [hidden]="loading"
-            [alt]="item?.name"
-          />
+          @if (loading && pendingItem; as loadingItem) {
+            <img
+              class="content__preload-image"
+              [src]="loadingItem.imageURL + '?w=200&format=webp'"
+              (load)="showPendingItem()"
+              (error)="showPendingItem()"
+              alt=""
+              aria-hidden="true"
+            />
+          }
+          @if (!loading && item; as visibleItem) {
+            <img [src]="visibleItem.imageURL + '?w=200&format=webp'" [alt]="visibleItem.name" />
+          }
         </div>
         @if (!loading) {
           <div class="content__controls">
             <fieldset class="options">
-              <legend class="options__label">Select the correct answer:</legend>
+              <legend class="options__label">Choose one answer</legend>
               @for (option of options; track $index) {
                 <div
                   class="option"
                   [ngClass]="{
+                    selected: !hasSeenAnswer && option === selectedOption,
                     correct: hasSeenAnswer && option === correctAnswer,
                     incorrect:
                       hasSeenAnswer &&
@@ -51,8 +72,8 @@
                     (ngModelChange)="onSelectOption()"
                     [disabled]="hasSeenAnswer"
                   />
-                  <label [for]="'quiz-option-' + $index">
-                    {{ option }}
+                  <label class="option__label" [for]="'quiz-option-' + $index">
+                    <span class="option__text">{{ option }}</span>
                     @if (hasSeenAnswer && option === correctAnswer) {
                       <a
                         class="option__url"
@@ -64,35 +85,41 @@
                         <i class="bi bi-box-arrow-up-right"></i>
                       </a>
                     }
+                    @if (hasSeenAnswer && option === correctAnswer) {
+                      <i class="option__feedback bi bi-check-circle-fill" aria-hidden="true"></i>
+                    } @else if (
+                      hasSeenAnswer && option === selectedOption && selectedOption !== correctAnswer
+                    ) {
+                      <i class="option__feedback bi bi-x-circle-fill" aria-hidden="true"></i>
+                    }
                   </label>
                 </div>
               }
             </fieldset>
-            <div class="see-answer">
+
+            <div class="quiz-actions">
               <button
                 type="button"
-                class="see-answer__btn"
+                class="quiz-action quiz-action--primary see-answer__btn"
                 [disabled]="disableSeeAnswerBtn"
                 (click)="seeAnswer()"
               >
-                See answer
-                <span [hidden]="hasSeenAnswer"><i class="bi bi-eye-slash"></i></span>
-                <span [hidden]="!hasSeenAnswer"><i class="bi bi-eye"></i></span>
+                <span>See answer</span>
+                @if (hasSeenAnswer) {
+                  <i class="bi bi-eye" aria-hidden="true"></i>
+                } @else {
+                  <i class="bi bi-eye-slash" aria-hidden="true"></i>
+                }
               </button>
-            </div>
-            <div class="next">
               <button
                 type="button"
-                class="next__btn"
+                class="quiz-action next__btn"
                 [disabled]="!hasSeenAnswer"
                 (click)="goNext()"
               >
-                Next question
-                <span><i class="bi bi-arrow-right-circle"></i></span>
+                <span>Next question</span>
+                <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
               </button>
-            </div>
-            <div class="exit">
-              <button type="button" (click)="exit()" class="exit__btn">Exit quiz</button>
             </div>
           </div>
         }

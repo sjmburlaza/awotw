@@ -83,6 +83,17 @@ describe('Globe', () => {
     expect(component).toBeTruthy();
   });
 
+  it('links to the map and World Tour Mode from the globe navigator', () => {
+    const links = Array.from(fixture.nativeElement.querySelectorAll('.navigator a')) as HTMLAnchorElement[];
+
+    expect(links.map((link) => link.textContent?.trim())).toEqual([
+      'Switch to 2D map',
+      'Play World Tour Mode',
+    ]);
+    expect(links[0].getAttribute('href')).toBe('/map');
+    expect(links[1].getAttribute('href')).toBe('/games/world-tour-mode');
+  });
+
   it('positions the popup directly above the selected marker', () => {
     const globeContainer = fixture.nativeElement.querySelector('.globe-container') as HTMLElement;
     const markerElement = document.createElement('div');
