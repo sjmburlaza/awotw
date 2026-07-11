@@ -28,7 +28,7 @@
 
     a {
       text-decoration: none;
-      color: gray;
+      color: var(--app-muted);
     }
 
     &__item {
@@ -43,8 +43,9 @@
         align-items: center;
         width: 302px;
         height: 202px;
-        border: 1px solid gainsboro;
+        border: 1px solid var(--app-border);
         border-radius: 8px;
+        background: var(--app-surface-muted);
 
         img {
           max-width: 300px;
@@ -72,7 +73,7 @@
         }
 
         &:hover {
-          color: blueviolet;
+          color: var(--app-focus);
         }
       }
     }

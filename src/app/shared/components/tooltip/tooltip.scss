@@ -1,11 +1,13 @@
 .tooltip {
   position: absolute;
-  background: gainsboro;
-  color: black;
+  background: var(--app-surface);
+  color: var(--app-text);
   padding: 12px;
   font-size: 14px;
   font-family: 'Barlow';
   border-radius: 4px;
+  border: 1px solid var(--app-border);
+  box-shadow: 0 8px 24px var(--app-shadow);
   pointer-events: none;
   // white-space: nowrap;
   width: 300px;

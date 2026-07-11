@@ -9,12 +9,12 @@
   border: none;
   border-radius: 50%;
 
-  background: #111827;
-  color: #ffffff;
+  background: var(--app-text);
+  color: var(--app-bg);
   font-size: 1.5rem;
   cursor: pointer;
 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px var(--app-shadow);
   transition:
     transform 0.2s ease,
     opacity 0.2s ease;

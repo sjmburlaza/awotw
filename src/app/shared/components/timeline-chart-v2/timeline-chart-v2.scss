@@ -1,9 +1,9 @@
 .timeline-chart-container {
-    width: 100%;
-    // overflow-x: auto;
-    overflow: hidden;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 12px;
+  width: 100%;
+  // overflow-x: auto;
+  overflow: hidden;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border-soft);
+  border-radius: 8px;
+  padding: 12px;
 }

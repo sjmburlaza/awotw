@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
+  HostListener,
   inject,
   Input,
   OnChanges,
@@ -11,6 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
 import { GeoService } from 'src/app/services/geo.service';
+import { getThemeColors } from '../../theme-colors';
 
 interface CountryProperties {
   name?: string;
@@ -50,6 +52,11 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
     if (changes['countryValues'] && this.countriesLayer) {
       this.updateMapStyles();
     }
+  }
+
+  @HostListener('window:awotw-theme-change')
+  onThemeChange(): void {
+    this.updateMapStyles();
   }
 
   ngAfterViewInit(): void {
@@ -186,12 +193,13 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
     const value = this.countryValues[countryName] ?? 0;
     const values = Object.values(this.countryValues);
     const max = values.length ? Math.max(...values) : 0;
+    const theme = getThemeColors();
 
     return {
       fillColor: this.getColor(value, max),
       weight: 1,
       opacity: 1,
-      color: '#ffffff',
+      color: theme.mapStroke,
       fillOpacity: 0.75,
     };
   }

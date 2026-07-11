@@ -10,10 +10,10 @@
 
   i {
     font-size: 36px;
-    color: gray;
+    color: var(--app-muted);
 
     &:hover {
-      color: blueviolet;
+      color: var(--app-focus);
     }
   }
 
@@ -38,7 +38,8 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border: 1px solid gainsboro;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-muted);
     width: 960px;
     height: 64vh;
 
@@ -64,7 +65,7 @@
         font-size: 20px;
         margin-bottom: 8px;
         text-decoration: underline;
-        text-decoration-color: gray;
+        text-decoration-color: var(--app-muted);
         cursor: pointer;
 
         a {
@@ -84,7 +85,7 @@
 
     .right-section {
       padding-left: 24px;
-      border-left: 1px solid gray;
+      border-left: 1px solid var(--app-border);
     }
   }
 }
@@ -96,7 +97,7 @@
   transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
-  border: 4px solid #ccc;
+  border: 4px solid var(--app-border);
   border-top-color: #ff7ff4;
   border-radius: 50%;
   animation: spin 1s linear infinite;

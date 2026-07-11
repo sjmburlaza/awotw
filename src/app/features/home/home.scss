@@ -92,7 +92,7 @@
       appearance: none;
 
       &:hover {
-        color: blueviolet;
+        color: var(--app-focus);
       }
     }
   }
@@ -115,7 +115,7 @@
     appearance: none;
 
     &:hover {
-      color: blueviolet;
+      color: var(--app-focus);
       filter: brightness(70%);
     }
   }
@@ -123,6 +123,6 @@
   .selected-mode {
     font-weight: bold;
     transform: scale(1.2);
-    color: blueviolet;
+    color: var(--app-focus);
   }
 }

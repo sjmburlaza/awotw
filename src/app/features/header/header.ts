@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   readonly URL_PATH = URL_PATH;
   currentUrl = URL_PATH.HOME;
-  isDarkMode = false;
+  isDarkMode = true;
   isHomeClicked = false;
   zoomInText = false;
   searchQuery = '';
@@ -85,6 +85,9 @@ export class HeaderComponent implements OnInit {
 
   onToggleBgMode(): void {
     this.isDarkMode = !this.isDarkMode;
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+    window.dispatchEvent(
+      new CustomEvent('awotw-theme-change', { detail: { isDarkMode: this.isDarkMode } }),
+    );
   }
 }

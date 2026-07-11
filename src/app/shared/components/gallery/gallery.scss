@@ -35,7 +35,8 @@
       height: 380px;
       width: 220px;
       overflow: hidden;
-      border: 1px solid gainsboro;
+      border: 1px solid var(--app-border);
+      background: var(--app-surface-muted);
 
       img {
         height: 100%;
@@ -67,7 +68,8 @@
       height: 280px;
       width: 300px;
       overflow: hidden;
-      border: 1px solid gainsboro;
+      border: 1px solid var(--app-border);
+      background: var(--app-surface-muted);
 
       img {
         height: 100%;
@@ -96,7 +98,7 @@
       width: 32px;
       height: 32px;
       border-radius: 16px;
-      border: 1px solid gainsboro;
+      border: 1px solid var(--app-border);
       font-size: 16px;
     }
   }

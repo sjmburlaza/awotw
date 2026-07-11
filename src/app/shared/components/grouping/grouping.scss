@@ -27,7 +27,7 @@
     margin-bottom: 48px;
     margin-left: -24px;
     margin-right: -24px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--app-border);
 
     &__name {
       font-size: 24px;
@@ -35,7 +35,7 @@
       padding-bottom: 4px;
 
       i {
-        color: gray;
+        color: var(--app-muted);
         font-size: 16px;
       }
     }
@@ -54,8 +54,9 @@
         align-items: center;
         width: 322px;
         height: 222px;
-        border: 1px solid gainsboro;
+        border: 1px solid var(--app-border);
         border-radius: 8px;
+        background: var(--app-surface-muted);
 
         img {
           max-width: 320px;
@@ -71,7 +72,7 @@
         font-size: 16px;
 
         i {
-          color: gray;
+          color: var(--app-muted);
           font-size: 14px;
         }
       }
