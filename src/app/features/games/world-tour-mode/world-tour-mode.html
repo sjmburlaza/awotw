@@ -1,0 +1,128 @@
+<div class="world-tour-container">
+  <div class="title">
+    World Tour Mode
+    <i class="bi bi-airplane"></i>
+  </div>
+
+  @if (isLoading) {
+    <div class="loader">
+      <app-loader></app-loader>
+    </div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else {
+    <div class="tour-panel">
+      <div class="tour-prompt">
+        <p class="tour-instruction">
+          To complete the game, clear all the markers by answering each pop-up question correctly.
+        </p>
+      </div>
+
+      <div class="scoreboard" aria-live="polite">
+        <div class="score-stat">
+          <span>Time</span>
+          <strong>{{ formatDuration(elapsedSeconds) }}</strong>
+        </div>
+        <div class="score-stat">
+          <span>Cleared</span>
+          <strong>{{ clearedCount }}/{{ totalStops }}</strong>
+        </div>
+        <div class="score-stat">
+          <span>Left</span>
+          <strong>{{ remainingCount }}</strong>
+        </div>
+        <div class="score-stat">
+          <span>Tries</span>
+          <strong>{{ attempts }}</strong>
+        </div>
+      </div>
+
+      <div class="tour-actions">
+        <button type="button" (click)="restartGame()" aria-label="Restart tour" title="Restart">
+          <i class="bi bi-arrow-clockwise"></i>
+        </button>
+        <a routerLink="/games" aria-label="Back to games" title="Games">
+          <i class="bi bi-grid"></i>
+        </a>
+      </div>
+    </div>
+
+    @if (isFinished) {
+      <div class="finish-banner" aria-live="polite">
+        <strong>All markers cleared in {{ formatDuration(elapsedSeconds) }}.</strong>
+        <button type="button" (click)="restartGame()">Play again</button>
+      </div>
+    }
+  }
+
+  <div class="globe-wrapper" [class.is-disabled]="isLoading || !!errorMessage">
+    <div
+      #globeContainer
+      class="globe-container"
+      role="region"
+      aria-label="World Tour Mode 3D globe"
+    ></div>
+
+    @if (!isLoading && !errorMessage && !hasMarkers && !isFinished) {
+      <div class="state-message">No world tour markers available.</div>
+    }
+
+    @if (currentStop; as stop) {
+      @if (currentQuestion; as question) {
+        <div
+          #quizPopup
+          class="quiz-popup"
+          [class.has-feedback]="!!answerResult"
+          [class.is-fallback-position]="!popupPosition && !isPopupPositionFrozen"
+          [class.is-frozen-position]="isPopupPositionFrozen"
+          role="dialog"
+          aria-label="World tour question"
+          [style.left]="popupPosition ? popupPosition.left + 'px' : '50%'"
+          [style.top]="popupPosition ? popupPosition.top + 'px' : '16px'"
+        >
+          <div class="quiz-popup__image-frame">
+            <img class="quiz-popup__image" [src]="stop.imageURL" alt="Current world tour stop" />
+          </div>
+          <div class="quiz-popup__question">{{ question.prompt }}</div>
+          <div class="quiz-popup__options">
+            @for (option of question.options; track option) {
+              <button
+                type="button"
+                class="quiz-popup__option"
+                [class.is-correct]="answerResult && option === question.correctAnswer"
+                [class.is-incorrect]="
+                  answerResult && answerResult.selectedOption === option && !answerResult.isCorrect
+                "
+                [disabled]="!!answerResult"
+                (click)="submitAnswer(option)"
+              >
+                <span>{{ option }}</span>
+                @if (answerResult && option === question.correctAnswer) {
+                  <i class="bi bi-check-circle"></i>
+                } @else if (
+                  answerResult &&
+                  answerResult.selectedOption === option &&
+                  !answerResult.isCorrect
+                ) {
+                  <i class="bi bi-x-circle"></i>
+                }
+              </button>
+            }
+          </div>
+          <div class="quiz-popup__feedback-slot">
+            @if (answerResult; as result) {
+              <div
+                class="quiz-popup__feedback"
+                [class.is-correct]="result.isCorrect"
+                [class.is-incorrect]="!result.isCorrect"
+                aria-live="polite"
+              >
+                {{ result.message }}
+              </div>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

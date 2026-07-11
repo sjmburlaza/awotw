@@ -43,6 +43,13 @@ export const routes: Routes = [
         path: 'quiz',
         loadComponent: () => import('./features/games/quiz/quiz').then((m) => m.QuizComponent),
       },
+      {
+        path: 'world-tour-mode',
+        loadComponent: () =>
+          import('./features/games/world-tour-mode/world-tour-mode').then(
+            (m) => m.WorldTourModeComponent,
+          ),
+      },
     ],
   },
   {
