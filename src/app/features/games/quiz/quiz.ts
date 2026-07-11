@@ -49,6 +49,7 @@ export class QuizComponent implements OnInit {
   data: Item[] = [];
   selectedQuiz: QuizModel | undefined | null;
   item: Item | undefined;
+  pendingItem: Item | undefined;
   options: (string | number)[] = [];
   loading = false;
   correctAnswer = '';
@@ -81,6 +82,9 @@ export class QuizComponent implements OnInit {
   onSelectQuiz(quiz: QuizModel): void {
     if (!this.data.length) return;
 
+    this.currentCount = 0;
+    this.currentScore = 0;
+    this.resetQuestionState();
     this.selectedQuiz = quiz;
     this.generateQuiz(this.selectedQuiz?.code as keyof Item);
   }
@@ -93,9 +97,13 @@ export class QuizComponent implements OnInit {
     }
 
     this.loading = true;
+    this.item = undefined;
+    this.pendingItem = undefined;
+    this.options = [];
     const itemIdx = this.generateRandomNum(this.data.length);
-    this.item = this.data[itemIdx];
-    this.options = this.generateOptions(this.item, quizType);
+    const nextItem = this.data[itemIdx];
+    this.pendingItem = nextItem;
+    this.options = this.generateOptions(nextItem, quizType);
   }
 
   generateRandomNum(arrLength: number): number {
@@ -148,15 +156,30 @@ export class QuizComponent implements OnInit {
   }
 
   goNext(): void {
-    this.selectedOption = '';
+    this.resetQuestionState();
     this.generateQuiz(this.selectedQuiz?.code as keyof Item);
-    this.hasSeenAnswer = false;
   }
 
   exit(): void {
     this.selectedQuiz = null;
+    this.item = undefined;
+    this.pendingItem = undefined;
+    this.options = [];
+    this.loading = false;
     this.currentCount = 0;
     this.currentScore = 0;
+    this.resetQuestionState();
+  }
+
+  private resetQuestionState(): void {
+    this.selectedOption = '';
     this.hasSeenAnswer = false;
+    this.disableSeeAnswerBtn = true;
+  }
+
+  showPendingItem(): void {
+    this.item = this.pendingItem;
+    this.pendingItem = undefined;
+    this.loading = false;
   }
 }
