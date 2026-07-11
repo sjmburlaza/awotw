@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions, registerables, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { sortMapObject } from '../../utils-helper';
+import { getThemeColors } from '../../theme-colors';
 
 Chart.register(...registerables, ChartDataLabels);
 
@@ -43,6 +51,11 @@ export class PieChartComponent<T> implements OnChanges {
     }
   }
 
+  @HostListener('window:awotw-theme-change')
+  onThemeChange(): void {
+    this.chartOptions = this.getChartOptions(this.data);
+  }
+
   private getPieChartData(rawData: T[]): ChartConfiguration<'pie'>['data'] {
     let map = new Map<string, number>();
 
@@ -64,9 +77,11 @@ export class PieChartComponent<T> implements OnChanges {
 
   private getChartOptions(rawData: T[]): ChartOptions<'pie'> {
     const data = [...rawData];
+    const theme = getThemeColors();
 
     return {
       responsive: true,
+      color: theme.text,
       layout: {
         padding: {
           top: 32,
@@ -79,8 +94,10 @@ export class PieChartComponent<T> implements OnChanges {
           title: {
             display: true,
             padding: 16,
+            color: theme.text,
           },
           labels: {
+            color: theme.muted,
             padding: 8,
             boxWidth: 16,
             font: {
@@ -91,7 +108,7 @@ export class PieChartComponent<T> implements OnChanges {
         },
         datalabels: {
           display: true,
-          color: '#111827',
+          color: theme.text,
           font: {
             family: 'Barlow',
             size: 14,
@@ -112,8 +129,11 @@ export class PieChartComponent<T> implements OnChanges {
           clamp: true,
         },
         tooltip: {
+          backgroundColor: theme.tooltipBackground,
+          bodyColor: theme.tooltipText,
           displayColors: false,
           padding: 12,
+          titleColor: theme.tooltipText,
           titleFont: {
             size: 14,
             weight: 'bold',

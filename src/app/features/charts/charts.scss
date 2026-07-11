@@ -47,7 +47,7 @@
 
     &__bar {
       width: 1260px;
-      border-bottom: 1px solid gainsboro;
+      border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
     }
 
@@ -55,7 +55,7 @@
       display: flex;
       justify-content: center;
       width: 1260px;
-      border-bottom: 1px solid gainsboro;
+      border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
 
       .title {
@@ -79,16 +79,16 @@
       display: flex;
       justify-content: center;
       width: 1260px;
-      border-bottom: 1px solid gainsboro;
+      border-bottom: 1px solid var(--app-border);
       padding-bottom: 24px;
     }
 
     &__line {
       width: 1260px;
-      border-bottom: 1px solid gainsboro;
+      border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
       padding-left: 56px;
-      background-color: whitesmoke;
+      background-color: var(--app-surface-muted);
 
       .title {
         font-family: 'Montserrat', sans-serif;
@@ -127,7 +127,7 @@ label {
 
   &.selected {
     border-radius: 8px;
-    outline: 1px solid blueviolet;
+    outline: 1px solid var(--app-focus);
     @extend %gradient-text;
     font-weight: bold;
   }
@@ -156,7 +156,7 @@ input {
   transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
-  border: 4px solid #ccc;
+  border: 4px solid var(--app-border);
   border-top-color: #ff7ff4;
   border-radius: 50%;
   animation: spin 1s linear infinite;

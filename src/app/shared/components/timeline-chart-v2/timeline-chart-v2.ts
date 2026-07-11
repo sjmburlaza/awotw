@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import * as d3 from 'd3';
 import { StyleRange } from 'src/app/services/data.service';
+import { getThemeColors } from '../../theme-colors';
 
 @Component({
   selector: 'app-timeline-chart-v2',
@@ -35,8 +36,15 @@ export class TimelineChartV2Component implements AfterViewInit {
     this.renderChart();
   }
 
+  @HostListener('window:awotw-theme-change')
+  onThemeChange(): void {
+    this.createTooltip();
+    this.renderChart();
+  }
+
   private renderChart(): void {
     const container = this.chartContainer.nativeElement;
+    const theme = getThemeColors();
     const width = container.clientWidth || 1000;
     const barHeight = 12;
     const rowGap = 8;
@@ -87,18 +95,18 @@ export class TimelineChartV2Component implements AfterViewInit {
       .append('g')
       .attr('transform', `translate(0, ${margin.top})`)
       .call(axisTop)
-      .call((g) => g.select('.domain').attr('stroke', '#999'))
-      .call((g) => g.selectAll('.tick line').attr('stroke', '#ddd'))
-      .call((g) => g.selectAll('.tick text').attr('font-size', '12px'));
+      .call((g) => g.select('.domain').attr('stroke', theme.axis))
+      .call((g) => g.selectAll('.tick line').attr('stroke', theme.grid))
+      .call((g) => g.selectAll('.tick text').attr('font-size', '12px').attr('fill', theme.muted));
 
     // Bottom axis
     this.svg
       .append('g')
       .attr('transform', `translate(0, ${margin.top + chartHeight})`)
       .call(axisBottom)
-      .call((g) => g.select('.domain').attr('stroke', '#999'))
-      .call((g) => g.selectAll('.tick line').attr('stroke', '#ddd'))
-      .call((g) => g.selectAll('.tick text').attr('font-size', '12px'));
+      .call((g) => g.select('.domain').attr('stroke', theme.axis))
+      .call((g) => g.selectAll('.tick line').attr('stroke', theme.grid))
+      .call((g) => g.selectAll('.tick text').attr('font-size', '12px').attr('fill', theme.muted));
 
     // Row background guides
     this.svg
@@ -111,7 +119,7 @@ export class TimelineChartV2Component implements AfterViewInit {
       .attr('x2', margin.left + chartWidth)
       .attr('y1', (d) => (yScale(d.label) ?? 0) + yScale.bandwidth() / 2)
       .attr('y2', (d) => (yScale(d.label) ?? 0) + yScale.bandwidth() / 2)
-      .attr('stroke', '#e5e7eb')
+      .attr('stroke', theme.grid)
       .attr('stroke-width', 1);
 
     const rowGroups = this.svg
@@ -128,7 +136,7 @@ export class TimelineChartV2Component implements AfterViewInit {
       .attr('class', 'cursor-line')
       .attr('y1', margin.top)
       .attr('y2', margin.top + chartHeight)
-      .attr('stroke', '#9ca3af')
+      .attr('stroke', theme.cursor)
       .attr('stroke-width', 1)
       .style('pointer-events', 'none')
       .style('opacity', 0);
@@ -232,7 +240,7 @@ export class TimelineChartV2Component implements AfterViewInit {
         .attr('font-size', '12px')
         .attr('font-weight', '500')
         .attr('font-family', 'Montserrat')
-        .attr('fill', '#222')
+        .attr('fill', theme.text)
         .text(d.label);
     });
   }
@@ -270,6 +278,8 @@ export class TimelineChartV2Component implements AfterViewInit {
   }
 
   private createTooltip(): void {
+    const theme = getThemeColors();
+
     d3.select('body').select('.timeline-tooltip').remove();
 
     this.tooltip = d3
@@ -279,8 +289,9 @@ export class TimelineChartV2Component implements AfterViewInit {
       .style('position', 'fixed')
       .style('pointer-events', 'none')
       .style('opacity', '0')
-      .style('background', '#111')
-      .style('color', '#fff')
+      .style('background', theme.tooltipBackground)
+      .style('color', theme.tooltipText)
+      .style('border', `1px solid ${theme.grid}`)
       .style('padding', '8px 10px')
       .style('border-radius', '8px')
       .style('font-size', '12px')

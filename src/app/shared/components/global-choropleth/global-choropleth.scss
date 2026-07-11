@@ -27,10 +27,12 @@
   position: absolute;
   bottom: 120px;
   left: 16px;
-  background: white;
+  background: var(--app-surface);
+  color: var(--app-text);
   padding: 12px 14px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--app-border);
+  box-shadow: 0 4px 12px var(--app-shadow);
   font-size: 12px;
   min-width: 120px;
   z-index: 999;
@@ -52,10 +54,10 @@
     height: 14px;
     border-radius: 3px;
     margin-right: 8px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border-soft);
   }
 
   &-label {
-    color: #374151;
+    color: var(--app-muted);
   }
 }

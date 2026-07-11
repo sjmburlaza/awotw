@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
+import { getThemeColors } from '../../theme-colors';
 
 interface LineChartItemBase {
   name: string;
@@ -46,7 +54,15 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
     }
   }
 
+  @HostListener('window:awotw-theme-change')
+  onThemeChange(): void {
+    this.chartData = this.getLineChartData(this.data);
+    this.chartOptions = this.getLineChartOptions();
+  }
+
   private getLineChartData(rawData: T[]): ChartConfiguration<'line'>['data'] {
+    const theme = getThemeColors();
+
     this.groupedItems.clear();
 
     const sortedData = [...rawData].sort(
@@ -72,14 +88,46 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
       datasets: [
         {
           data: Array.from(map.values()),
+          backgroundColor: 'rgba(252, 70, 107, 0.16)',
+          borderColor: '#fc466b',
+          pointBackgroundColor: '#3f5efb',
+          pointBorderColor: theme.surface,
+          tension: 0.25,
         },
       ],
     };
   }
 
   private getLineChartOptions(): ChartOptions<'line'> {
+    const theme = getThemeColors();
+
     return {
       responsive: true,
+      color: theme.text,
+      scales: {
+        x: {
+          border: {
+            color: theme.axis,
+          },
+          grid: {
+            color: theme.grid,
+          },
+          ticks: {
+            color: theme.muted,
+          },
+        },
+        y: {
+          border: {
+            color: theme.axis,
+          },
+          grid: {
+            color: theme.grid,
+          },
+          ticks: {
+            color: theme.muted,
+          },
+        },
+      },
       plugins: {
         datalabels: {
           display: false,
@@ -88,8 +136,11 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
           display: false,
         },
         tooltip: {
+          backgroundColor: theme.tooltipBackground,
+          bodyColor: theme.tooltipText,
           displayColors: false,
           padding: 12,
+          titleColor: theme.tooltipText,
           titleFont: {
             size: 14,
             weight: 'bold',

@@ -46,7 +46,7 @@
         font-family: 'Barlow';
 
         &:hover {
-          color: blueviolet;
+          color: var(--app-focus);
         }
       }
     }
@@ -71,7 +71,7 @@
     button {
       padding: 0 6px;
       height: 28px;
-      border: 1px solid gray;
+      border: 1px solid var(--app-border);
       background-color: transparent;
     }
 
@@ -79,9 +79,10 @@
       width: 90px;
       height: 28px;
       padding: 4px 8px;
-      border: 1px solid gray;
+      border: 1px solid var(--app-border);
       border-left: none;
       background-color: transparent;
+      color: var(--app-text);
     }
 
     input::placeholder {
@@ -98,7 +99,7 @@
         font-size: 24px;
 
         &:hover {
-          color: blueviolet;
+          color: var(--app-focus);
         }
       }
     }
@@ -111,10 +112,10 @@
       align-items: center;
       height: 28px;
       padding: 0 8px;
-      border: 1px solid gray;
+      border: 1px solid var(--app-border);
       border-radius: 4px;
       background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
-      color: whitesmoke;
+      color: #ffffff;
       font-family: 'Michroma', sans-serif;
       font-size: 12px;
 

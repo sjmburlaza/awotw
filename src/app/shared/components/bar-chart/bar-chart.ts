@@ -1,6 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
 import { ChartComponent } from '../chart/chart';
+import { getThemeColors } from '../../theme-colors';
 
 interface ChartItemBase {
   name: string;
@@ -35,6 +43,11 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
     }
   }
 
+  @HostListener('window:awotw-theme-change')
+  onThemeChange(): void {
+    this.chartOptions = this.getBarChartOptions(this.data);
+  }
+
   private getBarChartData(rawData: T[], key: NumericKeys<T>): ChartConfiguration<'bar'>['data'] {
     return {
       labels: rawData.map((item) => item.name),
@@ -49,10 +62,36 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
 
   private getBarChartOptions(rawData: T[]): ChartOptions<'bar'> {
     const data = [...rawData];
+    const theme = getThemeColors();
 
     return {
       responsive: true,
       maintainAspectRatio: false,
+      color: theme.text,
+      scales: {
+        x: {
+          border: {
+            color: theme.axis,
+          },
+          grid: {
+            color: theme.grid,
+          },
+          ticks: {
+            color: theme.muted,
+          },
+        },
+        y: {
+          border: {
+            color: theme.axis,
+          },
+          grid: {
+            color: theme.grid,
+          },
+          ticks: {
+            color: theme.muted,
+          },
+        },
+      },
       plugins: {
         datalabels: {
           display: false,
@@ -61,11 +100,14 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
           display: false,
         },
         tooltip: {
+          backgroundColor: theme.tooltipBackground,
+          bodyColor: theme.tooltipText,
           displayColors: false,
           padding: 12,
           bodyFont: {
             size: 12,
           },
+          titleColor: theme.tooltipText,
           titleFont: {
             size: 14,
             weight: 'bold',
