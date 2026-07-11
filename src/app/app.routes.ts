@@ -23,6 +23,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'games/geoguesser',
+    loadComponent: () =>
+      import('./features/games/geoguesser/geoguesser').then((m) => m.GeoguesserComponent),
+  },
+  {
     path: 'map',
     loadComponent: () => import('./features/map/map').then((m) => m.MapComponent),
   },
