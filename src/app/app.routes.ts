@@ -1,5 +1,15 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home';
+import type { WonderGroupFeature } from './features/wonder-groups/wonder-groups';
+
+interface WonderGroupRouteData {
+  feature: WonderGroupFeature;
+}
+
+const wonderGroupRouteData = (feature: WonderGroupFeature): WonderGroupRouteData => ({ feature });
+
+const loadWonderGroupsComponent = () =>
+  import('./features/wonder-groups/wonder-groups').then((m) => m.WonderGroupsComponent);
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -70,21 +80,23 @@ export const routes: Routes = [
   },
   {
     path: 'style',
-    loadComponent: () => import('./features/style/style').then((m) => m.StyleComponent),
+    loadComponent: loadWonderGroupsComponent,
+    data: wonderGroupRouteData('style'),
   },
   {
     path: 'alphabetical',
-    loadComponent: () =>
-      import('./features/alphabetical/alphabetical').then((m) => m.AlphabeticalComponent),
+    loadComponent: loadWonderGroupsComponent,
+    data: wonderGroupRouteData('alphabetical'),
   },
   {
     path: 'location',
-    loadComponent: () => import('./features/location/location').then((m) => m.LocationComponent),
+    loadComponent: loadWonderGroupsComponent,
+    data: wonderGroupRouteData('location'),
   },
   {
     path: 'programmatic',
-    loadComponent: () =>
-      import('./features/programmatic/programmatic').then((m) => m.ProgrammaticComponent),
+    loadComponent: loadWonderGroupsComponent,
+    data: wonderGroupRouteData('programmatic'),
   },
   { path: '**', redirectTo: 'home' },
 ];
