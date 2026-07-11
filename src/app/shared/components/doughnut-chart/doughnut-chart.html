@@ -1,0 +1,13 @@
+<div class="doughnut-chart">
+  <app-chart
+    [chartType]="'doughnut'"
+    [chartData]="chartData"
+    [chartOptions]="chartOptions"
+    ariaLabel="Distribution doughnut chart"
+  />
+  <div #tooltip class="doughnut-chart__tooltip" role="tooltip" aria-hidden="true">
+    <span class="doughnut-chart__tooltip-caret" aria-hidden="true"></span>
+    <div class="doughnut-chart__tooltip-title"></div>
+    <div class="doughnut-chart__tooltip-body"></div>
+  </div>
+</div>

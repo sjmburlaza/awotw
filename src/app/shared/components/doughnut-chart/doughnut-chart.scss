@@ -1,0 +1,91 @@
+.doughnut-chart {
+  position: relative;
+  overflow: visible;
+}
+
+.doughnut-chart__tooltip {
+  --doughnut-tooltip-bg: #111827;
+  --doughnut-tooltip-text: #ffffff;
+  --doughnut-tooltip-caret-x: 50%;
+  --doughnut-tooltip-caret-y: 50%;
+
+  position: absolute;
+  z-index: 5;
+  width: max-content;
+  min-width: 180px;
+  max-width: 340px;
+  padding: 12px;
+  border-radius: 6px;
+  background: var(--doughnut-tooltip-bg);
+  color: var(--doughnut-tooltip-text);
+  box-shadow: 0 8px 24px var(--app-shadow);
+  font-family: 'Barlow', sans-serif;
+  font-size: 12px;
+  line-height: 1.25;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.doughnut-chart__tooltip.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.doughnut-chart__tooltip-title {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.doughnut-chart__tooltip-body {
+  display: grid;
+  gap: 2px;
+}
+
+.doughnut-chart__tooltip-title,
+.doughnut-chart__tooltip-body {
+  white-space: nowrap;
+}
+
+.doughnut-chart__tooltip-caret {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.doughnut-chart__tooltip.is-right .doughnut-chart__tooltip-caret {
+  top: var(--doughnut-tooltip-caret-y);
+  left: -6px;
+  transform: translateY(-50%);
+  border-top: 6px solid transparent;
+  border-right: 6px solid var(--doughnut-tooltip-bg);
+  border-bottom: 6px solid transparent;
+}
+
+.doughnut-chart__tooltip.is-left .doughnut-chart__tooltip-caret {
+  top: var(--doughnut-tooltip-caret-y);
+  right: -6px;
+  transform: translateY(-50%);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid var(--doughnut-tooltip-bg);
+}
+
+.doughnut-chart__tooltip.is-bottom .doughnut-chart__tooltip-caret {
+  top: -6px;
+  left: var(--doughnut-tooltip-caret-x);
+  transform: translateX(-50%);
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid var(--doughnut-tooltip-bg);
+  border-left: 6px solid transparent;
+}
+
+.doughnut-chart__tooltip.is-top .doughnut-chart__tooltip-caret {
+  bottom: -6px;
+  left: var(--doughnut-tooltip-caret-x);
+  transform: translateX(-50%);
+  border-top: 6px solid var(--doughnut-tooltip-bg);
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
