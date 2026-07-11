@@ -17,6 +17,7 @@ describe('Globe', () => {
   let component: GlobeComponent;
   let fixture: ComponentFixture<GlobeComponent>;
   let dataServiceMock: Pick<DataService, 'getWonders'>;
+  let preloadImages: HTMLImageElement[];
 
   const wonder: TestWonderMarker = {
     id: 1,
@@ -36,10 +37,25 @@ describe('Globe', () => {
     lonNum: 78.0421,
   };
 
+  const secondWonder: TestWonderMarker = {
+    ...wonder,
+    id: 2,
+    name: 'Colosseum',
+    location: 'Rome, Italy',
+    descriptionURL: 'https://example.com/colosseum',
+    imageURL: 'https://example.com/colosseum.jpg',
+    codename: 'colosseum',
+    lat: '41.8902',
+    lon: '12.4922',
+    latNum: 41.8902,
+    lonNum: 12.4922,
+  };
+
   beforeEach(async () => {
     dataServiceMock = {
-      getWonders: jest.fn(() => of([wonder])),
+      getWonders: jest.fn(() => of([wonder, secondWonder])),
     };
+    preloadImages = [];
 
     await TestBed.configureTestingModule({
       imports: [GlobeComponent],
@@ -48,10 +64,19 @@ describe('Globe', () => {
 
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 1);
     jest.spyOn(window, 'cancelAnimationFrame').mockImplementation(() => undefined);
+    jest.spyOn(window, 'Image').mockImplementation(() => {
+      const image = document.createElement('img');
+      preloadImages.push(image);
+      return image;
+    });
 
     fixture = TestBed.createComponent(GlobeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('should create', () => {
@@ -76,6 +101,36 @@ describe('Globe', () => {
     const popup = fixture.nativeElement.querySelector('.popup-card') as HTMLElement;
     expect(popup.style.left).toBe('195px');
     expect(popup.style.top).toBe('120px');
+  });
+
+  it('shows the image loader when the next selected marker image is still loading', () => {
+    const firstMarker = document.createElement('div');
+    const secondMarker = document.createElement('div');
+    const componentInternals = component as unknown as GlobeComponentInternals;
+
+    componentInternals.selectWonder(wonder, firstMarker);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.popup-card__image-loader')).toBeTruthy();
+
+    preloadImages[0].onload?.call(preloadImages[0], new Event('load'));
+    fixture.detectChanges();
+
+    const loadedImage = fixture.nativeElement.querySelector('.popup-card__image') as HTMLImageElement;
+    expect(loadedImage.src).toBe(wonder.imageURL);
+    expect(fixture.nativeElement.querySelector('.popup-card__image-loader')).toBeNull();
+
+    componentInternals.selectWonder(secondWonder, secondMarker);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.popup-card__image')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.popup-card__image-loader')).toBeTruthy();
+
+    preloadImages[1].onload?.call(preloadImages[1], new Event('load'));
+    fixture.detectChanges();
+
+    const nextImage = fixture.nativeElement.querySelector('.popup-card__image') as HTMLImageElement;
+    expect(nextImage.src).toBe(secondWonder.imageURL);
   });
 });
 

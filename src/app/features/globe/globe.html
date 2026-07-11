@@ -38,7 +38,17 @@
         <div>
           <em>{{ wonder.location }}</em>
         </div>
-        <img [src]="wonder.imageURL" [alt]="wonder.name" width="180" />
+        <div class="popup-card__image-frame">
+          @if (isPopupImageLoading) {
+            <div class="popup-card__image-loader" role="status" aria-label="Loading image">
+              <app-loader></app-loader>
+            </div>
+          } @else if (hasPopupImageError) {
+            <div class="popup-card__image-error">Image unavailable</div>
+          } @else {
+            <img class="popup-card__image" [src]="popupImageSrc" [alt]="wonder.name" />
+          }
+        </div>
         <div>
           <a
             [href]="wonder.descriptionURL"

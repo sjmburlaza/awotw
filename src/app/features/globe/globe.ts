@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  NgZone,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import Globe, { GlobeInstance } from 'globe.gl';
 import { catchError, EMPTY, map, take, tap } from 'rxjs';
@@ -23,6 +31,7 @@ interface PopupPosition {
 })
 export class GlobeComponent implements AfterViewInit, OnDestroy {
   private readonly dataService = inject(DataService);
+  private readonly ngZone = inject(NgZone);
 
   @ViewChild('globeContainer', { static: true })
   globeContainer!: ElementRef<HTMLDivElement>;
@@ -38,9 +47,14 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
   selectedWonder: WonderMarker | null = null;
   popupPosition: PopupPosition | null = null;
+  popupImageSrc = '';
+  isPopupImageLoading = false;
+  hasPopupImageError = false;
 
   private selectedMarkerElement?: HTMLElement;
   private popupTrackingFrameId?: number;
+  private popupImageLoadId = 0;
+  private popupImagePreloader?: HTMLImageElement;
 
   ngAfterViewInit(): void {
     this.initGlobe();
@@ -137,6 +151,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
   clearSelectedWonder(): void {
     this.stopPopupTracking();
+    this.resetPopupImage();
     this.selectedWonder = null;
     this.selectedMarkerElement = undefined;
     this.popupPosition = null;
@@ -145,6 +160,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   private selectWonder(wonder: WonderMarker, markerElement: HTMLElement): void {
     this.selectedWonder = wonder;
     this.selectedMarkerElement = markerElement;
+    this.loadPopupImage(wonder.imageURL);
     this.updatePopupPosition();
     this.startPopupTracking();
 
@@ -156,6 +172,49 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       },
       1200,
     );
+  }
+
+  private loadPopupImage(imageUrl: string): void {
+    this.popupImageLoadId++;
+    const loadId = this.popupImageLoadId;
+
+    this.popupImageSrc = imageUrl;
+    this.isPopupImageLoading = Boolean(imageUrl);
+    this.hasPopupImageError = !imageUrl;
+    this.popupImagePreloader = undefined;
+
+    if (!imageUrl) return;
+
+    const image = new Image();
+    this.popupImagePreloader = image;
+
+    image.onload = () => {
+      this.ngZone.run(() => {
+        if (loadId !== this.popupImageLoadId) return;
+
+        this.isPopupImageLoading = false;
+        this.hasPopupImageError = false;
+      });
+    };
+
+    image.onerror = () => {
+      this.ngZone.run(() => {
+        if (loadId !== this.popupImageLoadId) return;
+
+        this.isPopupImageLoading = false;
+        this.hasPopupImageError = true;
+      });
+    };
+
+    image.src = imageUrl;
+  }
+
+  private resetPopupImage(): void {
+    this.popupImageLoadId++;
+    this.popupImagePreloader = undefined;
+    this.popupImageSrc = '';
+    this.isPopupImageLoading = false;
+    this.hasPopupImageError = false;
   }
 
   private startPopupTracking(): void {
