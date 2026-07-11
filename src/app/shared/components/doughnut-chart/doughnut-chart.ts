@@ -38,6 +38,10 @@ const TOOLTIP_TARGET_OFFSET = 2;
 const EXTERNAL_TOOLTIP_GAP = 12;
 const CENTER_TEXT_TITLE_SIZE = 13;
 const CENTER_TEXT_COUNT_SIZE = 28;
+const DOUGHNUT_BASE_HUE = 210;
+const DOUGHNUT_GOLDEN_ANGLE = 137.508;
+const DOUGHNUT_SATURATION = 68;
+const DOUGHNUT_LIGHTNESS = 62;
 
 Tooltip.positioners.doughnutOutside = function (
   items: readonly ActiveElement[],
@@ -130,6 +134,11 @@ function fitCanvasText(ctx: CanvasRenderingContext2D, text: string, maxTextWidth
 
 type KeyOf<T> = keyof T;
 
+interface DoughnutLegendItem {
+  label: string;
+  color: string;
+}
+
 export type DoughnutGroupingFn<T> = (item: T) => string;
 export type DoughnutTitleBuilder = (context: TooltipItem<'doughnut'>[]) => string;
 export type DoughnutTooltipBuilder<T> = (
@@ -157,6 +166,7 @@ export class DoughnutChartComponent<T> implements OnChanges {
 
   chartData: ChartConfiguration['data'] = { labels: [], datasets: [] };
   chartOptions!: ChartOptions<'doughnut'>;
+  legendItems: DoughnutLegendItem[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
@@ -167,6 +177,7 @@ export class DoughnutChartComponent<T> implements OnChanges {
       changes['tooltipBuilder']
     ) {
       this.chartData = this.getDoughnutChartData(this.data);
+      this.legendItems = this.getLegendItems(this.chartData.labels ?? []);
       this.chartOptions = this.getChartOptions(this.data);
     }
   }
@@ -186,13 +197,16 @@ export class DoughnutChartComponent<T> implements OnChanges {
     });
 
     map = sortMapObject(map);
+    const labels = Array.from(map.keys());
+    const colors = this.getDynamicColors(labels.length);
 
     return {
-      labels: Array.from(map.keys()),
+      labels,
       datasets: [
         {
           data: Array.from(map.values()),
           label: this.titlePrefix || 'Total',
+          backgroundColor: colors,
         },
       ],
     };
@@ -216,21 +230,7 @@ export class DoughnutChartComponent<T> implements OnChanges {
       },
       plugins: {
         legend: {
-          position: 'bottom',
-          title: {
-            display: true,
-            padding: 16,
-            color: theme.text,
-          },
-          labels: {
-            color: theme.muted,
-            padding: 8,
-            boxWidth: 16,
-            font: {
-              family: 'Barlow',
-              size: 14,
-            },
-          },
+          display: false,
         },
         datalabels: {
           display: true,
@@ -298,6 +298,26 @@ export class DoughnutChartComponent<T> implements OnChanges {
     });
 
     return item ?? data[context.dataIndex];
+  }
+
+  private getLegendItems(labels: unknown[]): DoughnutLegendItem[] {
+    return labels.map((label, index) => ({
+      label: String(label),
+      color: this.getDynamicColor(index),
+    }));
+  }
+
+  private getDynamicColors(count: number): string[] {
+    return Array.from({ length: count }, (_, index) => this.getDynamicColor(index));
+  }
+
+  private getDynamicColor(index: number): string {
+    const hue = (DOUGHNUT_BASE_HUE + index * DOUGHNUT_GOLDEN_ANGLE) % 360;
+    const lightnessOffset = (index % 3) * 5;
+
+    return `hsl(${Math.round(hue)}, ${DOUGHNUT_SATURATION}%, ${
+      DOUGHNUT_LIGHTNESS + lightnessOffset
+    }%)`;
   }
 
   private renderExternalTooltip(

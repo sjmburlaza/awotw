@@ -3,6 +3,33 @@
   overflow: visible;
 }
 
+.doughnut-chart__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 12px;
+  min-height: 64px;
+  padding: 0 24px;
+  margin: -20px 0 0;
+  color: var(--app-muted);
+  font-family: 'Barlow', sans-serif;
+  font-size: 14px;
+  list-style: none;
+}
+
+.doughnut-chart__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doughnut-chart__legend-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--app-surface);
+}
+
 .doughnut-chart__tooltip {
   --doughnut-tooltip-bg: #111827;
   --doughnut-tooltip-text: #ffffff;
