@@ -12,10 +12,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/search/search').then((m) => m.SearchComponent),
   },
   {
-    path: 'quiz',
-    loadComponent: () => import('./features/quiz/quiz').then((m) => m.QuizComponent),
-  },
-  {
     path: 'games',
     children: [
       {
@@ -42,6 +38,10 @@ export const routes: Routes = [
           import('./features/games/architecture-puzzle/architecture-puzzle').then(
             (m) => m.ArchitecturePuzzleComponent,
           ),
+      },
+      {
+        path: 'quiz',
+        loadComponent: () => import('./features/games/quiz/quiz').then((m) => m.QuizComponent),
       },
     ],
   },

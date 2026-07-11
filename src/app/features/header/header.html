@@ -22,9 +22,6 @@
         <button type="button" (click)="goToChartsPage()">
           <span class="url-path">Charts</span>
         </button>
-        <button type="button" (click)="goToGamesPage()">
-          <span class="url-path">Games!!</span>
-        </button>
       }
     </nav>
     <div class="title" [ngClass]="{ 'zoom-in-text': zoomInText }">
@@ -47,9 +44,9 @@
           (ngModelChange)="onSearch()"
         />
       </form>
-      <div class="button__quiz">
-        <button type="button" (click)="goToQuizPage()">
-          <span>Quiz Me!!</span>
+      <div class="button__games">
+        <button type="button" (click)="goToGamesPage()">
+          <span>Fun Games ! !</span>
         </button>
       </div>
       <div class="button__bg-mode">

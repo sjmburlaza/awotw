@@ -33,6 +33,11 @@ export class GamesHomeComponent {
       route: URL_PATH.ARCHITECTURE_PUZZLE,
       color: '#0f766e',
     },
+    {
+      title: 'Quizzes',
+      route: URL_PATH.QUIZ,
+      color: '#5b1414',
+    },
   ];
 
   onSelectGame(game: GameOption): void {

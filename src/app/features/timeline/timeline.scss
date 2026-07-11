@@ -16,6 +16,14 @@
   font-family: 'Barlow';
 }
 
+.navigator {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 16px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .timeline-chart {
   margin: 36px 0;
 }

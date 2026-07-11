@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { DataService, Group, StyleRange } from 'src/app/services/data.service';
 import { ScrollService } from 'src/app/services/scroll.service';
@@ -12,7 +12,13 @@ import { groupByYearBuilt } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-timeline',
-  imports: [LoaderComponent, TooltipDirective, SlideInOnScrollDirective, TimelineChartV2Component],
+  imports: [
+    LoaderComponent,
+    RouterModule,
+    TooltipDirective,
+    SlideInOnScrollDirective,
+    TimelineChartV2Component,
+  ],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss',
 })

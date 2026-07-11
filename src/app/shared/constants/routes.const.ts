@@ -8,7 +8,7 @@ export const URL_PATH = {
   ALPHABETICAL: '/alphabetical',
   LOCATION: '/location',
   PROGRAMMATIC: '/programmatic',
-  QUIZ: '/quiz',
+  QUIZ: '/games/quiz',
   GAMES: '/games',
   RECREATE_TIMELINE: '/games/recreate-timeline',
   GEOGUESSER: '/games/geoguesser',

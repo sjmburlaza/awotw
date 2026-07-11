@@ -83,10 +83,6 @@ export class HeaderComponent implements OnInit {
     }, 500);
   }
 
-  goToQuizPage(): void {
-    this.router.navigate([URL_PATH.QUIZ]);
-  }
-
   onToggleBgMode(): void {
     this.isDarkMode = !this.isDarkMode;
     document.body.classList.toggle('dark-mode', this.isDarkMode);
