@@ -169,6 +169,11 @@ export class TimelineChartV2Component implements AfterViewInit {
       .attr('width', (d) => xScale(d.endYear) - xScale(d.startYear))
       .attr('height', yScale.bandwidth())
       .attr('fill', (d) => d.color)
+      .attr(
+        'aria-label',
+        (d) =>
+          `${d.label} style, ${this.formatYear(d.startYear)} to ${this.formatYear(d.endYear)}. ${d.description}`,
+      )
       .style('cursor', 'pointer')
       .on('mouseenter', (event, d) => {
         d3.select(event.currentTarget as SVGRectElement)
@@ -176,13 +181,7 @@ export class TimelineChartV2Component implements AfterViewInit {
           .duration(120)
           .attr('fill', d3.color(d.color)?.darker(0.7)?.toString() || d.color);
 
-        this.tooltip
-          .style('opacity', 0.8)
-          .style('font-family', 'Montserrat')
-          .style('padding', '12px').html(`
-            <h4>${d.label} style</h4>
-            <div>${this.formatYear(d.startYear)} → ${this.formatYear(d.endYear)}</div>
-          `);
+        this.showTooltip(d);
 
         this.moveTooltip(event);
       })
@@ -296,8 +295,33 @@ export class TimelineChartV2Component implements AfterViewInit {
       .style('border-radius', '8px')
       .style('font-size', '12px')
       .style('line-height', '1.4')
+      .style('max-width', '280px')
       .style('box-shadow', '0 8px 24px rgba(0,0,0,0.2)')
       .style('z-index', '1000');
+  }
+
+  private showTooltip(d: StyleRange): void {
+    this.tooltip
+      .html('')
+      .style('opacity', 0.9)
+      .style('font-family', 'Montserrat')
+      .style('padding', '12px')
+      .style('white-space', 'normal');
+
+    this.tooltip
+      .append('h4')
+      .style('margin', '0 0 6px')
+      .style('font-size', '13px')
+      .style('font-weight', '700')
+      .text(`${d.label} style`);
+
+    this.tooltip
+      .append('div')
+      .style('font-weight', '600')
+      .style('margin-bottom', '6px')
+      .text(`${this.formatYear(d.startYear)} to ${this.formatYear(d.endYear)}`);
+
+    this.tooltip.append('div').text(d.description);
   }
 
   private moveTooltip(event: MouseEvent): void {
