@@ -62,36 +62,36 @@
           />
         }
       </div>
-      <div class="chart__pie">
-        <div class="chart__pie__country">
+      <div class="chart__doughnut">
+        <div class="chart__doughnut__country">
           <div class="title">Distribution by Country</div>
           @if (categoryValue === 'tallest') {
-            <app-pie-chart
+            <app-doughnut-chart
               [data]="currentListTallestBuildings"
               key="country"
               [groupingFn]="groupByCountry"
-              [tooltipBuilder]="tallestBuildingsPieChartTooltip"
+              [tooltipBuilder]="tallestBuildingsDoughnutChartTooltip"
               [titlePrefix]="'Country'"
             />
           }
           @if (categoryValue === 'mostVisited') {
-            <app-pie-chart
+            <app-doughnut-chart
               [data]="currentListMostVisited"
               key="location"
               [groupingFn]="groupByCountryVisited"
-              [tooltipBuilder]="mostVisitedPieChartTooltip"
+              [tooltipBuilder]="mostVisitedDoughnutChartTooltip"
               [titlePrefix]="'Country'"
             />
           }
         </div>
         @if (categoryValue === 'tallest') {
-          <div class="chart__pie__year">
+          <div class="chart__doughnut__year">
             <div class="title">Distribution by Year of Completion</div>
-            <app-pie-chart
+            <app-doughnut-chart
               [data]="currentListTallestBuildings"
               key="year_completed"
               [groupingFn]="groupByYear"
-              [tooltipBuilder]="tallestBuildingsPieChartTooltip"
+              [tooltipBuilder]="tallestBuildingsDoughnutChartTooltip"
               [titlePrefix]="'Year'"
             />
           </div>

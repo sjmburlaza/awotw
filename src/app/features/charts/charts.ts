@@ -6,10 +6,10 @@ import { TooltipItem } from 'chart.js';
 import { forkJoin, take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
 import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart';
+import { DoughnutChartComponent } from 'src/app/shared/components/doughnut-chart/doughnut-chart';
 import { GalleryComponent } from 'src/app/shared/components/gallery/gallery';
 import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth';
 import { LineChartComponent } from 'src/app/shared/components/line-chart/line-chart';
-import { PieChartComponent } from 'src/app/shared/components/pie-chart/pie-chart';
 import { ordinalSuffix } from 'src/app/shared/utils-helper';
 
 @Component({
@@ -18,7 +18,7 @@ import { ordinalSuffix } from 'src/app/shared/utils-helper';
     CommonModule,
     ReactiveFormsModule,
     GlobalChoroplethComponent,
-    PieChartComponent,
+    DoughnutChartComponent,
     BarChartComponent,
     LineChartComponent,
     GalleryComponent,
@@ -84,9 +84,9 @@ export class ChartsComponent implements OnInit {
   groupByYear = (item: TallestBuilding) => item.year_completed;
   groupByCountryVisited = (item: MostVisited) => item.location.split(', ').at(-1) ?? '';
 
-  tallestBuildingsPieChartTooltip = (
+  tallestBuildingsDoughnutChartTooltip = (
     item: TallestBuilding,
-    context: TooltipItem<'pie'>,
+    context: TooltipItem<'doughnut'>,
     allData: TallestBuilding[],
   ): string[] => {
     const filtered = allData.filter(
@@ -96,9 +96,9 @@ export class ChartsComponent implements OnInit {
     return [`Count: ${context.raw}`, 'Building(s):', ...filtered.map((i) => i.name)];
   };
 
-  mostVisitedPieChartTooltip = (
+  mostVisitedDoughnutChartTooltip = (
     item: MostVisited,
-    context: TooltipItem<'pie'>,
+    context: TooltipItem<'doughnut'>,
     allData: MostVisited[],
   ): string[] => {
     const filtered = allData.filter((i) => i.location.split(', ').at(-1) === context.label);
@@ -123,11 +123,9 @@ export class ChartsComponent implements OnInit {
       ranking: ['20', Validators.required],
     });
 
-    this.selectionForm.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.updateDisplayedData();
-      });
+    this.selectionForm.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+      this.updateDisplayedData();
+    });
 
     this.initChartData();
   }

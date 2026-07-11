@@ -1,0 +1,25 @@
+<div class="doughnut-chart">
+  <app-chart
+    [chartType]="'doughnut'"
+    [chartData]="chartData"
+    [chartOptions]="chartOptions"
+    ariaLabel="Distribution doughnut chart"
+  />
+  <ul class="doughnut-chart__legend" aria-label="Doughnut chart legend">
+    @for (item of legendItems; track item.label) {
+      <li class="doughnut-chart__legend-item">
+        <span
+          class="doughnut-chart__legend-swatch"
+          [style.backgroundColor]="item.color"
+          aria-hidden="true"
+        ></span>
+        <span>{{ item.label }}</span>
+      </li>
+    }
+  </ul>
+  <div #tooltip class="doughnut-chart__tooltip" role="tooltip" aria-hidden="true">
+    <span class="doughnut-chart__tooltip-caret" aria-hidden="true"></span>
+    <div class="doughnut-chart__tooltip-title"></div>
+    <div class="doughnut-chart__tooltip-body"></div>
+  </div>
+</div>
