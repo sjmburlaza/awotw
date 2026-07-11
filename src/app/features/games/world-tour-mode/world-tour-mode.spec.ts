@@ -135,6 +135,9 @@ describe('WorldTourModeComponent', () => {
     const currentStopId = component.currentStop?.id;
     const correctAnswer = component.currentQuestion?.correctAnswer as string;
 
+    expect(fixture.nativeElement.querySelector('.quiz-popup__feedback')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.quiz-popup__feedback-slot')).toBeNull();
+
     component.submitAnswer(correctAnswer);
     jest.advanceTimersByTime(1000);
     fixture.detectChanges();

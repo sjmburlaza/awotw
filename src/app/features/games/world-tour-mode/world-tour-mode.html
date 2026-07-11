@@ -109,18 +109,16 @@
               </button>
             }
           </div>
-          <div class="quiz-popup__feedback-slot">
-            @if (answerResult; as result) {
-              <div
-                class="quiz-popup__feedback"
-                [class.is-correct]="result.isCorrect"
-                [class.is-incorrect]="!result.isCorrect"
-                aria-live="polite"
-              >
-                {{ result.message }}
-              </div>
-            }
-          </div>
+          @if (answerResult; as result) {
+            <div
+              class="quiz-popup__feedback"
+              [class.is-correct]="result.isCorrect"
+              [class.is-incorrect]="!result.isCorrect"
+              aria-live="polite"
+            >
+              {{ result.message }}
+            </div>
+          }
         </div>
       }
     }

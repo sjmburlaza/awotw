@@ -26,7 +26,7 @@ test.describe('Architectural Wonders app', () => {
   test('opens the quiz flow from the games hub', async ({ page }) => {
     await page.goto('/');
 
-    await page.getByRole('button', { name: /Fun Games/ }).click();
+    await page.getByRole('button', { name: /Games/ }).click();
 
     await expect(page).toHaveURL(/\/games$/);
     await expect(page.getByRole('button', { name: 'GeoGuesser' })).toBeVisible();
@@ -81,6 +81,7 @@ test.describe('Architectural Wonders app', () => {
     expect(canvasPixels).toBeGreaterThan(100);
 
     const popupBoxBeforeAnswer = await page.locator('.quiz-popup').boundingBox();
+    await expect(page.locator('.quiz-popup__feedback')).toBeHidden();
 
     await page.locator('.quiz-popup__option').last().click();
     await expect(page.locator('.quiz-popup__feedback')).toBeVisible();
@@ -97,6 +98,7 @@ test.describe('Architectural Wonders app', () => {
 
     expect(Math.abs(popupBoxWithFeedback.x - popupBoxBeforeAnswer.x)).toBeLessThan(3);
     expect(Math.abs(popupBoxWithFeedback.y - popupBoxBeforeAnswer.y)).toBeLessThan(3);
+    expect(popupBoxWithFeedback.height).toBeGreaterThan(popupBoxBeforeAnswer.height);
 
     const popupScrollInfo = await page.locator('.quiz-popup').evaluate((element) => ({
       clientHeight: element.clientHeight,
