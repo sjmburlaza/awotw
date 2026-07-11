@@ -16,16 +16,27 @@ export const routes: Routes = [
     loadComponent: () => import('./features/quiz/quiz').then((m) => m.QuizComponent),
   },
   {
-    path: 'games/recreate-timeline',
-    loadComponent: () =>
-      import('./features/games/recreate-timeline/recreate-timeline').then(
-        (m) => m.RecreateTimelineComponent,
-      ),
-  },
-  {
-    path: 'games/geoguesser',
-    loadComponent: () =>
-      import('./features/games/geoguesser/geoguesser').then((m) => m.GeoguesserComponent),
+    path: 'games',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./features/games/games-home/games-home').then((m) => m.GamesHomeComponent),
+      },
+      {
+        path: 'recreate-timeline',
+        loadComponent: () =>
+          import('./features/games/recreate-timeline/recreate-timeline').then(
+            (m) => m.RecreateTimelineComponent,
+          ),
+      },
+      {
+        path: 'geoguesser',
+        loadComponent: () =>
+          import('./features/games/geoguesser/geoguesser').then((m) => m.GeoguesserComponent),
+      },
+    ],
   },
   {
     path: 'map',
