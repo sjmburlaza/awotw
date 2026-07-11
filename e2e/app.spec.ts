@@ -22,12 +22,16 @@ test.describe('Architectural Wonders app', () => {
     await expect(page.getByRole('link', { name: /Taj Mahal/i })).toBeVisible();
   });
 
-  test('opens the quiz flow from the header', async ({ page }) => {
+  test('opens the quiz flow from the games hub', async ({ page }) => {
     await page.goto('/');
 
-    await page.getByRole('button', { name: 'Quiz Me!!' }).click();
+    await page.getByRole('button', { name: /Fun Games/ }).click();
 
-    await expect(page).toHaveURL(/\/quiz$/);
+    await expect(page).toHaveURL(/\/games$/);
+    await expect(page.getByRole('button', { name: 'GeoGuesser' })).toBeVisible();
+    await page.getByRole('button', { name: 'Quizzes' }).click();
+
+    await expect(page).toHaveURL(/\/games\/quiz$/);
     await expect(page.locator('app-quiz').getByText('Quiz Me!!')).toBeVisible();
     await expect(page.getByRole('button', { name: 'What is the name?' })).toBeVisible();
     await expect(page.getByRole('button', { name: 'Where is it located?' })).toBeVisible();
