@@ -1,0 +1,113 @@
+<div class="recreate-timeline">
+  @if (loading) {
+    <div class="state-message">Loading timeline game...</div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else {
+    <div class="game-header">
+      <div>
+        <h1>Recreate Timeline</h1>
+        <p>Architecture styles across {{ formatYear(minYear) }} - {{ formatYear(maxYear) }}</p>
+        <p class="game-description">
+          Drag each randomized bar to the correct row and starting year, then check your score.
+        </p>
+      </div>
+      <div class="game-status" aria-live="polite">
+        <span>Score</span>
+        <strong>{{ hasSubmitted ? score : '--' }}/{{ maxScore }}</strong>
+      </div>
+      <div class="game-actions">
+        <button type="button" (click)="shuffleRows()" aria-label="Shuffle timeline" title="Shuffle">
+          <i class="bi bi-shuffle"></i>
+        </button>
+        <button
+          type="button"
+          (click)="submitTimeline()"
+          [disabled]="hasRevealedAnswer"
+          aria-label="Check timeline"
+          title="Check"
+        >
+          <i class="bi bi-check2-circle"></i>
+        </button>
+        <button type="button" (click)="revealTimeline()" aria-label="Reveal timeline" title="Reveal">
+          <i class="bi bi-eye"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="timeline-chart-container">
+      <div class="timeline-axis timeline-axis--top" aria-hidden="true">
+        @for (tick of tickValues; track tick) {
+          <span class="axis-tick" [style.left.%]="getTickOffset(tick)">
+            <span class="axis-line"></span>
+            <span class="axis-label">{{ formatYear(tick) }}</span>
+          </span>
+        }
+      </div>
+
+      <div
+        #chartPlot
+        class="timeline-plot"
+        aria-label="Recreate the architecture style timeline chart"
+      >
+        @for (row of answerRows; track row.label; let index = $index) {
+          <div
+            class="timeline-row"
+            [class.timeline-row--correct]="isCorrect(row, index)"
+            [class.timeline-row--misplaced]="isMisplaced(row, index)"
+            [class.timeline-row--dragging]="isDragging(row)"
+            [class.timeline-row--revealed]="hasRevealedAnswer"
+          >
+            <span class="row-guide" aria-hidden="true"></span>
+            @if (hasRevealedAnswer) {
+              <span
+                class="answer-bar"
+                [style.left.%]="getCorrectStartOffset(index)"
+                [style.width.%]="getBarWidth(getCorrectRow(index))"
+                [style.background]="getCorrectRow(index).color"
+                [attr.aria-label]="'Correct answer: ' + getCorrectRow(index).label"
+              ></span>
+              @if (isMisplaced(row, index)) {
+                <span
+                  class="answer-label"
+                  [class.answer-label--before]="shouldPlaceCorrectLabelBefore(index)"
+                  [style.left.%]="getCorrectLabelOffset(index)"
+                >
+                  Correct: {{ getCorrectRow(index).label }}
+                </span>
+              }
+            }
+            <button
+              type="button"
+              class="style-bar"
+              [class.style-bar--dragging]="isDragging(row)"
+              [style.left.%]="getCurrentStartOffset(row)"
+              [style.width.%]="getBarWidth(row)"
+              [style.background]="row.color"
+              [attr.aria-label]="getPlacementLabel(row)"
+              [title]="row.label"
+              [disabled]="hasRevealedAnswer"
+              (pointerdown)="onBarPointerDown($event, row, index)"
+            ></button>
+            <span
+              class="bar-label"
+              [class.bar-label--before]="shouldPlaceLabelBefore(row)"
+              [style.left.%]="getLabelOffset(row)"
+            >
+              {{ row.label }}
+            </span>
+          </div>
+        }
+      </div>
+
+      <div class="timeline-axis timeline-axis--bottom" aria-hidden="true">
+        @for (tick of tickValues; track tick) {
+          <span class="axis-tick" [style.left.%]="getTickOffset(tick)">
+            <span class="axis-line"></span>
+            <span class="axis-label">{{ formatYear(tick) }}</span>
+          </span>
+        }
+      </div>
+    </div>
+  }
+</div>

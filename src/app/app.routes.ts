@@ -16,6 +16,13 @@ export const routes: Routes = [
     loadComponent: () => import('./features/quiz/quiz').then((m) => m.QuizComponent),
   },
   {
+    path: 'games/recreate-timeline',
+    loadComponent: () =>
+      import('./features/games/recreate-timeline/recreate-timeline').then(
+        (m) => m.RecreateTimelineComponent,
+      ),
+  },
+  {
     path: 'map',
     loadComponent: () => import('./features/map/map').then((m) => m.MapComponent),
   },

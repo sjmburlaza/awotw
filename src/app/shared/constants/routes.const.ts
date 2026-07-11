@@ -9,6 +9,7 @@ export const URL_PATH = {
   LOCATION: '/location',
   PROGRAMMATIC: '/programmatic',
   QUIZ: '/quiz',
+  RECREATE_TIMELINE: '/games/recreate-timeline',
   SEARCH: '/search',
   DETAIL: '/detail',
 };
