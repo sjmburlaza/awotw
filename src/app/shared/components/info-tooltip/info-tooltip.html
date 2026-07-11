@@ -1,0 +1,13 @@
+<span class="info-tooltip">
+  <button
+    type="button"
+    class="info-tooltip__trigger"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-describedby]="resolvedTooltipId"
+  >
+    <i class="bi bi-info-circle"></i>
+  </button>
+  <span [id]="resolvedTooltipId" class="info-tooltip__content" role="tooltip">
+    {{ text }}
+  </span>
+</span>

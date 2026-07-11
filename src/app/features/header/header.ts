@@ -71,16 +71,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([URL_PATH.CHARTS]);
   }
 
+  goToGamesPage(): void {
+    this.router.navigate([URL_PATH.GAMES]);
+  }
+
   goToHomePage(): void {
     this.isHomeClicked = true;
     setTimeout(() => {
       this.router.navigate([URL_PATH.HOME]);
       this.isHomeClicked = false;
     }, 500);
-  }
-
-  goToQuizPage(): void {
-    this.router.navigate([URL_PATH.QUIZ]);
   }
 
   onToggleBgMode(): void {

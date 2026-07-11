@@ -3,66 +3,72 @@
     <app-loader></app-loader>
   </div>
 }
-<div class="globe-wrapper" [class.hidden]="isLoading">
-  <div
-    #globeContainer
-    class="globe-container"
-    role="region"
-    aria-label="Interactive 3D globe of architectural wonder locations"
-  ></div>
+<div class="globe-page" [class.hidden]="isLoading">
+  <div class="title">
+    Explore the global landmarks...
+    <i class="bi bi-globe"></i>
+  </div>
+  <div class="navigator">
+    <a routerLink="/map">Switch to 2D map</a>
+  </div>
+  <div class="globe-wrapper">
+    <div
+      #globeContainer
+      class="globe-container"
+      role="region"
+      aria-label="Interactive 3D globe of architectural wonder locations"
+    ></div>
 
-  @if (errorMessage) {
-    <div class="state-message error-message">{{ errorMessage }}</div>
-  } @else if (!hasMarkers) {
-    <div class="state-message">No globe markers available.</div>
-  }
-
-  @if (selectedWonder; as wonder) {
-    @if (popupPosition; as position) {
-      <div
-        class="popup-card"
-        role="dialog"
-        aria-label="Selected wonder details"
-        [style.left.px]="position.left"
-        [style.top.px]="position.top"
-      >
-        <button
-          type="button"
-          class="close-btn"
-          (click)="clearSelectedWonder()"
-          aria-label="Close selected wonder details"
-        >
-          x
-        </button>
-        <strong>{{ wonder.name }}</strong>
-        <div>
-          <em>{{ wonder.location }}</em>
-        </div>
-        <div class="popup-card__image-frame">
-          @if (isPopupImageLoading) {
-            <div class="popup-card__image-loader" role="status" aria-label="Loading image">
-              <app-loader></app-loader>
-            </div>
-          } @else if (hasPopupImageError) {
-            <div class="popup-card__image-error">Image unavailable</div>
-          } @else {
-            <img class="popup-card__image" [src]="popupImageSrc" [alt]="wonder.name" />
-          }
-        </div>
-        <div>
-          <a
-            [href]="wonder.descriptionURL"
-            target="_blank"
-            rel="noopener noreferrer"
-            [attr.aria-label]="'Open reference page for ' + wonder.name"
-          >
-            Learn more
-          </a>
-        </div>
-      </div>
+    @if (errorMessage) {
+      <div class="state-message error-message">{{ errorMessage }}</div>
+    } @else if (!hasMarkers) {
+      <div class="state-message">No globe markers available.</div>
     }
-  }
-</div>
-<div class="navigator" [class.hidden]="isLoading">
-  <a routerLink="/map">Switch to 2D map</a>
+
+    @if (selectedWonder; as wonder) {
+      @if (popupPosition; as position) {
+        <div
+          class="popup-card"
+          role="dialog"
+          aria-label="Selected wonder details"
+          [style.left.px]="position.left"
+          [style.top.px]="position.top"
+        >
+          <button
+            type="button"
+            class="close-btn"
+            (click)="clearSelectedWonder()"
+            aria-label="Close selected wonder details"
+          >
+            x
+          </button>
+          <strong>{{ wonder.name }}</strong>
+          <div>
+            <em>{{ wonder.location }}</em>
+          </div>
+          <div class="popup-card__image-frame">
+            @if (isPopupImageLoading) {
+              <div class="popup-card__image-loader" role="status" aria-label="Loading image">
+                <app-loader></app-loader>
+              </div>
+            } @else if (hasPopupImageError) {
+              <div class="popup-card__image-error">Image unavailable</div>
+            } @else {
+              <img class="popup-card__image" [src]="popupImageSrc" [alt]="wonder.name" />
+            }
+          </div>
+          <div>
+            <a
+              [href]="wonder.descriptionURL"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="'Open reference page for ' + wonder.name"
+            >
+              Learn more
+            </a>
+          </div>
+        </div>
+      }
+    }
+  </div>
 </div>

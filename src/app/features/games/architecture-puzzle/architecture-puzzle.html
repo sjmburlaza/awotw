@@ -1,0 +1,144 @@
+<div class="architecture-puzzle">
+  @if (loading) {
+    <div class="state-message">Loading architecture puzzle...</div>
+  } @else if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else {
+    <div class="game-header">
+      <div class="title-group">
+        <h1>Architecture Puzzle</h1>
+        @if (currentWonder; as wonder) {
+          <p>{{ wonder.name }}</p>
+        }
+      </div>
+
+      <div class="game-status" aria-live="polite">
+        <div>
+          <span>Moves</span>
+          <strong>{{ moves }}</strong>
+        </div>
+        <div>
+          <span>Pieces</span>
+          <strong>{{ pieceCount }}</strong>
+        </div>
+        <div>
+          <span>Status</span>
+          <strong>{{ statusLabel }}</strong>
+        </div>
+      </div>
+
+      <div class="game-actions">
+        <button type="button" (click)="shufflePieces()" aria-label="Shuffle puzzle" title="Shuffle">
+          <i class="bi bi-shuffle"></i>
+        </button>
+        <button
+          type="button"
+          (click)="toggleReveal()"
+          [attr.aria-label]="isRevealing ? 'Hide answer' : 'Show answer'"
+          [title]="isRevealing ? 'Hide answer' : 'Show answer'"
+        >
+          @if (isRevealing) {
+            <i class="bi bi-eye-slash"></i>
+          } @else {
+            <i class="bi bi-eye"></i>
+          }
+        </button>
+        <button
+          type="button"
+          (click)="chooseRandomWonder()"
+          aria-label="Choose another wonder"
+          title="Another wonder"
+        >
+          <i class="bi bi-image"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="control-strip">
+      <label class="control-field" for="puzzle-wonder">
+        <span>Wonder</span>
+        <select
+          id="puzzle-wonder"
+          name="puzzleWonder"
+          [(ngModel)]="selectedWonderId"
+          (ngModelChange)="onWonderChange($event)"
+        >
+          @for (wonder of wonders; track wonder.id) {
+            <option [ngValue]="wonder.id">{{ wonder.name }}</option>
+          }
+        </select>
+      </label>
+
+      <div class="difficulty-group" role="group" aria-label="Puzzle difficulty">
+        @for (option of difficultyOptions; track option.size) {
+          <button
+            type="button"
+            [class.is-active]="!isCustomDifficulty && selectedSize === option.size"
+            (click)="setDifficulty(option.size)"
+          >
+            {{ option.label }}
+          </button>
+        }
+      </div>
+
+      <div class="custom-size">
+        <label for="custom-puzzle-size">Custom</label>
+        <input
+          id="custom-puzzle-size"
+          name="customPuzzleSize"
+          type="number"
+          [min]="minCustomSize"
+          [max]="maxCustomSize"
+          [(ngModel)]="customSize"
+          (keyup.enter)="applyCustomSize()"
+        />
+        <button
+          type="button"
+          (click)="applyCustomSize()"
+          aria-label="Apply custom puzzle size"
+          title="Apply"
+        >
+          <i class="bi bi-check2"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="puzzle-layout">
+      <div class="puzzle-stage" [class.is-complete]="isComplete">
+        <canvas
+          #puzzleCanvas
+          class="puzzle-canvas"
+          width="720"
+          height="720"
+          tabindex="0"
+          role="application"
+          [attr.aria-label]="canvasAriaLabel"
+          (pointerdown)="onCanvasPointerDown($event)"
+          (keydown)="onCanvasKeyDown($event)"
+        ></canvas>
+
+        @if (imageLoading) {
+          <div class="puzzle-overlay" aria-live="polite">Loading image...</div>
+        } @else if (imageErrorMessage) {
+          <div class="puzzle-overlay puzzle-overlay--error" aria-live="polite">
+            {{ imageErrorMessage }}
+          </div>
+        } @else if (isComplete) {
+          <div class="puzzle-overlay puzzle-overlay--success" aria-live="polite">Solved</div>
+        }
+      </div>
+
+      @if (currentWonder; as wonder) {
+        <aside class="reference-panel">
+          <img [src]="wonder.imageURL" [alt]="referenceImageAlt" />
+          <div class="reference-copy">
+            <h2>{{ wonder.name }}</h2>
+            <p>{{ wonder.location }}</p>
+            <p>{{ wonder.style }}</p>
+            <span>{{ sizeLabel }}</span>
+          </div>
+        </aside>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,162 @@
+.geoguesser-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  color: var(--app-text);
+  font-family: 'Barlow', sans-serif;
+  transform: translate(-50%, -50%);
+
+  .title {
+    margin-bottom: 8px;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
+.game-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid var(--app-border-soft);
+  border-radius: 8px;
+  background: var(--app-surface);
+}
+
+.prompt {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+
+  .round-label {
+    color: var(--app-muted);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  .prompt-question {
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.wonder-name {
+  display: inline;
+  background: transparent;
+  color: #b45309;
+  line-height: inherit;
+  vertical-align: baseline;
+  white-space: inherit;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 8px;
+}
+
+.score-stat {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 76px;
+  min-height: 52px;
+  padding: 6px 10px;
+  border: 1px solid var(--app-border-soft);
+  border-radius: 8px;
+  background: var(--app-surface-muted);
+
+  .score-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--app-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  strong {
+    font-size: 18px;
+  }
+}
+
+.game-actions {
+  display: flex;
+  gap: 8px;
+
+  button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    background: var(--app-surface);
+    color: var(--app-text);
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--app-focus);
+      color: var(--app-focus);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+    }
+  }
+}
+
+.result-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: var(--app-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+
+  span {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  strong {
+    color: var(--app-text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+  }
+}
+
+#geoguesser-map {
+  width: 100%;
+  height: 64vh;
+  overflow: hidden;
+  border: 1px solid var(--app-border-soft);
+  background: var(--app-surface-muted);
+
+  &.is-disabled {
+    opacity: 0.55;
+  }
+}
+
+:host-context(body.dark-mode) {
+  .game-panel,
+  .score-stat {
+    background: var(--app-surface);
+  }
+
+  .wonder-name {
+    color: #fbbf24;
+  }
+}

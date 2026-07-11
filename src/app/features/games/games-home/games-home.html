@@ -1,0 +1,15 @@
+<div class="games-home">
+  <div class="title stretch-text">Fun Games!!</div>
+  <div class="games">
+    @for (game of games; track game.route) {
+      <button
+        type="button"
+        class="game"
+        (click)="onSelectGame(game)"
+        [style.outline-color]="game.color"
+      >
+        {{ game.title }}
+      </button>
+    }
+  </div>
+</div>
