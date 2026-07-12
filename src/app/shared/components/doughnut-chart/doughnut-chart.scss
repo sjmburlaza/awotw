@@ -31,8 +31,8 @@
 }
 
 .doughnut-chart__tooltip {
-  --doughnut-tooltip-bg: #111827;
-  --doughnut-tooltip-text: #ffffff;
+  --doughnut-tooltip-bg: var(--app-tooltip-bg);
+  --doughnut-tooltip-text: var(--app-surface);
   --doughnut-tooltip-caret-x: 50%;
   --doughnut-tooltip-caret-y: 50%;
 

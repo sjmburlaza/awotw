@@ -114,7 +114,7 @@
 }
 
 .finish-banner {
-  border-color: #0ea5a4;
+  border-color: var(--color-primary-accent);
 
   button {
     padding: 7px 12px;
@@ -130,7 +130,7 @@
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  background: #000;
+  background: var(--app-globe-bg);
 
   &.is-disabled {
     opacity: 0.55;
@@ -152,10 +152,10 @@
   max-width: calc(100% - 32px);
   overflow: visible;
   padding: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--app-globe-popup-border);
   border-radius: 8px;
-  background: rgba(15, 23, 42, 0.94);
-  color: #f8fafc;
+  background: var(--app-globe-popup-panel-bg);
+  color: var(--app-globe-popup-text);
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   transform: translate(-50%, calc(-100% - 14px));
@@ -175,7 +175,7 @@
   margin-bottom: 7px;
   overflow: hidden;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--app-globe-popup-surface);
 }
 
 .quiz-popup__image {
@@ -205,10 +205,10 @@
   width: 100%;
   min-height: 27px;
   padding: 5px 8px;
-  border: 1px solid rgba(226, 232, 240, 0.24);
+  border: 1px solid var(--app-globe-popup-option-border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  background: var(--app-globe-popup-surface);
+  color: var(--app-globe-popup-text);
   cursor: pointer;
   font: inherit;
   line-height: 1.2;
@@ -220,8 +220,8 @@
   }
 
   &:hover:not(:disabled) {
-    border-color: #67e8f9;
-    background: rgba(103, 232, 249, 0.14);
+    border-color: var(--app-globe-hover-border);
+    background: var(--app-globe-hover-bg);
   }
 
   &:disabled {
@@ -229,13 +229,13 @@
   }
 
   &.is-correct {
-    border-color: #22c55e;
-    background: rgba(34, 197, 94, 0.24);
+    border-color: var(--app-globe-success-border);
+    background: var(--app-globe-success-bg);
   }
 
   &.is-incorrect {
-    border-color: #f97316;
-    background: rgba(249, 115, 22, 0.24);
+    border-color: var(--app-globe-warning-border);
+    background: var(--app-globe-warning-bg);
   }
 }
 
@@ -253,15 +253,15 @@
   line-height: 1.2;
 
   &.is-correct {
-    border-color: #22c55e;
-    background: rgba(34, 197, 94, 0.18);
-    color: #bbf7d0;
+    border-color: var(--app-globe-success-border);
+    background: var(--app-globe-success-soft-bg);
+    color: var(--app-globe-success-text);
   }
 
   &.is-incorrect {
-    border-color: #f97316;
-    background: rgba(249, 115, 22, 0.18);
-    color: #fed7aa;
+    border-color: var(--app-globe-warning-border);
+    background: var(--app-globe-warning-soft-bg);
+    color: var(--app-globe-warning-text);
   }
 }
 

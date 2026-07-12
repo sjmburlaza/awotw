@@ -1,3 +1,5 @@
+@use './styles/colors';
+
 /* You can add global styles to this file, and also import other style files */
 * {
   margin: 0;
@@ -5,24 +7,13 @@
   box-sizing: border-box;
 }
 
-:root {
-  --app-bg: #ffffff;
-  --app-text: #222222;
-  --app-muted: #6b7280;
-  --app-border: #d1d5db;
-  --app-border-soft: #e5e7eb;
-  --app-surface: #ffffff;
-  --app-surface-muted: #f8fafc;
-  --app-focus: blueviolet;
-  --app-error: #b42318;
-  --app-error-bg: #f27171;
-  --app-success-bg: #90ee90;
-  --app-answer-text: #222222;
-  --app-shadow: rgba(0, 0, 0, 0.12);
-}
-
 html {
   scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
 }
 
 :where(a, button, input, [tabindex]):focus-visible {
@@ -43,20 +34,6 @@ html {
 }
 
 body.dark-mode {
-  --app-bg: #222222;
-  --app-text: #e8ddd6;
-  --app-muted: #d8cfc8;
-  --app-border: #6f6670;
-  --app-border-soft: #484248;
-  --app-surface: #2d2d31;
-  --app-surface-muted: #27272b;
-  --app-focus: #c084fc;
-  --app-error: #ffb4a9;
-  --app-error-bg: #f87171;
-  --app-success-bg: #86efac;
-  --app-answer-text: #111827;
-  --app-shadow: rgba(0, 0, 0, 0.35);
-
   background-color: var(--app-bg);
   color: var(--app-text);
   color-scheme: dark;

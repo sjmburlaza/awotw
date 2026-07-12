@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
+import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 
 interface GameOption {
   title: string;
@@ -21,27 +22,27 @@ export class GamesHomeComponent {
     {
       title: 'GeoGuesser',
       route: URL_PATH.GEOGUESSER,
-      color: '#2563eb',
+      color: cssVar(COLOR_VARS.gameGeoguesser),
     },
     {
       title: 'Recreate Timeline',
       route: URL_PATH.RECREATE_TIMELINE,
-      color: '#f97316',
+      color: cssVar(COLOR_VARS.gameTimeline),
     },
     {
       title: 'Architecture Puzzle',
       route: URL_PATH.ARCHITECTURE_PUZZLE,
-      color: '#0f766e',
+      color: cssVar(COLOR_VARS.gamePuzzle),
     },
     {
       title: 'Quizzes',
       route: URL_PATH.QUIZ,
-      color: '#cc3e3e',
+      color: cssVar(COLOR_VARS.gameQuiz),
     },
     {
       title: 'World Tour Mode',
       route: URL_PATH.WORLD_TOUR_MODE,
-      color: '#0891b2',
+      color: cssVar(COLOR_VARS.gameWorldTour),
     },
   ];
 

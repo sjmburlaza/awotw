@@ -16,6 +16,7 @@ import { LoaderService } from 'src/app/services/loader-service';
 import { SortMode } from 'src/app/shared/constants/sort-mode.const';
 import { groupWondersBySortMode } from 'src/app/shared/utils-helper';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
+import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 
 @Component({
   selector: 'app-home',
@@ -155,11 +156,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const b = (rgb >> 0) & 0xff;
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
-    if (luma < 100) {
-      return 'white';
-    } else {
-      return 'black';
-    }
+    return luma < 100 ? cssVar(COLOR_VARS.onDark) : cssVar(COLOR_VARS.onLight);
   }
 
   goToDetailPage(itemId: number): void {

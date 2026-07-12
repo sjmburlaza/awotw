@@ -12,6 +12,7 @@ import Globe, { GlobeInstance } from 'globe.gl';
 import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
+import { COLOR_VARS, getCssColor } from 'src/app/shared/theme-colors';
 
 interface WonderMarker extends Item {
   latNum: number;
@@ -273,7 +274,9 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   private getSafeHexColor(color?: string): string {
-    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color) ? color : '#ff5722';
+    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color)
+      ? color
+      : getCssColor(COLOR_VARS.pinFallback);
   }
 
   private removeMarkerListeners(): void {

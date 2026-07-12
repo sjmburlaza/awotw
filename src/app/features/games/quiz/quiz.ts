@@ -3,6 +3,7 @@ import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService, Item } from 'src/app/services/data.service';
+import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 
 interface QuizModel {
   code: string;
@@ -23,27 +24,27 @@ export class QuizComponent implements OnInit {
     {
       code: 'name',
       title: 'What is the name?',
-      color: 'red',
+      color: cssVar(COLOR_VARS.category3),
     },
     {
       code: 'location',
       title: 'Where is it located?',
-      color: 'green',
+      color: cssVar(COLOR_VARS.category2),
     },
     {
       code: 'style',
       title: 'What is the style?',
-      color: 'blue',
+      color: cssVar(COLOR_VARS.category1),
     },
     {
       code: 'yearBuilt',
       title: 'When was it built?',
-      color: 'orange',
+      color: cssVar(COLOR_VARS.category4),
     },
     {
       code: 'buildingType',
       title: 'What is the use?',
-      color: 'violet',
+      color: cssVar(COLOR_VARS.category5),
     },
   ];
   data: Item[] = [];

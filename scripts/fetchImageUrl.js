@@ -1,11 +1,9 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-// TODO: Update filepath
-
 // Load JSON file
 const buildings = JSON.parse(
-  fs.readFileSync(new URL('./mostVisited.json', import.meta.url), 'utf-8'),
+  fs.readFileSync(new URL('../src/assets/json/mostVisited.json', import.meta.url), 'utf-8'),
 );
 
 // Function to fetch image from Wikidata

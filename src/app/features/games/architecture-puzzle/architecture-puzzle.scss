@@ -72,8 +72,8 @@
     cursor: pointer;
 
     &:hover {
-      border-color: #0f766e;
-      color: #0f766e;
+      border-color: var(--app-selected);
+      color: var(--app-selected);
       transform: translateY(-1px);
     }
   }
@@ -134,9 +134,9 @@
 
     &:hover,
     &.is-active {
-      border-color: #0f766e;
-      background: rgba(15, 118, 110, 0.12);
-      color: #0f766e;
+      border-color: var(--app-selected);
+      background: var(--app-selected-bg);
+      color: var(--app-selected);
     }
   }
 }
@@ -166,8 +166,8 @@
     cursor: pointer;
 
     &:hover {
-      border-color: #b45309;
-      color: #b45309;
+      border-color: var(--app-warning);
+      color: var(--app-warning);
     }
   }
 }
@@ -189,8 +189,7 @@
   overflow: hidden;
   border: 1px solid var(--app-border-soft);
   border-radius: 8px;
-  background:
-    linear-gradient(45deg, rgba(15, 118, 110, 0.08), transparent 42%), var(--app-surface-muted);
+  background: var(--app-puzzle-grid-bg);
 }
 
 .puzzle-canvas {
@@ -202,7 +201,7 @@
   touch-action: none;
 
   &:focus-visible {
-    outline: 2px solid #b45309;
+    outline: 2px solid var(--app-warning);
     outline-offset: -4px;
   }
 }
@@ -227,8 +226,8 @@
 }
 
 .puzzle-overlay--success {
-  border-color: rgba(21, 128, 61, 0.4);
-  color: #15803d;
+  border-color: var(--app-success-border);
+  color: var(--app-success);
 }
 
 .reference-panel {
@@ -269,9 +268,9 @@
   span {
     justify-self: start;
     padding: 3px 8px;
-    border: 1px solid rgba(180, 83, 9, 0.34);
+    border: 1px solid var(--app-warning-border);
     border-radius: 8px;
-    color: #b45309;
+    color: var(--app-warning);
     font-family: 'Montserrat', sans-serif;
     font-size: 12px;
   }
@@ -281,21 +280,21 @@
   .game-actions button:hover,
   .difficulty-group button:hover,
   .difficulty-group button.is-active {
-    border-color: #2dd4bf;
-    color: #5eead4;
+    border-color: var(--app-selected-border);
+    color: var(--app-selected-hover);
   }
 
   .difficulty-group button.is-active {
-    background: rgba(45, 212, 191, 0.12);
+    background: var(--app-selected-bg);
   }
 
   .custom-size button:hover,
   .reference-copy span {
-    border-color: rgba(251, 191, 36, 0.4);
-    color: #fbbf24;
+    border-color: var(--app-warning-border);
+    color: var(--app-warning);
   }
 
   .puzzle-overlay--success {
-    color: #86efac;
+    color: var(--app-success);
   }
 }

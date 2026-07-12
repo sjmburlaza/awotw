@@ -22,6 +22,8 @@ type CountryFeature = GeoJSON.Feature<GeoJSON.Geometry, CountryProperties>;
 type CountryFeatureCollection = GeoJSON.FeatureCollection<GeoJSON.Geometry, CountryProperties>;
 type CountryLayer = L.Layer & { feature?: CountryFeature };
 
+const CHOROPLETH_LABELS = ['0%', '1-20%', '21-40%', '41-60%', '61-80%', '81-100%'];
+
 @Component({
   selector: 'app-global-choropleth',
   imports: [],
@@ -39,14 +41,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
   private resizeTimer?: ReturnType<typeof setTimeout>;
   errorMessage = '';
 
-  legend = [
-    { label: '0%', color: '#f3f4f6' },
-    { label: '1-20%', color: '#fda4af' },
-    { label: '21-40%', color: '#fb7185' },
-    { label: '41-60%', color: '#fc466b' },
-    { label: '61-80%', color: '#be123c' },
-    { label: '81-100%', color: '#881337' },
-  ];
+  legend = this.getLegend();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['countryValues'] && this.countriesLayer) {
@@ -56,6 +51,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
 
   @HostListener('window:awotw-theme-change')
   onThemeChange(): void {
+    this.legend = this.getLegend();
     this.updateMapStyles();
   }
 
@@ -196,7 +192,7 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
     const theme = getThemeColors();
 
     return {
-      fillColor: this.getColor(value, max),
+      fillColor: this.getColor(value, max, theme.choroplethScale),
       weight: 1,
       opacity: 1,
       color: theme.mapStroke,
@@ -204,16 +200,25 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
     };
   }
 
-  private getColor(value: number, max: number): string {
-    if (max === 0) return '#f3f4f6';
+  private getLegend(): { label: string; color: string }[] {
+    const scale = getThemeColors().choroplethScale;
+
+    return CHOROPLETH_LABELS.map((label, index) => ({
+      label,
+      color: scale[index],
+    }));
+  }
+
+  private getColor(value: number, max: number, scale: string[]): string {
+    if (max === 0) return scale[0];
 
     const ratio = value / max;
 
-    if (ratio > 0.8) return '#881337';
-    if (ratio > 0.6) return '#be123c';
-    if (ratio > 0.4) return '#fc466b';
-    if (ratio > 0.2) return '#fb7185';
-    if (ratio > 0) return '#fda4af';
-    return '#f3f4f6';
+    if (ratio > 0.8) return scale[5];
+    if (ratio > 0.6) return scale[4];
+    if (ratio > 0.4) return scale[3];
+    if (ratio > 0.2) return scale[2];
+    if (ratio > 0) return scale[1];
+    return scale[0];
   }
 }

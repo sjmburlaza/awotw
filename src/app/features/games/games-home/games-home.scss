@@ -9,7 +9,7 @@
   font-size: 36px;
 
   .title {
-    background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+    background: var(--app-brand-gradient);
     background-clip: text;
     color: transparent;
     font-family: 'Michroma', sans-serif;

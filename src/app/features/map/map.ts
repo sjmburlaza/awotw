@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule } from '@angular/router';
 import * as L from 'leaflet';
 import { DataService, Item } from 'src/app/services/data.service';
+import { COLOR_VARS, getCssColor } from 'src/app/shared/theme-colors';
 
 @Component({
   selector: 'app-map',
@@ -158,7 +159,9 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   }
 
   private getSafeHexColor(color?: string | null): string {
-    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color) ? color : '#ff5722';
+    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color)
+      ? color
+      : getCssColor(COLOR_VARS.pinFallback);
   }
 
   private getSafeUrl(url?: string | null): string | null {
