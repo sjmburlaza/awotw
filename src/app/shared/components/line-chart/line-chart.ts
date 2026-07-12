@@ -88,9 +88,9 @@ export class LineChartComponent<T extends LineChartItemBase> implements OnChange
       datasets: [
         {
           data: Array.from(map.values()),
-          backgroundColor: 'rgba(252, 70, 107, 0.16)',
-          borderColor: '#fc466b',
-          pointBackgroundColor: '#3f5efb',
+          backgroundColor: theme.lineFill,
+          borderColor: theme.lineStroke,
+          pointBackgroundColor: theme.linePoint,
           pointBorderColor: theme.surface,
           tension: 0.25,
         },

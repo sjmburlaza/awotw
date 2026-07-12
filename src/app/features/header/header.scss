@@ -1,5 +1,5 @@
 %gradient-text {
-  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+  background: var(--app-brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -114,8 +114,8 @@
       padding: 0 8px;
       border: 1px solid var(--app-border);
       border-radius: 4px;
-      background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
-      color: #ffffff;
+      background: var(--app-brand-gradient);
+      color: var(--app-on-accent);
       font-family: 'Michroma', sans-serif;
       font-size: 12px;
 

@@ -12,6 +12,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataService, Item } from 'src/app/services/data.service';
+import { getThemeColors } from 'src/app/shared/theme-colors';
 
 interface PuzzleTile {
   id: number;
@@ -433,11 +434,10 @@ export class ArchitecturePuzzleComponent implements OnInit, AfterViewInit, OnDes
 
   private drawGrid(context: CanvasRenderingContext2D, canvasSize: number): void {
     const tileSize = canvasSize / this.selectedSize;
+    const theme = getThemeColors();
 
     context.save();
-    context.strokeStyle = document.body.classList.contains('dark-mode')
-      ? 'rgba(255, 255, 255, 0.2)'
-      : 'rgba(17, 24, 39, 0.18)';
+    context.strokeStyle = theme.puzzleGridLine;
     context.lineWidth = this.selectedSize > 80 ? 0.35 : 0.55;
 
     for (let index = 1; index < this.selectedSize; index++) {
@@ -457,12 +457,21 @@ export class ArchitecturePuzzleComponent implements OnInit, AfterViewInit, OnDes
   private drawFocusStates(context: CanvasRenderingContext2D, canvasSize: number): void {
     if (!this.tiles.length || this.isRevealing || this.isComplete) return;
 
+    const theme = getThemeColors();
+
     if (this.focusedTileIndex >= 0) {
-      this.drawTileOutline(context, canvasSize, this.focusedTileIndex, '#f59e0b', 2, [6, 4]);
+      this.drawTileOutline(
+        context,
+        canvasSize,
+        this.focusedTileIndex,
+        theme.puzzleFocus,
+        2,
+        [6, 4],
+      );
     }
 
     if (this.selectedTileIndex !== null) {
-      this.drawTileOutline(context, canvasSize, this.selectedTileIndex, '#0f766e', 3);
+      this.drawTileOutline(context, canvasSize, this.selectedTileIndex, theme.selected, 3);
     }
   }
 

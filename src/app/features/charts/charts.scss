@@ -1,5 +1,5 @@
 %gradient-text {
-  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+  background: var(--app-brand-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -121,7 +121,7 @@ label {
 
   &:focus-within {
     border-radius: 8px;
-    outline: 1px solid #7dc8ff;
+    outline: 1px solid var(--app-focus-ring);
     outline-offset: 1px;
   }
 
@@ -157,7 +157,7 @@ input {
   width: 40px;
   height: 40px;
   border: 4px solid var(--app-border);
-  border-top-color: #ff7ff4;
+  border-top-color: var(--app-loader-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

@@ -1,0 +1,230 @@
+:root {
+  --color-white: #ffffff;
+  --color-white-rgb: 255, 255, 255;
+  --color-black: #000000;
+  --color-black-rgb: 0, 0, 0;
+
+  --color-ink-950: #111827;
+  --color-ink-950-rgb: 17, 24, 39;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-700: #334155;
+  --color-slate-900: #0f172a;
+  --color-slate-900-rgb: 15, 23, 42;
+
+  --color-brand-rose: #fc466b;
+  --color-brand-rose-rgb: 252, 70, 107;
+  --color-brand-indigo: #3f5efb;
+  --color-brand-indigo-rgb: 63, 94, 251;
+  --color-brand-rose-soft: #ff7ab6;
+
+  --color-primary: #0f766e;
+  --color-primary-rgb: 15, 118, 110;
+  --color-primary-hover: #115e59;
+  --color-primary-bright: #2dd4bf;
+  --color-primary-bright-rgb: 45, 212, 191;
+  --color-primary-lift: #5eead4;
+  --color-primary-accent: #0ea5a4;
+
+  --color-success: #15803d;
+  --color-success-rgb: 21, 128, 61;
+  --color-success-outline: #16a34a;
+  --color-success-bright: #4ade80;
+  --color-success-bright-rgb: 74, 222, 128;
+  --color-success-soft-text: #86efac;
+  --color-success-on-globe: #bbf7d0;
+
+  --color-danger: #be123c;
+  --color-danger-rgb: 190, 18, 60;
+  --color-danger-outline: #ef4444;
+  --color-danger-bright: #fb7185;
+  --color-danger-bright-rgb: 251, 113, 133;
+
+  --color-warning: #b45309;
+  --color-warning-rgb: 180, 83, 9;
+  --color-warning-focus: #f59e0b;
+  --color-warning-bright: #fbbf24;
+  --color-warning-bright-rgb: 251, 191, 36;
+  --color-warning-orange: #f97316;
+  --color-warning-orange-rgb: 249, 115, 22;
+  --color-warning-on-globe: #fed7aa;
+
+  --color-info: #2563eb;
+  --color-info-rgb: 37, 99, 235;
+  --color-cyan: #0891b2;
+  --color-sky: #38bdf8;
+  --color-sky-light: #67e8f9;
+  --color-sky-link: #7dc8ff;
+
+  --app-bg: var(--color-white);
+  --app-text: var(--color-ink-950);
+  --app-muted: var(--color-slate-500);
+  --app-border: var(--color-slate-300);
+  --app-border-soft: var(--color-slate-200);
+  --app-surface: var(--color-white);
+  --app-surface-muted: var(--color-slate-50);
+  --app-focus: var(--color-brand-indigo);
+  --app-focus-ring: var(--color-sky-link);
+  --app-error: var(--color-danger);
+  --app-error-bg: rgba(var(--color-danger-rgb), 0.12);
+  --app-success: var(--color-success);
+  --app-success-bg: rgba(var(--color-success-rgb), 0.14);
+  --app-answer-text: var(--color-ink-950);
+  --app-shadow: rgba(var(--color-black-rgb), 0.12);
+  --app-on-accent: var(--color-white);
+  --app-on-dark: var(--color-white);
+  --app-on-light: var(--color-black);
+
+  --app-brand-gradient: linear-gradient(
+    135deg,
+    var(--color-brand-rose) 0%,
+    var(--color-brand-indigo) 100%
+  );
+  --app-loader-accent: var(--color-brand-rose-soft);
+
+  --app-axis: var(--app-muted);
+  --app-grid: var(--app-border-soft);
+  --app-tooltip-bg: var(--color-ink-950);
+  --app-tooltip-text: var(--color-white);
+  --app-tooltip-border: var(--app-grid);
+  --app-tooltip-shadow: rgba(var(--color-black-rgb), 0.2);
+  --app-cursor: var(--color-slate-400);
+  --app-boundary: var(--color-danger-outline);
+  --app-chart-line-fill: rgba(var(--color-brand-rose-rgb), 0.16);
+  --app-chart-line-stroke: var(--color-brand-rose);
+  --app-chart-line-point: var(--color-brand-indigo);
+  --app-chart-label: var(--color-white);
+  --app-chart-fallback: var(--color-info);
+
+  --app-map-empty: #f3f4f6;
+  --app-map-low: #fda4af;
+  --app-map-mid-low: var(--color-danger-bright);
+  --app-map-mid: var(--color-brand-rose);
+  --app-map-mid-high: var(--color-danger);
+  --app-map-high: #881337;
+  --app-map-stroke: var(--color-white);
+
+  --app-primary: var(--color-primary);
+  --app-primary-hover: var(--color-primary-hover);
+  --app-selected: var(--color-primary);
+  --app-selected-hover: var(--color-primary);
+  --app-selected-bg: rgba(var(--color-primary-rgb), 0.12);
+  --app-selected-border: var(--color-primary);
+  --app-selected-hover-border: rgba(var(--color-primary-rgb), 0.55);
+
+  --app-success-border: rgba(var(--color-success-rgb), 0.65);
+  --app-success-outline: var(--color-success-outline);
+  --app-error-border: rgba(var(--color-danger-rgb), 0.7);
+  --app-error-outline: var(--color-danger-outline);
+  --app-warning: var(--color-warning);
+  --app-warning-bg: rgba(var(--color-warning-rgb), 0.1);
+  --app-warning-border: rgba(var(--color-warning-rgb), 0.34);
+  --app-warning-focus: var(--color-warning-focus);
+
+  --app-puzzle-grid-line: rgba(var(--color-ink-950-rgb), 0.18);
+  --app-puzzle-grid-bg:
+    linear-gradient(45deg, rgba(var(--color-primary-rgb), 0.08), transparent 42%),
+    var(--app-surface-muted);
+  --app-inset-highlight: rgba(var(--color-white-rgb), 0.38);
+
+  --app-pin-primary: var(--color-info);
+  --app-pin-fallback: var(--color-warning-orange);
+  --app-pin-shadow: drop-shadow(0 2px 3px rgba(var(--color-black-rgb), 0.35));
+
+  --app-globe-bg: var(--color-black);
+  --app-globe-popup-bg: #141414;
+  --app-globe-popup-panel-bg: rgba(var(--color-slate-900-rgb), 0.94);
+  --app-globe-popup-text: var(--color-slate-50);
+  --app-globe-popup-muted: var(--color-slate-300);
+  --app-globe-popup-border: rgba(var(--color-white-rgb), 0.18);
+  --app-globe-popup-option-border: rgba(226, 232, 240, 0.24);
+  --app-globe-popup-surface: rgba(var(--color-white-rgb), 0.08);
+  --app-globe-link: var(--color-sky-link);
+  --app-globe-hover-border: var(--color-sky-light);
+  --app-globe-hover-bg: rgba(103, 232, 249, 0.14);
+  --app-globe-success-border: #22c55e;
+  --app-globe-success-bg: rgba(34, 197, 94, 0.24);
+  --app-globe-success-soft-bg: rgba(34, 197, 94, 0.18);
+  --app-globe-success-text: var(--color-success-on-globe);
+  --app-globe-warning-border: var(--color-warning-orange);
+  --app-globe-warning-bg: rgba(var(--color-warning-orange-rgb), 0.24);
+  --app-globe-warning-soft-bg: rgba(var(--color-warning-orange-rgb), 0.18);
+  --app-globe-warning-text: var(--color-warning-on-globe);
+  --app-globe-marker-glow: drop-shadow(0 0 5px var(--color-white))
+    drop-shadow(0 0 14px var(--color-sky))
+    drop-shadow(0 6px 10px rgba(var(--color-black-rgb), 0.55));
+
+  --app-game-geoguesser: var(--color-info);
+  --app-game-timeline: var(--color-warning-orange);
+  --app-game-puzzle: var(--color-primary);
+  --app-game-quiz: #cc3e3e;
+  --app-game-world-tour: var(--color-cyan);
+
+  --app-category-1: var(--color-info);
+  --app-category-2: var(--color-success);
+  --app-category-3: var(--color-brand-rose);
+  --app-category-4: var(--color-warning-orange);
+  --app-category-5: var(--color-cyan);
+  --app-category-6: #8b5cf6;
+  --app-category-7: var(--color-warning-bright);
+  --app-category-8: var(--color-primary-bright);
+
+  --app-loader-dot-1: var(--color-brand-rose);
+  --app-loader-dot-2: var(--color-warning-orange);
+  --app-loader-dot-3: var(--color-warning-bright);
+  --app-loader-dot-4: var(--color-success-outline);
+  --app-loader-dot-5: var(--color-brand-indigo);
+}
+
+body.dark-mode {
+  --app-bg: #222222;
+  --app-text: #e8ddd6;
+  --app-muted: #d8cfc8;
+  --app-border: #6f6670;
+  --app-border-soft: #484248;
+  --app-surface: #2d2d31;
+  --app-surface-muted: #27272b;
+  --app-focus: #c084fc;
+  --app-focus-ring: var(--color-sky-link);
+  --app-error: #ffb4a9;
+  --app-error-bg: #f87171;
+  --app-success: var(--color-success-soft-text);
+  --app-success-bg: #86efac;
+  --app-answer-text: #111827;
+  --app-shadow: rgba(var(--color-black-rgb), 0.35);
+
+  --app-axis: #b8adaf;
+  --app-grid: #3f3a40;
+  --app-tooltip-bg: #e8ddd6;
+  --app-tooltip-text: #222222;
+  --app-tooltip-border: var(--app-grid);
+  --app-cursor: #d8cfc8;
+  --app-boundary: #ff8fa3;
+  --app-map-stroke: #2d2d31;
+
+  --app-selected: var(--color-primary-bright);
+  --app-selected-hover: var(--color-primary-lift);
+  --app-selected-bg: rgba(20, 184, 166, 0.16);
+  --app-selected-border: var(--color-primary-bright);
+  --app-selected-hover-border: rgba(20, 184, 166, 0.55);
+  --app-primary: var(--color-primary);
+  --app-primary-hover: var(--color-primary-hover);
+
+  --app-success-border: rgba(var(--color-success-bright-rgb), 0.7);
+  --app-success-outline: var(--color-success-bright);
+  --app-error-border: rgba(var(--color-danger-bright-rgb), 0.75);
+  --app-error-outline: var(--color-danger-bright);
+  --app-warning: var(--color-warning-bright);
+  --app-warning-bg: rgba(var(--color-warning-bright-rgb), 0.12);
+  --app-warning-border: rgba(var(--color-warning-bright-rgb), 0.4);
+  --app-warning-focus: var(--color-warning-bright);
+
+  --app-puzzle-grid-line: rgba(var(--color-white-rgb), 0.2);
+  --app-puzzle-grid-bg:
+    linear-gradient(45deg, rgba(var(--color-primary-bright-rgb), 0.1), transparent 42%),
+    var(--app-surface-muted);
+}

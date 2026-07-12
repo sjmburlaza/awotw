@@ -92,8 +92,8 @@
         transform 160ms ease;
 
       &:hover {
-        border-color: #b45309;
-        color: #b45309;
+        border-color: var(--app-warning);
+        color: var(--app-warning);
         transform: translateY(-1px);
       }
     }
@@ -181,7 +181,7 @@
         transform 160ms ease;
 
       &:hover {
-        border-color: rgba(15, 118, 110, 0.55);
+        border-color: var(--app-selected-hover-border);
         transform: translateY(-1px);
       }
 
@@ -208,28 +208,28 @@
       }
 
       &.selected {
-        border-color: #0f766e;
-        background: rgba(15, 118, 110, 0.12);
-        box-shadow: inset 3px 0 0 #0f766e;
+        border-color: var(--app-selected);
+        background: var(--app-selected-bg);
+        box-shadow: inset 3px 0 0 var(--app-selected);
       }
 
       &.correct {
-        border-color: rgba(21, 128, 61, 0.65);
-        background: rgba(21, 128, 61, 0.14);
-        box-shadow: inset 3px 0 0 #15803d;
+        border-color: var(--app-success-border);
+        background: var(--app-success-bg);
+        box-shadow: inset 3px 0 0 var(--app-success);
 
         .option__feedback {
-          color: #15803d;
+          color: var(--app-success);
         }
       }
 
       &.incorrect {
-        border-color: rgba(190, 18, 60, 0.7);
-        background: rgba(190, 18, 60, 0.12);
-        box-shadow: inset 3px 0 0 #be123c;
+        border-color: var(--app-error-border);
+        background: var(--app-error-bg);
+        box-shadow: inset 3px 0 0 var(--app-error);
 
         .option__feedback {
-          color: #be123c;
+          color: var(--app-error);
         }
       }
     }
@@ -260,8 +260,8 @@
     flex: none;
     place-items: center;
     border-radius: 50%;
-    background: rgba(15, 118, 110, 0.12);
-    color: #0f766e;
+    background: var(--app-selected-bg);
+    color: var(--app-selected);
     text-decoration: none;
 
     i {
@@ -317,22 +317,22 @@
   }
 
   .quiz-action--primary:not(:disabled) {
-    border-color: #0f766e;
-    background: #0f766e;
-    color: #ffffff;
+    border-color: var(--app-primary);
+    background: var(--app-primary);
+    color: var(--app-on-accent);
 
     &:hover {
-      border-color: #115e59;
-      background: #115e59;
+      border-color: var(--app-primary-hover);
+      background: var(--app-primary-hover);
     }
   }
 
   .next__btn:not(:disabled) {
-    border-color: #b45309;
-    color: #b45309;
+    border-color: var(--app-warning);
+    color: var(--app-warning);
 
     &:hover {
-      background: rgba(180, 83, 9, 0.1);
+      background: var(--app-warning-bg);
     }
   }
 }
@@ -348,7 +348,7 @@
   .title {
     font-family: 'Michroma', sans-serif;
     font-weight: bold;
-    background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+    background: var(--app-brand-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -391,39 +391,39 @@ button:disabled {
   .quiz-selected {
     .options .option {
       &.selected {
-        border-color: #2dd4bf;
-        background: rgba(20, 184, 166, 0.16);
-        box-shadow: inset 3px 0 0 #2dd4bf;
+        border-color: var(--app-selected-border);
+        background: var(--app-selected-bg);
+        box-shadow: inset 3px 0 0 var(--app-selected-border);
       }
 
       &.correct {
-        border-color: rgba(74, 222, 128, 0.7);
-        background: rgba(34, 197, 94, 0.16);
-        box-shadow: inset 3px 0 0 #4ade80;
+        border-color: var(--app-success-border);
+        background: var(--app-success-bg);
+        box-shadow: inset 3px 0 0 var(--app-success-outline);
 
         .option__feedback {
-          color: #4ade80;
+          color: var(--app-success-outline);
         }
       }
 
       &.incorrect {
-        border-color: rgba(251, 113, 133, 0.75);
-        background: rgba(244, 63, 94, 0.16);
-        box-shadow: inset 3px 0 0 #fb7185;
+        border-color: var(--app-error-border);
+        background: var(--app-error-bg);
+        box-shadow: inset 3px 0 0 var(--app-error-outline);
 
         .option__feedback {
-          color: #fb7185;
+          color: var(--app-error-outline);
         }
       }
     }
 
     .next__btn:not(:disabled) {
-      border-color: #fbbf24;
-      color: #fbbf24;
+      border-color: var(--app-warning);
+      color: var(--app-warning);
     }
 
     .next__btn:not(:disabled):hover {
-      background: rgba(251, 191, 36, 0.12);
+      background: var(--app-warning-bg);
     }
   }
 }
@@ -453,7 +453,7 @@ button:disabled {
     width: 40px;
     height: 40px;
     border: 4px solid var(--app-border);
-    border-top-color: #0f766e;
+    border-top-color: var(--app-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }

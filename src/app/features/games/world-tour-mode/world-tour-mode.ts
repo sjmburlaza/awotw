@@ -12,6 +12,7 @@ import Globe, { GlobeInstance } from 'globe.gl';
 import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
+import { COLOR_VARS, getCssColor, getThemeColors } from 'src/app/shared/theme-colors';
 
 type QuizCode = 'name' | 'location' | 'style' | 'yearBuilt' | 'buildingType';
 
@@ -569,9 +570,7 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
   }
 
   private setMarkerActiveState(element: HTMLElement, isActive: boolean): void {
-    element.style.filter = isActive
-      ? 'drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 14px #38bdf8) drop-shadow(0 6px 10px rgba(0, 0, 0, 0.55))'
-      : '';
+    element.style.filter = isActive ? getThemeColors().globeMarkerGlow : '';
     element.style.zIndex = isActive ? '3' : '';
 
     if (isActive) {
@@ -664,7 +663,9 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
   }
 
   private getSafeHexColor(color?: string): string {
-    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color) ? color : '#ff5722';
+    return color && /^#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(color)
+      ? color
+      : getCssColor(COLOR_VARS.pinFallback);
   }
 
   private clamp(value: number, min: number, max: number): number {

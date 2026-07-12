@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { orbitControls } from 'globe.gl';
+import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 
 import { WorldTourModeComponent } from './world-tour-mode';
 
@@ -18,11 +19,56 @@ describe('WorldTourModeComponent', () => {
   let dataServiceMock: Pick<DataService, 'getWonders'>;
 
   const wonders: Item[] = [
-    createWonder(1, 'Taj Mahal', 'Agra, India', 'Mughal', 'Mausoleum', '1648', '27.1751', '78.0421'),
-    createWonder(2, 'Colosseum', 'Rome, Italy', 'Roman', 'Amphitheatre', '80', '41.8902', '12.4922'),
-    createWonder(3, 'Eiffel Tower', 'Paris, France', 'Structural Expressionist', 'Observation tower', '1889', '48.8584', '2.2945'),
-    createWonder(4, 'Sydney Opera House', 'Sydney, Australia', 'Expressionist', 'Performing arts', '1973', '-33.8568', '151.2153'),
-    createWonder(5, 'Machu Picchu', 'Cusco Region, Peru', 'Inca', 'Citadel', '1450', '-13.1631', '-72.545'),
+    createWonder(
+      1,
+      'Taj Mahal',
+      'Agra, India',
+      'Mughal',
+      'Mausoleum',
+      '1648',
+      '27.1751',
+      '78.0421',
+    ),
+    createWonder(
+      2,
+      'Colosseum',
+      'Rome, Italy',
+      'Roman',
+      'Amphitheatre',
+      '80',
+      '41.8902',
+      '12.4922',
+    ),
+    createWonder(
+      3,
+      'Eiffel Tower',
+      'Paris, France',
+      'Structural Expressionist',
+      'Observation tower',
+      '1889',
+      '48.8584',
+      '2.2945',
+    ),
+    createWonder(
+      4,
+      'Sydney Opera House',
+      'Sydney, Australia',
+      'Expressionist',
+      'Performing arts',
+      '1973',
+      '-33.8568',
+      '151.2153',
+    ),
+    createWonder(
+      5,
+      'Machu Picchu',
+      'Cusco Region, Peru',
+      'Inca',
+      'Citadel',
+      '1450',
+      '-13.1631',
+      '-72.545',
+    ),
   ];
 
   beforeEach(async () => {
@@ -72,11 +118,11 @@ describe('WorldTourModeComponent', () => {
     const currentStop = component.currentStop as Item;
     const tourLabel = fixture.nativeElement.querySelector('.tour-label');
     const tourPromptTitle = fixture.nativeElement.querySelector('.tour-prompt strong');
-    const tourInstruction = fixture.nativeElement.querySelector(
-      '.tour-instruction',
-    ) as HTMLElement;
+    const tourInstruction = fixture.nativeElement.querySelector('.tour-instruction') as HTMLElement;
     const popupMeta = fixture.nativeElement.querySelector('.quiz-popup__meta');
-    const popupImage = fixture.nativeElement.querySelector('.quiz-popup__image') as HTMLImageElement;
+    const popupImage = fixture.nativeElement.querySelector(
+      '.quiz-popup__image',
+    ) as HTMLImageElement;
 
     expect(tourLabel).toBeNull();
     expect(tourPromptTitle).toBeNull();
@@ -97,11 +143,12 @@ describe('WorldTourModeComponent', () => {
     const currentStopId = component.currentStop?.id as number;
     const markerElements = (component as unknown as WorldTourModeInternals).markerElementsById;
     const activeMarker = markerElements.get(currentStopId);
-    const inactiveMarker = Array.from(markerElements.entries()).find(([id]) => id !== currentStopId)
-      ?.[1];
+    const inactiveMarker = Array.from(markerElements.entries()).find(
+      ([id]) => id !== currentStopId,
+    )?.[1];
 
     expect(activeMarker?.getAttribute('aria-current')).toBe('location');
-    expect(activeMarker?.style.filter).toContain('drop-shadow');
+    expect(activeMarker?.style.filter).toBe(cssVar(COLOR_VARS.globeMarkerGlow));
     expect(activeMarker?.style.zIndex).toBe('3');
     expect(inactiveMarker?.getAttribute('aria-current')).toBeNull();
     expect(inactiveMarker?.style.filter).toBe('');
@@ -127,7 +174,7 @@ describe('WorldTourModeComponent', () => {
     const activeMarker = markerElements.get(nextStopId);
 
     expect(activeMarker?.getAttribute('aria-current')).toBe('location');
-    expect(activeMarker?.style.filter).toContain('drop-shadow');
+    expect(activeMarker?.style.filter).toBe(cssVar(COLOR_VARS.globeMarkerGlow));
     expect(activeMarker?.style.zIndex).toBe('3');
   });
 
@@ -178,7 +225,7 @@ describe('WorldTourModeComponent', () => {
     internals.ensureActiveMarkerState();
 
     expect(activeMarker?.getAttribute('aria-current')).toBe('location');
-    expect(activeMarker?.style.filter).toContain('drop-shadow');
+    expect(activeMarker?.style.filter).toBe(cssVar(COLOR_VARS.globeMarkerGlow));
     expect(activeMarker?.style.zIndex).toBe('3');
   });
 
