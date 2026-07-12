@@ -11,6 +11,11 @@ import * as d3 from 'd3';
 import { StyleRange } from 'src/app/services/data.service';
 import { getThemeColors } from '../../theme-colors';
 
+interface TooltipPosition {
+  left: number;
+  top: number;
+}
+
 @Component({
   selector: 'app-timeline-chart-v2',
   imports: [],
@@ -23,8 +28,10 @@ export class TimelineChartV2Component implements AfterViewInit {
   @ViewChild('chartContainer', { static: true })
   chartContainer!: ElementRef<HTMLDivElement>;
 
+  private readonly tooltipGap = 14;
+  private readonly tooltipInset = 8;
   private svg!: d3.Selection<SVGSVGElement, unknown, null, undefined>;
-  private tooltip!: d3.Selection<HTMLDivElement, unknown, HTMLElement, unknown>;
+  private tooltip!: d3.Selection<HTMLDivElement, unknown, null, undefined>;
 
   ngAfterViewInit(): void {
     this.createTooltip();
@@ -278,14 +285,17 @@ export class TimelineChartV2Component implements AfterViewInit {
 
   private createTooltip(): void {
     const theme = getThemeColors();
+    const container = this.chartContainer.nativeElement;
 
-    d3.select('body').select('.timeline-tooltip').remove();
+    document.querySelectorAll('body > .timeline-tooltip').forEach((tooltip) => tooltip.remove());
+    container.querySelector('.timeline-tooltip')?.remove();
 
     this.tooltip = d3
-      .select('body')
+      .select(container)
       .append('div')
       .attr('class', 'timeline-tooltip')
-      .style('position', 'fixed')
+      .style('position', 'absolute')
+      .style('box-sizing', 'border-box')
       .style('pointer-events', 'none')
       .style('opacity', '0')
       .style('background', theme.tooltipBackground)
@@ -295,7 +305,8 @@ export class TimelineChartV2Component implements AfterViewInit {
       .style('border-radius', '8px')
       .style('font-size', '12px')
       .style('line-height', '1.4')
-      .style('max-width', '280px')
+      .style('max-width', 'min(280px, calc(100% - 16px))')
+      .style('overflow-wrap', 'anywhere')
       .style('box-shadow', '0 8px 24px rgba(0,0,0,0.2)')
       .style('z-index', '1000');
   }
@@ -325,6 +336,59 @@ export class TimelineChartV2Component implements AfterViewInit {
   }
 
   private moveTooltip(event: MouseEvent): void {
-    this.tooltip.style('left', `${event.clientX + 14}px`).style('top', `${event.clientY + 14}px`);
+    const tooltipEl = this.tooltip.node();
+    if (!tooltipEl) return;
+
+    const containerRect = this.chartContainer.nativeElement.getBoundingClientRect();
+    const tooltipRect = tooltipEl.getBoundingClientRect();
+
+    const position = this.getContainedTooltipPosition(
+      event.clientX,
+      event.clientY,
+      containerRect,
+      tooltipRect,
+    );
+
+    this.tooltip.style('left', `${position.left}px`).style('top', `${position.top}px`);
+  }
+
+  private getContainedTooltipPosition(
+    clientX: number,
+    clientY: number,
+    containerRect: Pick<DOMRectReadOnly, 'left' | 'top' | 'width' | 'height'>,
+    tooltipRect: Pick<DOMRectReadOnly, 'width' | 'height'>,
+  ): TooltipPosition {
+    const pointerX = clientX - containerRect.left;
+    const pointerY = clientY - containerRect.top;
+    const tooltipWidth = tooltipRect.width;
+    const tooltipHeight = tooltipRect.height;
+
+    let left = pointerX + this.tooltipGap;
+    if (left + tooltipWidth + this.tooltipInset > containerRect.width) {
+      left = pointerX - tooltipWidth - this.tooltipGap;
+    }
+
+    let top = pointerY + this.tooltipGap;
+    if (top + tooltipHeight + this.tooltipInset > containerRect.height) {
+      top = pointerY - tooltipHeight - this.tooltipGap;
+    }
+
+    const maxLeft = Math.max(
+      this.tooltipInset,
+      containerRect.width - tooltipWidth - this.tooltipInset,
+    );
+    const maxTop = Math.max(
+      this.tooltipInset,
+      containerRect.height - tooltipHeight - this.tooltipInset,
+    );
+
+    return {
+      left: this.clamp(left, this.tooltipInset, maxLeft),
+      top: this.clamp(top, this.tooltipInset, maxTop),
+    };
+  }
+
+  private clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
   }
 }
