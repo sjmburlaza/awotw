@@ -2,12 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// TODO: Update filepath
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const filePath = path.join(__dirname, 'mostVisited.json');
+const filePath = path.join(__dirname, '../src/assets/json/mostVisited.json');
 const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
 function hslToHex(h, s, l) {
