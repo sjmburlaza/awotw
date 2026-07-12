@@ -215,21 +215,21 @@
 
       &.correct {
         border-color: var(--app-success-border);
-        background: var(--app-success-bg);
-        box-shadow: inset 3px 0 0 var(--app-success);
+        background: var(--app-success-answer-bg);
+        box-shadow: inset 3px 0 0 var(--app-success-mark);
 
         .option__feedback {
-          color: var(--app-success);
+          color: var(--app-success-mark);
         }
       }
 
       &.incorrect {
         border-color: var(--app-error-border);
-        background: var(--app-error-bg);
-        box-shadow: inset 3px 0 0 var(--app-error);
+        background: var(--app-error-answer-bg);
+        box-shadow: inset 3px 0 0 var(--app-error-mark);
 
         .option__feedback {
-          color: var(--app-error);
+          color: var(--app-error-mark);
         }
       }
     }
@@ -385,47 +385,6 @@ button {
 
 button:disabled {
   cursor: not-allowed;
-}
-
-:host-context(body.dark-mode) {
-  .quiz-selected {
-    .options .option {
-      &.selected {
-        border-color: var(--app-selected-border);
-        background: var(--app-selected-bg);
-        box-shadow: inset 3px 0 0 var(--app-selected-border);
-      }
-
-      &.correct {
-        border-color: var(--app-success-border);
-        background: var(--app-success-bg);
-        box-shadow: inset 3px 0 0 var(--app-success-outline);
-
-        .option__feedback {
-          color: var(--app-success-outline);
-        }
-      }
-
-      &.incorrect {
-        border-color: var(--app-error-border);
-        background: var(--app-error-bg);
-        box-shadow: inset 3px 0 0 var(--app-error-outline);
-
-        .option__feedback {
-          color: var(--app-error-outline);
-        }
-      }
-    }
-
-    .next__btn:not(:disabled) {
-      border-color: var(--app-warning);
-      color: var(--app-warning);
-    }
-
-    .next__btn:not(:disabled):hover {
-      background: var(--app-warning-bg);
-    }
-  }
 }
 
 .loader-wrapper {
