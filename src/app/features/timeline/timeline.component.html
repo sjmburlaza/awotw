@@ -23,30 +23,52 @@
       @for (group of groups; track group.groupName) {
         <div [id]="group.groupName" class="group" slideInOnScroll>
           <div class="group__header">
-            <span class="circle"></span>
-            <span> {{ group.groupName }} </span>
+            <span class="circle" aria-hidden="true"></span>
+            <div class="group__heading">
+              <span class="group__name">{{ group.groupName }}</span>
+            </div>
           </div>
           <div class="group__items">
             @for (item of group.items; track item.id) {
-              <div class="item">
+              <a
+                class="item"
+                [routerLink]="['/detail', item.id]"
+                [attr.aria-label]="'Open details for ' + item.name"
+              >
                 <div class="item__img">
                   <img [src]="item.imageURL" loading="lazy" decoding="async" [alt]="item.name" />
                 </div>
-                <div class="item__name">
-                  {{ item.name }}
-                  <span
-                    class="tooltip"
-                    [appTooltip]="item.wiki?.extract || 'No description available.'"
-                  >
-                    <i class="bi bi-info-circle"></i>
-                  </span>
+                <div class="item__body">
+                  <div class="item__title-row">
+                    <span class="item__name">{{ item.name }}</span>
+                    <span
+                      class="tooltip item__info"
+                      [appTooltip]="item.wiki?.extract || 'No description available.'"
+                    >
+                      <i class="bi bi-info-circle" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  <div class="item__facts">
+                    <span>
+                      <i class="bi bi-calendar3" aria-hidden="true"></i>
+                      {{ item.yearBuilt }}
+                    </span>
+                    <span>
+                      <i class="bi bi-columns-gap" aria-hidden="true"></i>
+                      {{ item.style }}
+                    </span>
+                  </div>
+                  <div class="item__location">
+                    <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                    <span>{{ item.location }}</span>
+                  </div>
                 </div>
-              </div>
+              </a>
             }
           </div>
         </div>
       }
     </div>
-    <div id="end" class="footer">End.</div>
+    <div id="end" class="footer">End of timeline.</div>
   }
 </div>
