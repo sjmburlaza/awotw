@@ -56,6 +56,15 @@
       <div class="game-actions">
         <button
           type="button"
+          (click)="openLeaderboard()"
+          [disabled]="isLeaderboardPopupVisible"
+          aria-label="Check leaderboard"
+          title="Leaderboard"
+        >
+          <i class="bi bi-trophy"></i>
+        </button>
+        <button
+          type="button"
           (click)="submitGuess()"
           [disabled]="!hasGuess || hasSubmitted"
           aria-label="Submit pin"
@@ -66,7 +75,7 @@
         <button
           type="button"
           (click)="nextRound()"
-          [disabled]="!hasSubmitted"
+          [disabled]="!hasSubmitted || isLeaderboardPopupVisible"
           aria-label="Next round"
           title="Next"
         >
@@ -98,6 +107,17 @@
           points
         </span>
       </div>
+    }
+
+    @if (isLeaderboardPopupVisible) {
+      <app-leaderboard-popup
+        [currentScore]="leaderboardPopupScore"
+        [scores]="topScores"
+        [heading]="leaderboardPopupHeading"
+        [actionLabel]="leaderboardPopupActionLabel"
+        emptyMessage="No recorded scores yet."
+        (primaryAction)="handleLeaderboardPopupAction()"
+      />
     }
   }
 

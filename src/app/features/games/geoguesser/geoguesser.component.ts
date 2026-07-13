@@ -3,6 +3,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as L from 'leaflet';
 import { DataService, Item } from 'src/app/services/data.service';
 import { InfoTooltipComponent } from 'src/app/shared/components/info-tooltip/info-tooltip.component';
+import {
+  LeaderboardPopupComponent,
+  LeaderboardScore,
+} from 'src/app/shared/components/leaderboard-popup/leaderboard-popup.component';
 
 interface MappableWonder extends Item {
   lat: string;
@@ -17,9 +21,11 @@ interface RoundScore {
   total: number;
 }
 
+type SavedScore = LeaderboardScore;
+
 @Component({
   selector: 'app-geoguesser',
-  imports: [InfoTooltipComponent],
+  imports: [InfoTooltipComponent, LeaderboardPopupComponent],
   templateUrl: './geoguesser.component.html',
   styleUrl: './geoguesser.component.scss',
 })
@@ -36,6 +42,9 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly maxTimeBonus = 200;
   private readonly timePenaltyPerSecond = 4;
   private readonly distanceDecayKm = 1800;
+  private readonly roundsPerScore = 10;
+  private readonly topScoreLimit = 5;
+  private readonly scoreStorageKey = 'geoguesser-top-scores';
 
   private map?: L.Map;
   private cursorPreviewMarker?: L.Marker;
@@ -55,6 +64,10 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
   roundNumber = 0;
   totalScore = 0;
   result?: RoundScore;
+  topScores: SavedScore[] = [];
+  latestSavedScore?: SavedScore;
+  showScorePopup = false;
+  showLeaderboardPopup = false;
 
   get hasGuess(): boolean {
     return !!this.selectedLatLng;
@@ -64,7 +77,24 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.maxDistanceScore + this.maxTimeBonus;
   }
 
+  get isLeaderboardPopupVisible(): boolean {
+    return this.showScorePopup || this.showLeaderboardPopup;
+  }
+
+  get leaderboardPopupScore(): SavedScore | undefined {
+    return this.showScorePopup ? this.latestSavedScore : undefined;
+  }
+
+  get leaderboardPopupHeading(): string {
+    return this.showScorePopup ? 'Score recorded' : 'GeoGuesser leaderboard';
+  }
+
+  get leaderboardPopupActionLabel(): string {
+    return this.showScorePopup ? 'Play another round' : 'Close';
+  }
+
   ngOnInit(): void {
+    this.topScores = this.loadTopScores();
     this.dataService
       .getWonders()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -120,11 +150,39 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
     this.hasSubmitted = true;
     this.guessMarker?.dragging?.disable();
     this.revealActualLocation(actualLatLng);
+
+    if (this.roundNumber % this.roundsPerScore === 0) {
+      this.recordCompletedScore();
+    }
   }
 
   nextRound(): void {
+    if (!this.wonders.length || this.isLeaderboardPopupVisible) return;
+
+    this.startNewRound();
+  }
+
+  openLeaderboard(): void {
+    this.showLeaderboardPopup = true;
+  }
+
+  handleLeaderboardPopupAction(): void {
+    if (this.showScorePopup) {
+      this.playAnotherRound();
+      return;
+    }
+
+    this.showLeaderboardPopup = false;
+  }
+
+  playAnotherRound(): void {
     if (!this.wonders.length) return;
 
+    this.showScorePopup = false;
+    this.showLeaderboardPopup = false;
+    this.latestSavedScore = undefined;
+    this.totalScore = 0;
+    this.roundNumber = 0;
     this.startNewRound();
   }
 
@@ -218,6 +276,67 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map?.setView(this.mapCenter, this.mapZoom);
     this.showCursorPreview(this.map?.getCenter());
     this.startTimer();
+  }
+
+  private recordCompletedScore(): void {
+    const savedScore: SavedScore = {
+      score: this.totalScore,
+      completedAt: new Date().toISOString(),
+    };
+
+    this.latestSavedScore = savedScore;
+    this.topScores = this.sortTopScores([...this.topScores, savedScore]);
+    this.saveTopScores(this.topScores);
+    this.showScorePopup = true;
+  }
+
+  private loadTopScores(): SavedScore[] {
+    try {
+      const storedScores = window.localStorage.getItem(this.scoreStorageKey);
+      if (!storedScores) return [];
+
+      const parsedScores: unknown = JSON.parse(storedScores);
+      if (!Array.isArray(parsedScores)) return [];
+
+      return this.sortTopScores(
+        parsedScores.filter((score): score is SavedScore => this.isSavedScore(score)),
+      );
+    } catch {
+      return [];
+    }
+  }
+
+  private saveTopScores(scores: SavedScore[]): void {
+    try {
+      window.localStorage.setItem(this.scoreStorageKey, JSON.stringify(scores));
+    } catch {
+      // The game should keep running if storage is unavailable.
+    }
+  }
+
+  private sortTopScores(scores: SavedScore[]): SavedScore[] {
+    return [...scores]
+      .sort((firstScore, secondScore) => {
+        if (secondScore.score !== firstScore.score) return secondScore.score - firstScore.score;
+
+        return (
+          new Date(secondScore.completedAt).getTime() - new Date(firstScore.completedAt).getTime()
+        );
+      })
+      .slice(0, this.topScoreLimit);
+  }
+
+  private isSavedScore(score: unknown): score is SavedScore {
+    if (!score || typeof score !== 'object') return false;
+
+    const candidate = score as Partial<SavedScore>;
+
+    return (
+      typeof candidate.score === 'number' &&
+      Number.isFinite(candidate.score) &&
+      typeof candidate.completedAt === 'string' &&
+      !Number.isNaN(new Date(candidate.completedAt).getTime())
+    );
   }
 
   private pickWonder(): MappableWonder {

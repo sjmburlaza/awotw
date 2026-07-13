@@ -164,3 +164,13 @@
     color: #fbbf24;
   }
 }
+
+@media (max-width: 760px) {
+  .geoguesser-container {
+    width: min(100vw - 24px, 1200px);
+  }
+
+  .game-panel {
+    grid-template-columns: 1fr;
+  }
+}

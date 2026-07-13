@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import * as L from 'leaflet';
 import { of } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 
@@ -57,6 +58,8 @@ describe('GeoguesserComponent', () => {
   let fixture: ComponentFixture<GeoguesserComponent>;
 
   beforeEach(async () => {
+    window.localStorage.clear();
+
     await TestBed.configureTestingModule({
       imports: [GeoguesserComponent],
       providers: [
@@ -103,5 +106,71 @@ describe('GeoguesserComponent', () => {
     expect(closeFastScore.distanceScore).toBeGreaterThan(farSlowScore.distanceScore);
     expect(closeFastScore.timeBonus).toBeGreaterThan(farSlowScore.timeBonus);
     expect(closeFastScore.total).toBeGreaterThan(farSlowScore.total);
+  });
+
+  it('loads the top five saved scores from local storage', async () => {
+    fixture.destroy();
+    window.localStorage.setItem(
+      'geoguesser-top-scores',
+      JSON.stringify([
+        { score: 20, completedAt: '2026-07-10T10:00:00.000Z' },
+        { score: 80, completedAt: '2026-07-10T11:00:00.000Z' },
+        { score: 40, completedAt: '2026-07-10T12:00:00.000Z' },
+        { score: 100, completedAt: '2026-07-10T13:00:00.000Z' },
+        { score: 60, completedAt: '2026-07-10T14:00:00.000Z' },
+        { score: 10, completedAt: '2026-07-10T15:00:00.000Z' },
+      ]),
+    );
+
+    fixture = TestBed.createComponent(GeoguesserComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    await Promise.resolve();
+    fixture.detectChanges();
+
+    expect(component.topScores.map((score) => score.score)).toEqual([100, 80, 60, 40, 20]);
+  });
+
+  it('records the score and shows the popup after ten rounds', () => {
+    component.roundNumber = 10;
+    component.totalScore = 4200;
+    component.currentWonder = component.wonders[0];
+    component.selectedLatLng = {
+      lat: Number(component.currentWonder.lat),
+      lng: Number(component.currentWonder.lon),
+    } as L.LatLng;
+
+    component.submitGuess();
+
+    const savedScores = JSON.parse(window.localStorage.getItem('geoguesser-top-scores') ?? '[]');
+
+    expect(component.showScorePopup).toBe(true);
+    expect(component.latestSavedScore?.score).toBeGreaterThan(4200);
+    expect(savedScores).toHaveLength(1);
+    expect(savedScores[0].score).toBe(component.latestSavedScore?.score);
+  });
+
+  it('opens the leaderboard from the panel controller without resetting the game', () => {
+    component.totalScore = 1200;
+    component.roundNumber = 4;
+    fixture.detectChanges();
+
+    const leaderboardButton = fixture.nativeElement.querySelector(
+      'button[aria-label="Check leaderboard"]',
+    ) as HTMLButtonElement;
+    leaderboardButton.click();
+    fixture.detectChanges();
+
+    expect(component.showLeaderboardPopup).toBe(true);
+    expect(fixture.nativeElement.querySelector('app-leaderboard-popup h2').textContent).toContain(
+      'GeoGuesser leaderboard',
+    );
+
+    fixture.nativeElement.querySelector('.leaderboard-popup__action').click();
+    fixture.detectChanges();
+
+    expect(component.showLeaderboardPopup).toBe(false);
+    expect(component.totalScore).toBe(1200);
+    expect(component.roundNumber).toBe(4);
   });
 });

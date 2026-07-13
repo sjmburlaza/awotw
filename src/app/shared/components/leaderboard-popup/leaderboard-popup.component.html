@@ -1,0 +1,43 @@
+<div class="leaderboard-popup-backdrop" role="presentation">
+  <section
+    class="leaderboard-popup"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="headingId"
+  >
+    <h2 [id]="headingId">{{ heading }}</h2>
+
+    @if (currentScore; as score) {
+      <div class="leaderboard-popup__current">
+        <span>{{ scoreLabel }}</span>
+        <strong>{{ score.score }}</strong>
+        <time [attr.datetime]="score.completedAt">
+          {{ formatScoreDate(score.completedAt) }}
+        </time>
+      </div>
+    }
+
+    <div class="leaderboard-popup__scores" aria-label="Leaderboard scores">
+      <div class="leaderboard-popup__scores-header">
+        <span>{{ scoresLabel }}</span>
+        <span>{{ dateTimeLabel }}</span>
+      </div>
+      @if (scores.length) {
+        @for (leaderboardScore of scores; track leaderboardScore.completedAt) {
+          <div class="leaderboard-popup__score-row">
+            <strong>{{ $index + 1 }}. {{ leaderboardScore.score }}</strong>
+            <time [attr.datetime]="leaderboardScore.completedAt">
+              {{ formatScoreDate(leaderboardScore.completedAt) }}
+            </time>
+          </div>
+        }
+      } @else {
+        <div class="leaderboard-popup__empty">{{ emptyMessage }}</div>
+      }
+    </div>
+
+    <button type="button" class="leaderboard-popup__action" (click)="primaryAction.emit()">
+      {{ actionLabel }}
+    </button>
+  </section>
+</div>
