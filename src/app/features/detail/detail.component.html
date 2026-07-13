@@ -1,0 +1,65 @@
+<div class="container">
+  @if (errorMessage) {
+    <div class="state-message error-message">{{ errorMessage }}</div>
+  } @else if (details && currentDetailId) {
+    <div class="back-btn control-btn">
+      @if (currentDetailIndex > 0) {
+        <button type="button" (click)="goBack()" aria-label="Previous wonder">
+          <i class="bi bi-arrow-left-circle"></i>
+        </button>
+      }
+    </div>
+    <div class="details">
+      <div class="details__image">
+        @if (loading) {
+          <app-loader-tetris></app-loader-tetris>
+        }
+        @if (!loading) {
+          <img
+            [src]="details.imageURL"
+            [alt]="details.name"
+            decoding="async"
+            fetchpriority="high"
+          />
+        }
+      </div>
+      @if (!loading) {
+        <div class="details__texts">
+          <div class="left-section">
+            <div class="name">
+              <a
+                [href]="details.descriptionURL"
+                target="_blank"
+                rel="noopener noreferrer"
+                [attr.aria-label]="'Open reference page for ' + details.name"
+              >
+                <span> {{ details.name }} </span>
+                <!-- <i class="bi bi-box-arrow-up-right"></i> -->
+              </a>
+            </div>
+            <div class="location">
+              <i class="bi bi-pin-map"></i>
+              <span> {{ details.location }} </span>
+            </div>
+          </div>
+
+          @let wikiExtract = details.wiki?.extract;
+          @if (wikiExtract) {
+            <div class="right-section">
+              <div class="description">{{ wikiExtract }}</div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <div class="next-btn control-btn">
+      @if (currentDetailIndex < wondersData.length - 1) {
+        <button type="button" (click)="goNext()" aria-label="Next wonder">
+          <i class="bi bi-arrow-right-circle"></i>
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="state-message">Loading wonder...</div>
+  }
+</div>

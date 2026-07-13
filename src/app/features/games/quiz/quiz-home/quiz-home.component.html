@@ -1,0 +1,56 @@
+<section class="quiz-home" aria-labelledby="quiz-home-title">
+  <div class="quiz-home__intro">
+    <p class="quiz-home__eyebrow">
+      <i class="bi bi-patch-question" aria-hidden="true"></i>
+      Knowledge run
+    </p>
+    <h1 id="quiz-home-title" class="title">Quiz Me!!</h1>
+    <p class="quiz-home__lede">
+      Pick a focus area, study the image, and build a clean score through the wonders archive.
+    </p>
+    <div class="quiz-home__stats" aria-label="Quiz summary">
+      <span><strong>{{ quizzes.length }}</strong> modes</span>
+      <span><strong>5</strong> choices</span>
+      <span><strong>Solo</strong> scoring</span>
+    </div>
+  </div>
+
+  <div class="quiz-home__modes">
+    <div class="quiz-home__toolbar">
+      <span>Choose a round</span>
+      <span>Score resets per mode</span>
+    </div>
+    <div class="quizzes" aria-label="Quiz modes">
+      @for (quiz of quizzes; track quiz.code) {
+        <button
+          type="button"
+          class="quiz"
+          (click)="onSelectQuiz(quiz)"
+          [style.--quiz-color]="quiz.color"
+          [attr.aria-label]="'Start ' + quiz.title"
+        >
+          <span class="quiz__topline">
+            <span class="quiz__icon">
+              <i [class]="'bi ' + quiz.icon" aria-hidden="true"></i>
+            </span>
+            <span class="quiz__kicker">{{ quiz.kicker }}</span>
+          </span>
+          <span class="quiz__content">
+            <span class="quiz__title">{{ quiz.title }}</span>
+            <span class="quiz__description">{{ quiz.description }}</span>
+          </span>
+          <span class="quiz__footer">
+            <span class="quiz__meta">
+              <span>{{ quiz.detail }}</span>
+              <span>5 picks</span>
+            </span>
+            <span class="quiz__action" aria-hidden="true">
+              Start
+              <i class="bi bi-arrow-right-short"></i>
+            </span>
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+</section>

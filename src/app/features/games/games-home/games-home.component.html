@@ -1,0 +1,52 @@
+<section class="games-home" aria-labelledby="games-home-title">
+  <div class="games-home__intro">
+    <p class="eyebrow">
+      <i class="bi bi-controller" aria-hidden="true"></i>
+      Game arcade
+    </p>
+    <h1 id="games-home-title">Architectural Games</h1>
+    <p class="lede">
+      Challenge your sense of place, time, style, and detail across the wonders collection.
+    </p>
+    <div class="summary" aria-label="Game library summary">
+      <span
+        ><strong>{{ games.length }}</strong> modes</span
+      >
+      <span><strong>5</strong> skill types</span>
+      <span><strong>Solo</strong> runs</span>
+    </div>
+  </div>
+
+  <div class="games" aria-label="Available games">
+    @for (game of games; track game.route) {
+      <button
+        type="button"
+        class="game"
+        (click)="onSelectGame(game)"
+        [style.--game-color]="game.color"
+        [attr.aria-label]="'Play ' + game.title"
+      >
+        <span class="game__topline">
+          <span class="game__icon">
+            <i [class]="'bi ' + game.icon" aria-hidden="true"></i>
+          </span>
+          <span class="game__kicker">{{ game.kicker }}</span>
+        </span>
+        <span class="game__content">
+          <span class="game__title">{{ game.title }}</span>
+          <span class="game__description">{{ game.description }}</span>
+        </span>
+        <span class="game__footer">
+          <span class="game__meta">
+            <span>{{ game.mode }}</span>
+            <span>{{ game.pace }}</span>
+          </span>
+          <span class="game__action" aria-hidden="true">
+            Play
+            <i class="bi bi-arrow-right-short"></i>
+          </span>
+        </span>
+      </button>
+    }
+  </div>
+</section>
