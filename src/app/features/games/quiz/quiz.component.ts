@@ -5,16 +5,11 @@ import { CommonModule } from '@angular/common';
 import { DataService, Item } from 'src/app/services/data.service';
 import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris.component';
-
-interface QuizModel {
-  code: string;
-  title: string;
-  color: string;
-}
+import { QuizHomeComponent, QuizModel } from './quiz-home/quiz-home.component';
 
 @Component({
   selector: 'app-quiz',
-  imports: [FormsModule, CommonModule, LoaderTetrisComponent],
+  imports: [FormsModule, CommonModule, LoaderTetrisComponent, QuizHomeComponent],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss',
 })
@@ -27,27 +22,47 @@ export class QuizComponent implements OnInit, OnDestroy {
     {
       code: 'name',
       title: 'What is the name?',
+      kicker: 'Visual recall',
+      description: 'Identify the wonder from its image and lock in the landmark name.',
+      detail: 'Names',
       color: cssVar(COLOR_VARS.category3),
+      icon: 'bi-card-image',
     },
     {
       code: 'location',
       title: 'Where is it located?',
+      kicker: 'Place memory',
+      description: 'Match each wonder to the place that shaped its story.',
+      detail: 'Locations',
       color: cssVar(COLOR_VARS.category2),
+      icon: 'bi-geo-alt',
     },
     {
       code: 'style',
       title: 'What is the style?',
+      kicker: 'Style read',
+      description: 'Spot the architectural language behind each monument.',
+      detail: 'Styles',
       color: cssVar(COLOR_VARS.category1),
+      icon: 'bi-columns-gap',
     },
     {
       code: 'yearBuilt',
       title: 'When was it built?',
+      kicker: 'Timeline sense',
+      description: 'Choose the year that belongs to the structure in view.',
+      detail: 'Dates',
       color: cssVar(COLOR_VARS.category4),
+      icon: 'bi-calendar3',
     },
     {
       code: 'buildingType',
       title: 'What is the use?',
+      kicker: 'Program check',
+      description: 'Recognize the original or defining purpose of each wonder.',
+      detail: 'Uses',
       color: cssVar(COLOR_VARS.category5),
+      icon: 'bi-building',
     },
   ];
   data: Item[] = [];

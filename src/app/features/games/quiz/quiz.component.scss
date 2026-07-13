@@ -328,48 +328,6 @@
   }
 }
 
-.quiz-home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  font-size: 36px;
-
-  .title {
-    font-family: 'Michroma', sans-serif;
-    font-weight: bold;
-    background: var(--app-brand-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .quizzes {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    width: 900px;
-
-    button {
-      padding: 12px 0;
-      width: 640px;
-      font-size: 28px;
-      border-radius: 12px;
-      outline: 1px solid var(--app-border);
-      border: none;
-      font-family: 'Edu NSW ACT Cursive', cursive;
-    }
-
-    button:hover {
-      outline-width: 4px;
-    }
-  }
-}
-
 button {
   cursor: pointer;
 }
@@ -393,21 +351,4 @@ button:disabled {
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-}
-
-@keyframes stretch {
-  0% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(1.4);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-.stretch-text {
-  display: inline-block;
-  animation: stretch 1.5s ease-in-out infinite;
 }

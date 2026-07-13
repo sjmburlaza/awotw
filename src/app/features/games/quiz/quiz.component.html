@@ -121,20 +121,6 @@
       </div>
     </div>
   } @else {
-    <div class="quiz-home">
-      <div class="title stretch-text">Quiz Me!!</div>
-      <div class="quizzes">
-        @for (quiz of quizzes; track $index) {
-          <button
-            type="button"
-            class="quiz"
-            (click)="onSelectQuiz(quiz)"
-            [ngStyle]="{ 'outline-color': quiz.color }"
-          >
-            {{ quiz.title }}
-          </button>
-        }
-      </div>
-    </div>
+    <app-quiz-home [quizzes]="quizzes" (quizSelect)="onSelectQuiz($event)" />
   }
 </div>
