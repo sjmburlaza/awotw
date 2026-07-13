@@ -3,13 +3,14 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, take } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
+import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
 import { SortMode } from 'src/app/shared/constants/sort-mode.const';
 import { sortWondersByMode } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-detail',
-  imports: [],
+  imports: [LoaderTetrisComponent],
   templateUrl: './detail.html',
   styleUrl: './detail.scss',
 })

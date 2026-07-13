@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService, Item } from 'src/app/services/data.service';
 import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
+import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris';
 
 interface QuizModel {
   code: string;
@@ -13,7 +14,7 @@ interface QuizModel {
 
 @Component({
   selector: 'app-quiz',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, LoaderTetrisComponent],
   templateUrl: './quiz.html',
   styleUrl: './quiz.scss',
 })

@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import Globe, { GlobeInstance } from 'globe.gl';
 import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
+import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader';
 import { COLOR_VARS, getCssColor } from 'src/app/shared/theme-colors';
 
@@ -26,7 +27,7 @@ interface PopupPosition {
 
 @Component({
   selector: 'app-globe',
-  imports: [RouterModule, LoaderComponent],
+  imports: [RouterModule, LoaderComponent, LoaderTetrisComponent],
   templateUrl: './globe.html',
   styleUrl: './globe.scss',
 })
