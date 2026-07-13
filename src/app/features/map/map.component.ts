@@ -74,7 +74,11 @@ export class MapComponent implements AfterViewInit, OnDestroy {
               alt: wonder.name,
             }).addTo(markersLayer);
 
-            marker.bindPopup(this.createWonderPopup(wonder));
+            marker.bindPopup(this.createWonderPopup(wonder), {
+              className: 'map-wonder-popup',
+              maxWidth: 272,
+              minWidth: 272,
+            });
             markerCount++;
           });
 
@@ -107,29 +111,41 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     popup.className = 'map-popup';
 
     const name = document.createElement('strong');
+    name.className = 'map-popup__title';
     name.textContent = wonder.name;
 
     const location = document.createElement('em');
+    location.className = 'map-popup__location';
     location.textContent = wonder.location;
 
     popup.appendChild(name);
-    popup.appendChild(document.createElement('br'));
     popup.appendChild(location);
-    popup.appendChild(document.createElement('br'));
+
+    const imageFrame = document.createElement('div');
+    imageFrame.className = 'map-popup__image-frame';
 
     const imageUrl = this.getSafeUrl(wonder.imageURL);
     if (imageUrl) {
       const image = document.createElement('img');
+      image.className = 'map-popup__image';
       image.src = imageUrl;
       image.alt = wonder.name;
-      image.width = 150;
-      popup.appendChild(image);
-      popup.appendChild(document.createElement('br'));
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.addEventListener('error', () => {
+        image.remove();
+        imageFrame.appendChild(this.createImageError());
+      });
+      imageFrame.appendChild(image);
+    } else {
+      imageFrame.appendChild(this.createImageError());
     }
+    popup.appendChild(imageFrame);
 
     const descriptionUrl = this.getSafeUrl(wonder.descriptionURL);
     if (descriptionUrl) {
       const link = document.createElement('a');
+      link.className = 'map-popup__link';
       link.href = descriptionUrl;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
@@ -139,6 +155,13 @@ export class MapComponent implements AfterViewInit, OnDestroy {
     }
 
     return popup;
+  }
+
+  private createImageError(): HTMLDivElement {
+    const imageError = document.createElement('div');
+    imageError.className = 'map-popup__image-error';
+    imageError.textContent = 'Image unavailable';
+    return imageError;
   }
 
   private createPinSvg(color: string): SVGSVGElement {
