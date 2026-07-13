@@ -1,4 +1,4 @@
-import { Component, DestroyRef, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, take } from 'rxjs';
@@ -14,11 +14,13 @@ import { sortWondersByMode } from 'src/app/shared/utils-helper';
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
   private readonly dataService = inject(DataService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly loadedImageUrls = new Set<string>();
+  private imageLoadToken = 0;
 
   readonly URL_PATH = URL_PATH;
   details: Item | undefined;
@@ -59,6 +61,10 @@ export class DetailComponent implements OnInit {
       });
   }
 
+  ngOnDestroy(): void {
+    this.imageLoadToken++;
+  }
+
   private parseDetailId(rawId: string | null): number | null {
     const id = Number(rawId);
     return Number.isInteger(id) && id > 0 ? id : null;
@@ -71,6 +77,7 @@ export class DetailComponent implements OnInit {
   }
 
   private showError(message: string): void {
+    this.imageLoadToken++;
     this.errorMessage = message;
     this.details = undefined;
     this.currentDetailId = undefined;
@@ -91,6 +98,7 @@ export class DetailComponent implements OnInit {
     this.currentDetailIndex = detailIndex;
     this.details = data[detailIndex];
     this.loading = true;
+    this.preloadDetailImage(this.details);
   }
 
   goBack(): void {
@@ -109,5 +117,35 @@ export class DetailComponent implements OnInit {
         queryParams: { sortMode: this.currentSortMode },
       });
     }
+  }
+
+  private preloadDetailImage(item: Item): void {
+    const imageUrl = item.imageURL;
+    const token = ++this.imageLoadToken;
+
+    if (!imageUrl || this.loadedImageUrls.has(imageUrl)) {
+      this.loading = false;
+      return;
+    }
+
+    const image = new Image();
+
+    image.decoding = 'async';
+    image.fetchPriority = 'high';
+
+    image.onload = () => {
+      if (token !== this.imageLoadToken) return;
+
+      this.loadedImageUrls.add(imageUrl);
+      this.loading = false;
+    };
+
+    image.onerror = () => {
+      if (token !== this.imageLoadToken) return;
+
+      this.loading = false;
+    };
+
+    image.src = imageUrl;
   }
 }

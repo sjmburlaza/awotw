@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,8 +18,10 @@ interface QuizModel {
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.scss',
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent implements OnInit, OnDestroy {
   private readonly dataService = inject(DataService);
+  private readonly loadedImageUrls = new Set<string>();
+  private imageLoadToken = 0;
 
   quizzes = [
     {
@@ -81,6 +83,10 @@ export class QuizComponent implements OnInit {
       });
   }
 
+  ngOnDestroy(): void {
+    this.imageLoadToken++;
+  }
+
   onSelectQuiz(quiz: QuizModel): void {
     if (!this.data.length) return;
 
@@ -102,10 +108,18 @@ export class QuizComponent implements OnInit {
     this.item = undefined;
     this.pendingItem = undefined;
     this.options = [];
+    const token = ++this.imageLoadToken;
     const itemIdx = this.generateRandomNum(this.data.length);
     const nextItem = this.data[itemIdx];
     this.pendingItem = nextItem;
     this.options = this.generateOptions(nextItem, quizType);
+
+    if (this.loadedImageUrls.has(nextItem.imageURL)) {
+      this.showPendingItem();
+      return;
+    }
+
+    this.preloadQuestionImage(nextItem, token);
   }
 
   generateRandomNum(arrLength: number): number {
@@ -163,6 +177,7 @@ export class QuizComponent implements OnInit {
   }
 
   exit(): void {
+    this.imageLoadToken++;
     this.selectedQuiz = null;
     this.item = undefined;
     this.pendingItem = undefined;
@@ -180,8 +195,35 @@ export class QuizComponent implements OnInit {
   }
 
   showPendingItem(): void {
+    if (!this.pendingItem) {
+      this.loading = false;
+      return;
+    }
+
     this.item = this.pendingItem;
     this.pendingItem = undefined;
     this.loading = false;
+  }
+
+  private preloadQuestionImage(item: Item, token: number): void {
+    const image = new Image();
+
+    image.decoding = 'async';
+    image.fetchPriority = 'high';
+
+    image.onload = () => {
+      if (token !== this.imageLoadToken) return;
+
+      this.loadedImageUrls.add(item.imageURL);
+      this.showPendingItem();
+    };
+
+    image.onerror = () => {
+      if (token !== this.imageLoadToken) return;
+
+      this.showPendingItem();
+    };
+
+    image.src = item.imageURL;
   }
 }

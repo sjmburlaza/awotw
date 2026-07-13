@@ -34,18 +34,13 @@
 
       <div class="content" [class.is-loading]="loading">
         <div class="content__image">
-          @if (loading && pendingItem; as loadingItem) {
-            <img
-              class="content__preload-image"
-              [src]="loadingItem.imageURL + '?w=200&format=webp'"
-              (load)="showPendingItem()"
-              (error)="showPendingItem()"
-              alt=""
-              aria-hidden="true"
-            />
-          }
           @if (!loading && item; as visibleItem) {
-            <img [src]="visibleItem.imageURL + '?w=200&format=webp'" [alt]="visibleItem.name" />
+            <img
+              [src]="visibleItem.imageURL"
+              [alt]="visibleItem.name"
+              decoding="async"
+              fetchpriority="high"
+            />
           }
         </div>
         @if (!loading) {
