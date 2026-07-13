@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './features/home/home';
-import type { WonderGroupFeature } from './features/wonder-groups/wonder-groups';
+import { HomeComponent } from './features/home/home.component';
+import type { WonderGroupFeature } from './features/wonder-groups/wonder-groups.component';
 
 interface WonderGroupRouteData {
   feature: WonderGroupFeature;
@@ -9,17 +9,17 @@ interface WonderGroupRouteData {
 const wonderGroupRouteData = (feature: WonderGroupFeature): WonderGroupRouteData => ({ feature });
 
 const loadWonderGroupsComponent = () =>
-  import('./features/wonder-groups/wonder-groups').then((m) => m.WonderGroupsComponent);
+  import('./features/wonder-groups/wonder-groups.component').then((m) => m.WonderGroupsComponent);
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'detail/:id',
-    loadComponent: () => import('./features/detail/detail').then((m) => m.DetailComponent),
+    loadComponent: () => import('./features/detail/detail.component').then((m) => m.DetailComponent),
   },
   {
     path: 'search',
-    loadComponent: () => import('./features/search/search').then((m) => m.SearchComponent),
+    loadComponent: () => import('./features/search/search.component').then((m) => m.SearchComponent),
   },
   {
     path: 'games',
@@ -28,35 +28,40 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./features/games/games-home/games-home').then((m) => m.GamesHomeComponent),
+          import('./features/games/games-home/games-home.component').then(
+            (m) => m.GamesHomeComponent,
+          ),
       },
       {
         path: 'recreate-timeline',
         loadComponent: () =>
-          import('./features/games/recreate-timeline/recreate-timeline').then(
+          import('./features/games/recreate-timeline/recreate-timeline.component').then(
             (m) => m.RecreateTimelineComponent,
           ),
       },
       {
         path: 'geoguesser',
         loadComponent: () =>
-          import('./features/games/geoguesser/geoguesser').then((m) => m.GeoguesserComponent),
+          import('./features/games/geoguesser/geoguesser.component').then(
+            (m) => m.GeoguesserComponent,
+          ),
       },
       {
         path: 'architecture-puzzle',
         loadComponent: () =>
-          import('./features/games/architecture-puzzle/architecture-puzzle').then(
+          import('./features/games/architecture-puzzle/architecture-puzzle.component').then(
             (m) => m.ArchitecturePuzzleComponent,
           ),
       },
       {
         path: 'quiz',
-        loadComponent: () => import('./features/games/quiz/quiz').then((m) => m.QuizComponent),
+        loadComponent: () =>
+          import('./features/games/quiz/quiz.component').then((m) => m.QuizComponent),
       },
       {
         path: 'world-tour-mode',
         loadComponent: () =>
-          import('./features/games/world-tour-mode/world-tour-mode').then(
+          import('./features/games/world-tour-mode/world-tour-mode.component').then(
             (m) => m.WorldTourModeComponent,
           ),
       },
@@ -64,19 +69,20 @@ export const routes: Routes = [
   },
   {
     path: 'map',
-    loadComponent: () => import('./features/map/map').then((m) => m.MapComponent),
+    loadComponent: () => import('./features/map/map.component').then((m) => m.MapComponent),
   },
   {
     path: 'globe',
-    loadComponent: () => import('./features/globe/globe').then((m) => m.GlobeComponent),
+    loadComponent: () => import('./features/globe/globe.component').then((m) => m.GlobeComponent),
   },
   {
     path: 'timeline',
-    loadComponent: () => import('./features/timeline/timeline').then((m) => m.TimelineComponent),
+    loadComponent: () =>
+      import('./features/timeline/timeline.component').then((m) => m.TimelineComponent),
   },
   {
     path: 'charts',
-    loadComponent: () => import('./features/charts/charts').then((m) => m.ChartsComponent),
+    loadComponent: () => import('./features/charts/charts.component').then((m) => m.ChartsComponent),
   },
   {
     path: 'style',

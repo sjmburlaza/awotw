@@ -8,7 +8,7 @@ import {
   TemplateRef,
   inject,
 } from '@angular/core';
-import { TooltipComponent } from './tooltip';
+import { TooltipComponent } from './tooltip.component';
 
 type Position = 'top' | 'bottom' | 'left' | 'right';
 
