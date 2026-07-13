@@ -32,4 +32,18 @@ describe('InfoTooltipComponent', () => {
     expect(button?.getAttribute('aria-describedby')).toBe('test-tooltip');
     expect(tooltip?.textContent?.trim()).toBe('Helpful explanation.');
   });
+
+  it('renders an optional tooltip image', () => {
+    component.imageSrc = 'https://example.com/wonder.jpg';
+    component.imageAlt = 'Image hint for Great Pyramid of Giza';
+    fixture.detectChanges();
+
+    const tooltip = fixture.nativeElement.querySelector('#test-tooltip') as HTMLElement;
+    const image = fixture.nativeElement.querySelector('.info-tooltip__image') as HTMLImageElement;
+
+    expect(tooltip.classList).toContain('info-tooltip__content--media');
+    expect(image).toBeTruthy();
+    expect(image.src).toBe('https://example.com/wonder.jpg');
+    expect(image.alt).toBe('Image hint for Great Pyramid of Giza');
+  });
 });

@@ -18,6 +18,15 @@
             <mark class="wonder-name">{{ wonder.name }}</mark>
             is located.
           </strong>
+          <small>
+            Hint
+            <app-info-tooltip
+              [imageSrc]="wonder.imageURL"
+              [imageAlt]="'Image hint for ' + wonder.name"
+              ariaLabel="Show image hint"
+              tooltipId="geoguesser-hint-tooltip"
+            />
+          </small>
         } @else {
           <strong class="prompt-question">Place the pin on the map.</strong>
         }

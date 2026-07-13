@@ -12,6 +12,8 @@ export class InfoTooltipComponent {
   @Input() text = '';
   @Input() ariaLabel = 'More information';
   @Input() tooltipId = '';
+  @Input() imageSrc = '';
+  @Input() imageAlt = '';
 
   private readonly generatedTooltipId = `info-tooltip-${nextTooltipId++}`;
 

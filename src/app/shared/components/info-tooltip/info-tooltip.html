@@ -7,7 +7,23 @@
   >
     <i class="bi bi-info-circle"></i>
   </button>
-  <span [id]="resolvedTooltipId" class="info-tooltip__content" role="tooltip">
-    {{ text }}
+  <span
+    [id]="resolvedTooltipId"
+    class="info-tooltip__content"
+    [class.info-tooltip__content--media]="imageSrc"
+    role="tooltip"
+  >
+    @if (text) {
+      <span class="info-tooltip__text">{{ text }}</span>
+    }
+    @if (imageSrc) {
+      <img
+        class="info-tooltip__image"
+        [src]="imageSrc"
+        [alt]="imageAlt"
+        loading="lazy"
+        decoding="async"
+      />
+    }
   </span>
 </span>
