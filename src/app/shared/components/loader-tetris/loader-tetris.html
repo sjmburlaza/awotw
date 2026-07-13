@@ -1,0 +1,24 @@
+<div class="loader-tetris" role="status" aria-live="polite" aria-label="Loading">
+  <span class="visually-hidden">Loading</span>
+  <div class="loader-tetris__well" aria-hidden="true">
+    @for (piece of visiblePieces(); track piece.id) {
+      <span
+        class="loader-tetris__piece"
+        [class.loader-tetris__piece--clearing]="isClearing()"
+        [style.left.px]="piece.left"
+        [style.top.px]="piece.top"
+        [style.--piece-color]="piece.color"
+        [style.--spawn-x]="piece.spawnX"
+        [style.--spawn-y]="piece.spawnY"
+      >
+        @for (cell of piece.renderCells; track $index) {
+          <span
+            class="loader-tetris__cell"
+            [style.left.px]="cell.left"
+            [style.top.px]="cell.top"
+          ></span>
+        }
+      </span>
+    }
+  </div>
+</div>

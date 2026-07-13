@@ -10,17 +10,17 @@ import {
 import { take } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { LoaderComponent } from 'src/app/shared/components/loader/loader';
 import { DataService, Group, Item } from 'src/app/services/data.service';
 import { LoaderService } from 'src/app/services/loader-service';
 import { SortMode } from 'src/app/shared/constants/sort-mode.const';
 import { groupWondersBySortMode } from 'src/app/shared/utils-helper';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
 import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
+import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderTetrisComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

@@ -12,7 +12,7 @@
     <div class="details">
       <div class="details__image">
         @if (loading) {
-          <div class="loader"></div>
+          <app-loader-tetris></app-loader-tetris>
         }
         <img
           [src]="details.imageURL"
