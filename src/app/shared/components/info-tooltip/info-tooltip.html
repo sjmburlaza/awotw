@@ -11,6 +11,7 @@
     [id]="resolvedTooltipId"
     class="info-tooltip__content"
     [class.info-tooltip__content--media]="imageSrc"
+    [class.info-tooltip__content--right]="placement === 'right'"
     role="tooltip"
   >
     @if (text) {

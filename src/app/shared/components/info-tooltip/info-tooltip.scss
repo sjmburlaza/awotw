@@ -29,8 +29,8 @@
 
 .info-tooltip__content {
   position: absolute;
-  top: 50%;
-  left: calc(100% + 8px);
+  right: 50%;
+  bottom: calc(100% + 8px);
   z-index: 500;
   display: grid;
   gap: 8px;
@@ -48,7 +48,7 @@
   pointer-events: none;
   text-align: left;
   text-transform: none;
-  transform: translate(4px, -50%);
+  transform: translateX(50%) translateY(var(--info-tooltip-offset, 4px));
   transition:
     opacity 140ms ease,
     transform 140ms ease;
@@ -56,6 +56,14 @@
   &--media {
     width: 260px;
     padding: 4px;
+  }
+
+  &--right {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: calc(100% + 8px);
+    transform: translate(var(--info-tooltip-offset, 4px), -50%);
   }
 }
 
@@ -74,6 +82,7 @@
 
 .info-tooltip:hover .info-tooltip__content,
 .info-tooltip:focus-within .info-tooltip__content {
+  --info-tooltip-offset: 0;
+
   opacity: 1;
-  transform: translate(0, -50%);
 }

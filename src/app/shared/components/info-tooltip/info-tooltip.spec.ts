@@ -46,4 +46,15 @@ describe('InfoTooltipComponent', () => {
     expect(image.src).toBe('https://example.com/wonder.jpg');
     expect(image.alt).toBe('Image hint for Great Pyramid of Giza');
   });
+
+  it('defaults to top placement and supports right placement', () => {
+    const tooltip = fixture.nativeElement.querySelector('#test-tooltip') as HTMLElement;
+
+    expect(tooltip.classList).not.toContain('info-tooltip__content--right');
+
+    component.placement = 'right';
+    fixture.detectChanges();
+
+    expect(tooltip.classList).toContain('info-tooltip__content--right');
+  });
 });
