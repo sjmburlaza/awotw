@@ -1,11 +1,25 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 .recreate-timeline {
+  --game-accent: var(--app-game-timeline);
+
   display: flex;
+  height: 100%;
+  min-height: 0;
   flex-direction: column;
-  gap: 18px;
-  margin: 0 36px 56px;
-  padding-bottom: 48px;
+  gap: 12px;
+  margin: 0;
+  padding: 16px 0 18px;
   color: var(--app-text);
   font-family: 'Barlow', sans-serif;
+}
+
+.game-page-nav {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .game-header {
@@ -13,9 +27,14 @@
   grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 20px;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--game-accent) 42%, var(--app-border-soft));
+  border-radius: 8px;
+  background: var(--app-surface);
 
   h1 {
     margin-bottom: 4px;
+    color: var(--game-accent);
     font-family: 'Michroma', sans-serif;
     font-size: 24px;
     letter-spacing: 0;
@@ -70,8 +89,8 @@
     cursor: pointer;
 
     &:hover {
-      border-color: var(--app-focus);
-      color: var(--app-focus);
+      border-color: var(--game-accent);
+      color: var(--game-accent);
       transform: translateY(-1px);
     }
 
@@ -83,14 +102,43 @@
   }
 }
 
+.game-page-nav .back-to-games {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--game-accent) 42%, var(--app-border));
+  border-radius: 8px;
+  background: var(--app-surface);
+  color: var(--game-accent);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.game-page-nav .back-to-games:hover {
+  border-color: var(--game-accent);
+  transform: translateY(-2px);
+}
+
 .timeline-chart-container {
   --chart-left: 40px;
   --chart-right: 80px;
 
+  display: flex;
   width: 100%;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
   overflow: hidden;
   padding: 12px;
-  border: 1px solid var(--app-border-soft);
+  border: 1px solid color-mix(in srgb, var(--game-accent) 42%, var(--app-border-soft));
   border-radius: 8px;
   background: var(--app-surface);
   user-select: none;
@@ -151,6 +199,8 @@
 
 .timeline-plot {
   display: flex;
+  min-height: 0;
+  flex: 1;
   flex-direction: column;
   gap: 8px;
   padding: 12px 0;
@@ -261,7 +311,7 @@
 }
 
 .timeline-row--dragging .row-guide {
-  background: var(--app-focus);
+  background: var(--game-accent);
   opacity: 0.45;
 }
 

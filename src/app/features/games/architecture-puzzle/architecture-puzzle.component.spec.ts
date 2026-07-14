@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 
@@ -60,6 +61,7 @@ describe('ArchitecturePuzzleComponent', () => {
             getWonders: () => of(mockWonders),
           },
         },
+        { provide: Router, useValue: { navigate: jest.fn() } },
       ],
     }).compileComponents();
 

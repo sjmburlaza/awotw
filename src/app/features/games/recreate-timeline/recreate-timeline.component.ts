@@ -8,7 +8,9 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { DataService, StyleRange } from 'src/app/services/data.service';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
 interface TimelineGameEntry extends StyleRange {
   originalIndex: number;
@@ -34,6 +36,7 @@ interface DragState {
 export class RecreateTimelineComponent implements OnInit {
   private readonly dataService = inject(DataService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
   private readonly startToleranceYears = 50;
 
   @ViewChild('chartPlot') chartPlot?: ElementRef<HTMLDivElement>;
@@ -99,7 +102,8 @@ export class RecreateTimelineComponent implements OnInit {
 
     const activeRow = this.answerRows[activeIndex];
     const yearSpan = this.maxYear - this.minYear;
-    const deltaYears = (event.clientX - this.dragState.startClientX) * (yearSpan / plot.clientWidth);
+    const deltaYears =
+      (event.clientX - this.dragState.startClientX) * (yearSpan / plot.clientWidth);
     const maxStartYear = this.maxYear - this.getDuration(activeRow);
     const nextStartYear = this.snapYear(
       this.clamp(this.dragState.startYear + deltaYears, this.minYear, maxStartYear),
@@ -174,6 +178,10 @@ export class RecreateTimelineComponent implements OnInit {
     this.score = this.calculateScore();
     this.hasSubmitted = true;
     this.hasRevealedAnswer = true;
+  }
+
+  goToGamesHome(): void {
+    this.router.navigate([URL_PATH.GAMES]);
   }
 
   isCorrect(row: TimelineGameEntry, index: number): boolean {
@@ -289,9 +297,8 @@ export class RecreateTimelineComponent implements OnInit {
 
   private getRowPitch(rowElement: HTMLElement): number {
     const rowTop = rowElement.getBoundingClientRect().top;
-    const sibling = (rowElement.nextElementSibling ?? rowElement.previousElementSibling) as
-      | HTMLElement
-      | null;
+    const sibling = (rowElement.nextElementSibling ??
+      rowElement.previousElementSibling) as HTMLElement | null;
 
     if (!sibling) return rowElement.getBoundingClientRect().height;
 

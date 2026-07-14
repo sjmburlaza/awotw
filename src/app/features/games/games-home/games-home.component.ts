@@ -79,4 +79,8 @@ export class GamesHomeComponent {
   onSelectGame(game: GameOption): void {
     this.router.navigate([game.route]);
   }
+
+  goToHome(): void {
+    this.router.navigate([URL_PATH.HOME]);
+  }
 }

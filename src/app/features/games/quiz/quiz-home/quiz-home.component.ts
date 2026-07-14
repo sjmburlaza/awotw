@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
 export interface QuizModel {
   code: string;
@@ -17,10 +19,16 @@ export interface QuizModel {
   styleUrl: './quiz-home.component.scss',
 })
 export class QuizHomeComponent {
+  private readonly router = inject(Router);
+
   @Input() quizzes: QuizModel[] = [];
   @Output() quizSelect = new EventEmitter<QuizModel>();
 
   onSelectQuiz(quiz: QuizModel): void {
     this.quizSelect.emit(quiz);
+  }
+
+  goToGamesHome(): void {
+    this.router.navigate([URL_PATH.GAMES]);
   }
 }

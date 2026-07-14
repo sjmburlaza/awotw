@@ -1,4 +1,17 @@
 <section class="quiz-home" aria-labelledby="quiz-home-title">
+  <div class="quiz-home__nav">
+    <button
+      type="button"
+      class="back-to-games"
+      (click)="goToGamesHome()"
+      aria-label="Back to games"
+      title="Back to games"
+    >
+      <i class="bi bi-grid" aria-hidden="true"></i>
+      <span>Back to games</span>
+    </button>
+  </div>
+
   <div class="quiz-home__intro">
     <p class="quiz-home__eyebrow">
       <i class="bi bi-patch-question" aria-hidden="true"></i>
@@ -9,7 +22,9 @@
       Pick a focus area, study the image, and build a clean score through the wonders archive.
     </p>
     <div class="quiz-home__stats" aria-label="Quiz summary">
-      <span><strong>{{ quizzes.length }}</strong> modes</span>
+      <span
+        ><strong>{{ quizzes.length }}</strong> modes</span
+      >
       <span><strong>5</strong> choices</span>
       <span><strong>Solo</strong> scoring</span>
     </div>

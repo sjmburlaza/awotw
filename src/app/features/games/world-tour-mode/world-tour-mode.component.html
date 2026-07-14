@@ -1,7 +1,14 @@
 <div class="world-tour-container">
-  <div class="title">
-    World Tour Mode
-    <i class="bi bi-airplane"></i>
+  <div class="game-page-nav">
+    <a class="back-to-games" routerLink="/games" aria-label="Back to games" title="Back to games">
+      <i class="bi bi-grid" aria-hidden="true"></i>
+      <span>Back to games</span>
+    </a>
+
+    <div class="title">
+      World Tour Mode
+      <i class="bi bi-airplane" aria-hidden="true"></i>
+    </div>
   </div>
 
   @if (isLoading) {
@@ -41,9 +48,6 @@
         <button type="button" (click)="restartGame()" aria-label="Restart tour" title="Restart">
           <i class="bi bi-arrow-clockwise"></i>
         </button>
-        <a routerLink="/games" aria-label="Back to games" title="Games">
-          <i class="bi bi-grid"></i>
-        </a>
       </div>
     </div>
 
@@ -100,9 +104,7 @@
                 @if (answerResult && option === question.correctAnswer) {
                   <i class="bi bi-check-circle"></i>
                 } @else if (
-                  answerResult &&
-                  answerResult.selectedOption === option &&
-                  !answerResult.isCorrect
+                  answerResult && answerResult.selectedOption === option && !answerResult.isCorrect
                 ) {
                   <i class="bi bi-x-circle"></i>
                 }
