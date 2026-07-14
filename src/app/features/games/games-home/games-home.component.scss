@@ -1,4 +1,7 @@
 .games-home {
+  --games-home-content-padding: 20px;
+  --games-home-inline-padding: 12px;
+
   position: relative;
   display: grid;
   align-items: stretch;
@@ -8,7 +11,7 @@
   min-height: 0;
   margin: 24px 0;
   overflow: hidden;
-  padding: 24px 12px;
+  padding: 24px var(--games-home-inline-padding);
   border: 1px solid var(--app-border-soft);
   border-radius: 8px;
   background:
@@ -34,7 +37,7 @@
   align-content: center;
   gap: 20px;
   min-width: 0;
-  padding: 28px 0 28px clamp(20px, 3vw, 44px);
+  padding: 28px 0 28px var(--games-home-content-padding);
   transform: translateY(-44px);
 }
 
@@ -127,7 +130,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 18px;
-  padding: 28px clamp(20px, 3vw, 44px) 28px 0;
+  padding: 28px var(--games-home-content-padding) 28px 0;
 }
 
 .game {
@@ -250,7 +253,7 @@
 .home-button {
   position: absolute;
   top: 24px;
-  left: clamp(32px, 4vw, 56px);
+  left: calc(var(--games-home-inline-padding) + var(--games-home-content-padding));
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -279,6 +282,8 @@
 
 @media (max-width: 1280px), (max-height: 760px) {
   .games-home {
+    --games-home-content-padding: 8px;
+
     grid-template-columns: minmax(260px, 0.72fr) minmax(610px, 1.28fr);
     gap: 24px;
     min-height: 0;
@@ -288,7 +293,6 @@
 
   .games-home__intro {
     gap: 14px;
-    padding-left: 18px;
     transform: translateY(-30px);
   }
 
@@ -307,7 +311,7 @@
 
   .games {
     gap: 14px;
-    padding: 18px 18px 18px 0;
+    padding: 18px var(--games-home-content-padding) 18px 0;
   }
 
   .game__icon {

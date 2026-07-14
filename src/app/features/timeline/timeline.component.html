@@ -8,10 +8,17 @@
   } @else if (!groups.length) {
     <div class="state-message">No timeline entries available.</div>
   } @else {
-    <div class="title">
-      Architecture through the millennia…
-      <i class="bi bi-hourglass-split"></i>
-    </div>
+    <header class="page-heading" aria-labelledby="timeline-page-title">
+      <span class="page-heading__eyebrow">Explore by era</span>
+      <div class="page-heading__title-row">
+        <h1 id="timeline-page-title" class="page-heading__title">
+          Architecture through the millennia
+        </h1>
+        <span class="page-heading__icon" aria-hidden="true">
+          <i class="bi bi-hourglass-split"></i>
+        </span>
+      </div>
+    </header>
     <div class="navigator">
       <a routerLink="/games/recreate-timeline">Play Recreate Timeline</a>
     </div>

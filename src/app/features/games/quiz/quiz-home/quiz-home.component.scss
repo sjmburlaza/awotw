@@ -1,25 +1,28 @@
 .quiz-home {
   --game-accent: var(--app-game-quiz);
+  --quiz-home-content-padding: 20px;
+  --quiz-home-inline-padding: 12px;
 
   position: relative;
   display: grid;
   align-items: center;
   grid-template-columns: minmax(280px, 0.78fr) minmax(640px, 1.22fr);
   gap: 32px;
-  height: calc(100% - 24px);
+  height: calc(100% - 48px);
   min-height: 0;
   overflow: hidden;
-  margin: 12px 0;
-  padding: 18px 12px 24px;
+  margin: 24px 0;
+  padding: 24px var(--quiz-home-inline-padding);
   color: var(--app-text);
   font-family: 'Barlow', sans-serif;
 }
 
 .quiz-home::before {
   position: absolute;
-  inset: 8px 0 16px;
+  inset: 0;
   z-index: -1;
   border: 1px solid var(--app-border-soft);
+  border-radius: 8px;
   background:
     linear-gradient(
       118deg,
@@ -42,13 +45,13 @@
   align-content: center;
   gap: 18px;
   min-width: 0;
-  padding-left: 20px;
+  padding-left: var(--quiz-home-content-padding);
 }
 
 .quiz-home__nav {
   position: absolute;
-  top: 18px;
-  left: 12px;
+  top: 24px;
+  left: calc(var(--quiz-home-inline-padding) + var(--quiz-home-content-padding));
   z-index: 1;
 }
 
@@ -164,6 +167,7 @@
   display: grid;
   gap: 12px;
   min-width: 0;
+  padding-right: var(--quiz-home-content-padding);
 }
 
 .quiz-home__toolbar {
@@ -314,6 +318,8 @@
 
 @media (max-width: 1280px), (max-height: 760px) {
   .quiz-home {
+    --quiz-home-content-padding: 8px;
+
     grid-template-columns: minmax(260px, 0.72fr) minmax(610px, 1.28fr);
     gap: 24px;
     padding-top: 12px;
@@ -322,7 +328,6 @@
 
   .quiz-home__intro {
     gap: 14px;
-    padding-left: 8px;
   }
 
   .title {
