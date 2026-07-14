@@ -39,60 +39,58 @@
         </div>
       }
 
-      <div class="content" [class.is-loading]="loading">
-        <div class="content__image">
-          @if (!loading && item; as visibleItem) {
-            <img
-              [src]="visibleItem.imageURL"
-              [alt]="visibleItem.name"
-              decoding="async"
-              fetchpriority="high"
-            />
-          }
-        </div>
+      @if (selectedQuiz?.code === 'tallest') {
         @if (!loading) {
-          <div class="content__controls">
-            <fieldset class="options">
-              <legend class="options__label">Choose one answer</legend>
-              @for (option of options; track $index) {
+          <div class="tallest-question">
+            <p class="tallest-question__prompt">Which building is the tallest?</p>
+            <fieldset class="tallest-options">
+              <legend class="visually-hidden">Choose the tallest building</legend>
+              @for (building of tallestOptions; track building.name; let index = $index) {
                 <div
-                  class="option"
+                  class="tallest-option"
                   [ngClass]="{
-                    selected: !hasSeenAnswer && option === selectedOption,
-                    correct: hasSeenAnswer && option === correctAnswer,
+                    selected: !hasSeenAnswer && building.name === selectedOption,
+                    correct: hasSeenAnswer && building.name === correctAnswer,
                     incorrect:
                       hasSeenAnswer &&
-                      option === selectedOption &&
+                      building.name === selectedOption &&
                       selectedOption !== correctAnswer,
                   }"
                 >
                   <input
-                    [id]="'quiz-option-' + $index"
+                    [id]="'tallest-option-' + index"
                     type="radio"
-                    [value]="option"
+                    [value]="building.name"
                     [(ngModel)]="selectedOption"
                     (ngModelChange)="onSelectOption()"
                     [disabled]="hasSeenAnswer"
                   />
-                  <label class="option__label" [for]="'quiz-option-' + $index">
-                    <span class="option__text">{{ option }}</span>
-                    @if (hasSeenAnswer && option === correctAnswer) {
-                      <a
-                        class="option__url"
-                        [href]="item?.descriptionURL"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        [attr.aria-label]="'Open reference page for ' + item?.name"
-                      >
-                        <i class="bi bi-box-arrow-up-right"></i>
-                      </a>
-                    }
-                    @if (hasSeenAnswer && option === correctAnswer) {
-                      <i class="option__feedback bi bi-check-circle-fill" aria-hidden="true"></i>
-                    } @else if (
-                      hasSeenAnswer && option === selectedOption && selectedOption !== correctAnswer
-                    ) {
-                      <i class="option__feedback bi bi-x-circle-fill" aria-hidden="true"></i>
+                  <label class="tallest-option__label" [for]="'tallest-option-' + index">
+                    <span class="tallest-option__image" [style.--building-color]="building.color">
+                      @if (!failedTallestImages.has(building.name)) {
+                        <img
+                          [src]="building.image_url"
+                          [alt]="building.name"
+                          decoding="async"
+                          (error)="onTallestImageError(building)"
+                        />
+                      } @else {
+                        <i class="bi bi-buildings" aria-hidden="true"></i>
+                      }
+                    </span>
+                    <span class="tallest-option__copy">
+                      <strong>{{ building.name }}</strong>
+                      <span>{{ building.city }}, {{ building.country }}</span>
+                    </span>
+                    @if (hasSeenAnswer) {
+                      <span class="tallest-option__answer">
+                        {{ formatBuildingHeight(building.height_m) }}
+                        @if (building.name === correctAnswer) {
+                          <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                        } @else if (building.name === selectedOption) {
+                          <i class="bi bi-x-circle-fill" aria-hidden="true"></i>
+                        }
+                      </span>
                     }
                   </label>
                 </div>
@@ -107,11 +105,7 @@
                 (click)="seeAnswer()"
               >
                 <span>See answer</span>
-                @if (hasSeenAnswer) {
-                  <i class="bi bi-eye" aria-hidden="true"></i>
-                } @else {
-                  <i class="bi bi-eye-slash" aria-hidden="true"></i>
-                }
+                <i class="bi bi-eye" aria-hidden="true"></i>
               </button>
               <button
                 type="button"
@@ -125,7 +119,97 @@
             </div>
           </div>
         }
-      </div>
+      } @else {
+        <div class="content" [class.is-loading]="loading">
+          <div class="content__image">
+            @if (!loading && item; as visibleItem) {
+              <img
+                [src]="visibleItem.imageURL"
+                [alt]="visibleItem.name"
+                decoding="async"
+                fetchpriority="high"
+              />
+            }
+          </div>
+          @if (!loading) {
+            <div class="content__controls">
+              <fieldset class="options">
+                <legend class="options__label">Choose one answer</legend>
+                @for (option of options; track $index) {
+                  <div
+                    class="option"
+                    [ngClass]="{
+                      selected: !hasSeenAnswer && option === selectedOption,
+                      correct: hasSeenAnswer && option === correctAnswer,
+                      incorrect:
+                        hasSeenAnswer &&
+                        option === selectedOption &&
+                        selectedOption !== correctAnswer,
+                    }"
+                  >
+                    <input
+                      [id]="'quiz-option-' + $index"
+                      type="radio"
+                      [value]="option"
+                      [(ngModel)]="selectedOption"
+                      (ngModelChange)="onSelectOption()"
+                      [disabled]="hasSeenAnswer"
+                    />
+                    <label class="option__label" [for]="'quiz-option-' + $index">
+                      <span class="option__text">{{ option }}</span>
+                      @if (hasSeenAnswer && option === correctAnswer) {
+                        <a
+                          class="option__url"
+                          [href]="item?.descriptionURL"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          [attr.aria-label]="'Open reference page for ' + item?.name"
+                        >
+                          <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                      }
+                      @if (hasSeenAnswer && option === correctAnswer) {
+                        <i class="option__feedback bi bi-check-circle-fill" aria-hidden="true"></i>
+                      } @else if (
+                        hasSeenAnswer &&
+                        option === selectedOption &&
+                        selectedOption !== correctAnswer
+                      ) {
+                        <i class="option__feedback bi bi-x-circle-fill" aria-hidden="true"></i>
+                      }
+                    </label>
+                  </div>
+                }
+              </fieldset>
+
+              <div class="quiz-actions">
+                <button
+                  type="button"
+                  class="quiz-action quiz-action--primary see-answer__btn"
+                  [disabled]="disableSeeAnswerBtn"
+                  (click)="seeAnswer()"
+                >
+                  <span>See answer</span>
+                  @if (hasSeenAnswer) {
+                    <i class="bi bi-eye" aria-hidden="true"></i>
+                  } @else {
+                    <i class="bi bi-eye-slash" aria-hidden="true"></i>
+                  }
+                </button>
+                <button
+                  type="button"
+                  class="quiz-action next__btn"
+                  [disabled]="!hasSeenAnswer"
+                  (click)="goNext()"
+                >
+                  <span>Next question</span>
+                  <i class="bi bi-arrow-right-circle" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
     </div>
   } @else {
     <app-quiz-home [quizzes]="quizzes" (quizSelect)="onSelectQuiz($event)" />

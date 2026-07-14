@@ -1,0 +1,161 @@
+app-quiz {
+  .tallest-question {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid color-mix(in srgb, var(--game-accent) 34%, var(--app-border-soft));
+    border-radius: 8px;
+    background: var(--app-surface);
+  }
+
+  .tallest-question__prompt {
+    color: var(--app-text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .tallest-options {
+    display: grid;
+    min-height: 0;
+    flex: 1;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .tallest-option {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--app-border-soft);
+    border-radius: 8px;
+    background: var(--app-surface-muted);
+    transition:
+      border-color 160ms ease,
+      transform 160ms ease;
+
+    &:hover {
+      border-color: var(--game-accent);
+      transform: translateY(-2px);
+    }
+
+    input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    input:focus-visible + label {
+      outline: 2px solid var(--app-focus);
+      outline-offset: -3px;
+    }
+
+    &.selected {
+      border-color: var(--game-accent);
+      box-shadow: inset 0 -4px 0 var(--game-accent);
+    }
+
+    &.correct {
+      border-color: var(--app-success-border);
+      background: var(--app-success-answer-bg);
+      box-shadow: inset 0 -4px 0 var(--app-success-mark);
+    }
+
+    &.incorrect {
+      border-color: var(--app-error-border);
+      background: var(--app-error-answer-bg);
+      box-shadow: inset 0 -4px 0 var(--app-error-mark);
+    }
+  }
+
+  .tallest-option__label {
+    display: grid;
+    height: 100%;
+    min-height: 0;
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    color: var(--app-text);
+    cursor: pointer;
+  }
+
+  .tallest-option__image {
+    display: grid;
+    min-height: 0;
+    place-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--building-color) 32%, transparent),
+        transparent
+      ),
+      var(--app-surface-muted);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    > i {
+      color: var(--building-color);
+      font-size: 42px;
+    }
+  }
+
+  .tallest-option__copy {
+    display: grid;
+    gap: 4px;
+    padding: 10px;
+
+    strong {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    span {
+      color: var(--app-muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+  }
+
+  .tallest-option__answer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 32px;
+    padding: 6px 10px;
+    border-top: 1px solid var(--app-border-soft);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .tallest-option.correct .tallest-option__answer i {
+    color: var(--app-success-mark);
+  }
+
+  .tallest-option.incorrect .tallest-option__answer i {
+    color: var(--app-error-mark);
+  }
+
+  .tallest-question .quiz-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .tallest-question .quiz-action {
+    font-size: 14px;
+  }
+}

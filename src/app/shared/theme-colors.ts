@@ -67,6 +67,8 @@ export const COLOR_VARS = {
   category3: '--app-category-3',
   category4: '--app-category-4',
   category5: '--app-category-5',
+  category6: '--app-category-6',
+  category7: '--app-category-7',
 } as const;
 
 const CHOROPLETH_COLOR_VARS = [

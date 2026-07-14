@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { take } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DataService, Item } from 'src/app/services/data.service';
+import { DataService, Item, TallestBuilding } from 'src/app/services/data.service';
 import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris.component';
 import { QuizHomeComponent, QuizModel } from './quiz-home/quiz-home.component';
@@ -25,7 +25,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       kicker: 'Visual recall',
       description: 'Identify the wonder from its image and lock in the landmark name.',
       detail: 'Names',
-      color: cssVar(COLOR_VARS.category3),
+      color: cssVar(COLOR_VARS.category7),
       icon: 'bi-card-image',
     },
     {
@@ -64,8 +64,21 @@ export class QuizComponent implements OnInit, OnDestroy {
       color: cssVar(COLOR_VARS.category5),
       icon: 'bi-building',
     },
+    {
+      code: 'tallest',
+      title: 'Which is tallest?',
+      kicker: 'Skyline showdown',
+      description: 'Compare five landmark towers and choose the one that reaches the highest.',
+      detail: 'Heights',
+      color: cssVar(COLOR_VARS.category6),
+      icon: 'bi-arrows-vertical',
+    },
   ];
   data: Item[] = [];
+  tallestBuildings: TallestBuilding[] = [];
+  tallestOptions: TallestBuilding[] = [];
+  correctTallestBuilding: TallestBuilding | undefined;
+  failedTallestImages = new Set<string>();
   selectedQuiz: QuizModel | undefined | null;
   item: Item | undefined;
   pendingItem: Item | undefined;
@@ -81,17 +94,27 @@ export class QuizComponent implements OnInit, OnDestroy {
   dataLoadError = '';
 
   ngOnInit() {
-    this.dataService
-      .getWonders()
+    forkJoin({
+      wonders: this.dataService.getWonders(),
+      tallestBuildings: this.dataService.getTallestBuildings(),
+    })
       .pipe(take(1))
       .subscribe({
-        next: (res: Item[]) => {
-          this.data = res;
-          this.dataLoadError = res.length ? '' : 'No quiz data available.';
+        next: ({ wonders, tallestBuildings }) => {
+          this.data = wonders;
+          this.tallestBuildings = tallestBuildings.filter(
+            (building) =>
+              !!building.image_url &&
+              Number.isFinite(Number(building.height_m)) &&
+              Number(building.height_m) > 0,
+          );
+          this.dataLoadError =
+            wonders.length && this.tallestBuildings.length >= 5 ? '' : 'No quiz data available.';
           this.isDataLoading = false;
         },
         error: () => {
           this.data = [];
+          this.tallestBuildings = [];
           this.dataLoadError = 'Unable to load quiz data.';
           this.isDataLoading = false;
         },
@@ -103,13 +126,20 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   onSelectQuiz(quiz: QuizModel): void {
-    if (!this.data.length) return;
+    const hasQuizData =
+      quiz.code === 'tallest' ? this.tallestBuildings.length >= 5 : !!this.data.length;
+    if (!hasQuizData) return;
 
     this.currentCount = 0;
     this.currentScore = 0;
     this.resetQuestionState();
     this.selectedQuiz = quiz;
-    this.generateQuiz(this.selectedQuiz?.code as keyof Item);
+
+    if (quiz.code === 'tallest') {
+      this.generateTallestQuiz();
+    } else {
+      this.generateQuiz(quiz.code as keyof Item);
+    }
   }
 
   generateQuiz(quizType: keyof Item): void {
@@ -165,7 +195,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     return shuffledOptions;
   }
 
-  shuffleArray(arr: string[]): string[] {
+  shuffleArray<T>(arr: T[]): T[] {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -188,7 +218,12 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   goNext(): void {
     this.resetQuestionState();
-    this.generateQuiz(this.selectedQuiz?.code as keyof Item);
+
+    if (this.selectedQuiz?.code === 'tallest') {
+      this.generateTallestQuiz();
+    } else {
+      this.generateQuiz(this.selectedQuiz?.code as keyof Item);
+    }
   }
 
   exit(): void {
@@ -197,6 +232,8 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.item = undefined;
     this.pendingItem = undefined;
     this.options = [];
+    this.tallestOptions = [];
+    this.correctTallestBuilding = undefined;
     this.loading = false;
     this.currentCount = 0;
     this.currentScore = 0;
@@ -218,6 +255,41 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.item = this.pendingItem;
     this.pendingItem = undefined;
     this.loading = false;
+  }
+
+  generateTallestQuiz(): void {
+    const uniqueHeightBuildings = Array.from(
+      new Map(
+        this.tallestBuildings.map((building) => [Number(building.height_m), building]),
+      ).values(),
+    );
+
+    if (uniqueHeightBuildings.length < 5) {
+      this.tallestOptions = [];
+      this.options = [];
+      this.loading = false;
+      this.dataLoadError = 'Not enough unique building heights are available.';
+      return;
+    }
+
+    this.loading = true;
+    this.item = undefined;
+    this.pendingItem = undefined;
+    this.tallestOptions = this.shuffleArray(uniqueHeightBuildings).slice(0, 5);
+    this.correctTallestBuilding = this.tallestOptions.reduce((tallest, building) =>
+      Number(building.height_m) > Number(tallest.height_m) ? building : tallest,
+    );
+    this.options = this.tallestOptions.map((building) => building.name);
+    this.correctAnswer = this.correctTallestBuilding.name;
+    this.loading = false;
+  }
+
+  formatBuildingHeight(height: string): string {
+    return `${Number(height).toLocaleString(undefined, { maximumFractionDigits: 1 })} m`;
+  }
+
+  onTallestImageError(building: TallestBuilding): void {
+    this.failedTallestImages.add(building.name);
   }
 
   private preloadQuestionImage(item: Item, token: number): void {
