@@ -1,10 +1,4 @@
-%gradient-text {
-  background: var(--app-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
+@use 'mixins';
 
 .header {
   display: grid;
@@ -23,11 +17,11 @@
 
       i {
         font-size: 30px;
-        @extend %gradient-text;
+        @include mixins.gradient-text;
       }
 
       span {
-        @extend %gradient-text;
+        @include mixins.gradient-text;
         font-size: 14px;
         font-family: 'Michroma', sans-serif;
         margin-left: 8px;
@@ -59,7 +53,7 @@
     font-size: 42px;
     text-align: center;
     margin-top: -12px;
-    @extend %gradient-text;
+    @include mixins.gradient-text;
   }
 }
 
@@ -88,7 +82,7 @@
     }
 
     input::placeholder {
-      @extend %gradient-text;
+      @include mixins.gradient-text;
     }
   }
 

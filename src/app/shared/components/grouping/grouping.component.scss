@@ -1,10 +1,4 @@
-%gradient-text {
-  background: var(--app-brand-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
+@use 'mixins';
 
 .groups-container {
   display: grid;
@@ -17,7 +11,7 @@
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-  @extend %gradient-text;
+  @include mixins.gradient-text;
 }
 
 .group {

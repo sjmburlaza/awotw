@@ -1,5 +1,6 @@
-@use './styles/colors';
-@use './styles/tallest-quiz';
+@use 'colors';
+@use 'mixins';
+@use 'tallest-quiz';
 
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -159,16 +160,12 @@ body.dark-mode {
 
   &__title {
     margin: 0;
-    background: var(--app-brand-gradient);
-    background-clip: text;
-    color: transparent;
+    @include mixins.gradient-text;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(34px, 3vw, 42px);
+    font-size: clamp(30px, 2.5vw, 36px);
     font-weight: 700;
     letter-spacing: 0.01em;
     line-height: 1;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   &__icon {

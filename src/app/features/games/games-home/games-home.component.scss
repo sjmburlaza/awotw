@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .games-home {
   --games-home-content-padding: 20px;
   --games-home-inline-padding: 12px;
@@ -68,15 +70,11 @@
 .games-home__intro h1 {
   max-width: 420px;
   margin: 0;
-  background: var(--app-brand-gradient);
-  background-clip: text;
-  color: transparent;
+  @include mixins.gradient-text;
   font-family: 'Michroma', sans-serif;
   font-size: 48px;
   font-weight: 400;
   line-height: 1.08;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .lede {

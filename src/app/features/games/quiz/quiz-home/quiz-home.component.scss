@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .quiz-home {
   --game-accent: var(--app-game-quiz);
   --quiz-home-content-padding: 20px;
@@ -83,16 +85,12 @@
 .title {
   max-width: 440px;
   margin: 0;
-  background: var(--app-brand-gradient);
-  background-clip: text;
-  color: transparent;
+  @include mixins.gradient-text;
   font-family: 'Michroma', sans-serif;
   font-size: 58px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.04;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .quiz-home__lede {
