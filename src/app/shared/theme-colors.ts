@@ -61,11 +61,14 @@ export const COLOR_VARS = {
   gamePuzzle: '--app-game-puzzle',
   gameQuiz: '--app-game-quiz',
   gameWorldTour: '--app-game-world-tour',
+  gameTallest: '--app-game-tallest',
   category1: '--app-category-1',
   category2: '--app-category-2',
   category3: '--app-category-3',
   category4: '--app-category-4',
   category5: '--app-category-5',
+  category6: '--app-category-6',
+  category7: '--app-category-7',
 } as const;
 
 const CHOROPLETH_COLOR_VARS = [

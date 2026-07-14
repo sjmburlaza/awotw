@@ -1,0 +1,124 @@
+<section class="height-game" aria-labelledby="height-game-title">
+  @if (loading) {
+    <div class="state-message">Loading building images...</div>
+  } @else if (errorMessage) {
+    <div class="state-message state-message--error">{{ errorMessage }}</div>
+  } @else {
+    <nav class="game-page-nav">
+      <button type="button" class="back-to-games" (click)="goToGamesHome()">
+        <i class="bi bi-grid" aria-hidden="true"></i>
+        <span>Back to games</span>
+      </button>
+    </nav>
+
+    <header class="game-header">
+      <div class="game-copy">
+        <p class="eyebrow">Skyline ranking</p>
+        <h1 id="height-game-title">Tallest to Shortest</h1>
+        <p>Drag the 21 buildings into descending height order. Select two cards to move without dragging.</p>
+      </div>
+
+      <div class="direction" aria-label="Arrange from tallest to shortest">
+        <span>Tallest</span>
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+        <span>Shortest</span>
+      </div>
+
+      <div class="game-status" aria-live="polite">
+        <span>{{ hasRevealedAnswer ? 'Final score' : 'Score' }}</span>
+        <strong>{{ hasSubmitted ? score : '--' }}/{{ maxScore }}</strong>
+      </div>
+
+      <div class="game-actions">
+        <button type="button" (click)="startNewRound()" aria-label="Start a new round" title="New round">
+          <i class="bi bi-shuffle" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          (click)="submitOrder()"
+          [disabled]="hasRevealedAnswer"
+          aria-label="Check building order"
+          title="Check order"
+        >
+          <i class="bi bi-check2-circle" aria-hidden="true"></i>
+        </button>
+        <button type="button" (click)="revealAnswer()" aria-label="Reveal correct order" title="Reveal answer">
+          <i class="bi bi-eye" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    @if (hasSubmitted) {
+      <div
+        class="result-banner"
+        [class.result-banner--perfect]="score === maxScore"
+        role="status"
+      >
+        @if (hasRevealedAnswer) {
+          Correct order revealed. You placed {{ score }} of {{ maxScore }} buildings correctly.
+        } @else if (score === maxScore) {
+          Perfect skyline — all {{ maxScore }} buildings are in order.
+        } @else {
+          {{ score }} of {{ maxScore }} positions are correct. Heights are now shown; reorder and check again.
+        }
+      </div>
+    }
+
+    <div class="building-grid" aria-label="Building ranking from tallest to shortest">
+      @for (building of buildings; track building.name; let index = $index) {
+        <article
+          class="building-card"
+          [class.building-card--selected]="selectedIndex === index"
+          [class.building-card--dragging]="dragSourceIndex === index"
+          [class.building-card--drop-target]="dragOverIndex === index && dragSourceIndex !== index"
+          [class.building-card--correct]="isCorrect(index)"
+          [class.building-card--misplaced]="isMisplaced(index)"
+          [class.building-card--locked]="hasRevealedAnswer"
+          [attr.draggable]="!hasRevealedAnswer"
+          [attr.aria-label]="getCardAriaLabel(building, index)"
+          [attr.aria-pressed]="selectedIndex === index"
+          tabindex="0"
+          role="button"
+          (click)="onCardClick(index)"
+          (keydown)="onCardKeydown($event, index)"
+          (dragstart)="onDragStart($event, index)"
+          (dragover)="onDragOver($event, index)"
+          (drop)="onDrop($event, index)"
+          (dragend)="onDragEnd()"
+        >
+          <span class="position" aria-hidden="true">{{ index + 1 }}</span>
+
+          <div class="building-image" [style.--building-color]="building.color">
+            @if (!failedImages.has(building.name)) {
+              <img
+                [src]="building.image_url"
+                [alt]="building.name"
+                draggable="false"
+                (error)="onImageError(building)"
+              />
+            } @else {
+              <i class="bi bi-buildings" aria-hidden="true"></i>
+            }
+          </div>
+
+          <div class="building-copy">
+            <strong>{{ building.name }}</strong>
+            <span>{{ building.city }}, {{ building.country }}</span>
+          </div>
+
+          <div class="card-meta">
+            <span class="drag-hint">
+              <i class="bi bi-grip-vertical" aria-hidden="true"></i>
+              Move
+            </span>
+            @if (hasSubmitted) {
+              <strong class="height">{{ formatHeight(building.height_m) }}</strong>
+            } @else {
+              <span class="height height--hidden">Height hidden</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>

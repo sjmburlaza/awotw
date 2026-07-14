@@ -45,6 +45,16 @@ export class GamesHomeComponent {
       icon: 'bi-hourglass-split',
     },
     {
+      title: 'Tallest to Shortest',
+      kicker: 'Height ranking',
+      description: 'Arrange 21 landmark towers from the highest skyline peak to the lowest.',
+      mode: 'Ranking',
+      pace: 'Strategic',
+      route: URL_PATH.TALLEST_TO_SHORTEST,
+      color: cssVar(COLOR_VARS.gameTallest),
+      icon: 'bi-buildings',
+    },
+    {
       title: 'Architecture Puzzle',
       kicker: 'Visual logic',
       description: 'Rebuild landmark images from shuffled pieces and spatial clues.',

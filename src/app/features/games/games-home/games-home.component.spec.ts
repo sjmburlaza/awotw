@@ -32,6 +32,7 @@ describe('GamesHomeComponent', () => {
     expect(component.games.map((game) => game.title)).toEqual([
       'GeoGuesser',
       'Recreate Timeline',
+      'Tallest to Shortest',
       'Architecture Puzzle',
       'Quizzes',
       'World Tour Mode',

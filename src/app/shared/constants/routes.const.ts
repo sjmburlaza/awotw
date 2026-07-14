@@ -12,6 +12,7 @@ export const URL_PATH = {
   GAMES: '/games',
   WORLD_TOUR_MODE: '/games/world-tour-mode',
   RECREATE_TIMELINE: '/games/recreate-timeline',
+  TALLEST_TO_SHORTEST: '/games/tallest-to-shortest',
   GEOGUESSER: '/games/geoguesser',
   ARCHITECTURE_PUZZLE: '/games/architecture-puzzle',
   SEARCH: '/search',
