@@ -25,28 +25,49 @@ export class HeaderComponent implements OnInit {
   zoomInText = false;
   searchQuery = '';
   isLoading = true;
+  private isPageLoading = true;
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (this.router.navigated) {
+      this.updateRouteState(this.router.url);
+    }
+
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((event) => {
-        this.currentUrl = event.urlAfterRedirects;
-        if (this.currentUrl === URL_PATH.HOME) {
-          this.zoomInText = true;
-        } else {
-          this.zoomInText = false;
-        }
-        if (!event.url.includes(URL_PATH.SEARCH)) {
-          this.searchQuery = '';
-        }
+        this.updateRouteState(event.urlAfterRedirects, event.url);
       });
 
     this.loaderService.isLoading$
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((state) => (this.isLoading = state));
+      .subscribe((state) => {
+        this.isPageLoading = state;
+        this.updateLoadingState();
+      });
+  }
+
+  private updateRouteState(url: string, navigationUrl = url): void {
+    this.currentUrl = url;
+    this.zoomInText = this.isHomePath(url);
+
+    if (!navigationUrl.includes(URL_PATH.SEARCH)) {
+      this.searchQuery = '';
+    }
+
+    this.updateLoadingState();
+  }
+
+  private updateLoadingState(): void {
+    this.isLoading = this.isHomePath(this.currentUrl) && this.isPageLoading;
+  }
+
+  private isHomePath(url: string): boolean {
+    const [path] = url.split(/[?#]/);
+
+    return path === URL_PATH.HOME;
   }
 
   onSearch(): void {

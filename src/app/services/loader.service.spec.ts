@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { take } from 'rxjs';
 import { LoaderService } from './loader.service';
 
 describe('LoadingService', () => {
@@ -11,5 +12,11 @@ describe('LoadingService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('starts in the loading state', () => {
+    service.isLoading$.pipe(take(1)).subscribe((isLoading) => {
+      expect(isLoading).toBe(true);
+    });
   });
 });
