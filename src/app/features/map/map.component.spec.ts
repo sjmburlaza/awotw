@@ -41,6 +41,13 @@ describe('MapComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('renders an accessible map page heading', () => {
+    const heading = fixture.nativeElement.querySelector('#map-page-title') as HTMLHeadingElement;
+
+    expect(heading.tagName).toBe('H1');
+    expect(heading.textContent?.trim()).toBe('Landmarks across the map');
+  });
+
   it('creates globe-style popup content for a wonder marker', () => {
     const popup = (component as unknown as MapComponentInternals).createWonderPopup(wonder);
 

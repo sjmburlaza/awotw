@@ -4,10 +4,15 @@
   </div>
 }
 <div class="globe-page" [class.hidden]="isLoading">
-  <div class="title">
-    Explore the global landmarks...
-    <i class="bi bi-globe"></i>
-  </div>
+  <header class="page-heading" aria-labelledby="globe-page-title">
+    <span class="page-heading__eyebrow">Explore in three dimensions</span>
+    <div class="page-heading__title-row">
+      <h1 id="globe-page-title" class="page-heading__title">A world of architectural wonders</h1>
+      <span class="page-heading__icon" aria-hidden="true">
+        <i class="bi bi-globe"></i>
+      </span>
+    </div>
+  </header>
   <div class="navigator">
     <a routerLink="/map">Switch to 2D map</a>
     <a routerLink="/games/world-tour-mode">Play World Tour Mode</a>

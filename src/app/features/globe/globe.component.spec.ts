@@ -83,8 +83,17 @@ describe('Globe', () => {
     expect(component).toBeTruthy();
   });
 
+  it('renders an accessible globe page heading', () => {
+    const heading = fixture.nativeElement.querySelector('#globe-page-title') as HTMLHeadingElement;
+
+    expect(heading.tagName).toBe('H1');
+    expect(heading.textContent?.trim()).toBe('A world of architectural wonders');
+  });
+
   it('links to the map and World Tour Mode from the globe navigator', () => {
-    const links = Array.from(fixture.nativeElement.querySelectorAll('.navigator a')) as HTMLAnchorElement[];
+    const links = Array.from(
+      fixture.nativeElement.querySelectorAll('.navigator a'),
+    ) as HTMLAnchorElement[];
 
     expect(links.map((link) => link.textContent?.trim())).toEqual([
       'Switch to 2D map',
@@ -127,7 +136,9 @@ describe('Globe', () => {
     preloadImages[0].onload?.call(preloadImages[0], new Event('load'));
     fixture.detectChanges();
 
-    const loadedImage = fixture.nativeElement.querySelector('.popup-card__image') as HTMLImageElement;
+    const loadedImage = fixture.nativeElement.querySelector(
+      '.popup-card__image',
+    ) as HTMLImageElement;
     expect(loadedImage.src).toBe(wonder.imageURL);
     expect(fixture.nativeElement.querySelector('.popup-card__image-loader')).toBeNull();
 
