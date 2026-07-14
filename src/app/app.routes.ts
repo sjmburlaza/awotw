@@ -40,6 +40,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'tallest-to-shortest',
+        loadComponent: () =>
+          import('./features/games/tallest-to-shortest/tallest-to-shortest.component').then(
+            (m) => m.TallestToShortestComponent,
+          ),
+      },
+      {
         path: 'geoguesser',
         loadComponent: () =>
           import('./features/games/geoguesser/geoguesser.component').then(
