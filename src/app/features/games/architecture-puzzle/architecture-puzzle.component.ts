@@ -11,7 +11,9 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import { DataService, Item } from 'src/app/services/data.service';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 import { getThemeColors } from 'src/app/shared/theme-colors';
 
 interface PuzzleTile {
@@ -33,6 +35,7 @@ interface DifficultyOption {
 export class ArchitecturePuzzleComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly dataService = inject(DataService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
   private imageLoadToken = 0;
   private imageElement?: HTMLImageElement;
 
@@ -177,6 +180,10 @@ export class ArchitecturePuzzleComponent implements OnInit, AfterViewInit, OnDes
     }
 
     this.onWonderChange(nextWonder.id);
+  }
+
+  goToGamesHome(): void {
+    this.router.navigate([URL_PATH.GAMES]);
   }
 
   toggleReveal(): void {

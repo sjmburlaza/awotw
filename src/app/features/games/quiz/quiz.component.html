@@ -4,7 +4,20 @@
   } @else if (isDataLoading) {
     <div class="state-message">Loading quiz data...</div>
   } @else if (selectedQuiz?.code) {
-    <div class="quiz-selected">
+    <div class="quiz-selected" [style.--game-accent]="selectedQuiz?.color">
+      <div class="game-page-nav">
+        <button
+          type="button"
+          class="back-to-quiz-home"
+          (click)="exit()"
+          aria-label="Back to quiz home"
+          title="Back to quiz home"
+        >
+          <i class="bi bi-house-door" aria-hidden="true"></i>
+          <span>Back to quiz home</span>
+        </button>
+      </div>
+
       <div class="game-header">
         <div class="title-group">
           <span class="round-label">Quiz mode</span>
@@ -16,12 +29,6 @@
             <span>Score</span>
             <strong>{{ currentScore }}/{{ currentCount }}</strong>
           </div>
-        </div>
-
-        <div class="game-actions">
-          <button type="button" (click)="exit()" aria-label="Exit quiz" title="Exit quiz">
-            <i class="bi bi-x-lg"></i>
-          </button>
         </div>
       </div>
 

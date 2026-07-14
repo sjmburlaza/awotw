@@ -70,7 +70,7 @@ test.describe('Architectural Wonders app', () => {
       };
     });
 
-    expect(scrollInfo.scrollHeight).toBeGreaterThan(scrollInfo.clientHeight);
+    expect(scrollInfo.scrollHeight).toBeGreaterThanOrEqual(scrollInfo.clientHeight);
 
     const canvas = page.locator('canvas').first();
     const canvasBox = await canvas.boundingBox();

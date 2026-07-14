@@ -43,4 +43,10 @@ describe('GamesHomeComponent', () => {
 
     expect(router.navigate).toHaveBeenCalledWith([URL_PATH.GEOGUESSER]);
   });
+
+  it('navigates back to home', () => {
+    component.goToHome();
+
+    expect(router.navigate).toHaveBeenCalledWith([URL_PATH.HOME]);
+  });
 });

@@ -1,7 +1,9 @@
-<div class="main-container">
-  <div class="header">
-    <app-header></app-header>
-  </div>
+<div class="main-container" [class.main-container--games]="isGamesRoute">
+  @if (!isGamesRoute) {
+    <div class="header">
+      <app-header></app-header>
+    </div>
+  }
   <div class="content">
     <router-outlet></router-outlet>
     <app-back-to-top />

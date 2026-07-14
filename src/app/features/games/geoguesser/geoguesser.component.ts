@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 import * as L from 'leaflet';
 import { DataService, Item } from 'src/app/services/data.service';
 import { InfoTooltipComponent } from 'src/app/shared/components/info-tooltip/info-tooltip.component';
@@ -7,6 +8,7 @@ import {
   LeaderboardPopupComponent,
   LeaderboardScore,
 } from 'src/app/shared/components/leaderboard-popup/leaderboard-popup.component';
+import { URL_PATH } from 'src/app/shared/constants/routes.const';
 
 interface MappableWonder extends Item {
   lat: string;
@@ -32,6 +34,7 @@ type SavedScore = LeaderboardScore;
 export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly dataService = inject(DataService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
   private readonly worldBounds: L.LatLngBoundsExpression = [
     [-90, -180],
     [90, 180],
@@ -164,6 +167,10 @@ export class GeoguesserComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openLeaderboard(): void {
     this.showLeaderboardPopup = true;
+  }
+
+  goToGamesHome(): void {
+    this.router.navigate([URL_PATH.GAMES]);
   }
 
   handleLeaderboardPopupAction(): void {
