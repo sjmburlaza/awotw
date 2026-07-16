@@ -15,6 +15,7 @@ const globeInstance = {
   controls: () => orbitControls,
   globeImageUrl: () => globeInstance,
   getScreenCoords: () => ({ x: 600, y: 300 }),
+  height: () => globeInstance,
   htmlElement: (factory?: (data: object) => HTMLElement) => {
     htmlElementFactory = factory;
     return globeInstance;

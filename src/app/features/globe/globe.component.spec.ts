@@ -10,6 +10,11 @@ interface TestWonderMarker extends Item {
 }
 
 interface GlobeComponentInternals {
+  globe?: {
+    height(value: number): unknown;
+    width(value: number): unknown;
+  };
+  resizeGlobe(): void;
   selectWonder(wonder: TestWonderMarker, markerElement: HTMLElement): void;
 }
 
@@ -101,6 +106,23 @@ describe('Globe', () => {
     ]);
     expect(links[0].getAttribute('href')).toBe('/map');
     expect(links[1].getAttribute('href')).toBe('/games/world-tour-mode');
+  });
+
+  it('sizes the globe renderer to the visible container', () => {
+    const globeContainer = fixture.nativeElement.querySelector('.globe-container') as HTMLElement;
+    const componentInternals = component as unknown as GlobeComponentInternals;
+    const widthSpy = jest.spyOn(componentInternals.globe!, 'width');
+    const heightSpy = jest.spyOn(componentInternals.globe!, 'height');
+
+    Object.defineProperties(globeContainer, {
+      clientHeight: { configurable: true, value: 640 },
+      clientWidth: { configurable: true, value: 960 },
+    });
+
+    componentInternals.resizeGlobe();
+
+    expect(widthSpy).toHaveBeenCalledWith(960);
+    expect(heightSpy).toHaveBeenCalledWith(640);
   });
 
   it('positions the popup directly above the selected marker', () => {
