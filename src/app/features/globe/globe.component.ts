@@ -54,6 +54,8 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   hasPopupImageError = false;
 
   private selectedMarkerElement?: HTMLElement;
+  private globeResizeObserver?: ResizeObserver;
+  private globeResizeFrameId?: number;
   private popupTrackingFrameId?: number;
   private popupImageLoadId = 0;
   private popupImagePreloader?: HTMLImageElement;
@@ -65,6 +67,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.clearSelectedWonder();
+    this.stopGlobeResizeTracking();
     this.removeMarkerListeners();
     this.globe?.htmlElementsData([]);
     this.globe = undefined;
@@ -79,8 +82,51 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       .htmlLat('latNum')
       .htmlLng('lonNum')
       .htmlElement((d: object) => this.createMarkerElement(d as WonderMarker))
-      .onGlobeReady(() => (this.isLoading = false))
+      .onGlobeReady(() => {
+        this.ngZone.run(() => {
+          this.isLoading = false;
+          this.scheduleGlobeResize();
+        });
+      })
       .pointOfView({ lat: 40, lng: 0, altitude: 1.5 }, 1000);
+
+    this.startGlobeResizeTracking();
+  }
+
+  private startGlobeResizeTracking(): void {
+    if (typeof ResizeObserver === 'undefined') return;
+
+    this.globeResizeObserver = new ResizeObserver(() => this.resizeGlobe());
+    this.globeResizeObserver.observe(this.globeContainer.nativeElement);
+  }
+
+  private scheduleGlobeResize(): void {
+    if (this.globeResizeFrameId !== undefined) {
+      cancelAnimationFrame(this.globeResizeFrameId);
+    }
+
+    this.globeResizeFrameId = requestAnimationFrame(() => {
+      this.globeResizeFrameId = undefined;
+      this.resizeGlobe();
+    });
+  }
+
+  private resizeGlobe(): void {
+    const { clientHeight, clientWidth } = this.globeContainer.nativeElement;
+
+    if (!this.globe || clientWidth <= 0 || clientHeight <= 0) return;
+
+    this.globe.width(clientWidth).height(clientHeight);
+  }
+
+  private stopGlobeResizeTracking(): void {
+    this.globeResizeObserver?.disconnect();
+    this.globeResizeObserver = undefined;
+
+    if (this.globeResizeFrameId === undefined) return;
+
+    cancelAnimationFrame(this.globeResizeFrameId);
+    this.globeResizeFrameId = undefined;
   }
 
   private loadWonders(): void {

@@ -81,14 +81,13 @@ test.describe('Architectural Wonders app', () => {
     expect(canvasPixels).toBeGreaterThan(100);
 
     const popupBoxBeforeAnswer = await page.locator('.quiz-popup').boundingBox();
-    await expect(page.locator('.quiz-popup__feedback')).toBeHidden();
+    const popupFeedback = page.locator('.quiz-popup__feedback');
+    await expect(popupFeedback).toBeHidden();
 
     await page.locator('.quiz-popup__option').last().click();
-    await expect(page.locator('.quiz-popup__feedback')).toBeVisible();
-    await expect(page.locator('.quiz-popup__feedback')).toContainText('Correct. Marker cleared.');
+    await expect(popupFeedback).toBeVisible();
+    await expect(popupFeedback).toContainText('Correct. Marker cleared.');
     await expect(page.getByRole('dialog', { name: 'World tour question' })).toBeVisible();
-
-    await page.waitForTimeout(1000);
 
     const popupBoxWithFeedback = await page.locator('.quiz-popup').boundingBox();
 
@@ -109,9 +108,8 @@ test.describe('Architectural Wonders app', () => {
     expect(popupScrollInfo.overflowY).not.toBe('auto');
     expect(popupScrollInfo.scrollHeight).toBeLessThanOrEqual(popupScrollInfo.clientHeight + 1);
 
-    await page.waitForTimeout(2800);
+    await expect(popupFeedback).toBeHidden();
     await expect(page.getByRole('dialog', { name: 'World tour question' })).toBeVisible();
-    await expect(page.locator('.quiz-popup__feedback')).toBeHidden();
     await expect(page.locator('.quiz-popup__option')).toHaveCount(5);
   });
 });

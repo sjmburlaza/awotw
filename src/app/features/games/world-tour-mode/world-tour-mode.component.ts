@@ -75,7 +75,7 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
       prompt: () => 'What is this wonder used for?',
     },
   ];
-  private readonly advanceDelayMs = 2500;
+  private readonly advanceDelayMs = 1000;
 
   @ViewChild('globeContainer', { static: true })
   globeContainer!: ElementRef<HTMLDivElement>;
