@@ -186,7 +186,7 @@ describe('WorldTourModeComponent', () => {
     expect(fixture.nativeElement.querySelector('.quiz-popup__feedback-slot')).toBeNull();
 
     component.submitAnswer(correctAnswer);
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(999);
     fixture.detectChanges();
 
     const popup = fixture.nativeElement.querySelector('.quiz-popup');
