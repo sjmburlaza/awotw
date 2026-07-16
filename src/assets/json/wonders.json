@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Step Pyramid of Djoser",
+    "description": "Egypt's first monumental stone pyramid.",
     "yearBuilt": "2667-2648 BC",
     "style": "Egyptian",
     "buildingType": "Memorial",
@@ -24,6 +25,7 @@
   {
     "id": 2,
     "name": "Great Pyramid of Giza",
+    "description": "The last surviving ancient wonder.",
     "yearBuilt": "2589-2566 BC",
     "style": "Egyptian",
     "buildingType": "Memorial",
@@ -46,6 +48,7 @@
   {
     "id": 3,
     "name": "Hypostyle Hall of the Karnak Temple Complex",
+    "description": "Karnak's vast forest of columns.",
     "yearBuilt": "1294-1213 BC",
     "style": "Egyptian",
     "buildingType": "Religious",
@@ -68,6 +71,7 @@
   {
     "id": 4,
     "name": "Abu Simbel",
+    "description": "Colossal temples carved into cliffs.",
     "yearBuilt": "1264 BC",
     "style": "Egyptian",
     "buildingType": "Religious",
@@ -90,6 +94,7 @@
   {
     "id": 5,
     "name": "Temple of Hephaestus",
+    "description": "Athens' best-preserved ancient temple.",
     "yearBuilt": "449 BC",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -112,6 +117,7 @@
   {
     "id": 6,
     "name": "Temple of Segesta",
+    "description": "An unfinished Doric temple in Sicily.",
     "yearBuilt": "400",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -134,6 +140,7 @@
   {
     "id": 7,
     "name": "Erechtheion",
+    "description": "Ionic temple with sculpted Caryatids.",
     "yearBuilt": "421-405 BC",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -156,6 +163,7 @@
   {
     "id": 8,
     "name": "Parthenon",
+    "description": "Athena's iconic hilltop temple.",
     "yearBuilt": "447-432 BC",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -178,6 +186,7 @@
   {
     "id": 9,
     "name": "Tholos of Delphi",
+    "description": "Circular sanctuary at ancient Delphi.",
     "yearBuilt": "380-360 BC",
     "style": "Greek, Roman",
     "buildingType": "Memorial",
@@ -200,6 +209,7 @@
   {
     "id": 10,
     "name": "Ancient Theatre of Epidaurus",
+    "description": "Ancient theater famed for acoustics.",
     "yearBuilt": "300 BC",
     "style": "Greek, Roman",
     "buildingType": "Cultural, Institutional",
@@ -222,6 +232,7 @@
   {
     "id": 11,
     "name": "Colosseum",
+    "description": "Rome's monumental gladiatorial amphitheater.",
     "yearBuilt": "70-80 AD",
     "style": "Greek, Roman",
     "buildingType": "Cultural, Institutional",
@@ -244,6 +255,7 @@
   {
     "id": 12,
     "name": "Pont du Gard",
+    "description": "Roman aqueduct spanning the Gardon.",
     "yearBuilt": "40-60",
     "style": "Greek, Roman",
     "buildingType": "Utility",
@@ -266,6 +278,7 @@
   {
     "id": 13,
     "name": "Maison Carrée",
+    "description": "Exceptionally preserved Roman temple.",
     "yearBuilt": "100",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -288,6 +301,7 @@
   {
     "id": 14,
     "name": "Pantheon",
+    "description": "Domed Roman temple turned church.",
     "yearBuilt": "114-123",
     "style": "Greek, Roman",
     "buildingType": "Religious",
@@ -310,6 +324,7 @@
   {
     "id": 15,
     "name": "Library of Celsus",
+    "description": "Monumental library façade at Ephesus.",
     "yearBuilt": "112-120",
     "style": "Greek, Roman",
     "buildingType": "Cultural, Institutional",
@@ -332,6 +347,7 @@
   {
     "id": 16,
     "name": "Arch of Constantine",
+    "description": "Triumphal arch beside the Colosseum.",
     "yearBuilt": "316",
     "style": "Greek, Roman",
     "buildingType": "Cultural, Institutional",
@@ -354,6 +370,7 @@
   {
     "id": 17,
     "name": "Avenue of Dead/Teotihuacan",
+    "description": "Teotihuacan's grand ceremonial avenue.",
     "yearBuilt": "1-600",
     "style": "Pre-Columbian",
     "buildingType": "Memorial",
@@ -376,6 +393,7 @@
   {
     "id": 18,
     "name": "Lakamha/Palenque",
+    "description": "Maya city amid the Chiapas rainforest.",
     "yearBuilt": "600",
     "style": "Pre-Columbian",
     "buildingType": "Residential",
@@ -398,6 +416,7 @@
   {
     "id": 19,
     "name": "Tikal Temple I",
+    "description": "Towering funerary pyramid at Tikal.",
     "yearBuilt": "732",
     "style": "Pre-Columbian",
     "buildingType": "Religious",
@@ -420,6 +439,7 @@
   {
     "id": 20,
     "name": "Nunnery Quadrangle",
+    "description": "Ornate palace courtyard at Uxmal.",
     "yearBuilt": "900-1000",
     "style": "Pre-Columbian",
     "buildingType": "Residential",
@@ -437,6 +457,7 @@
   {
     "id": 21,
     "name": "Temple of the Warriors",
+    "description": "Columned Maya temple at Chichén Itzá.",
     "yearBuilt": "900-1200",
     "style": "Pre-Columbian",
     "buildingType": "Religious",
@@ -459,6 +480,7 @@
   {
     "id": 22,
     "name": "Great Stupa of Sanchi",
+    "description": "India's oldest stone Buddhist stupa.",
     "yearBuilt": "100 BC",
     "style": "Buddhist",
     "buildingType": "Cultural, Institutional",
@@ -481,6 +503,7 @@
   {
     "id": 23,
     "name": "Somapura Mahavihara",
+    "description": "Ruins of a vast Buddhist monastery.",
     "yearBuilt": "700",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -503,6 +526,7 @@
   {
     "id": 24,
     "name": "Ajanta Caves",
+    "description": "Rock-cut Buddhist caves and murals.",
     "yearBuilt": "400",
     "style": "Buddhist",
     "buildingType": "Cultural, Institutional",
@@ -525,6 +549,7 @@
   {
     "id": 25,
     "name": "Hawa Mahal",
+    "description": "Jaipur's ornate Palace of Winds.",
     "yearBuilt": "1799",
     "style": "Maru Gurjara",
     "buildingType": "Residential",
@@ -547,6 +572,7 @@
   {
     "id": 26,
     "name": "Navlakha Temple",
+    "description": "Ornately carved Solanki-era Hindu temple.",
     "yearBuilt": "1100",
     "style": "Maru Gurjara",
     "buildingType": "Religious",
@@ -569,6 +595,7 @@
   {
     "id": 27,
     "name": "Vimal Vasahi Temple",
+    "description": "Marble Jain temple at Mount Abu.",
     "yearBuilt": "1031",
     "style": "Maru Gurjara",
     "buildingType": "Religious",
@@ -591,6 +618,7 @@
   {
     "id": 28,
     "name": "Nyatapola Temple",
+    "description": "Nepal's five-tiered pagoda temple.",
     "yearBuilt": "1702",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -613,6 +641,7 @@
   {
     "id": 29,
     "name": "Paro Taktsang",
+    "description": "Cliffside monastery known as Tiger's Nest.",
     "yearBuilt": "1692",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -635,6 +664,7 @@
   {
     "id": 30,
     "name": "Potala Palace",
+    "description": "Tibet's monumental hilltop palace.",
     "yearBuilt": "1694",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -657,6 +687,7 @@
   {
     "id": 31,
     "name": "Jamia Masjid",
+    "description": "Kashmir's historic Friday mosque.",
     "yearBuilt": "1394",
     "style": "Islamic",
     "buildingType": "Religious",
@@ -679,6 +710,7 @@
   {
     "id": 32,
     "name": "Padmanabhaswamy Temple",
+    "description": "Opulent Hindu temple dedicated to Vishnu.",
     "yearBuilt": "300",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -701,6 +733,7 @@
   {
     "id": 33,
     "name": "Meenakshi Temple",
+    "description": "Colorful temple city of towering gateways.",
     "yearBuilt": "1100",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -723,6 +756,7 @@
   {
     "id": 34,
     "name": "Vitthala Temple",
+    "description": "Ornate stone temple at Hampi.",
     "yearBuilt": "1400",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -743,6 +777,7 @@
   {
     "id": 35,
     "name": "Giant Wild Goose Pagoda",
+    "description": "Ancient Xi'an Buddhist brick pagoda.",
     "yearBuilt": "648",
     "style": "Sinosphere",
     "buildingType": "Cultural, Institutional",
@@ -765,6 +800,7 @@
   {
     "id": 36,
     "name": "Dule Temple - Guanyin Pavilion",
+    "description": "China's oldest surviving timber pavilion.",
     "yearBuilt": "984",
     "style": "Sinosphere",
     "buildingType": "Cultural, Institutional",
@@ -784,6 +820,7 @@
   {
     "id": 37,
     "name": "Hall of Prayer for Good Harvests / Temple of Heaven",
+    "description": "Circular imperial hall for harvest rites.",
     "yearBuilt": "1400",
     "style": "Sinosphere",
     "buildingType": "Religious",
@@ -806,6 +843,7 @@
   {
     "id": 38,
     "name": "Temple of Literature",
+    "description": "Vietnam's first national university complex.",
     "yearBuilt": "1070",
     "style": "Sinosphere",
     "buildingType": "Cultural, Institutional",
@@ -828,6 +866,7 @@
   {
     "id": 39,
     "name": "Gyeongbokgung Palace",
+    "description": "Seoul's grand Joseon royal palace.",
     "yearBuilt": "1395",
     "style": "Sinosphere",
     "buildingType": "Residential",
@@ -850,6 +889,7 @@
   {
     "id": 40,
     "name": "Mozu Tombs",
+    "description": "Vast keyhole-shaped imperial burial mounds.",
     "yearBuilt": "200-500",
     "style": "Sinosphere",
     "buildingType": "Memorial",
@@ -872,6 +912,7 @@
   {
     "id": 41,
     "name": "Hōryū-ji",
+    "description": "Ancient Japanese Buddhist temple complex.",
     "yearBuilt": "607",
     "style": "Sinosphere",
     "buildingType": "Religious",
@@ -894,6 +935,7 @@
   {
     "id": 42,
     "name": "Ninna-ji",
+    "description": "Kyoto temple with imperial connections.",
     "yearBuilt": "888",
     "style": "Sinosphere",
     "buildingType": "Religious",
@@ -916,6 +958,7 @@
   {
     "id": 43,
     "name": "Kinkaku-ji",
+    "description": "Kyoto's shimmering Golden Pavilion.",
     "yearBuilt": "1398",
     "style": "Sinosphere",
     "buildingType": "Religious",
@@ -938,6 +981,7 @@
   {
     "id": 44,
     "name": "Bakong",
+    "description": "Early Khmer sandstone temple mountain.",
     "yearBuilt": "800",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -960,6 +1004,7 @@
   {
     "id": 45,
     "name": "Prasat Prang Ku",
+    "description": "Compact Khmer sanctuary in Thailand.",
     "yearBuilt": "1100",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -982,6 +1027,7 @@
   {
     "id": 46,
     "name": "Angkor Wat",
+    "description": "Monumental Khmer temple complex.",
     "yearBuilt": "1100",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -1004,6 +1050,7 @@
   {
     "id": 47,
     "name": "Champa Temples",
+    "description": "Hindu sanctuary towers of Mỹ Sơn.",
     "yearBuilt": "300",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -1021,6 +1068,7 @@
   {
     "id": 48,
     "name": "Dome of the Rock",
+    "description": "Gilded Islamic shrine in Jerusalem.",
     "yearBuilt": "691",
     "style": "Islamic",
     "buildingType": "Religious",
@@ -1043,6 +1091,7 @@
   {
     "id": 49,
     "name": "Great Mosque of Samarra",
+    "description": "Mosque famed for its spiral minaret.",
     "yearBuilt": "851",
     "style": "Islamic",
     "buildingType": "Religious",
@@ -1065,6 +1114,7 @@
   {
     "id": 50,
     "name": "Tomb of Shah Rukn-e-Alam",
+    "description": "Monumental Sufi mausoleum in Multan.",
     "yearBuilt": "1320-1324",
     "style": "Islamic",
     "buildingType": "Memorial",
@@ -1087,6 +1137,7 @@
   {
     "id": 51,
     "name": "Court of the Lions",
+    "description": "Alhambra courtyard with marble lions.",
     "yearBuilt": "1362-1391",
     "style": "Islamic",
     "buildingType": "Religious",
@@ -1109,6 +1160,7 @@
   {
     "id": 52,
     "name": "Taj Mahal",
+    "description": "White-marble monument to eternal love.",
     "yearBuilt": "1649",
     "style": "Islamic",
     "buildingType": "Memorial",
@@ -1131,6 +1183,7 @@
   {
     "id": 53,
     "name": "Basilica of Saint Sabina",
+    "description": "Early Christian basilica in Rome.",
     "yearBuilt": "422-432",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1153,6 +1206,7 @@
   {
     "id": 54,
     "name": "Hagia Irene",
+    "description": "Byzantine church inside Topkapı Palace.",
     "yearBuilt": "500",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1175,6 +1229,7 @@
   {
     "id": 55,
     "name": "Basilica of San Vitale",
+    "description": "Ravenna basilica famed for mosaics.",
     "yearBuilt": "527-548",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1197,6 +1252,7 @@
   {
     "id": 56,
     "name": "Basilica of Sant'Apollinare in Classe",
+    "description": "Early Christian basilica with mosaics.",
     "yearBuilt": "549",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1219,6 +1275,7 @@
   {
     "id": 57,
     "name": "Kapnikarea",
+    "description": "Intimate Byzantine church in Athens.",
     "yearBuilt": "1050",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1241,6 +1298,7 @@
   {
     "id": 58,
     "name": "Hagia Sophia",
+    "description": "Monumental Byzantine dome in Istanbul.",
     "yearBuilt": "537",
     "style": "Byzantine",
     "buildingType": "Religious",
@@ -1263,6 +1321,7 @@
   {
     "id": 59,
     "name": "St. Michael's Church",
+    "description": "Romanesque church with twin transepts.",
     "yearBuilt": "1010-1031",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1285,6 +1344,7 @@
   {
     "id": 60,
     "name": "Abbey of Santo Domingo de Silos",
+    "description": "Benedictine abbey famed for its cloister.",
     "yearBuilt": "1085",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1307,6 +1367,7 @@
   {
     "id": 61,
     "name": "Abbey Church of Sainte-Foy",
+    "description": "Pilgrimage church with sculpted portals.",
     "yearBuilt": "1087-1107",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1329,6 +1390,7 @@
   {
     "id": 62,
     "name": "Durham Cathedral",
+    "description": "Massive Norman cathedral above Durham.",
     "yearBuilt": "1093-1133",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1351,6 +1413,7 @@
   {
     "id": 63,
     "name": "Maria Laach Abbey",
+    "description": "Romanesque abbey beside a volcanic lake.",
     "yearBuilt": "1093-1230",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1373,6 +1436,7 @@
   {
     "id": 64,
     "name": "Munsterkerk",
+    "description": "Late Romanesque church in Roermond.",
     "yearBuilt": "1220",
     "style": "Romanesque",
     "buildingType": "Religious",
@@ -1395,6 +1459,7 @@
   {
     "id": 65,
     "name": "Notre-Dame Cathedral",
+    "description": "Parisian Gothic cathedral on the Seine.",
     "yearBuilt": "1163",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1417,6 +1482,7 @@
   {
     "id": 66,
     "name": "Canterbury Cathedral",
+    "description": "England's historic mother church.",
     "yearBuilt": "1174-1184",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1439,6 +1505,7 @@
   {
     "id": 67,
     "name": "Chartres Cathedral",
+    "description": "Gothic cathedral famed for stained glass.",
     "yearBuilt": "1194-1250",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1461,6 +1528,7 @@
   {
     "id": 68,
     "name": "Bruges City Hall",
+    "description": "Ornate Gothic civic hall in Bruges.",
     "yearBuilt": "1376-1420",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1483,6 +1551,7 @@
   {
     "id": 69,
     "name": "Hotel de Sens",
+    "description": "Rare medieval mansion in Paris.",
     "yearBuilt": "1475-1519",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1505,6 +1574,7 @@
   {
     "id": 70,
     "name": "Königsberg Cathedral",
+    "description": "Brick Gothic cathedral in Kaliningrad.",
     "yearBuilt": "1330-1380",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1527,6 +1597,7 @@
   {
     "id": 71,
     "name": "Ridderzaal",
+    "description": "Ceremonial Gothic hall of Dutch parliament.",
     "yearBuilt": "1288",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1549,6 +1620,7 @@
   {
     "id": 72,
     "name": "Sainte-Chapelle",
+    "description": "Jewel-box chapel of radiant stained glass.",
     "yearBuilt": "1243-1248",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -1571,6 +1643,7 @@
   {
     "id": 73,
     "name": "Florence Cathedral",
+    "description": "Renaissance cathedral crowned by Brunelleschi's dome.",
     "yearBuilt": "1294-1436",
     "style": "Rennaisance",
     "buildingType": "Religious",
@@ -1593,6 +1666,7 @@
   {
     "id": 74,
     "name": "Basilica of Sant'Andrea",
+    "description": "Alberti's monumental Renaissance basilica.",
     "yearBuilt": "1470",
     "style": "Rennaisance",
     "buildingType": "Religious",
@@ -1615,6 +1689,7 @@
   {
     "id": 75,
     "name": "Tempietto del Bramante",
+    "description": "Small Renaissance shrine by Bramante.",
     "yearBuilt": "1502",
     "style": "Rennaisance",
     "buildingType": "Religious",
@@ -1637,6 +1712,7 @@
   {
     "id": 76,
     "name": "Villa Madama",
+    "description": "Raphael-designed Renaissance villa outside Rome.",
     "yearBuilt": "1518-1525",
     "style": "Rennaisance",
     "buildingType": "Religious",
@@ -1659,6 +1735,7 @@
   {
     "id": 77,
     "name": "Château d'Azay-le-Rideau",
+    "description": "Romantic Renaissance château on the Indre.",
     "yearBuilt": "1518-1527",
     "style": "Rennaisance",
     "buildingType": "Residential",
@@ -1681,6 +1758,7 @@
   {
     "id": 78,
     "name": "Château de Chambord",
+    "description": "Grand Loire château with elaborate roofline.",
     "yearBuilt": "1519-1547",
     "style": "Rennaisance",
     "buildingType": "Residential",
@@ -1703,6 +1781,7 @@
   {
     "id": 79,
     "name": "Farnese Palace",
+    "description": "Monumental Renaissance palace in Rome.",
     "yearBuilt": "1534-1546",
     "style": "Rennaisance",
     "buildingType": "Residential",
@@ -1725,6 +1804,7 @@
   {
     "id": 80,
     "name": "Temple du Marais",
+    "description": "Baroque Protestant church in Paris.",
     "yearBuilt": "1632",
     "style": "Baroque",
     "buildingType": "Religious",
@@ -1747,6 +1827,7 @@
   {
     "id": 81,
     "name": "San Carlo alle Quattro Fontane",
+    "description": "Borromini's compact masterpiece of curves.",
     "yearBuilt": "1638-1677",
     "style": "Baroque",
     "buildingType": "Religious",
@@ -1769,6 +1850,7 @@
   {
     "id": 82,
     "name": "St. Peter's Square",
+    "description": "Bernini's monumental Vatican colonnade.",
     "yearBuilt": "1656-1667",
     "style": "Baroque",
     "buildingType": "Plaza/ Garden",
@@ -1791,6 +1873,7 @@
   {
     "id": 83,
     "name": "Gardens at Vaux-le-Vicomte",
+    "description": "Formal French gardens by Le Nôtre.",
     "yearBuilt": "1657-1661",
     "style": "Baroque",
     "buildingType": "Plaza/ Garden",
@@ -1808,6 +1891,7 @@
   {
     "id": 84,
     "name": "Dôme des Invalides",
+    "description": "Gilded dome over Napoleon's tomb.",
     "yearBuilt": "1677-1706",
     "style": "Baroque",
     "buildingType": "Cultural, Institutional",
@@ -1830,6 +1914,7 @@
   {
     "id": 85,
     "name": "Royal Naval Hospital",
+    "description": "Baroque riverside complex at Greenwich.",
     "yearBuilt": "1695-1715",
     "style": "Baroque",
     "buildingType": "Cultural, Institutional",
@@ -1852,6 +1937,7 @@
   {
     "id": 86,
     "name": "Church of Saint Nicholas",
+    "description": "Dramatic Baroque church in Prague.",
     "yearBuilt": "1703-1711",
     "style": "Baroque",
     "buildingType": "Religious",
@@ -1874,6 +1960,7 @@
   {
     "id": 87,
     "name": "Karlskirche",
+    "description": "Monumental Baroque church in Vienna.",
     "yearBuilt": "1715-1735",
     "style": "Baroque",
     "buildingType": "Religious",
@@ -1896,6 +1983,7 @@
   {
     "id": 88,
     "name": "Royal Palace of Amsterdam",
+    "description": "Amsterdam's grand civic palace.",
     "yearBuilt": "1648-1665",
     "style": "Baroque",
     "buildingType": "Residential",
@@ -1918,6 +2006,7 @@
   {
     "id": 89,
     "name": "Zwinger Palace",
+    "description": "Dresden palace of pavilions and gardens.",
     "yearBuilt": "1719",
     "style": "Rococo",
     "buildingType": "Plaza/ Garden",
@@ -1940,6 +2029,7 @@
   {
     "id": 90,
     "name": "Château St. Gerlach",
+    "description": "Historic château turned country estate.",
     "yearBuilt": "1735",
     "style": "Rococo",
     "buildingType": "Residential",
@@ -1962,6 +2052,7 @@
   {
     "id": 91,
     "name": "Het Loo Palace",
+    "description": "Dutch royal palace with formal gardens.",
     "yearBuilt": "1686",
     "style": "Baroque",
     "buildingType": "Residential",
@@ -1984,6 +2075,7 @@
   {
     "id": 92,
     "name": "Queluz Palace",
+    "description": "Lavish Rococo royal palace near Lisbon.",
     "yearBuilt": "1752",
     "style": "Rococo",
     "buildingType": "Residential",
@@ -2006,6 +2098,7 @@
   {
     "id": 93,
     "name": "Wieskirche",
+    "description": "Bavarian pilgrimage church with Rococo interiors.",
     "yearBuilt": "1754",
     "style": "Rococo",
     "buildingType": "Religious",
@@ -2028,6 +2121,7 @@
   {
     "id": 94,
     "name": "Stourhead",
+    "description": "English landscape garden around a lake.",
     "yearBuilt": "1740",
     "style": "Neoclassical",
     "buildingType": "Plaza/ Garden",
@@ -2050,6 +2144,7 @@
   {
     "id": 95,
     "name": "Panthéon (Paris)",
+    "description": "Neoclassical mausoleum for French luminaries.",
     "yearBuilt": "1758-1790",
     "style": "Neoclassical",
     "buildingType": "Memorial",
@@ -2072,6 +2167,7 @@
   {
     "id": 96,
     "name": "Hôtel de la Marine",
+    "description": "Neoclassical palace on Place de la Concorde.",
     "yearBuilt": "1761-1770",
     "style": "Neoclassical",
     "buildingType": "Residential",
@@ -2094,6 +2190,7 @@
   {
     "id": 97,
     "name": "Stairway of the Grand Theater of Bordeaux",
+    "description": "Monumental staircase within Bordeaux's opera house.",
     "yearBuilt": "1777-1780",
     "style": "Neoclassical",
     "buildingType": "Accessory",
@@ -2111,6 +2208,7 @@
   {
     "id": 98,
     "name": "Villa Welgelegen",
+    "description": "Neoclassical villa in Haarlem.",
     "yearBuilt": "1789",
     "style": "Neoclassical",
     "buildingType": "Residential",
@@ -2133,6 +2231,7 @@
   {
     "id": 99,
     "name": "Neue Wache",
+    "description": "Berlin memorial in a former guardhouse.",
     "yearBuilt": "1816",
     "style": "Neoclassical",
     "buildingType": "Memorial",
@@ -2155,6 +2254,7 @@
   {
     "id": 100,
     "name": "Burns Monument",
+    "description": "Neoclassical monument to poet Robert Burns.",
     "yearBuilt": "1820-1831",
     "style": "Neoclassical",
     "buildingType": "Cultural, Institutional",
@@ -2177,6 +2277,7 @@
   {
     "id": 101,
     "name": "Cusco Cathedral",
+    "description": "Colonial cathedral blending European and Andean traditions.",
     "yearBuilt": "1249",
     "style": "Rennaisance",
     "buildingType": "Religious",
@@ -2199,6 +2300,7 @@
   {
     "id": 102,
     "name": "Opéra Garnier/Palais Garnier",
+    "description": "Opulent Beaux-Arts opera house in Paris.",
     "yearBuilt": "1860",
     "style": "Beaux Arts",
     "buildingType": "Accessory",
@@ -2221,6 +2323,7 @@
   {
     "id": 103,
     "name": "Grand stairs of the Palais Garnier",
+    "description": "Theatrical marble staircase inside Palais Garnier.",
     "yearBuilt": "1860-1875",
     "style": "Beaux Arts",
     "buildingType": "Accessory",
@@ -2238,6 +2341,7 @@
   {
     "id": 104,
     "name": "The CEC Palace on Victory Avenue",
+    "description": "Eclectic domed banking palace in Bucharest.",
     "yearBuilt": "1897-1900",
     "style": "Beaux Arts",
     "buildingType": "Cultural, Institutional",
@@ -2255,6 +2359,7 @@
   {
     "id": 105,
     "name": "Cantacuzino Palace",
+    "description": "Beaux-Arts mansion housing a music museum.",
     "yearBuilt": "1898-1906",
     "style": "Beaux Arts",
     "buildingType": "Residential",
@@ -2277,6 +2382,7 @@
   {
     "id": 106,
     "name": "Petit Palais",
+    "description": "Ornate exhibition palace beside the Seine.",
     "yearBuilt": "1900",
     "style": "Beaux Arts",
     "buildingType": "Cultural, Institutional",
@@ -2299,6 +2405,7 @@
   {
     "id": 107,
     "name": "Grand Central Terminal",
+    "description": "Grand Beaux-Arts railway terminal in Manhattan.",
     "yearBuilt": "1903",
     "style": "Beaux Arts",
     "buildingType": "Utility",
@@ -2321,6 +2428,7 @@
   {
     "id": 108,
     "name": "Jetavana",
+    "description": "Ancient monastery associated with the Buddha.",
     "yearBuilt": "200",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -2343,6 +2451,7 @@
   {
     "id": 109,
     "name": "Hôtel Tassel",
+    "description": "Victor Horta's pioneering Art Nouveau townhouse.",
     "yearBuilt": "1894",
     "style": "Art Nouveau",
     "buildingType": "Residential",
@@ -2365,6 +2474,7 @@
   {
     "id": 110,
     "name": "Secession Building",
+    "description": "Vienna pavilion crowned by a golden dome.",
     "yearBuilt": "1897",
     "style": "Art Nouveau",
     "buildingType": "Cultural, Institutional",
@@ -2387,6 +2497,7 @@
   {
     "id": 111,
     "name": "La Fermette Marbeuf",
+    "description": "Belle Époque dining room with floral glasswork.",
     "yearBuilt": "1898",
     "style": "Art Nouveau",
     "buildingType": "Mixed-use",
@@ -2409,6 +2520,7 @@
   {
     "id": 112,
     "name": "Leonardo da Vinci Highschool",
+    "description": "Parisian school with an Art Nouveau façade.",
     "yearBuilt": "1899",
     "style": "Art Nouveau",
     "buildingType": "Cultural, Institutional",
@@ -2431,6 +2543,7 @@
   {
     "id": 113,
     "name": "Quattro Canti",
+    "description": "Baroque crossroads framed by four façades.",
     "yearBuilt": "1608",
     "style": "Baroque",
     "buildingType": "Plaza/ Garden",
@@ -2453,6 +2566,7 @@
   {
     "id": 114,
     "name": "Porte Dauphine Métro Station",
+    "description": "Hector Guimard's Art Nouveau Métro entrance.",
     "yearBuilt": "1900",
     "style": "Art Nouveau",
     "buildingType": "Utility",
@@ -2472,6 +2586,7 @@
   {
     "id": 115,
     "name": "Maisons Huot",
+    "description": "Pair of curving Art Nouveau houses.",
     "yearBuilt": "1903",
     "style": "Art Nouveau",
     "buildingType": "Cultural, Institutional",
@@ -2494,6 +2609,7 @@
   {
     "id": 116,
     "name": "Casa Batlló",
+    "description": "Gaudí townhouse with a fantastical façade.",
     "yearBuilt": "1904-1906",
     "style": "Art Nouveau",
     "buildingType": "Residential",
@@ -2516,6 +2632,7 @@
   {
     "id": 117,
     "name": "Mița the Cyclist House",
+    "description": "Flamboyant Bucharest townhouse with a domed tower.",
     "yearBuilt": "1910",
     "style": "Art Nouveau",
     "buildingType": "Residential",
@@ -2538,6 +2655,7 @@
   {
     "id": 118,
     "name": "Les Chardons Building",
+    "description": "Paris apartment building with floral ceramics.",
     "yearBuilt": "1903",
     "style": "Art Nouveau",
     "buildingType": "Residential",
@@ -2560,6 +2678,7 @@
   {
     "id": 119,
     "name": "Barcelona Pavilion",
+    "description": "Mies van der Rohe's minimalist pavilion.",
     "yearBuilt": "1929",
     "style": "Modern, International",
     "buildingType": "Cultural, Institutional",
@@ -2582,6 +2701,7 @@
   {
     "id": 120,
     "name": "Villa Savoye",
+    "description": "Le Corbusier's white modernist country house.",
     "yearBuilt": "1929-1930",
     "style": "Modern, International",
     "buildingType": "Residential",
@@ -2604,6 +2724,7 @@
   {
     "id": 121,
     "name": "Mission San Xavier del Bac",
+    "description": "Whitewashed Spanish mission in the Sonoran Desert.",
     "yearBuilt": "1600",
     "style": "Islamic",
     "buildingType": "Religious",
@@ -2626,6 +2747,7 @@
   {
     "id": 122,
     "name": "Seagram Building",
+    "description": "Miesian bronze-and-glass office tower.",
     "yearBuilt": "1958",
     "style": "Modern, International",
     "buildingType": "Mixed-use",
@@ -2648,6 +2770,7 @@
   {
     "id": 123,
     "name": "US Air Force Academy Cadet Chapel",
+    "description": "Dramatic modernist chapel with soaring spires.",
     "yearBuilt": "1963",
     "style": "Modern, International",
     "buildingType": "Cultural, Institutional",
@@ -2670,6 +2793,7 @@
   {
     "id": 124,
     "name": "Rudolph Hall",
+    "description": "Sculptural concrete architecture school at Yale.",
     "yearBuilt": "1963",
     "style": "Brutalist",
     "buildingType": "Cultural, Institutional",
@@ -2692,6 +2816,7 @@
   {
     "id": 125,
     "name": "Habitat 67",
+    "description": "Modular concrete housing from Expo 67.",
     "yearBuilt": "1966-1967",
     "style": "Brutalist",
     "buildingType": "Residential",
@@ -2714,6 +2839,7 @@
   {
     "id": 126,
     "name": "Geisel Library",
+    "description": "Brutalist library shaped like a lantern.",
     "yearBuilt": "1970",
     "style": "Brutalist",
     "buildingType": "Cultural, Institutional",
@@ -2736,6 +2862,7 @@
   {
     "id": 127,
     "name": "Robarts Library",
+    "description": "Fortress-like concrete library in Toronto.",
     "yearBuilt": "1973",
     "style": "Brutalist",
     "buildingType": "Cultural, Institutional",
@@ -2758,6 +2885,7 @@
   {
     "id": 128,
     "name": "Freeway Park Fountain",
+    "description": "Cascading concrete fountain within Freeway Park.",
     "yearBuilt": "1976",
     "style": "Brutalist",
     "buildingType": "Cultural, Institutional",
@@ -2775,6 +2903,7 @@
   {
     "id": 129,
     "name": "Piazza d'Italia",
+    "description": "Colorful postmodern plaza celebrating Italian culture.",
     "yearBuilt": "1978",
     "style": "Post-modern",
     "buildingType": "Plaza/ Garden",
@@ -2797,6 +2926,7 @@
   {
     "id": 130,
     "name": "Neue Staatsgalerie",
+    "description": "Playful postmodern museum with classical references.",
     "yearBuilt": "1984",
     "style": "Post-modern",
     "buildingType": "Cultural, Institutional",
@@ -2819,6 +2949,7 @@
   {
     "id": 131,
     "name": "AT&T Headquarters",
+    "description": "Monumental postmodern corporate headquarters.",
     "yearBuilt": "1984",
     "style": "Post-modern",
     "buildingType": "Mixed-use",
@@ -2836,6 +2967,7 @@
   {
     "id": 132,
     "name": "Team Disney Building",
+    "description": "Playful corporate façade supported by dwarfs.",
     "yearBuilt": "1990",
     "style": "Post-modern",
     "buildingType": "Mixed-use",
@@ -2858,6 +2990,7 @@
   {
     "id": 133,
     "name": "Bundeskanzleramt",
+    "description": "Germany's monumental concrete chancellery.",
     "yearBuilt": "1997-2001",
     "style": "Post-modern",
     "buildingType": "Cultural, Institutional",
@@ -2880,6 +3013,7 @@
   {
     "id": 134,
     "name": "Wexner Center for the Arts",
+    "description": "Deconstructivist arts center crossing its campus.",
     "yearBuilt": "1989",
     "style": "Decon...",
     "buildingType": "Cultural, Institutional",
@@ -2902,6 +3036,7 @@
   {
     "id": 135,
     "name": "Vitra Fire Station",
+    "description": "Zaha Hadid's angular concrete fire station.",
     "yearBuilt": "1989-1993",
     "style": "Decon...",
     "buildingType": "Cultural, Institutional",
@@ -2924,6 +3059,7 @@
   {
     "id": 136,
     "name": "Jewish Museum Berlin",
+    "description": "Zigzagging museum shaped by fractured history.",
     "yearBuilt": "1992-1999",
     "style": "Decon...",
     "buildingType": "Cultural, Institutional",
@@ -2946,6 +3082,7 @@
   {
     "id": 137,
     "name": "Guggenheim Museum Bilbao",
+    "description": "Titanium-clad museum beside the Nervión.",
     "yearBuilt": "1997",
     "style": "Decon...",
     "buildingType": "Cultural, Institutional",
@@ -2968,6 +3105,7 @@
   {
     "id": 138,
     "name": "Phaeno Science Center",
+    "description": "Fluid concrete science center on pilotis.",
     "yearBuilt": "2005",
     "style": "Decon...",
     "buildingType": "Cultural, Institutional",
@@ -2990,6 +3128,7 @@
   {
     "id": 139,
     "name": "Salk Institute for Biological Studies",
+    "description": "Louis Kahn's serene oceanfront laboratories.",
     "yearBuilt": "1965",
     "style": "Modern, International",
     "buildingType": "Cultural, Institutional",
@@ -3012,6 +3151,7 @@
   {
     "id": 140,
     "name": "Machu Picchu",
+    "description": "Inca citadel high in the Andes.",
     "yearBuilt": "1450",
     "style": "Pre-Columbian",
     "buildingType": "Mixed-use",
@@ -3034,6 +3174,7 @@
   {
     "id": 141,
     "name": "Governor's Palace",
+    "description": "Monumental Maya palace at Uxmal.",
     "yearBuilt": "800",
     "style": "Pre-Columbian",
     "buildingType": "Cultural, Institutional",
@@ -3056,6 +3197,7 @@
   {
     "id": 142,
     "name": "Ulm Minster",
+    "description": "Soaring Gothic church with the tallest steeple.",
     "yearBuilt": "1377",
     "style": "Gothic",
     "buildingType": "Religious",
@@ -3078,6 +3220,7 @@
   {
     "id": 143,
     "name": "Borobudur",
+    "description": "Vast terraced Buddhist monument in Java.",
     "yearBuilt": "800",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -3100,6 +3243,7 @@
   {
     "id": 144,
     "name": "Rinpung Dzong",
+    "description": "Bhutanese fortress-monastery overlooking Paro.",
     "yearBuilt": "1400",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -3122,6 +3266,7 @@
   {
     "id": 145,
     "name": "Jetavanaramaya",
+    "description": "Massive brick stupa in ancient Anuradhapura.",
     "yearBuilt": "200",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -3144,6 +3289,7 @@
   {
     "id": 146,
     "name": "Sewu",
+    "description": "Expansive Buddhist temple complex in Java.",
     "yearBuilt": "700",
     "style": "Buddhist",
     "buildingType": "Religious",
@@ -3166,6 +3312,7 @@
   {
     "id": 147,
     "name": "Hemis Monastery",
+    "description": "Ladakh monastery famed for masked festivals.",
     "yearBuilt": "1000",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -3188,6 +3335,7 @@
   {
     "id": 148,
     "name": "Kyichu Lhakhang",
+    "description": "One of Bhutan's oldest sacred temples.",
     "yearBuilt": "600",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -3210,6 +3358,7 @@
   {
     "id": 149,
     "name": "Namgyal Tsemo Monastery",
+    "description": "Hilltop monastery overlooking Leh.",
     "yearBuilt": "1555",
     "style": "Himalayan",
     "buildingType": "Religious",
@@ -3232,6 +3381,7 @@
   {
     "id": 150,
     "name": "Baphuon",
+    "description": "Monumental Khmer temple mountain at Angkor.",
     "yearBuilt": "1000",
     "style": "Khmer",
     "buildingType": "Religious",
@@ -3254,6 +3404,7 @@
   {
     "id": 151,
     "name": "Virupaksha Temple, Hampi",
+    "description": "Living temple within Hampi's ruins.",
     "yearBuilt": "1300",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -3276,6 +3427,7 @@
   {
     "id": 152,
     "name": "Doddabasappa Temple",
+    "description": "Star-shaped Chalukyan temple with ornate carvings.",
     "yearBuilt": "1100",
     "style": "Dravidian",
     "buildingType": "Religious",
@@ -3298,6 +3450,7 @@
   {
     "id": 153,
     "name": "Buckingham Palace",
+    "description": "The British monarch's London residence.",
     "yearBuilt": "1800",
     "style": "Neoclassical",
     "buildingType": "Cultural, Institutional",
@@ -3320,6 +3473,7 @@
   {
     "id": 154,
     "name": "Reichstag Building",
+    "description": "Historic parliament building crowned by glass dome.",
     "yearBuilt": "1884",
     "style": "Neoclassical",
     "buildingType": "Cultural, Institutional",
@@ -3342,6 +3496,7 @@
   {
     "id": 155,
     "name": "Fallingwater",
+    "description": "Frank Lloyd Wright house over a waterfall.",
     "yearBuilt": "1936",
     "style": "Modern, International",
     "buildingType": "Residential",
@@ -3364,6 +3519,7 @@
   {
     "id": 156,
     "name": "Johnson House/Glass House",
+    "description": "Philip Johnson's transparent modernist residence.",
     "yearBuilt": "1948",
     "style": "Modern, International",
     "buildingType": "Residential",
@@ -3383,6 +3539,7 @@
   {
     "id": 157,
     "name": "Raqmu/Petra",
+    "description": "Rose-red Nabataean city carved into cliffs.",
     "yearBuilt": "BC",
     "style": "Egyptian",
     "buildingType": "Cultural, Institutional",
@@ -3402,6 +3559,7 @@
   {
     "id": 158,
     "name": "El Castillo",
+    "description": "Stepped Maya pyramid at Chichén Itzá.",
     "yearBuilt": "900",
     "style": "Pre-Columbian",
     "buildingType": "Cultural, Institutional",
@@ -3424,6 +3582,7 @@
   {
     "id": 159,
     "name": "Roman Baths",
+    "description": "Preserved Roman bathing complex in Bath.",
     "yearBuilt": "100",
     "style": "Greek, Roman",
     "buildingType": "Cultural, Institutional",
@@ -3446,6 +3605,7 @@
   {
     "id": 160,
     "name": "Library of Alexandria",
+    "description": "Ancient world's great center of learning.",
     "yearBuilt": "BC",
     "style": "Egyptian",
     "buildingType": "Cultural, Institutional",
@@ -3468,6 +3628,7 @@
   {
     "id": 161,
     "name": "University of al-Qarawiyyin",
+    "description": "Historic mosque and university in Fez.",
     "yearBuilt": "800",
     "style": "Islamic",
     "buildingType": "Cultural, Institutional",

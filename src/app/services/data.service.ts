@@ -12,6 +12,7 @@ export interface Group {
 export interface Item {
   id: number;
   name: string;
+  description?: string;
   yearBuilt: string;
   style: string;
   buildingType: string;

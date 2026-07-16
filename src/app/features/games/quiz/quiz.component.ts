@@ -34,7 +34,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       kicker: 'Place memory',
       description: 'Match each wonder to the place that shaped its story.',
       detail: 'Locations',
-      color: cssVar(COLOR_VARS.category2),
+      color: cssVar(COLOR_VARS.gameQuizLocation),
       icon: 'bi-geo-alt',
     },
     {

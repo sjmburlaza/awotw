@@ -46,29 +46,15 @@
                   <img [src]="item.imageURL" loading="lazy" decoding="async" [alt]="item.name" />
                 </div>
                 <div class="item__body">
-                  <div class="item__title-row">
-                    <span class="item__name">{{ item.name }}</span>
-                    <span
-                      class="tooltip item__info"
-                      [appTooltip]="item.wiki?.extract || 'No description available.'"
-                    >
-                      <i class="bi bi-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                  <div class="item__facts">
-                    <span>
-                      <i class="bi bi-calendar3" aria-hidden="true"></i>
-                      {{ item.yearBuilt }}
-                    </span>
-                    <span>
-                      <i class="bi bi-columns-gap" aria-hidden="true"></i>
-                      {{ item.style }}
-                    </span>
-                  </div>
+                  <span class="item__name">{{ item.name }}</span>
                   <div class="item__location">
                     <i class="bi bi-geo-alt" aria-hidden="true"></i>
                     <span>{{ item.location }}</span>
                   </div>
+                  <p class="item__description">
+                    <i class="bi bi-lightbulb" aria-hidden="true"></i>
+                    <span>{{ item.description }}</span>
+                  </p>
                 </div>
               </a>
             }
