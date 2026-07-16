@@ -85,6 +85,12 @@ describe('QuizComponent', () => {
     expect(component.quizzes.map((quiz) => quiz.title)).toContain('Which is tallest?');
   });
 
+  it('uses the dedicated fuchsia accent for the location quiz mode', () => {
+    const locationQuiz = component.quizzes.find((quiz) => quiz.code === 'location');
+
+    expect(locationQuiz?.color).toBe('var(--app-game-quiz-location)');
+  });
+
   it('generates five unique-height building choices and selects the tallest answer', () => {
     const tallestQuiz = component.quizzes.find((quiz) => quiz.code === 'tallest');
     if (!tallestQuiz) throw new Error('Tallest quiz is missing');

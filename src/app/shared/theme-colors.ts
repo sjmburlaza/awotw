@@ -60,6 +60,7 @@ export const COLOR_VARS = {
   gameTimeline: '--app-game-timeline',
   gamePuzzle: '--app-game-puzzle',
   gameQuiz: '--app-game-quiz',
+  gameQuizLocation: '--app-game-quiz-location',
   gameWorldTour: '--app-game-world-tour',
   gameTallest: '--app-game-tallest',
   category1: '--app-category-1',
