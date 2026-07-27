@@ -93,7 +93,7 @@
     align-items: center;
 
     &__bar {
-      width: 1260px;
+      width: min(1260px, 100%);
       border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
     }
@@ -101,7 +101,7 @@
     &__doughnut {
       display: flex;
       justify-content: center;
-      width: 1260px;
+      width: min(1260px, 100%);
       border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
 
@@ -114,27 +114,29 @@
       }
 
       &__country {
-        width: 560px;
+        width: min(560px, 50%);
+        min-width: 0;
       }
 
       &__year {
-        width: 560px;
+        width: min(560px, 50%);
+        min-width: 0;
       }
     }
 
     &__global-map {
       display: flex;
       justify-content: center;
-      width: 1260px;
+      width: min(1260px, 100%);
       border-bottom: 1px solid var(--app-border);
       padding-bottom: 24px;
     }
 
     &__line {
-      width: 1260px;
+      width: min(1260px, 100%);
       border-bottom: 1px solid var(--app-border);
       padding-bottom: 56px;
-      padding-left: 56px;
+      padding-left: clamp(24px, 4vw, 56px);
       background-color: var(--app-surface-muted);
 
       .title {
@@ -144,6 +146,28 @@
         text-align: center;
         margin: 36px 0;
       }
+    }
+  }
+}
+
+@media (max-width: 1280px) {
+  .charts-container {
+    .charts-header {
+      grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
+
+      &__title {
+        padding-inline: 16px;
+      }
+
+      h1 {
+        font-size: 21px;
+      }
+    }
+
+    .nav {
+      grid-template-columns: minmax(320px, 1fr) auto;
+      gap: 10px;
+      padding-inline: 12px;
     }
   }
 }
