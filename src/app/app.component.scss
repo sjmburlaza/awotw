@@ -10,6 +10,8 @@
   }
 
   .header {
+    position: relative;
+    z-index: 1001;
     height: 80px;
   }
 
