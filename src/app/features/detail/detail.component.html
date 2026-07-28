@@ -10,6 +10,22 @@
       }
     </div>
     <div class="details">
+      <div class="details__identity">
+        <a
+          class="details__name"
+          [href]="details.descriptionURL"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="'Open reference page for ' + details.name"
+        >
+          {{ details.name }}
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+        <div class="details__location">
+          <i class="bi bi-pin-map"></i>
+          <span>{{ details.location }}</span>
+        </div>
+      </div>
       <div class="details__image">
         @if (loading) {
           <app-loader-tetris></app-loader-tetris>
@@ -24,32 +40,56 @@
         }
       </div>
       @if (!loading) {
-        <div class="details__texts">
-          <div class="left-section">
-            <div class="name">
-              <a
-                [href]="details.descriptionURL"
-                target="_blank"
-                rel="noopener noreferrer"
-                [attr.aria-label]="'Open reference page for ' + details.name"
-              >
-                <span> {{ details.name }} </span>
-                <!-- <i class="bi bi-box-arrow-up-right"></i> -->
-              </a>
-            </div>
-            <div class="location">
-              <i class="bi bi-pin-map"></i>
-              <span> {{ details.location }} </span>
+        <section class="explain" aria-labelledby="explain-heading">
+          <div class="explain__heading">
+            <div>
+              <h2 id="explain-heading">Choose your lens</h2>
             </div>
           </div>
 
-          @let wikiExtract = details.wiki?.extract;
-          @if (wikiExtract) {
-            <div class="right-section">
-              <div class="description">{{ wikiExtract }}</div>
+          <div class="explain__layout">
+            <div class="explain__modes" role="tablist" aria-label="Explanation audience">
+              @for (option of explanationOptions; track option.id) {
+                <button
+                  type="button"
+                  role="tab"
+                  class="explain__mode"
+                  [class.explain__mode--active]="selectedExplanationMode === option.id"
+                  [attr.aria-selected]="selectedExplanationMode === option.id"
+                  [attr.aria-controls]="'explanation-panel'"
+                  (click)="selectExplanationMode(option.id)"
+                >
+                  <i class="bi {{ option.icon }}"></i>
+                  <span>{{ option.label }}</span>
+                </button>
+              }
             </div>
-          }
-        </div>
+
+            <div class="explain__answer-wrap">
+              <div
+                id="explanation-panel"
+                class="explain__answer"
+                role="tabpanel"
+                aria-live="polite"
+              >
+                <div class="explain__content">
+                  <p>{{ selectedExplanationSummary }}</p>
+                  @if (selectedExplanationSourceURL) {
+                    <a
+                      class="explain__source"
+                      [href]="selectedExplanationSourceURL"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View source
+                      <i class="bi bi-box-arrow-up-right"></i>
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       }
     </div>
     <div class="next-btn control-btn">

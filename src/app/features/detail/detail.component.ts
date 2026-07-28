@@ -2,11 +2,19 @@ import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, take } from 'rxjs';
-import { DataService, Item } from 'src/app/services/data.service';
+import { DataService, ExplanationMode, Item } from 'src/app/services/data.service';
 import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris.component';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
 import { SortMode } from 'src/app/shared/constants/sort-mode.const';
 import { sortWondersByMode } from 'src/app/shared/utils-helper';
+
+type LensMode = ExplanationMode | 'wikipedia';
+
+interface ExplanationOption {
+  id: LensMode;
+  label: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-detail',
@@ -30,6 +38,32 @@ export class DetailComponent implements OnInit, OnDestroy {
   currentSortMode = SortMode.STYLE;
   wondersData: Item[] = [];
   errorMessage = '';
+  selectedExplanationMode: LensMode = 'child';
+
+  readonly explanationOptions: ExplanationOption[] = [
+    { id: 'child', label: 'Explain like I’m 10', icon: 'bi-emoji-smile' },
+    { id: 'student', label: 'Architecture student', icon: 'bi-rulers' },
+    { id: 'tourist', label: 'Tourist summary', icon: 'bi-camera' },
+    { id: 'engineering', label: 'Engineering perspective', icon: 'bi-gear' },
+    { id: 'historical', label: 'Historical context', icon: 'bi-hourglass-split' },
+    { id: 'wikipedia', label: 'From Wikipedia', icon: 'bi-wikipedia' },
+  ];
+
+  get selectedExplanationSummary(): string {
+    if (this.selectedExplanationMode === 'wikipedia') {
+      return this.details?.wiki?.extract || 'No Wikipedia description is available.';
+    }
+
+    return this.details?.explanations?.[this.selectedExplanationMode]?.summary || '';
+  }
+
+  get selectedExplanationSourceURL(): string | undefined {
+    if (this.selectedExplanationMode === 'wikipedia') {
+      return this.details?.wiki?.wikipedia;
+    }
+
+    return this.details?.explanations?.[this.selectedExplanationMode]?.sourceURL;
+  }
 
   ngOnInit(): void {
     combineLatest({
@@ -97,8 +131,13 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.currentDetailId = id;
     this.currentDetailIndex = detailIndex;
     this.details = data[detailIndex];
+    this.selectedExplanationMode = 'child';
     this.loading = true;
     this.preloadDetailImage(this.details);
+  }
+
+  selectExplanationMode(mode: LensMode): void {
+    this.selectedExplanationMode = mode;
   }
 
   goBack(): void {

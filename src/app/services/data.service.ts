@@ -30,6 +30,14 @@ export interface Item {
     extract?: string;
     wikipedia?: string;
   };
+  explanations?: Record<ExplanationMode, Explanation>;
+}
+
+export type ExplanationMode = 'child' | 'student' | 'tourist' | 'engineering' | 'historical';
+
+export interface Explanation {
+  summary: string;
+  sourceURL?: string;
 }
 
 export type TallestBuilding = {
