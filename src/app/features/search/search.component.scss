@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1160px) {
+  @include mixins.at-most(lg) {
     align-items: stretch;
     padding: 0 16px 32px;
   }
@@ -16,7 +16,7 @@
     font-size: 24px;
     font-family: 'Barlow';
 
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       margin: 24px 0;
       text-align: center;
     }
@@ -30,7 +30,7 @@
     column-gap: 30px;
     margin-bottom: 36px;
 
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       width: 100%;
       gap: 20px 16px;
     }
@@ -46,7 +46,7 @@
       row-gap: 4px;
       cursor: pointer;
 
-      @media (max-width: 1160px) {
+      @include mixins.at-most(lg) {
         width: min(100%, 302px);
       }
 
@@ -60,7 +60,7 @@
         border-radius: 8px;
         background: var(--app-surface-muted);
 
-        @media (max-width: 1160px) {
+        @include mixins.at-most(lg) {
           width: 100%;
           height: auto;
           aspect-ratio: 3 / 2;
@@ -71,7 +71,7 @@
           max-height: 200px;
           object-fit: cover;
 
-          @media (max-width: 1160px) {
+          @include mixins.at-most(lg) {
             width: 100%;
             height: 100%;
             max-width: none;
@@ -114,7 +114,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       position: static;
       padding: 40px 0;
       transform: none;
@@ -129,7 +129,7 @@
         font-size: 36px;
         font-family: 'Barlow';
 
-        @media (max-width: 1160px) {
+        @include mixins.at-most(lg) {
           font-size: clamp(24px, 8vw, 36px);
         }
       }
@@ -138,7 +138,7 @@
       img {
         height: 360px;
 
-        @media (max-width: 1160px) {
+        @include mixins.at-most(lg) {
           width: 100%;
           max-width: 360px;
           height: auto;

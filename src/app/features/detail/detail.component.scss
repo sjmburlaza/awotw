@@ -224,7 +224,7 @@
   left: 50%;
 }
 
-@media (max-width: 1080px) {
+@include mixins.at-most(lg) {
   .details {
     width: calc(100vw - 112px);
 

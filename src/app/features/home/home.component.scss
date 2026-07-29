@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .home-container {
   position: fixed;
   bottom: 24px;
@@ -5,15 +7,10 @@
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 900px;
+  gap: clamp(20px, 1.25vw, 24px);
+  width: clamp(900px, 62.5vw, 1200px);
 
-  @media (min-width: 1920px) {
-    width: 1200px;
-    gap: 24px;
-  }
-
-  @media (max-width: 1160px) {
+  @include mixins.at-most(lg) {
     position: static;
     width: 100%;
     min-height: 0;
@@ -21,7 +18,7 @@
     transform: none;
   }
 
-  @media (max-width: 420px) {
+  @include mixins.at-most(sm) {
     padding: 16px 12px 20px;
   }
 }
@@ -52,21 +49,17 @@
   justify-content: center;
   align-items: end;
   column-gap: 8px;
-  font-size: 12px;
+  font-size: clamp(12px, 0.833vw, 16px);
   font-family: 'Barlow';
 
-  @media (min-width: 1920px) {
-    font-size: 16px;
-  }
-
-  @media (max-width: 1160px) {
+  @include mixins.at-most(lg) {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
     font-size: 13px;
   }
 
-  @media (max-width: 420px) {
+  @include mixins.at-most(sm) {
     gap: 10px;
   }
 
@@ -75,13 +68,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 40px;
+    min-width: clamp(40px, 2.5vw, 48px);
 
-    @media (min-width: 1920px) {
-      min-width: 48px;
-    }
-
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       flex-direction: row;
       align-items: flex-start;
       gap: 12px;
@@ -92,16 +81,10 @@
     .items {
       display: flex;
       flex-wrap: wrap-reverse;
-      row-gap: 8px;
-      column-gap: 8px;
+      gap: clamp(8px, calc(1.667vw - 16px), 16px);
       justify-content: center;
 
-      @media (min-width: 1920px) {
-        row-gap: 16px;
-        column-gap: 16px;
-      }
-
-      @media (max-width: 1160px) {
+      @include mixins.at-most(lg) {
         min-width: 0;
         flex: 1 1 auto;
         flex-wrap: wrap;
@@ -112,8 +95,8 @@
       .item {
         display: flex;
         transition: transform 300ms ease-out;
-        width: 32px;
-        height: 4.2vh;
+        width: clamp(32px, 2.292vw, 44px);
+        height: min(4.2vh, 44px);
         justify-content: center;
         align-items: center;
         cursor: pointer;
@@ -122,12 +105,7 @@
         font: inherit;
         appearance: none;
 
-        @media (min-width: 1920px) {
-          width: 44px;
-          height: 44px;
-        }
-
-        @media (max-width: 1160px) {
+        @include mixins.at-most(lg) {
           width: 44px;
           height: 44px;
         }
@@ -138,7 +116,7 @@
         z-index: 1;
       }
 
-      @media (hover: none) {
+      @include mixins.no-hover {
         .item:hover {
           transform: none;
         }
@@ -164,7 +142,7 @@
         color: var(--app-focus);
       }
 
-      @media (max-width: 1160px) {
+      @include mixins.at-most(lg) {
         display: flex;
         order: -1;
         width: auto;
@@ -187,7 +165,7 @@
   font-family: 'Barlow';
   font-size: 18px;
 
-  @media (max-width: 1160px) {
+  @include mixins.at-most(lg) {
     position: sticky;
     top: 0;
     z-index: 2;
@@ -208,7 +186,7 @@
     font: inherit;
     appearance: none;
 
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       min-height: 36px;
       padding-inline: 4px;
     }
@@ -224,7 +202,7 @@
     transform: scale(1.2);
     color: var(--app-focus);
 
-    @media (max-width: 1160px) {
+    @include mixins.at-most(lg) {
       transform: scale(1.08);
     }
   }

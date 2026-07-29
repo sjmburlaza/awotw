@@ -1,3 +1,5 @@
+@use 'mixins';
+
 $cell-size: 20px;
 $cell-step: 22px;
 $well-cells: 8;
@@ -81,7 +83,7 @@ $well-cells: 8;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include mixins.reduced-motion {
   .loader-tetris__piece,
   .loader-tetris__piece--clearing {
     animation: none;

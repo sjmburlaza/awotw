@@ -314,7 +314,7 @@
   transition: transform 180ms ease;
 }
 
-@media (max-width: 1280px), (max-height: 760px) {
+@include mixins.at-most-or-shorter(xl, compact) {
   .quiz-home {
     --quiz-home-content-padding: 8px;
 

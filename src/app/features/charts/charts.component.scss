@@ -150,7 +150,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@include mixins.at-most(xl) {
   .charts-container {
     .charts-header {
       grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);

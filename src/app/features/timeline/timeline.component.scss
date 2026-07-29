@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .timeline-container {
   width: min(100%, 1440px);
   margin: 0 auto;
@@ -194,7 +196,7 @@
   font-family: 'Barlow';
 }
 
-@media (max-width: 760px) {
+@include mixins.at-most(md) {
   .timeline {
     margin-left: 0;
     border-left: none;

@@ -1,7 +1,7 @@
 @use 'mixins';
 
 :host {
-  @media (max-width: 767px) {
+  @include mixins.at-most(md) {
     display: block;
     width: 100%;
   }
@@ -14,7 +14,7 @@
   padding: 24px;
   padding-bottom: 0;
 
-  @media (max-width: 767px) {
+  @include mixins.at-most(md) {
     display: flex;
     flex-wrap: wrap;
     height: auto;
@@ -28,7 +28,7 @@
     display: flex;
     gap: 16px;
 
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       display: flex;
       flex: 0 0 auto;
       align-items: center;
@@ -38,7 +38,7 @@
     &__home-slot {
       display: contents;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         display: flex;
         flex: 0 0 44px;
         align-items: center;
@@ -51,7 +51,7 @@
       align-items: center;
       gap: 4px;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         width: 100%;
         justify-content: center;
         padding-inline: 0;
@@ -68,7 +68,7 @@
         font-family: 'Londrina Outline', sans-serif;
         margin-left: 8px;
 
-        @media (max-width: 767px) {
+        @include mixins.at-most(md) {
           display: none;
         }
 
@@ -83,7 +83,7 @@
       background-color: transparent;
       height: 28px;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         width: 100%;
         min-width: 44px;
         height: 44px;
@@ -100,7 +100,7 @@
       }
     }
 
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       > button {
         width: max-content;
         min-width: 0;
@@ -119,7 +119,7 @@
     text-wrap: balance;
     @include mixins.gradient-text;
 
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       order: 2;
       width: 100%;
       flex: 0 0 100%;
@@ -131,7 +131,7 @@
 }
 
 .header--search-active {
-  @media (max-width: 767px) {
+  @include mixins.at-most(md) {
     .button {
       flex: 1 1 0;
     }
@@ -172,7 +172,7 @@
     flex: 0 0 auto;
   }
 
-  @media (max-width: 767px) {
+  @include mixins.at-most(md) {
     display: flex;
     flex: 0 0 auto;
     flex-wrap: nowrap;
@@ -181,7 +181,7 @@
   }
 
   &__search-bar {
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       display: block;
       width: 44px;
       flex: 0 0 44px;
@@ -193,7 +193,7 @@
       border: 1px solid var(--app-border);
       background-color: transparent;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         width: 100%;
         height: 44px;
       }
@@ -208,7 +208,7 @@
       background-color: transparent;
       color: var(--app-text);
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         display: none;
       }
     }
@@ -219,7 +219,7 @@
   }
 
   &__bg-mode {
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       width: 44px;
       flex: 0 0 44px;
     }
@@ -228,7 +228,7 @@
       border: none;
       background-color: transparent;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         width: 100%;
         height: 44px;
       }
@@ -244,7 +244,7 @@
   }
 
   &__games {
-    @media (max-width: 767px) {
+    @include mixins.at-most(md) {
       width: 44px;
       flex: 0 0 44px;
     }
@@ -262,7 +262,7 @@
       font-family: 'Michroma', sans-serif;
       font-size: 12px;
 
-      @media (max-width: 767px) {
+      @include mixins.at-most(md) {
         width: 100%;
         min-height: 44px;
         padding-inline: 0;
@@ -271,7 +271,7 @@
       span {
         margin-top: -2px;
 
-        @media (max-width: 767px) {
+        @include mixins.at-most(md) {
           display: none;
         }
       }
@@ -279,7 +279,7 @@
       .mobile-only {
         display: none;
 
-        @media (max-width: 767px) {
+        @include mixins.at-most(md) {
           display: inline-block;
           font-size: 20px;
           line-height: 1;
@@ -293,7 +293,7 @@
   }
 }
 
-@media (max-width: 420px) {
+@include mixins.at-most(sm) {
   .header {
     column-gap: 2px;
     row-gap: 10px;

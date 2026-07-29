@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .map-container {
   position: fixed;
   top: 50%;
@@ -11,7 +13,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@include mixins.at-most(xl) {
   .map-container {
     #map {
       height: 76vh;

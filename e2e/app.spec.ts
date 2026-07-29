@@ -33,6 +33,10 @@ test.describe('Architectural Wonders app', () => {
       width: '900px',
     });
     await expect(page.locator('.header__globe__home-slot')).toHaveCSS('display', 'contents');
+
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await expect(page.locator('.home-container')).toHaveCSS('width', '1200px');
+    await expect(page.locator('.home-container')).toHaveCSS('gap', '24px');
   });
 
   test('keeps the original navigation layout at tablet width', async ({ page }) => {
