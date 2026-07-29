@@ -25,6 +25,8 @@ interface PopupPosition {
   top: number;
 }
 
+const POPUP_MARKER_GAP_PX = 8;
+
 @Component({
   selector: 'app-globe',
   imports: [RouterModule, LoaderComponent, LoaderTetrisComponent],
@@ -59,6 +61,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   private popupTrackingFrameId?: number;
   private popupImageLoadId = 0;
   private popupImagePreloader?: HTMLImageElement;
+  private globeOffsetY = 0;
 
   ngAfterViewInit(): void {
     this.initGlobe();
@@ -117,6 +120,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     if (!this.globe || clientWidth <= 0 || clientHeight <= 0) return;
 
     this.globe.width(clientWidth).height(clientHeight);
+    this.centerPopupOnGlobe();
   }
 
   private stopGlobeResizeTracking(): void {
@@ -275,6 +279,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       }
 
       this.updatePopupPosition();
+      this.centerPopupOnGlobe();
       this.popupTrackingFrameId = requestAnimationFrame(trackPopupPosition);
     };
 
@@ -301,6 +306,42 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       left: markerRect.left - globeRect.left + markerRect.width / 2,
       top: markerRect.top - globeRect.top,
     };
+  }
+
+  private centerPopupOnGlobe(): void {
+    if (!this.globe || !this.selectedMarkerElement) return;
+
+    const popupElement =
+      this.globeContainer.nativeElement.parentElement?.querySelector<HTMLElement>('.popup-card');
+
+    if (!popupElement) return;
+
+    const globeRect = this.globeContainer.nativeElement.getBoundingClientRect();
+    const popupHeight = popupElement.getBoundingClientRect().height;
+    const markerRect = this.selectedMarkerElement.getBoundingClientRect();
+    const globeHeight = this.globeContainer.nativeElement.clientHeight || globeRect.height;
+
+    if (popupHeight <= 0 || globeHeight <= 0) return;
+
+    const markerScreenPosition = this.selectedWonder
+      ? this.globe.getScreenCoords(this.selectedWonder.latNum, this.selectedWonder.lonNum, 0)
+      : null;
+    const markerTop = markerRect.top - globeRect.top;
+    const markerAnchorInset =
+      markerScreenPosition && Number.isFinite(markerScreenPosition.y)
+        ? Math.max(0, markerScreenPosition.y - markerTop)
+        : markerRect.height;
+    const desiredOffset = markerAnchorInset + POPUP_MARKER_GAP_PX + popupHeight / 2;
+    const maximumOffset = Math.max(0, globeHeight / 2 - markerAnchorInset);
+
+    this.setGlobeOffset(Math.min(desiredOffset, maximumOffset));
+  }
+
+  private setGlobeOffset(offsetY: number): void {
+    if (!this.globe || Math.abs(this.globeOffsetY - offsetY) < 0.5) return;
+
+    this.globeOffsetY = offsetY;
+    this.globe.globeOffset([0, offsetY]);
   }
 
   private createPinSvg(color: string): SVGSVGElement {

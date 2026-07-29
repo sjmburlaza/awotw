@@ -17,6 +17,12 @@
   overflow: hidden;
 }
 
+.globe-wrapper > .state-message {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .globe-container {
   position: relative;
   z-index: 0;
@@ -25,8 +31,13 @@
 }
 
 .popup-card {
+  --marker-left: 50%;
+  --marker-top: 50%;
+
   position: absolute;
-  width: 240px;
+  left: var(--marker-left);
+  top: var(--marker-top);
+  width: min(240px, calc(100% - 24px));
   transform: translate(-50%, calc(-100% - 8px));
   background: var(--app-globe-popup-bg);
   color: var(--app-globe-popup-text);
@@ -103,14 +114,10 @@
 
 .loader {
   position: absolute;
-  inset: 0; // shorthand for top/right/bottom/left: 0
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.hidden {
-  display: none;
 }
 
 @include mixins.at-most(xl) {
@@ -122,5 +129,94 @@
     gap: 14px;
     margin-bottom: 12px;
     font-size: 16px;
+  }
+}
+
+@include mixins.at-most(lg) {
+  .globe-page {
+    position: static;
+    width: 100%;
+    padding: 12px clamp(16px, 4vw, 32px) 28px;
+    transform: none;
+  }
+
+  .navigator {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    margin: 8px 0 14px;
+    padding-inline: 8px;
+    font-size: 15px;
+    text-align: center;
+
+    a {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+    }
+  }
+
+  .globe-wrapper {
+    height: clamp(440px, calc(100dvh - 230px), 720px);
+    min-height: 440px;
+    border-radius: 10px;
+  }
+
+  .popup-card {
+    max-height: calc(100% - 24px);
+    overflow-y: auto;
+  }
+
+  .popup-card > strong {
+    display: block;
+    padding-right: 36px;
+  }
+
+  .close-btn {
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@include mixins.at-most(md) {
+  .globe-page {
+    padding: 8px 12px 20px;
+  }
+
+  .navigator {
+    margin-block: 4px 10px;
+    font-size: 14px;
+
+    a {
+      min-height: 44px;
+    }
+  }
+
+  .globe-wrapper {
+    height: clamp(400px, calc(100dvh - 220px), 640px);
+    min-height: 400px;
+    overflow: visible;
+  }
+
+  .globe-container {
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .popup-card {
+    left: var(--marker-left);
+    top: var(--marker-top);
+    max-height: min(360px, calc(100dvh - 24px));
+    padding: 14px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    font-size: 13px;
+    transform: translate(-50%, calc(-100% - 8px));
+  }
+
+  .popup-card__image-frame {
+    margin-block: 10px;
   }
 }

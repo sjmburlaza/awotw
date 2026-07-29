@@ -11,9 +11,12 @@ interface TestWonderMarker extends Item {
 
 interface GlobeComponentInternals {
   globe?: {
+    getScreenCoords(lat: number, lng: number, altitude?: number): { x: number; y: number };
+    globeOffset(offset: [number, number]): unknown;
     height(value: number): unknown;
     width(value: number): unknown;
   };
+  centerPopupOnGlobe(): void;
   resizeGlobe(): void;
   selectWonder(wonder: TestWonderMarker, markerElement: HTMLElement): void;
 }
@@ -95,6 +98,17 @@ describe('Globe', () => {
     expect(heading.textContent?.trim()).toBe('A world of architectural wonders');
   });
 
+  it('keeps the loading indicator at the page level', () => {
+    component.isLoading = true;
+    fixture.detectChanges();
+
+    const loader = fixture.nativeElement.querySelector('.loader') as HTMLElement;
+    const globeWrapper = fixture.nativeElement.querySelector('.globe-wrapper') as HTMLElement;
+
+    expect(loader.parentElement).toBe(fixture.nativeElement);
+    expect(globeWrapper.contains(loader)).toBe(false);
+  });
+
   it('links to the map and World Tour Mode from the globe navigator', () => {
     const links = Array.from(
       fixture.nativeElement.querySelectorAll('.navigator a'),
@@ -125,7 +139,7 @@ describe('Globe', () => {
     expect(heightSpy).toHaveBeenCalledWith(640);
   });
 
-  it('positions the popup directly above the selected marker', () => {
+  it('centers the popup directly above the selected marker in every view', () => {
     const globeContainer = fixture.nativeElement.querySelector('.globe-container') as HTMLElement;
     const markerElement = document.createElement('div');
     const componentInternals = component as unknown as GlobeComponentInternals;
@@ -141,8 +155,45 @@ describe('Globe', () => {
     fixture.detectChanges();
 
     const popup = fixture.nativeElement.querySelector('.popup-card') as HTMLElement;
-    expect(popup.style.left).toBe('195px');
-    expect(popup.style.top).toBe('120px');
+    expect(popup.style.getPropertyValue('--marker-left')).toBe('195px');
+    expect(popup.style.getPropertyValue('--marker-top')).toBe('120px');
+  });
+
+  it('offsets the globe so the anchored popup is centered instead of the marker', () => {
+    const globeContainer = fixture.nativeElement.querySelector('.globe-container') as HTMLElement;
+    const markerElement = document.createElement('div');
+    const componentInternals = component as unknown as GlobeComponentInternals;
+    const globeOffsetSpy = jest.fn();
+    componentInternals.globe!.getScreenCoords = jest.fn(() => ({ x: 195, y: 135 }));
+    componentInternals.globe!.globeOffset = globeOffsetSpy;
+
+    Object.defineProperty(globeContainer, 'clientHeight', {
+      configurable: true,
+      value: 600,
+    });
+    jest
+      .spyOn(globeContainer, 'getBoundingClientRect')
+      .mockReturnValue(createDomRect({ left: 100, top: 50, width: 800, height: 600 }));
+    jest
+      .spyOn(markerElement, 'getBoundingClientRect')
+      .mockReturnValue(createDomRect({ left: 280, top: 170, width: 30, height: 30 }));
+
+    componentInternals.selectWonder(wonder, markerElement);
+    fixture.detectChanges();
+
+    const popup = fixture.nativeElement.querySelector('.popup-card') as HTMLElement;
+    jest
+      .spyOn(popup, 'getBoundingClientRect')
+      .mockReturnValue(createDomRect({ left: 75, top: 0, width: 240, height: 260 }));
+
+    componentInternals.centerPopupOnGlobe();
+
+    expect(globeOffsetSpy).toHaveBeenCalledWith([0, 153]);
+
+    globeOffsetSpy.mockClear();
+    component.clearSelectedWonder();
+
+    expect(globeOffsetSpy).not.toHaveBeenCalled();
   });
 
   it('shows the image loader when the next selected marker image is still loading', () => {

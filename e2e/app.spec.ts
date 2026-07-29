@@ -101,9 +101,7 @@ test.describe('Architectural Wonders app', () => {
 
       const loader = page.locator('.home-container .loader');
       const loaderWell = page.locator('.home-container .loader-tetris__well');
-      const initialPiece = page.locator(
-        '.home-container .loader-tetris__piece--initial',
-      );
+      const initialPiece = page.locator('.home-container .loader-tetris__piece--initial');
 
       await expect(loader).toBeVisible();
       await expect(initialPiece).toBeVisible();
@@ -265,6 +263,47 @@ test.describe('Architectural Wonders app', () => {
     expect(mapBox.x).toBeGreaterThanOrEqual(0);
     expect(mapBox.x + mapBox.width).toBeLessThanOrEqual(320);
     await expectNoHorizontalOverflow(page);
+  });
+
+  test('lays out the globe page for a phone viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/globe');
+
+    await expect(
+      page.getByRole('heading', { name: 'A world of architectural wonders' }),
+    ).toBeVisible({ timeout: 15_000 });
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole('region', {
+        name: 'Interactive 3D globe of architectural wonder locations',
+      }),
+    ).toBeVisible();
+    await expect(page.locator('.globe-page')).toHaveCSS('position', 'static');
+
+    const globeBox = await page.locator('.globe-wrapper').boundingBox();
+
+    if (!globeBox) {
+      throw new Error('Expected the responsive globe to be visible.');
+    }
+
+    expect(globeBox.x).toBeGreaterThanOrEqual(0);
+    expect(globeBox.x + globeBox.width).toBeLessThanOrEqual(320);
+    expect(globeBox.height).toBeGreaterThanOrEqual(400);
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('keeps the desktop globe composition unchanged', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/globe');
+
+    await expect(
+      page.getByRole('heading', { name: 'A world of architectural wonders' }),
+    ).toBeVisible();
+    await expect(page.locator('.globe-page')).toHaveCSS('position', 'fixed');
+    await expect(page.locator('.globe-page')).toHaveCSS('width', '1200px');
+    await expect(page.locator('.globe-wrapper')).toHaveCSS('height', '608px');
   });
 
   test('lays out the timeline page as a mobile card flow', async ({ page }) => {

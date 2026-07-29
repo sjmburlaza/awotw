@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   private readonly responsivePaths = new Set<string>([
     URL_PATH.SEARCH,
     URL_PATH.MAP,
+    URL_PATH.GLOBE,
     URL_PATH.TIMELINE,
     URL_PATH.CHARTS,
   ]);
