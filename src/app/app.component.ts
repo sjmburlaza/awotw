@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   protected title = 'architectural-wonders-v2';
   protected isGamesRoute = this.isGamesPath(this.router.url);
+  protected isResponsiveRoute = this.isResponsivePath(this.router.url);
 
   ngOnInit(): void {
     this.router.events
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         this.isGamesRoute = this.isGamesPath(event.urlAfterRedirects);
+        this.isResponsiveRoute = this.isResponsivePath(event.urlAfterRedirects);
       });
   }
 
@@ -34,5 +36,17 @@ export class AppComponent implements OnInit {
     const [path] = url.split(/[?#]/);
 
     return path === URL_PATH.GAMES || path.startsWith(`${URL_PATH.GAMES}/`);
+  }
+
+  private isHomePath(url: string): boolean {
+    const [path] = url.split(/[?#]/);
+
+    return path === '/' || path === URL_PATH.HOME;
+  }
+
+  private isResponsivePath(url: string): boolean {
+    const [path] = url.split(/[?#]/);
+
+    return this.isHomePath(url) || path === URL_PATH.SEARCH;
   }
 }

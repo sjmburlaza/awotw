@@ -94,4 +94,5 @@ Helper scripts in `scripts/` can refresh coordinates, Wikipedia summaries, image
 ## Notes
 
 - Some views depend on network-loaded assets such as OpenStreetMap tiles, external images, Wikipedia links, and globe textures.
-- The layout currently shows a mobile message and is intended primarily for laptop or desktop viewing.
+- The home and search pages support phone, tablet, laptop, and desktop layouts. Other views still
+  show a mobile message and are intended primarily for laptop or desktop viewing.
