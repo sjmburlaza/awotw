@@ -1,13 +1,15 @@
 import {
   AfterViewInit,
   Component,
+  DestroyRef,
   ElementRef,
   inject,
   OnInit,
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { catchError, forkJoin, map, of, take, timer } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataService, Group, Item } from 'src/app/services/data.service';
@@ -17,6 +19,8 @@ import { groupWondersBySortMode } from 'src/app/shared/utils-helper';
 import { URL_PATH } from 'src/app/shared/constants/routes.const';
 import { COLOR_VARS, cssVar } from 'src/app/shared/theme-colors';
 import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris.component';
+
+const HOME_LOADER_MINIMUM_MS = 800;
 
 @Component({
   selector: 'app-home',
@@ -28,6 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   private readonly dataService = inject(DataService);
   private readonly router = inject(Router);
   private readonly loaderService = inject(LoaderService);
+  private readonly destroyRef = inject(DestroyRef);
 
   @ViewChildren('animatedItem', { read: ElementRef })
   animatedItems!: QueryList<ElementRef<HTMLButtonElement>>;
@@ -64,24 +69,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);
-    this.dataService
-      .getWonders()
-      .pipe(take(1))
-      .subscribe({
-        next: (res: Item[]) => {
-          this.data = res;
-          this.groups = groupWondersBySortMode(this.data, SortMode.STYLE);
-          this.errorMessage = '';
-          this.isLoading = false;
-          this.loaderService.setLoading(false);
-        },
-        error: () => {
-          this.data = [];
-          this.groups = [];
-          this.errorMessage = 'Unable to load wonders.';
-          this.isLoading = false;
-          this.loaderService.setLoading(false);
-        },
+    forkJoin({
+      result: this.dataService.getWonders().pipe(
+        take(1),
+        map((data) => ({ data, errorMessage: '' })),
+        catchError(() => of({ data: [] as Item[], errorMessage: 'Unable to load wonders.' })),
+      ),
+      minimumDisplay: timer(HOME_LOADER_MINIMUM_MS),
+    })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(({ result }) => {
+        this.data = result.data;
+        this.groups = result.errorMessage ? [] : groupWondersBySortMode(this.data, SortMode.STYLE);
+        this.errorMessage = result.errorMessage;
+        this.isLoading = false;
+        this.loaderService.setLoading(false);
       });
   }
 

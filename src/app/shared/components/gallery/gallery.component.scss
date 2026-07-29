@@ -107,3 +107,46 @@
     }
   }
 }
+
+@include mixins.at-most(md) {
+  .list-title {
+    margin: 28px 12px 22px;
+    font-size: 18px;
+  }
+
+  .list-tallest,
+  .list-visited {
+    row-gap: 24px;
+    padding: 0;
+  }
+
+  .list-tallest {
+    .item {
+      width: min(100%, 220px);
+
+      &__image {
+        width: 100%;
+      }
+    }
+  }
+
+  .list-visited {
+    .item {
+      width: min(100%, 300px);
+
+      &__image {
+        width: 100%;
+      }
+    }
+  }
+
+  .item__desc {
+    width: 100%;
+    min-width: 0;
+
+    &__labels {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+}

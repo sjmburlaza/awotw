@@ -1,5 +1,15 @@
+@use 'mixins';
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
 .doughnut-chart {
   position: relative;
+  width: 100%;
+  min-width: 0;
   overflow: visible;
 }
 
@@ -115,4 +125,30 @@
   border-top: 6px solid var(--doughnut-tooltip-bg);
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
+}
+
+@include mixins.at-most(md) {
+  .doughnut-chart__legend {
+    gap: 6px 10px;
+    min-height: 0;
+    padding: 0;
+    margin-top: -8px;
+    font-size: 12px;
+  }
+
+  .doughnut-chart__legend-swatch {
+    width: 14px;
+    height: 14px;
+  }
+
+  .doughnut-chart__tooltip {
+    width: max-content;
+    min-width: 0;
+    max-width: calc(100vw - 48px);
+  }
+
+  .doughnut-chart__tooltip-title,
+  .doughnut-chart__tooltip-body {
+    white-space: normal;
+  }
 }

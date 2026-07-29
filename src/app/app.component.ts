@@ -15,6 +15,12 @@ import { URL_PATH } from './shared/constants/routes.const';
 export class AppComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly responsivePaths = new Set<string>([
+    URL_PATH.SEARCH,
+    URL_PATH.MAP,
+    URL_PATH.TIMELINE,
+    URL_PATH.CHARTS,
+  ]);
 
   protected title = 'architectural-wonders-v2';
   protected isGamesRoute = this.isGamesPath(this.router.url);
@@ -47,6 +53,6 @@ export class AppComponent implements OnInit {
   private isResponsivePath(url: string): boolean {
     const [path] = url.split(/[?#]/);
 
-    return this.isHomePath(url) || path === URL_PATH.SEARCH;
+    return this.isHomePath(url) || this.responsivePaths.has(path);
   }
 }

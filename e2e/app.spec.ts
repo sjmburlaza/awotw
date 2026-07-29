@@ -1,5 +1,18 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { inflateSync } from 'node:zlib';
+
+async function expectNoHorizontalOverflow(page: Page): Promise<void> {
+  const viewport = await page.evaluate(() => {
+    const scrollingElement = document.scrollingElement ?? document.documentElement;
+
+    return {
+      clientWidth: scrollingElement.clientWidth,
+      scrollWidth: scrollingElement.scrollWidth,
+    };
+  });
+
+  expect(viewport.scrollWidth).toBeLessThanOrEqual(viewport.clientWidth);
+}
 
 test.describe('Architectural Wonders app', () => {
   test('loads the home page with primary navigation', async ({ page }) => {
@@ -16,6 +29,7 @@ test.describe('Architectural Wonders app', () => {
   test('keeps the desktop home composition unchanged', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto('/');
+    await expect(page.locator('.home-container .item').first()).toBeVisible();
 
     const homeLayout = await page.locator('.home-container').evaluate((element) => {
       const styles = getComputedStyle(element);
@@ -78,11 +92,6 @@ test.describe('Architectural Wonders app', () => {
   });
 
   test('centers the home loader at every viewport size', async ({ page }) => {
-    await page.route('**/assets/json/wonders.json', async (route) => {
-      await new Promise((resolve) => setTimeout(resolve, 1_000));
-      await route.continue();
-    });
-
     for (const viewport of [
       { width: 1280, height: 800 },
       { width: 320, height: 844 },
@@ -92,8 +101,13 @@ test.describe('Architectural Wonders app', () => {
 
       const loader = page.locator('.home-container .loader');
       const loaderWell = page.locator('.home-container .loader-tetris__well');
+      const initialPiece = page.locator(
+        '.home-container .loader-tetris__piece--initial',
+      );
 
       await expect(loader).toBeVisible();
+      await expect(initialPiece).toBeVisible();
+      await expect(initialPiece).toHaveCSS('opacity', '1');
       await expect(page.locator('.home-container')).toHaveCSS('position', 'fixed');
 
       const wellBox = await loaderWell.boundingBox();
@@ -228,16 +242,73 @@ test.describe('Architectural Wonders app', () => {
 
     expect(groupNameBox.x + groupNameBox.width).toBeLessThanOrEqual(firstItemBox.x);
 
-    const viewport = await page.evaluate(() => {
-      const scrollingElement = document.scrollingElement ?? document.documentElement;
+    await expectNoHorizontalOverflow(page);
+  });
 
-      return {
-        clientWidth: scrollingElement.clientWidth,
-        scrollWidth: scrollingElement.scrollWidth,
-      };
-    });
+  test('lays out the map page for a phone viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/map');
 
-    expect(viewport.scrollWidth).toBeLessThanOrEqual(viewport.clientWidth);
+    await expect(page.getByRole('heading', { name: 'Landmarks across the map' })).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.locator('#map')).toBeVisible();
+    await expect(page.locator('.map-container')).toHaveCSS('position', 'static');
+
+    const mapBox = await page.locator('#map').boundingBox();
+
+    if (!mapBox) {
+      throw new Error('Expected the responsive map to be visible.');
+    }
+
+    expect(mapBox.x).toBeGreaterThanOrEqual(0);
+    expect(mapBox.x + mapBox.width).toBeLessThanOrEqual(320);
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('lays out the timeline page as a mobile card flow', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/timeline');
+
+    await expect(
+      page.getByRole('heading', { name: 'Architecture through the millennia' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+
+    const firstTimelineItem = page.locator('.timeline .item').first();
+
+    await expect(firstTimelineItem).toBeVisible();
+    await expect(firstTimelineItem).toHaveCSS('flex-direction', 'row');
+    await expect(page.locator('.timeline')).toHaveCSS('border-left-width', '0px');
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('stacks chart controls and visualizations on a phone', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/charts');
+
+    await expect(page.getByRole('heading', { name: 'Wonders by the numbers' })).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.locator('.chart__bar canvas')).toBeVisible();
+
+    const categoryBoxes = await page.locator('label.category').evaluateAll((elements) =>
+      elements.map((element) => {
+        const rect = element.getBoundingClientRect();
+
+        return { top: rect.top, width: rect.width };
+      }),
+    );
+
+    expect(categoryBoxes).toHaveLength(2);
+    expect(categoryBoxes[0].top).toBeCloseTo(categoryBoxes[1].top, 1);
+    expect(categoryBoxes[0].width).toBeCloseTo(categoryBoxes[1].width, 1);
+    await expect(page.locator('.chart__doughnut')).toHaveCSS('flex-direction', 'column');
+    await expectNoHorizontalOverflow(page);
   });
 
   test('expands and submits search from the mobile navigation', async ({ page }) => {

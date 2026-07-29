@@ -126,6 +126,10 @@
       margin-top: 16px;
       font-size: clamp(30px, 7vw, 42px);
       line-height: 1.05;
+
+      &:empty {
+        display: none;
+      }
     }
   }
 }

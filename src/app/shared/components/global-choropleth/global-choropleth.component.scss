@@ -1,3 +1,5 @@
+@use 'mixins';
+
 :host {
   display: block;
   width: 100%;
@@ -59,5 +61,57 @@
 
   &-label {
     color: var(--app-muted);
+  }
+}
+
+@include mixins.at-most(lg) {
+  :host {
+    height: 620px;
+  }
+
+  .title {
+    margin: 28px 0 20px;
+    font-size: 18px;
+  }
+
+  #world-map {
+    height: 82%;
+  }
+
+  .legend {
+    bottom: 86px;
+  }
+}
+
+@include mixins.at-most(md) {
+  :host {
+    height: 460px;
+  }
+
+  .title {
+    margin: 20px 8px 14px;
+    font-size: 16px;
+  }
+
+  #world-map {
+    height: 80%;
+  }
+
+  .legend {
+    bottom: 56px;
+    left: 8px;
+    min-width: 104px;
+    padding: 8px 10px;
+    font-size: 10px;
+
+    &-title {
+      margin-bottom: 6px;
+    }
+
+    &-color {
+      width: 24px;
+      height: 11px;
+      margin-right: 6px;
+    }
   }
 }

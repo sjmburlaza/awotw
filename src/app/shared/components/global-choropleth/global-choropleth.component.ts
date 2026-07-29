@@ -55,6 +55,11 @@ export class GlobalChoroplethComponent implements AfterViewInit, OnChanges, OnDe
     this.updateMapStyles();
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    this.map?.invalidateSize();
+  }
+
   ngAfterViewInit(): void {
     this.initMap();
     this.loadCountries();

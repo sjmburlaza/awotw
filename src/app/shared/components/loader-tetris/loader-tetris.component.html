@@ -4,6 +4,7 @@
     @for (piece of visiblePieces(); track piece.id) {
       <span
         class="loader-tetris__piece"
+        [class.loader-tetris__piece--initial]="$index === 0 && !isClearing()"
         [class.loader-tetris__piece--clearing]="isClearing()"
         [style.left.px]="piece.left"
         [style.top.px]="piece.top"

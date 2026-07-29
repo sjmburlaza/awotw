@@ -33,6 +33,12 @@ $well-cells: 8;
   will-change: opacity, transform;
 }
 
+.loader-tetris__piece--initial {
+  animation: none;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
 .loader-tetris__piece--clearing {
   animation: tetrisClear 260ms ease-in both;
 }
@@ -87,5 +93,7 @@ $well-cells: 8;
   .loader-tetris__piece,
   .loader-tetris__piece--clearing {
     animation: none;
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }

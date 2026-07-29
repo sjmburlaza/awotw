@@ -187,6 +187,11 @@ export class DoughnutChartComponent<T> implements OnChanges {
     this.chartOptions = this.getChartOptions(this.data);
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    this.chartOptions = this.getChartOptions(this.data);
+  }
+
   private getDoughnutChartData(rawData: T[]): ChartConfiguration<'doughnut'>['data'] {
     let map = new Map<string, number>();
 
@@ -215,17 +220,18 @@ export class DoughnutChartComponent<T> implements OnChanges {
   private getChartOptions(rawData: T[]): ChartOptions<'doughnut'> {
     const data = [...rawData];
     const theme = getThemeColors();
+    const isCompact = typeof window !== 'undefined' && window.innerWidth <= 767;
 
     return {
       responsive: true,
-      cutout: '58%',
+      cutout: isCompact ? '54%' : '58%',
       color: theme.text,
       layout: {
         padding: {
-          top: 40,
-          right: 96,
-          bottom: 48,
-          left: 96,
+          top: isCompact ? 24 : 40,
+          right: isCompact ? 24 : 96,
+          bottom: isCompact ? 32 : 48,
+          left: isCompact ? 24 : 96,
         },
       },
       plugins: {
@@ -233,7 +239,7 @@ export class DoughnutChartComponent<T> implements OnChanges {
           display: false,
         },
         datalabels: {
-          display: true,
+          display: !isCompact,
           color: theme.text,
           font: {
             family: 'Barlow',
