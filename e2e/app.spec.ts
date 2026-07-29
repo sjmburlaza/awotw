@@ -73,6 +73,36 @@ test.describe('Architectural Wonders app', () => {
     expect(titleBox.height).toBeGreaterThan(42);
   });
 
+  test('centers the home loader at every viewport size', async ({ page }) => {
+    await page.route('**/assets/json/wonders.json', async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 1_000));
+      await route.continue();
+    });
+
+    for (const viewport of [
+      { width: 1280, height: 800 },
+      { width: 320, height: 844 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto('/');
+
+      const loader = page.locator('.home-container .loader');
+      const loaderWell = page.locator('.home-container .loader-tetris__well');
+
+      await expect(loader).toBeVisible();
+      await expect(page.locator('.home-container')).toHaveCSS('position', 'fixed');
+
+      const wellBox = await loaderWell.boundingBox();
+
+      if (!wellBox) {
+        throw new Error('Expected the loader animation to be visible.');
+      }
+
+      expect(wellBox.x + wellBox.width / 2).toBeCloseTo(viewport.width / 2, 1);
+      expect(wellBox.y + wellBox.height / 2).toBeCloseTo(viewport.height / 2, 1);
+    }
+  });
+
   test('lays out the home page without horizontal overflow on a phone', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 844 });
     await page.goto('/');
