@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
   private readonly responsivePaths = new Set<string>([
+    '/',
+    URL_PATH.HOME,
     URL_PATH.SEARCH,
     URL_PATH.MAP,
     URL_PATH.GLOBE,
@@ -40,20 +42,16 @@ export class AppComponent implements OnInit {
   }
 
   private isGamesPath(url: string): boolean {
-    const [path] = url.split(/[?#]/);
+    const path = this.getPath(url);
 
     return path === URL_PATH.GAMES || path.startsWith(`${URL_PATH.GAMES}/`);
   }
 
-  private isHomePath(url: string): boolean {
-    const [path] = url.split(/[?#]/);
-
-    return path === '/' || path === URL_PATH.HOME;
+  private isResponsivePath(url: string): boolean {
+    return this.responsivePaths.has(this.getPath(url));
   }
 
-  private isResponsivePath(url: string): boolean {
-    const [path] = url.split(/[?#]/);
-
-    return this.isHomePath(url) || this.responsivePaths.has(path);
+  private getPath(url: string): string {
+    return url.split(/[?#]/, 1)[0];
   }
 }
