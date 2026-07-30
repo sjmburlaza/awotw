@@ -57,15 +57,25 @@ test.describe('Architectural Wonders app', () => {
     await page.setViewportSize({ width: 768, height: 1024 });
     await page.goto('/');
 
-    const actionBoxes = await page
-      .locator('.button__search-bar, .button__games, .button__bg-mode')
-      .evaluateAll((elements) =>
-        elements.map((element) => {
-          const rect = element.getBoundingClientRect();
+    const actionButtons = [
+      page.getByRole('button', { name: 'Open search' }),
+      page.getByRole('button', { name: 'Open games' }),
+      page.getByRole('button', { name: /Switch to (light|dark) mode/ }),
+    ];
 
-          return { bottom: rect.bottom, top: rect.top };
-        }),
-      );
+    await Promise.all(actionButtons.map((button) => expect(button).toBeVisible()));
+
+    const actionBoxes = await Promise.all(
+      actionButtons.map(async (button) => {
+        const box = await button.boundingBox();
+
+        if (!box) {
+          throw new Error('Expected every tablet header action to have a visible bounding box.');
+        }
+
+        return { bottom: box.y + box.height, top: box.y };
+      }),
+    );
     const titleBox = await page.getByText('ARCHITECTURAL WONDERS OF THE WORLD').boundingBox();
 
     await expect(page.locator('app-header .header')).toHaveCSS('display', 'grid');
@@ -75,14 +85,14 @@ test.describe('Architectural Wonders app', () => {
     );
     await expect(page.locator('app-header .button')).toHaveCSS('display', 'flex');
     await expect(page.getByPlaceholder('Search...')).toBeVisible();
-    await expect(page.locator('.button__games span')).toBeVisible();
-    await expect(page.locator('.button__games .mobile-only')).toBeHidden();
+    await expect(actionButtons[1].locator('span')).toBeVisible();
+    await expect(actionButtons[1].locator('.mobile-only')).toBeHidden();
 
     expect(actionBoxes).toHaveLength(3);
-    expect(Math.max(...actionBoxes.map(({ top }) => top))).toBeCloseTo(
-      Math.min(...actionBoxes.map(({ top }) => top)),
-      1,
-    );
+    expect(
+      Math.max(...actionBoxes.map(({ top }) => top)) -
+        Math.min(...actionBoxes.map(({ top }) => top)),
+    ).toBeLessThanOrEqual(1);
 
     if (!titleBox) {
       throw new Error('Expected the title to remain visible at tablet width.');
@@ -400,7 +410,7 @@ test.describe('Architectural Wonders app', () => {
   test('opens the quiz flow from the games hub', async ({ page }) => {
     await page.goto('/');
 
-    await page.getByRole('button', { name: /Games/ }).click();
+    await page.getByRole('button', { name: 'Open games' }).click();
 
     await expect(page).toHaveURL(/\/games$/);
     await expect(page.getByRole('button', { name: 'GeoGuesser' })).toBeVisible();
