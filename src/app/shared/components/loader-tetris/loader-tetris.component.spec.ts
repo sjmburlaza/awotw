@@ -34,6 +34,15 @@ describe('LoaderTetrisComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('renders the first piece in its visible resting position immediately', () => {
+    const initialPiece = fixture.nativeElement.querySelector(
+      '.loader-tetris__piece',
+    ) as HTMLElement | null;
+
+    expect(initialPiece).toBeTruthy();
+    expect(initialPiece?.classList.contains('loader-tetris__piece--initial')).toBe(true);
+  });
+
   it('should fill the entire well before restarting', () => {
     const occupiedCells = new Set<string>();
 

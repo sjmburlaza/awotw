@@ -3,7 +3,7 @@
     <app-loader-tetris></app-loader-tetris>
   </div>
 }
-<div class="globe-page" [class.hidden]="isLoading">
+<div class="globe-page">
   <header class="page-heading" aria-labelledby="globe-page-title">
     <span class="page-heading__eyebrow">Explore in three dimensions</span>
     <div class="page-heading__title-row">
@@ -37,8 +37,8 @@
           class="popup-card"
           role="dialog"
           aria-label="Selected wonder details"
-          [style.left.px]="position.left"
-          [style.top.px]="position.top"
+          [style.--marker-left]="position.left + 'px'"
+          [style.--marker-top]="position.top + 'px'"
         >
           <button
             type="button"

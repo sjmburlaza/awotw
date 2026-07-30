@@ -48,6 +48,11 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
     this.chartOptions = this.getBarChartOptions(this.data);
   }
 
+  @HostListener('window:resize')
+  onResize(): void {
+    this.chartOptions = this.getBarChartOptions(this.data);
+  }
+
   private getBarChartData(rawData: T[], key: NumericKeys<T>): ChartConfiguration<'bar'>['data'] {
     return {
       labels: rawData.map((item) => item.name),
@@ -63,10 +68,12 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
   private getBarChartOptions(rawData: T[]): ChartOptions<'bar'> {
     const data = [...rawData];
     const theme = getThemeColors();
+    const isCompact = typeof window !== 'undefined' && window.innerWidth <= 767;
 
     return {
       responsive: true,
       maintainAspectRatio: false,
+      indexAxis: isCompact ? 'y' : 'x',
       color: theme.text,
       scales: {
         x: {
@@ -78,6 +85,9 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
           },
           ticks: {
             color: theme.muted,
+            font: {
+              size: isCompact ? 10 : 12,
+            },
           },
         },
         y: {
@@ -89,6 +99,10 @@ export class BarChartComponent<T extends ChartItemBase> implements OnChanges {
           },
           ticks: {
             color: theme.muted,
+            autoSkip: !isCompact,
+            font: {
+              size: isCompact ? 10 : 12,
+            },
           },
         },
       },

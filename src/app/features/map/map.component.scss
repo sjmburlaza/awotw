@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .map-container {
   position: fixed;
   top: 50%;
@@ -11,7 +13,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@include mixins.at-most(xl) {
   .map-container {
     #map {
       height: 76vh;
@@ -44,7 +46,7 @@
 
   .leaflet-popup-content {
     margin: 0;
-    width: 272px !important;
+    width: min(272px, calc(100vw - 72px)) !important;
   }
 
   .leaflet-popup-tip {
@@ -72,7 +74,7 @@
 }
 
 :host ::ng-deep .map-popup {
-  width: 272px;
+  width: min(272px, calc(100vw - 72px));
   padding: 16px;
   background: var(--map-popup-bg, #2a2d34);
   color: var(--app-globe-popup-text);
@@ -128,4 +130,56 @@
   font-size: 18px;
   font-family: 'Montserrat', sans-serif;
   text-align: start;
+}
+
+@include mixins.at-most(lg) {
+  .map-container {
+    position: static;
+    width: 100%;
+    padding: 12px clamp(16px, 4vw, 32px) 28px;
+    transform: none;
+
+    #map {
+      width: 100%;
+      height: clamp(420px, calc(100dvh - 230px), 720px);
+      min-height: 420px;
+      border-radius: 10px;
+    }
+  }
+
+  .navigator {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    margin: 8px 0 14px;
+    padding-inline: 8px;
+    font-size: 15px;
+    text-align: center;
+
+    a {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+    }
+  }
+}
+
+@include mixins.at-most(md) {
+  .map-container {
+    padding: 8px 12px 20px;
+
+    #map {
+      height: clamp(400px, calc(100dvh - 210px), 640px);
+      min-height: 400px;
+    }
+  }
+
+  .navigator {
+    margin-block: 4px 10px;
+    font-size: 14px;
+
+    a {
+      min-height: 44px;
+    }
+  }
 }

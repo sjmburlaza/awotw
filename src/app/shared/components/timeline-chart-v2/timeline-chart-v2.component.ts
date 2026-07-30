@@ -56,12 +56,13 @@ export class TimelineChartV2Component implements AfterViewInit {
     const barHeight = 12;
     const rowGap = 8;
     const height = this.data.length * (barHeight + rowGap) + 100;
+    const isCompact = width <= 520;
 
     const margin = {
       top: 50,
-      right: 80,
+      right: isCompact ? 20 : 80,
       bottom: 40,
-      left: 40,
+      left: isCompact ? 20 : 40,
     };
 
     d3.select(container).select('svg').remove();
@@ -85,7 +86,10 @@ export class TimelineChartV2Component implements AfterViewInit {
       .range([margin.top, margin.top + chartHeight])
       .padding(0.28);
 
-    const tickValues = this.buildTickValues(minYear, maxYear);
+    const tickValues = this.limitTickValues(
+      this.buildTickValues(minYear, maxYear),
+      isCompact ? 4 : width <= 800 ? 6 : Number.POSITIVE_INFINITY,
+    );
 
     const axisTop = d3
       .axisTop(xScale)
@@ -210,45 +214,47 @@ export class TimelineChartV2Component implements AfterViewInit {
         cursorLine.style('opacity', 0);
       });
 
-    rowGroups.each((d, i, nodes) => {
-      const group = d3.select(nodes[i]);
+    if (!isCompact) {
+      rowGroups.each((d, i, nodes) => {
+        const group = d3.select(nodes[i]);
 
-      const barStartX = xScale(d.startYear);
-      const barEndX = xScale(d.endYear);
-      const centerY = (yScale(d.label) ?? 0) + yScale.bandwidth() / 2;
+        const barStartX = xScale(d.startYear);
+        const barEndX = xScale(d.endYear);
+        const centerY = (yScale(d.label) ?? 0) + yScale.bandwidth() / 2;
 
-      const estimatedTextWidth = this.estimateTextWidth(d.label, 13);
-      const gap = 10;
+        const estimatedTextWidth = this.estimateTextWidth(d.label, 13);
+        const gap = 10;
 
-      const svgLeftEdge = margin.left;
-      const fitsOnLeft = barStartX - gap - estimatedTextWidth >= svgLeftEdge;
+        const svgLeftEdge = margin.left;
+        const fitsOnLeft = barStartX - gap - estimatedTextWidth >= svgLeftEdge;
 
-      let textX: number;
-      let textAnchor: 'start' | 'end';
+        let textX: number;
+        let textAnchor: 'start' | 'end';
 
-      if (fitsOnLeft) {
-        textX = barStartX - gap;
-        textAnchor = 'end';
-      } else {
-        textX = barEndX + gap;
-        textAnchor = 'start';
-      }
+        if (fitsOnLeft) {
+          textX = barStartX - gap;
+          textAnchor = 'end';
+        } else {
+          textX = barEndX + gap;
+          textAnchor = 'start';
+        }
 
-      group
-        .selectAll('text.bar-label')
-        .data([d])
-        .join('text')
-        .attr('class', 'bar-label')
-        .attr('x', textX)
-        .attr('y', centerY)
-        .attr('text-anchor', textAnchor)
-        .attr('dominant-baseline', 'middle')
-        .attr('font-size', '12px')
-        .attr('font-weight', '500')
-        .attr('font-family', 'Montserrat')
-        .attr('fill', theme.text)
-        .text(d.label);
-    });
+        group
+          .selectAll('text.bar-label')
+          .data([d])
+          .join('text')
+          .attr('class', 'bar-label')
+          .attr('x', textX)
+          .attr('y', centerY)
+          .attr('text-anchor', textAnchor)
+          .attr('dominant-baseline', 'middle')
+          .attr('font-size', '12px')
+          .attr('font-weight', '500')
+          .attr('font-family', 'Montserrat')
+          .attr('fill', theme.text)
+          .text(d.label);
+      });
+    }
   }
 
   private buildTickValues(minYear: number, maxYear: number): number[] {
@@ -270,6 +276,16 @@ export class TimelineChartV2Component implements AfterViewInit {
     }
 
     return ticks;
+  }
+
+  private limitTickValues(ticks: number[], maximum: number): number[] {
+    if (ticks.length <= maximum) return ticks;
+
+    const lastIndex = ticks.length - 1;
+
+    return Array.from({ length: maximum }, (_, index) => {
+      return ticks[Math.round((index * lastIndex) / (maximum - 1))];
+    }).filter((tick, index, values) => index === 0 || tick !== values[index - 1]);
   }
 
   private formatYear(year: number): string {

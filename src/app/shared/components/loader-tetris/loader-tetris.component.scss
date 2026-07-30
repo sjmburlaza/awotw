@@ -1,3 +1,5 @@
+@use 'mixins';
+
 $cell-size: 20px;
 $cell-step: 22px;
 $well-cells: 8;
@@ -29,6 +31,12 @@ $well-cells: 8;
   animation: tetrisDrop 300ms cubic-bezier(0.2, 0.82, 0.2, 1) both;
   transform: translate(var(--spawn-x), var(--spawn-y));
   will-change: opacity, transform;
+}
+
+.loader-tetris__piece--initial {
+  animation: none;
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 .loader-tetris__piece--clearing {
@@ -81,9 +89,11 @@ $well-cells: 8;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include mixins.reduced-motion {
   .loader-tetris__piece,
   .loader-tetris__piece--clearing {
     animation: none;
+    opacity: 1;
+    transform: translate(0, 0);
   }
 }

@@ -1,5 +1,18 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { inflateSync } from 'node:zlib';
+
+async function expectNoHorizontalOverflow(page: Page): Promise<void> {
+  const viewport = await page.evaluate(() => {
+    const scrollingElement = document.scrollingElement ?? document.documentElement;
+
+    return {
+      clientWidth: scrollingElement.clientWidth,
+      scrollWidth: scrollingElement.scrollWidth,
+    };
+  });
+
+  expect(viewport.scrollWidth).toBeLessThanOrEqual(viewport.clientWidth);
+}
 
 test.describe('Architectural Wonders app', () => {
   test('loads the home page with primary navigation', async ({ page }) => {
@@ -11,6 +24,377 @@ test.describe('Architectural Wonders app', () => {
     await expect(primaryNav.getByRole('button', { name: 'Timeline', exact: true })).toBeVisible();
     await expect(primaryNav.getByRole('button', { name: 'Charts', exact: true })).toBeVisible();
     await expect(page.getByText('Style')).toHaveClass(/selected-mode/);
+  });
+
+  test('keeps the desktop home composition unchanged', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/');
+    await expect(page.locator('.home-container .item').first()).toBeVisible();
+
+    const homeLayout = await page.locator('.home-container').evaluate((element) => {
+      const styles = getComputedStyle(element);
+
+      return {
+        bottom: styles.bottom,
+        position: styles.position,
+        width: styles.width,
+      };
+    });
+
+    expect(homeLayout).toEqual({
+      bottom: '24px',
+      position: 'fixed',
+      width: '900px',
+    });
+    await expect(page.locator('.header__globe__home-slot')).toHaveCSS('display', 'contents');
+
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await expect(page.locator('.home-container')).toHaveCSS('width', '1200px');
+    await expect(page.locator('.home-container')).toHaveCSS('gap', '24px');
+  });
+
+  test('keeps the original navigation layout at tablet width', async ({ page }) => {
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await page.goto('/');
+
+    const actionButtons = [
+      page.getByRole('button', { name: 'Open search' }),
+      page.getByRole('button', { name: 'Open games' }),
+      page.getByRole('button', { name: /Switch to (light|dark) mode/ }),
+    ];
+
+    await Promise.all(actionButtons.map((button) => expect(button).toBeVisible()));
+
+    const actionBoxes = await Promise.all(
+      actionButtons.map(async (button) => {
+        const box = await button.boundingBox();
+
+        if (!box) {
+          throw new Error('Expected every tablet header action to have a visible bounding box.');
+        }
+
+        return { bottom: box.y + box.height, top: box.y };
+      }),
+    );
+    const titleBox = await page.getByText('ARCHITECTURAL WONDERS OF THE WORLD').boundingBox();
+
+    await expect(page.locator('app-header .header')).toHaveCSS('display', 'grid');
+    await expect(page.getByRole('navigation', { name: 'Primary navigation' })).toHaveCSS(
+      'display',
+      'flex',
+    );
+    await expect(page.locator('app-header .button')).toHaveCSS('display', 'flex');
+    await expect(page.getByPlaceholder('Search...')).toBeVisible();
+    await expect(actionButtons[1].locator('span')).toBeVisible();
+    await expect(actionButtons[1].locator('.mobile-only')).toBeHidden();
+
+    expect(actionBoxes).toHaveLength(3);
+    expect(
+      Math.max(...actionBoxes.map(({ top }) => top)) -
+        Math.min(...actionBoxes.map(({ top }) => top)),
+    ).toBeLessThanOrEqual(1);
+
+    if (!titleBox) {
+      throw new Error('Expected the title to remain visible at tablet width.');
+    }
+
+    expect(titleBox.height).toBeGreaterThan(42);
+  });
+
+  test('centers the home loader at every viewport size', async ({ page }) => {
+    for (const viewport of [
+      { width: 1280, height: 800 },
+      { width: 320, height: 844 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto('/');
+
+      const loader = page.locator('.home-container .loader');
+      const loaderWell = page.locator('.home-container .loader-tetris__well');
+      const initialPiece = page.locator('.home-container .loader-tetris__piece--initial');
+
+      await expect(loader).toBeVisible();
+      await expect(initialPiece).toBeVisible();
+      await expect(initialPiece).toHaveCSS('opacity', '1');
+      await expect(page.locator('.home-container')).toHaveCSS('position', 'fixed');
+
+      const wellBox = await loaderWell.boundingBox();
+
+      if (!wellBox) {
+        throw new Error('Expected the loader animation to be visible.');
+      }
+
+      expect(wellBox.x + wellBox.width / 2).toBeCloseTo(viewport.width / 2, 1);
+      expect(wellBox.y + wellBox.height / 2).toBeCloseTo(viewport.height / 2, 1);
+    }
+  });
+
+  test('lays out the home page without horizontal overflow on a phone', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/');
+
+    await expect(page.getByText('ARCHITECTURAL WONDERS OF THE WORLD')).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.locator('.home-container .item').first()).toBeVisible();
+    await expect(page.locator('.home-container .mode')).toHaveCount(5);
+
+    const mobileGlobeBox = await page
+      .getByRole('button', { name: 'Go to home page' })
+      .boundingBox();
+    const mobileSearchBox = await page.locator('.button__search-bar').boundingBox();
+    const mobileGamesBox = await page.locator('.button__games').boundingBox();
+    const mobileThemeBox = await page.locator('.button__bg-mode').boundingBox();
+    const mobileTitleBox = await page.getByText('ARCHITECTURAL WONDERS OF THE WORLD').boundingBox();
+    const mobileTopNavGeometry = await page
+      .locator(
+        'app-header .header__globe__home-slot > button, app-header .header__globe > button, app-header .button__search-bar > button, app-header .button__games > button, app-header .button__bg-mode > button',
+      )
+      .evaluateAll((elements) =>
+        elements
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+
+            return { width: rect.width, x: rect.x };
+          })
+          .sort((a, b) => a.x - b.x),
+      );
+    const mobileTextNavGeometry = await page
+      .locator('app-header .header__globe > button')
+      .evaluateAll((elements) =>
+        elements.map((element) => {
+          const labelRect = element.querySelector('.url-path')!.getBoundingClientRect();
+
+          return {
+            labelWidth: labelRect.width,
+            labelX: labelRect.x,
+          };
+        }),
+      );
+    const firstGroup = page.locator('.home-container .group').first();
+    const groupNameBox = await firstGroup.locator('.group__name').boundingBox();
+    const firstItemBox = await firstGroup.locator('.item').first().boundingBox();
+
+    if (
+      !mobileGlobeBox ||
+      !mobileSearchBox ||
+      !mobileGamesBox ||
+      !mobileThemeBox ||
+      !mobileTitleBox
+    ) {
+      throw new Error('Expected the mobile navigation, controls, and title to be visible.');
+    }
+
+    const controlTopPositions = [mobileSearchBox.y, mobileGamesBox.y, mobileThemeBox.y];
+    expect(Math.max(...controlTopPositions) - Math.min(...controlTopPositions)).toBeLessThanOrEqual(
+      1,
+    );
+    expect(
+      Math.max(
+        mobileGlobeBox.y + mobileGlobeBox.height,
+        mobileSearchBox.y + mobileSearchBox.height,
+        mobileGamesBox.y + mobileGamesBox.height,
+        mobileThemeBox.y + mobileThemeBox.height,
+      ),
+    ).toBeLessThanOrEqual(mobileTitleBox.y);
+
+    const equalWidthControls = [
+      mobileGlobeBox.width,
+      mobileSearchBox.width,
+      mobileGamesBox.width,
+      mobileThemeBox.width,
+    ];
+    expect(Math.max(...equalWidthControls) - Math.min(...equalWidthControls)).toBeLessThanOrEqual(
+      1,
+    );
+    equalWidthControls.forEach((width) => expect(width).toBeCloseTo(44, 1));
+    await expect(page.locator('.button__search-bar input')).toBeHidden();
+    await expect(page.locator('.button__games .mobile-only')).toBeVisible();
+    await expect(page.locator('.button__games span')).toBeHidden();
+
+    expect(mobileTopNavGeometry).toHaveLength(7);
+    mobileTopNavGeometry.forEach((item) => {
+      expect(item.x).toBeGreaterThanOrEqual(0);
+      expect(item.x + item.width).toBeLessThanOrEqual(320);
+    });
+
+    const mobileControlGaps = [mobileSearchBox, mobileGamesBox, mobileThemeBox]
+      .slice(1)
+      .map((item, index) => {
+        const previousItem = [mobileSearchBox, mobileGamesBox, mobileThemeBox][index];
+
+        return item.x - (previousItem.x + previousItem.width);
+      });
+
+    mobileControlGaps.forEach((gap) => expect(gap).toBeCloseTo(8, 1));
+
+    expect(mobileTextNavGeometry).toHaveLength(3);
+
+    const mobileTextNavGaps = mobileTextNavGeometry.slice(1).map((item, index) => {
+      const previousItem = mobileTextNavGeometry[index];
+
+      return item.labelX - (previousItem.labelX + previousItem.labelWidth);
+    });
+
+    mobileTextNavGaps.forEach((gap) => expect(gap).toBeCloseTo(16, 1));
+    expect(Math.max(...mobileTextNavGaps) - Math.min(...mobileTextNavGaps)).toBeLessThanOrEqual(1);
+
+    expect(await firstGroup.evaluate((element) => getComputedStyle(element).flexDirection)).toBe(
+      'row',
+    );
+
+    if (!groupNameBox || !firstItemBox) {
+      throw new Error('Expected the first mobile group and item to be visible.');
+    }
+
+    expect(groupNameBox.x + groupNameBox.width).toBeLessThanOrEqual(firstItemBox.x);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('lays out the map page for a phone viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/map');
+
+    await expect(page.getByRole('heading', { name: 'Landmarks across the map' })).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.locator('#map')).toBeVisible();
+    await expect(page.locator('.map-container')).toHaveCSS('position', 'static');
+
+    const mapBox = await page.locator('#map').boundingBox();
+
+    if (!mapBox) {
+      throw new Error('Expected the responsive map to be visible.');
+    }
+
+    expect(mapBox.x).toBeGreaterThanOrEqual(0);
+    expect(mapBox.x + mapBox.width).toBeLessThanOrEqual(320);
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('lays out the globe page for a phone viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/globe');
+
+    await expect(
+      page.getByRole('heading', { name: 'A world of architectural wonders' }),
+    ).toBeVisible({ timeout: 15_000 });
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(
+      page.getByRole('region', {
+        name: 'Interactive 3D globe of architectural wonder locations',
+      }),
+    ).toBeVisible();
+    await expect(page.locator('.globe-page')).toHaveCSS('position', 'static');
+
+    const globeBox = await page.locator('.globe-wrapper').boundingBox();
+
+    if (!globeBox) {
+      throw new Error('Expected the responsive globe to be visible.');
+    }
+
+    expect(globeBox.x).toBeGreaterThanOrEqual(0);
+    expect(globeBox.x + globeBox.width).toBeLessThanOrEqual(320);
+    expect(globeBox.height).toBeGreaterThanOrEqual(400);
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('keeps the desktop globe composition unchanged', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/globe');
+
+    await expect(
+      page.getByRole('heading', { name: 'A world of architectural wonders' }),
+    ).toBeVisible();
+    await expect(page.locator('.globe-page')).toHaveCSS('position', 'fixed');
+    await expect(page.locator('.globe-page')).toHaveCSS('width', '1200px');
+    await expect(page.locator('.globe-wrapper')).toHaveCSS('height', '608px');
+  });
+
+  test('lays out the timeline page as a mobile card flow', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/timeline');
+
+    await expect(
+      page.getByRole('heading', { name: 'Architecture through the millennia' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+
+    const firstTimelineItem = page.locator('.timeline .item').first();
+
+    await expect(firstTimelineItem).toBeVisible();
+    await expect(firstTimelineItem).toHaveCSS('flex-direction', 'row');
+    await expect(page.locator('.timeline')).toHaveCSS('border-left-width', '0px');
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('stacks chart controls and visualizations on a phone', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/charts');
+
+    await expect(page.getByRole('heading', { name: 'Wonders by the numbers' })).toBeVisible();
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.locator('.chart__bar canvas')).toBeVisible();
+
+    const categoryBoxes = await page.locator('label.category').evaluateAll((elements) =>
+      elements.map((element) => {
+        const rect = element.getBoundingClientRect();
+
+        return { top: rect.top, width: rect.width };
+      }),
+    );
+
+    expect(categoryBoxes).toHaveLength(2);
+    expect(categoryBoxes[0].top).toBeCloseTo(categoryBoxes[1].top, 1);
+    expect(categoryBoxes[0].width).toBeCloseTo(categoryBoxes[1].width, 1);
+    await expect(page.locator('.chart__doughnut')).toHaveCSS('flex-direction', 'column');
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('expands and submits search from the mobile navigation', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 844 });
+    await page.goto('/');
+
+    const searchButton = page.getByRole('button', { name: 'Open search' });
+    const searchInput = page.getByPlaceholder('Search...');
+
+    await searchButton.click();
+
+    await expect(searchInput).toBeVisible();
+    await expect(searchInput).toBeFocused();
+    await expect(page.getByRole('button', { name: 'Map', exact: true })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Timeline', exact: true })).toBeHidden();
+    await expect(page.getByRole('button', { name: 'Charts', exact: true })).toBeHidden();
+
+    const searchInputBox = await searchInput.boundingBox();
+    const submitButtonBox = await page.getByRole('button', { name: 'Submit search' }).boundingBox();
+
+    if (!searchInputBox || !submitButtonBox) {
+      throw new Error('Expected the expanded mobile search controls to be visible.');
+    }
+
+    expect(searchInputBox.x).toBeLessThan(submitButtonBox.x);
+    expect(submitButtonBox.width).toBeCloseTo(44, 1);
+
+    await searchInput.fill('taj');
+    await expect(page).toHaveURL(/\/home$|\/$/);
+    await searchInput.press('Enter');
+
+    await expect(page).toHaveURL(/\/search\?q=taj$/);
+    await expect(
+      page.getByText('Please switch to a laptop or desktop to view this content.'),
+    ).toHaveCount(0);
+    await expect(page.getByRole('link', { name: /Taj Mahal/i })).toBeVisible();
+    await expect(searchInput).toHaveValue('taj');
   });
 
   test('searches for wonders from the header', async ({ page }) => {
@@ -26,7 +410,7 @@ test.describe('Architectural Wonders app', () => {
   test('opens the quiz flow from the games hub', async ({ page }) => {
     await page.goto('/');
 
-    await page.getByRole('button', { name: /Games/ }).click();
+    await page.getByRole('button', { name: 'Open games' }).click();
 
     await expect(page).toHaveURL(/\/games$/);
     await expect(page.getByRole('button', { name: 'GeoGuesser' })).toBeVisible();

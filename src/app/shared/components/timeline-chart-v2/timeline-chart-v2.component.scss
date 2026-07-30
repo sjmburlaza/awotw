@@ -1,10 +1,15 @@
+@use 'mixins';
+
 .timeline-chart-container {
   position: relative;
   width: 100%;
-  // overflow-x: auto;
   overflow: hidden;
   background: var(--app-surface);
   border: 1px solid var(--app-border-soft);
   border-radius: 8px;
   padding: 12px;
+
+  @include mixins.at-most(md) {
+    padding: 8px;
+  }
 }

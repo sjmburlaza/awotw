@@ -2,6 +2,8 @@
 
 .charts-container {
   display: grid;
+  width: 100%;
+  min-width: 0;
   gap: 52px;
   padding-bottom: 48px;
 
@@ -150,7 +152,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@include mixins.at-most(xl) {
   .charts-container {
     .charts-header {
       grid-template-columns: minmax(260px, 0.7fr) minmax(0, 1.3fr);
@@ -263,5 +265,154 @@ input {
 @keyframes spin {
   to {
     transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@include mixins.at-most(lg) {
+  .charts-container {
+    gap: 36px;
+    padding: 8px clamp(16px, 4vw, 36px) 44px;
+
+    .charts-header {
+      grid-template-columns: minmax(0, 1fr);
+      width: 100%;
+
+      &__title {
+        justify-items: center;
+        padding: 18px;
+        text-align: center;
+      }
+    }
+
+    .nav {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: stretch;
+      gap: 14px;
+      padding: 16px 18px 18px;
+      border-top: 1px solid var(--app-border-soft);
+      border-left: none;
+
+      .categories,
+      .rankings__options {
+        flex-wrap: wrap;
+      }
+    }
+
+    .chart {
+      width: 100%;
+      min-width: 0;
+
+      &__bar,
+      &__doughnut,
+      &__global-map,
+      &__line {
+        width: 100%;
+        min-width: 0;
+      }
+
+      &__bar {
+        padding-bottom: 36px;
+      }
+
+      &__doughnut {
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        padding-bottom: 36px;
+
+        &__country,
+        &__year {
+          width: min(100%, 560px);
+        }
+
+        .title {
+          margin: 28px 0 18px;
+          font-size: 18px;
+        }
+      }
+
+      &__global-map {
+        padding-bottom: 18px;
+      }
+
+      &__line {
+        padding: 0 0 36px;
+
+        .title {
+          margin: 28px 0 18px;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  label.category {
+    min-width: 150px;
+    flex: 1 1 150px;
+  }
+}
+
+@include mixins.at-most(md) {
+  .charts-container {
+    gap: 28px;
+    padding: 6px 12px 36px;
+
+    .charts-header {
+      border-radius: 10px;
+
+      &__title {
+        padding: 16px 12px;
+      }
+
+      h1 {
+        font-size: clamp(18px, 6vw, 22px);
+        line-height: 1.25;
+      }
+    }
+
+    .nav {
+      gap: 12px;
+      padding: 12px;
+
+      .categories,
+      .rankings__options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+    }
+
+    .chart {
+      gap: 18px;
+
+      &__bar,
+      &__doughnut,
+      &__line {
+        padding-bottom: 28px;
+      }
+    }
+  }
+
+  label {
+    &.category {
+      min-width: 0;
+      min-height: 56px;
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 1.2;
+
+      .category__icon {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 24px;
+      }
+    }
+
+    &.ranking {
+      min-width: 0;
+      min-height: 44px;
+      padding-inline: 8px;
+      font-size: 13px;
+    }
   }
 }

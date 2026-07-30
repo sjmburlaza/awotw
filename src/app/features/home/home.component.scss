@@ -1,3 +1,5 @@
+@use 'mixins';
+
 .home-container {
   position: fixed;
   bottom: 24px;
@@ -5,18 +7,41 @@
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 900px;
+  gap: clamp(20px, 1.25vw, 24px);
+  width: clamp(900px, 62.5vw, 1200px);
 
-  @media (min-width: 1920px) {
-    width: 1200px;
-    gap: 24px;
+  @include mixins.at-most(lg) {
+    position: static;
+    width: 100%;
+    min-height: 0;
+    padding: 20px;
+    transform: none;
+  }
+
+  @include mixins.at-most(sm) {
+    padding: 16px 12px 20px;
   }
 }
 
+.home-container--loading {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  padding: 0;
+  transform: none;
+}
+
 .loader {
-  height: 50vh;
-  margin: 0 auto;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  place-items: center;
+
+  app-loader-tetris {
+    display: grid;
+  }
 }
 
 .content {
@@ -24,11 +49,18 @@
   justify-content: center;
   align-items: end;
   column-gap: 8px;
-  font-size: 12px;
+  font-size: clamp(12px, 0.833vw, 16px);
   font-family: 'Barlow';
 
-  @media (min-width: 1920px) {
-    font-size: 16px;
+  @include mixins.at-most(lg) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    font-size: 13px;
+  }
+
+  @include mixins.at-most(sm) {
+    gap: 10px;
   }
 
   .group {
@@ -36,29 +68,35 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 40px;
+    min-width: clamp(40px, 2.5vw, 48px);
 
-    @media (min-width: 1920px) {
-      min-width: 48px;
+    @include mixins.at-most(lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+      text-align: left;
     }
 
     .items {
       display: flex;
       flex-wrap: wrap-reverse;
-      row-gap: 8px;
-      column-gap: 8px;
+      gap: clamp(8px, calc(1.667vw - 16px), 16px);
       justify-content: center;
 
-      @media (min-width: 1920px) {
-        row-gap: 16px;
-        column-gap: 16px;
+      @include mixins.at-most(lg) {
+        min-width: 0;
+        flex: 1 1 auto;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 8px;
       }
 
       .item {
         display: flex;
         transition: transform 300ms ease-out;
-        width: 32px;
-        height: 4.2vh;
+        width: clamp(32px, 2.292vw, 44px);
+        height: min(4.2vh, 44px);
         justify-content: center;
         align-items: center;
         cursor: pointer;
@@ -67,9 +105,9 @@
         font: inherit;
         appearance: none;
 
-        @media (min-width: 1920px) {
-          width: 44px;
-          height: 44px;
+        @include mixins.at-most(lg) {
+          width: 36px;
+          height: 36px;
         }
       }
 
@@ -77,13 +115,23 @@
         transform: scale(1.4);
         z-index: 1;
       }
+
+      @include mixins.no-hover {
+        .item:hover {
+          transform: none;
+        }
+
+        .item:active {
+          transform: scale(0.94);
+        }
+      }
     }
 
     &__name {
       margin-top: 12px;
       height: 32px;
       font-family: 'Barlow Condensed';
-      font-size: inherit;
+      font-size: 12px;
       cursor: pointer;
       padding: 0;
       border: none;
@@ -92,6 +140,19 @@
 
       &:hover {
         color: var(--app-focus);
+      }
+
+      @include mixins.at-most(lg) {
+        display: flex;
+        order: -1;
+        width: auto;
+        height: auto;
+        flex: 0 0 clamp(88px, 20vw, 160px);
+        min-height: 44px;
+        margin-top: 0;
+        padding: 0 4px;
+        line-height: 1.15;
+        text-align: left;
       }
     }
   }
@@ -104,6 +165,18 @@
   font-family: 'Barlow';
   font-size: 18px;
 
+  @include mixins.at-most(lg) {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    order: -1;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    padding: 8px 4px;
+    background: var(--app-bg);
+    font-size: 15px;
+  }
+
   .mode {
     cursor: pointer;
     padding: 0;
@@ -112,6 +185,11 @@
     color: inherit;
     font: inherit;
     appearance: none;
+
+    @include mixins.at-most(lg) {
+      min-height: 36px;
+      padding-inline: 4px;
+    }
 
     &:hover {
       color: var(--app-focus);
@@ -123,5 +201,9 @@
     font-weight: bold;
     transform: scale(1.2);
     color: var(--app-focus);
+
+    @include mixins.at-most(lg) {
+      transform: scale(1.08);
+    }
   }
 }

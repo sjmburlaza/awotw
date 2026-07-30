@@ -287,7 +287,7 @@
   transform: translateY(-2px);
 }
 
-@media (max-width: 1280px), (max-height: 760px) {
+@include mixins.at-most-or-shorter(xl, compact) {
   .games-home {
     --games-grid-block-padding: 18px;
     --games-grid-gap: 14px;

@@ -7,8 +7,8 @@ An Angular app for exploring notable architectural works through searchable data
 - Explore 161 architectural wonders with grouped grids, detail pages, highlighted search, and wiki/image metadata.
 - Browse by map, 3D globe, timeline, style, continent, alphabetical order, or building use.
 - Compare landmark datasets with bar, pie, line, gallery, and choropleth chart views.
-- Play through the `/games` hub: GeoGuesser, Recreate Timeline, Architecture Puzzle, and category quizzes.
-- Use dark mode, loading states, scroll animations, and desktop-focused navigation.
+- Play through the `/games` hub: GeoGuesser, Recreate Timeline, Tallest to Shortest, Architecture Puzzle, World Tour Mode, and category quizzes.
+- Use responsive navigation, dark mode, loading states, and scroll animations across phone, tablet, laptop, and desktop layouts.
 
 ## Tech Stack
 
@@ -52,8 +52,10 @@ Open `http://localhost:4200/`. Unknown routes redirect to `/home`.
 | `/games`                     | Games hub.                                             |
 | `/games/geoguesser`          | Map-based location guessing game with scoring.         |
 | `/games/recreate-timeline`   | Drag-and-check architectural style timeline game.      |
+| `/games/tallest-to-shortest` | Drag-and-rank buildings by height.                     |
 | `/games/architecture-puzzle` | Image tile puzzle with selectable wonders and sizes.   |
 | `/games/quiz`                | Quizzes for names, locations, styles, years, and uses. |
+| `/games/world-tour-mode`     | Globe-based landmark tour and question game.           |
 | `/map`                       | 2D Leaflet map with wonder markers.                    |
 | `/globe`                     | 3D globe with clickable wonder pins.                   |
 | `/timeline`                  | Chronological wonder timeline.                         |
@@ -90,8 +92,3 @@ The app reads these local datasets through `DataService`:
 | `src/assets/json/stylesTimeline.json`   | Architectural style timeline ranges. |
 
 Helper scripts in `scripts/` can refresh coordinates, Wikipedia summaries, images, and colors. They call external APIs, so review generated files before replacing the active JSON datasets.
-
-## Notes
-
-- Some views depend on network-loaded assets such as OpenStreetMap tiles, external images, Wikipedia links, and globe textures.
-- The layout currently shows a mobile message and is intended primarily for laptop or desktop viewing.

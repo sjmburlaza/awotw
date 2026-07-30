@@ -200,3 +200,39 @@ body.dark-mode {
     content: '';
   }
 }
+
+@include mixins.at-most(md) {
+  .page-heading {
+    padding-inline: 4px;
+
+    &__eyebrow {
+      gap: 7px;
+      letter-spacing: 0.16em;
+
+      &::before,
+      &::after {
+        width: 18px;
+      }
+    }
+
+    &__title-row {
+      width: 100%;
+      min-width: 0;
+      gap: 8px;
+    }
+
+    &__title {
+      min-width: 0;
+      font-size: clamp(26px, 8vw, 32px);
+      line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    &__icon {
+      width: 36px;
+      height: 36px;
+      flex-basis: 36px;
+      border-radius: 11px;
+    }
+  }
+}

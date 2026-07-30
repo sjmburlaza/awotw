@@ -1,3 +1,71 @@
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 520px,
+  md: 767px,
+  lg: 1160px,
+  xl: 1280px,
+);
+
+$viewport-heights: (
+  compact: 760px,
+  short: 780px,
+);
+
+@function breakpoint($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Unknown breakpoint `#{$name}`.';
+  }
+
+  @return map.get($breakpoints, $name);
+}
+
+@function viewport-height($name) {
+  @if not map.has-key($viewport-heights, $name) {
+    @error 'Unknown viewport height `#{$name}`.';
+  }
+
+  @return map.get($viewport-heights, $name);
+}
+
+@mixin at-most($name) {
+  @media (max-width: #{breakpoint($name)}) {
+    @content;
+  }
+}
+
+@mixin at-least($name) {
+  @media (min-width: #{breakpoint($name)}) {
+    @content;
+  }
+}
+
+@mixin above($name) {
+  $min-width: breakpoint($name) + 0.01px;
+
+  @media (min-width: #{$min-width}) {
+    @content;
+  }
+}
+
+@mixin at-most-or-shorter($width-name, $height-name) {
+  @media (max-width: #{breakpoint($width-name)}), (max-height: #{viewport-height($height-name)}) {
+    @content;
+  }
+}
+
+@mixin no-hover {
+  @media (hover: none) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
 @mixin gradient-text {
   background: var(--app-brand-gradient);
   -webkit-background-clip: text;

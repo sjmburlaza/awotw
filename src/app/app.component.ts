@@ -15,9 +15,19 @@ import { URL_PATH } from './shared/constants/routes.const';
 export class AppComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly responsivePaths = new Set<string>([
+    '/',
+    URL_PATH.HOME,
+    URL_PATH.SEARCH,
+    URL_PATH.MAP,
+    URL_PATH.GLOBE,
+    URL_PATH.TIMELINE,
+    URL_PATH.CHARTS,
+  ]);
 
   protected title = 'architectural-wonders-v2';
   protected isGamesRoute = this.isGamesPath(this.router.url);
+  protected isResponsiveRoute = this.isResponsivePath(this.router.url);
 
   ngOnInit(): void {
     this.router.events
@@ -27,12 +37,21 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         this.isGamesRoute = this.isGamesPath(event.urlAfterRedirects);
+        this.isResponsiveRoute = this.isResponsivePath(event.urlAfterRedirects);
       });
   }
 
   private isGamesPath(url: string): boolean {
-    const [path] = url.split(/[?#]/);
+    const path = this.getPath(url);
 
     return path === URL_PATH.GAMES || path.startsWith(`${URL_PATH.GAMES}/`);
+  }
+
+  private isResponsivePath(url: string): boolean {
+    return this.responsivePaths.has(this.getPath(url));
+  }
+
+  private getPath(url: string): string {
+    return url.split(/[?#]/, 1)[0];
   }
 }

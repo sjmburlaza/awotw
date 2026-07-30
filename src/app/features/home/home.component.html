@@ -1,4 +1,4 @@
-<div class="home-container">
+<div class="home-container" [class.home-container--loading]="isLoading">
   @if (isLoading) {
     <div class="loader">
       <app-loader-tetris></app-loader-tetris>

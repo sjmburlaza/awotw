@@ -1,4 +1,8 @@
-<div class="main-container" [class.main-container--games]="isGamesRoute">
+<div
+  class="main-container"
+  [class.main-container--games]="isGamesRoute"
+  [class.main-container--responsive]="isResponsiveRoute"
+>
   @if (!isGamesRoute) {
     <div class="header">
       <app-header></app-header>
@@ -9,4 +13,6 @@
     <app-back-to-top />
   </div>
 </div>
-<div class="mobile-view">Please switch to a laptop or desktop to view this content.</div>
+@if (!isResponsiveRoute) {
+  <div class="mobile-view">Please switch to a laptop or desktop to view this content.</div>
+}

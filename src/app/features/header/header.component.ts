@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   isHomeClicked = false;
   zoomInText = false;
   searchQuery = '';
+  isSearchExpanded = false;
   isLoading = true;
   private isPageLoading = true;
 
@@ -41,17 +42,16 @@ export class HeaderComponent implements OnInit {
         this.updateRouteState(event.urlAfterRedirects, event.url);
       });
 
-    this.loaderService.isLoading$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((state) => {
-        this.isPageLoading = state;
-        this.updateLoadingState();
-      });
+    this.loaderService.isLoading$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((state) => {
+      this.isPageLoading = state;
+      this.updateLoadingState();
+    });
   }
 
   private updateRouteState(url: string, navigationUrl = url): void {
     this.currentUrl = url;
     this.zoomInText = this.isHomePath(url);
+    this.isSearchExpanded = this.isMobileViewport() && this.isSearchPath(url);
 
     if (!navigationUrl.includes(URL_PATH.SEARCH)) {
       this.searchQuery = '';
@@ -68,6 +68,36 @@ export class HeaderComponent implements OnInit {
     const [path] = url.split(/[?#]/);
 
     return path === URL_PATH.HOME;
+  }
+
+  private isSearchPath(url: string): boolean {
+    const [path] = url.split(/[?#]/);
+
+    return path === URL_PATH.SEARCH;
+  }
+
+  private isMobileViewport(): boolean {
+    return (
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(max-width: 767px)').matches
+    );
+  }
+
+  onSearchButtonClick(input: HTMLInputElement): void {
+    if (this.isMobileViewport() && !this.isSearchExpanded) {
+      this.isSearchExpanded = true;
+      requestAnimationFrame(() => input.focus());
+      return;
+    }
+
+    this.onSearch();
+  }
+
+  onSearchQueryChange(): void {
+    if (!this.isMobileViewport()) {
+      this.onSearch();
+    }
   }
 
   onSearch(): void {
