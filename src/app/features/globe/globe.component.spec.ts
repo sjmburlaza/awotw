@@ -14,9 +14,13 @@ interface GlobeComponentInternals {
     getScreenCoords(lat: number, lng: number, altitude?: number): { x: number; y: number };
     globeOffset(offset: [number, number]): unknown;
     height(value: number): unknown;
+    pointOfView(
+      view: { lat: number; lng: number; altitude: number },
+      transitionMs: number,
+    ): unknown;
     width(value: number): unknown;
   };
-  centerPopupOnGlobe(): void;
+  centerPopupOnGlobe(timestamp?: number): void;
   resizeGlobe(): void;
   selectWonder(wonder: TestWonderMarker, markerElement: HTMLElement): void;
 }
@@ -159,11 +163,29 @@ describe('Globe', () => {
     expect(popup.style.getPropertyValue('--marker-top')).toBe('120px');
   });
 
+  it('uses a longer eased camera transition when focusing a marker', () => {
+    const markerElement = document.createElement('div');
+    const componentInternals = component as unknown as GlobeComponentInternals;
+    const pointOfViewSpy = jest.spyOn(componentInternals.globe!, 'pointOfView');
+
+    componentInternals.selectWonder(wonder, markerElement);
+
+    expect(pointOfViewSpy).toHaveBeenCalledWith(
+      {
+        lat: wonder.latNum,
+        lng: wonder.lonNum,
+        altitude: 0.5,
+      },
+      1800,
+    );
+  });
+
   it('offsets the globe so the anchored popup is centered instead of the marker', () => {
     const globeContainer = fixture.nativeElement.querySelector('.globe-container') as HTMLElement;
     const markerElement = document.createElement('div');
     const componentInternals = component as unknown as GlobeComponentInternals;
     const globeOffsetSpy = jest.fn();
+    jest.spyOn(performance, 'now').mockReturnValue(1000);
     componentInternals.globe!.getScreenCoords = jest.fn(() => ({ x: 195, y: 135 }));
     componentInternals.globe!.globeOffset = globeOffsetSpy;
 
@@ -186,9 +208,14 @@ describe('Globe', () => {
       .spyOn(popup, 'getBoundingClientRect')
       .mockReturnValue(createDomRect({ left: 75, top: 0, width: 240, height: 260 }));
 
-    componentInternals.centerPopupOnGlobe();
+    componentInternals.centerPopupOnGlobe(1000);
+    expect(globeOffsetSpy).not.toHaveBeenCalled();
 
-    expect(globeOffsetSpy).toHaveBeenCalledWith([0, 153]);
+    componentInternals.centerPopupOnGlobe(1900);
+    expect(globeOffsetSpy).toHaveBeenLastCalledWith([0, 76.5]);
+
+    componentInternals.centerPopupOnGlobe(2800);
+    expect(globeOffsetSpy).toHaveBeenLastCalledWith([0, 153]);
 
     globeOffsetSpy.mockClear();
     component.clearSelectedWonder();

@@ -26,6 +26,9 @@ interface PopupPosition {
 }
 
 const POPUP_MARKER_GAP_PX = 8;
+const GLOBE_FOCUS_TRANSITION_MS = 1800;
+const GLOBE_OFFSET_SMOOTHING = 0.12;
+const GLOBE_OFFSET_SETTLE_DISTANCE_PX = 0.5;
 
 @Component({
   selector: 'app-globe',
@@ -36,6 +39,9 @@ const POPUP_MARKER_GAP_PX = 8;
 export class GlobeComponent implements AfterViewInit, OnDestroy {
   private readonly dataService = inject(DataService);
   private readonly ngZone = inject(NgZone);
+  private readonly prefersReducedMotion =
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   @ViewChild('globeContainer', { static: true })
   globeContainer!: ElementRef<HTMLDivElement>;
@@ -62,6 +68,9 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   private popupImageLoadId = 0;
   private popupImagePreloader?: HTMLImageElement;
   private globeOffsetY = 0;
+  private focusTransitionStartTime?: number;
+  private focusOffsetStartY = 0;
+  private focusOffsetTargetY?: number;
 
   ngAfterViewInit(): void {
     this.initGlobe();
@@ -203,6 +212,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
 
   clearSelectedWonder(): void {
     this.stopPopupTracking();
+    this.clearGlobeFocusTransition();
     this.resetPopupImage();
     this.selectedWonder = null;
     this.selectedMarkerElement = undefined;
@@ -210,6 +220,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   }
 
   private selectWonder(wonder: WonderMarker, markerElement: HTMLElement): void {
+    this.startGlobeFocusTransition();
     this.selectedWonder = wonder;
     this.selectedMarkerElement = markerElement;
     this.loadPopupImage(wonder.imageURL);
@@ -222,7 +233,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
         lng: wonder.lonNum,
         altitude: 0.5,
       },
-      1200,
+      this.prefersReducedMotion ? 0 : GLOBE_FOCUS_TRANSITION_MS,
     );
   }
 
@@ -272,14 +283,14 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   private startPopupTracking(): void {
     this.stopPopupTracking();
 
-    const trackPopupPosition = () => {
+    const trackPopupPosition = (timestamp: number) => {
       if (!this.selectedMarkerElement) {
         this.popupTrackingFrameId = undefined;
         return;
       }
 
       this.updatePopupPosition();
-      this.centerPopupOnGlobe();
+      this.centerPopupOnGlobe(timestamp);
       this.popupTrackingFrameId = requestAnimationFrame(trackPopupPosition);
     };
 
@@ -308,7 +319,7 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     };
   }
 
-  private centerPopupOnGlobe(): void {
+  private centerPopupOnGlobe(timestamp = performance.now()): void {
     if (!this.globe || !this.selectedMarkerElement) return;
 
     const popupElement =
@@ -334,11 +345,64 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     const desiredOffset = markerAnchorInset + POPUP_MARKER_GAP_PX + popupHeight / 2;
     const maximumOffset = Math.max(0, globeHeight / 2 - markerAnchorInset);
 
-    this.setGlobeOffset(Math.min(desiredOffset, maximumOffset));
+    this.setGlobeOffset(Math.min(desiredOffset, maximumOffset), timestamp);
   }
 
-  private setGlobeOffset(offsetY: number): void {
-    if (!this.globe || Math.abs(this.globeOffsetY - offsetY) < 0.5) return;
+  private setGlobeOffset(targetOffsetY: number, timestamp: number): void {
+    if (!this.globe) return;
+
+    if (this.prefersReducedMotion) {
+      this.applyGlobeOffset(targetOffsetY);
+      return;
+    }
+
+    if (this.focusTransitionStartTime !== undefined) {
+      this.focusOffsetTargetY ??= targetOffsetY;
+
+      const progress = Math.min(
+        1,
+        Math.max(0, (timestamp - this.focusTransitionStartTime) / GLOBE_FOCUS_TRANSITION_MS),
+      );
+      const easedProgress =
+        progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      const synchronizedOffset =
+        this.focusOffsetStartY + (this.focusOffsetTargetY - this.focusOffsetStartY) * easedProgress;
+
+      this.applyGlobeOffset(synchronizedOffset);
+
+      if (progress >= 1) {
+        this.clearGlobeFocusTransition();
+      }
+
+      return;
+    }
+
+    const offsetDifference = targetOffsetY - this.globeOffsetY;
+
+    if (Math.abs(offsetDifference) < GLOBE_OFFSET_SETTLE_DISTANCE_PX) return;
+
+    const easedOffset = this.globeOffsetY + offsetDifference * GLOBE_OFFSET_SMOOTHING;
+    const nextOffset =
+      Math.abs(targetOffsetY - easedOffset) < GLOBE_OFFSET_SETTLE_DISTANCE_PX
+        ? targetOffsetY
+        : easedOffset;
+
+    this.applyGlobeOffset(nextOffset);
+  }
+
+  private startGlobeFocusTransition(): void {
+    this.focusOffsetStartY = this.globeOffsetY;
+    this.focusOffsetTargetY = undefined;
+    this.focusTransitionStartTime = this.prefersReducedMotion ? undefined : performance.now();
+  }
+
+  private clearGlobeFocusTransition(): void {
+    this.focusTransitionStartTime = undefined;
+    this.focusOffsetTargetY = undefined;
+  }
+
+  private applyGlobeOffset(offsetY: number): void {
+    if (!this.globe || Math.abs(this.globeOffsetY - offsetY) < 0.01) return;
 
     this.globeOffsetY = offsetY;
     this.globe.globeOffset([0, offsetY]);

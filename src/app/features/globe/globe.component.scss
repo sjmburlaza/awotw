@@ -35,10 +35,10 @@
   --marker-top: 50%;
 
   position: absolute;
-  left: var(--marker-left);
-  top: var(--marker-top);
+  top: 0;
+  left: 0;
   width: min(240px, calc(100% - 24px));
-  transform: translate(-50%, calc(-100% - 8px));
+  transform: translate3d(calc(var(--marker-left) - 50%), calc(var(--marker-top) - 100% - 8px), 0);
   background: var(--app-globe-popup-bg);
   color: var(--app-globe-popup-text);
   font-family: 'Montserrat', sans-serif;
@@ -47,6 +47,7 @@
   border-radius: 12px;
   z-index: 2;
   box-shadow: 0 8px 24px var(--app-shadow);
+  will-change: transform;
 
   a {
     color: var(--app-globe-link);
@@ -206,14 +207,12 @@
   }
 
   .popup-card {
-    left: var(--marker-left);
-    top: var(--marker-top);
     max-height: min(360px, calc(100dvh - 24px));
     padding: 14px;
     overflow-y: auto;
     overscroll-behavior: contain;
     font-size: 13px;
-    transform: translate(-50%, calc(-100% - 8px));
+    transform: translate3d(calc(var(--marker-left) - 50%), calc(var(--marker-top) - 100% - 8px), 0);
   }
 
   .popup-card__image-frame {
