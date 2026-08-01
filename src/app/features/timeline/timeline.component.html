@@ -22,9 +22,8 @@
     <div class="navigator">
       <a routerLink="/games/recreate-timeline">Play Recreate Timeline</a>
     </div>
-    <!-- <app-timeline-chart [styles]="styles"></app-timeline-chart> -->
     <div class="timeline-chart" slideInOnScroll>
-      <app-timeline-chart-v2 [data]="styles"></app-timeline-chart-v2>
+      <app-timeline-chart [data]="styles"></app-timeline-chart>
     </div>
     <div class="timeline">
       @for (group of groups; track group.groupName) {

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimelineChartV2Component } from './timeline-chart-v2.component';
+import { TimelineChartComponent } from './timeline-chart.component';
 
-type TimelineChartV2ComponentWithTooltipPosition = TimelineChartV2Component & {
+type TimelineChartComponentWithTooltipPosition = TimelineChartComponent & {
   getContainedTooltipPosition: (
     clientX: number,
     clientY: number,
@@ -11,16 +11,16 @@ type TimelineChartV2ComponentWithTooltipPosition = TimelineChartV2Component & {
   ) => { left: number; top: number };
 };
 
-describe('TimelineChartV2Component', () => {
-  let component: TimelineChartV2Component;
-  let fixture: ComponentFixture<TimelineChartV2Component>;
+describe('TimelineChartComponent', () => {
+  let component: TimelineChartComponent;
+  let fixture: ComponentFixture<TimelineChartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimelineChartV2Component],
+      imports: [TimelineChartComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TimelineChartV2Component);
+    fixture = TestBed.createComponent(TimelineChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -31,7 +31,7 @@ describe('TimelineChartV2Component', () => {
 
   it('positions the tooltip inside the chart container near the lower-right edge', () => {
     const position = (
-      component as unknown as TimelineChartV2ComponentWithTooltipPosition
+      component as unknown as TimelineChartComponentWithTooltipPosition
     ).getContainedTooltipPosition(
       480,
       470,
@@ -44,7 +44,7 @@ describe('TimelineChartV2Component', () => {
 
   it('clamps the tooltip inside narrow chart containers', () => {
     const position = (
-      component as unknown as TimelineChartV2ComponentWithTooltipPosition
+      component as unknown as TimelineChartComponentWithTooltipPosition
     ).getContainedTooltipPosition(
       50,
       50,

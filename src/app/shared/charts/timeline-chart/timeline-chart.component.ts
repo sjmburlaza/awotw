@@ -17,13 +17,13 @@ interface TooltipPosition {
 }
 
 @Component({
-  selector: 'app-timeline-chart-v2',
+  selector: 'app-timeline-chart',
   imports: [],
-  templateUrl: './timeline-chart-v2.component.html',
-  styleUrl: './timeline-chart-v2.component.scss',
+  templateUrl: './timeline-chart.component.html',
+  styleUrl: './timeline-chart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TimelineChartV2Component implements AfterViewInit {
+export class TimelineChartComponent implements AfterViewInit {
   @Input() data: StyleRange[] = [];
   @ViewChild('chartContainer', { static: true })
   chartContainer!: ElementRef<HTMLDivElement>;
