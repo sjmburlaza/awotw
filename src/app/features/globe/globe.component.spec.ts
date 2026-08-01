@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 
 import { GlobeComponent } from './globe.component';
@@ -111,6 +111,43 @@ describe('Globe', () => {
 
     expect(loader.parentElement).toBe(fixture.nativeElement);
     expect(globeWrapper.contains(loader)).toBe(false);
+  });
+
+  it('keeps loading while the globe is pending after markers render', async () => {
+    fixture.destroy();
+    fixture = TestBed.createComponent(GlobeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(true);
+    expect(fixture.nativeElement.querySelector('.loader')).toBeTruthy();
+
+    await Promise.resolve();
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(false);
+    expect(fixture.nativeElement.querySelector('.loader')).toBeNull();
+  });
+
+  it('keeps loading while marker data is pending after the globe is ready', async () => {
+    const wondersSubject = new Subject<Item[]>();
+    (dataServiceMock.getWonders as jest.Mock).mockReturnValue(wondersSubject);
+    fixture.destroy();
+    fixture = TestBed.createComponent(GlobeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    await Promise.resolve();
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(true);
+    expect(fixture.nativeElement.querySelector('.loader')).toBeTruthy();
+
+    wondersSubject.next([wonder, secondWonder]);
+    fixture.detectChanges();
+
+    expect(component.isLoading).toBe(false);
+    expect(fixture.nativeElement.querySelector('.loader')).toBeNull();
   });
 
   it('links to the map and World Tour Mode from the globe navigator', () => {

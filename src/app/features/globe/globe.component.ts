@@ -47,6 +47,11 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
   globeContainer!: ElementRef<HTMLDivElement>;
 
   private globe?: GlobeInstance;
+  private isGlobeReady = false;
+  private areMarkersReady = false;
+  private expectedMarkerCount = 0;
+  private renderedMarkerCount = 0;
+  private renderedMarkers = new WeakSet<WonderMarker>();
   private readonly markerListeners = new Map<
     HTMLElement,
     { click: EventListener; keydown: EventListener }
@@ -96,7 +101,8 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
       .htmlElement((d: object) => this.createMarkerElement(d as WonderMarker))
       .onGlobeReady(() => {
         this.ngZone.run(() => {
-          this.isLoading = false;
+          this.isGlobeReady = true;
+          this.updateLoadingState();
           this.scheduleGlobeResize();
         });
       })
@@ -164,12 +170,22 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
           this.removeMarkerListeners();
           this.errorMessage = '';
           this.hasMarkers = validWonders.length > 0;
+          this.areMarkersReady = false;
+          this.expectedMarkerCount = validWonders.length;
+          this.renderedMarkerCount = 0;
+          this.renderedMarkers = new WeakSet<WonderMarker>();
           this.globe?.htmlElementsData(validWonders);
+
+          if (validWonders.length === 0) {
+            this.areMarkersReady = true;
+            this.updateLoadingState();
+          }
         }),
         catchError(() => {
           this.errorMessage = 'Unable to load globe markers.';
           this.hasMarkers = false;
-          this.isLoading = false;
+          this.areMarkersReady = true;
+          this.updateLoadingState();
           return EMPTY;
         }),
       )
@@ -206,8 +222,27 @@ export class GlobeComponent implements AfterViewInit, OnDestroy {
     el.addEventListener('click', clickHandler);
     el.addEventListener('keydown', keydownHandler);
     this.markerListeners.set(el, { click: clickHandler, keydown: keydownHandler });
+    this.markMarkerRendered(wonder);
 
     return el;
+  }
+
+  private markMarkerRendered(wonder: WonderMarker): void {
+    if (this.renderedMarkers.has(wonder)) return;
+
+    this.renderedMarkers.add(wonder);
+    this.renderedMarkerCount++;
+
+    if (this.renderedMarkerCount < this.expectedMarkerCount) return;
+
+    this.ngZone.run(() => {
+      this.areMarkersReady = true;
+      this.updateLoadingState();
+    });
+  }
+
+  private updateLoadingState(): void {
+    this.isLoading = !this.isGlobeReady || !this.areMarkersReady;
   }
 
   clearSelectedWonder(): void {

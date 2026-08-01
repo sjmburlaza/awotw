@@ -23,6 +23,7 @@
       class="globe-container"
       role="region"
       aria-label="Interactive 3D globe of architectural wonder locations"
+      [attr.aria-busy]="isLoading"
     ></div>
 
     @if (errorMessage) {
