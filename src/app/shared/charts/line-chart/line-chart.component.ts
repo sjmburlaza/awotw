@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ChartConfiguration, ChartOptions, TooltipItem } from 'chart.js';
-import { ChartComponent } from '../chart/chart.component';
+import { ChartComponent } from '../../charts/chart/chart.component';
 import { getThemeColors } from '../../theme-colors';
 
 interface LineChartItemBase {

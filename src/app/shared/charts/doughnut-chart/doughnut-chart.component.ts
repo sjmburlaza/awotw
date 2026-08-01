@@ -23,7 +23,7 @@ import {
   TooltipPositionerFunction,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { ChartComponent } from '../chart/chart.component';
+import { ChartComponent } from '../../charts/chart/chart.component';
 import { getThemeColors, ThemeColors } from '../../theme-colors';
 import { sortMapObject } from '../../utils-helper';
 

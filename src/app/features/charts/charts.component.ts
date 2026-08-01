@@ -5,12 +5,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TooltipItem } from 'chart.js';
 import { forkJoin, take } from 'rxjs';
 import { DataService, MostVisited, TallestBuilding } from 'src/app/services/data.service';
-import { BarChartComponent } from 'src/app/shared/components/bar-chart/bar-chart.component';
-import { DoughnutChartComponent } from 'src/app/shared/components/doughnut-chart/doughnut-chart.component';
 import { GalleryComponent } from 'src/app/shared/components/gallery/gallery.component';
-import { GlobalChoroplethComponent } from 'src/app/shared/components/global-choropleth/global-choropleth.component';
-import { LineChartComponent } from 'src/app/shared/components/line-chart/line-chart.component';
+import { GlobalChoroplethComponent } from 'src/app/shared/charts/global-choropleth/global-choropleth.component';
 import { ordinalSuffix } from 'src/app/shared/utils-helper';
+import { DoughnutChartComponent } from 'src/app/shared/charts/doughnut-chart/doughnut-chart.component';
+import { BarChartComponent } from 'src/app/shared/charts/bar-chart/bar-chart.component';
+import { LineChartComponent } from 'src/app/shared/charts/line-chart/line-chart.component';
 
 @Component({
   selector: 'app-charts',

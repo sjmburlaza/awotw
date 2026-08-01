@@ -5,18 +5,13 @@ import { forkJoin } from 'rxjs';
 import { DataService, Group, StyleRange } from 'src/app/services/data.service';
 import { ScrollService } from 'src/app/services/scroll.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
-import { TimelineChartV2Component } from 'src/app/shared/components/timeline-chart-v2/timeline-chart-v2.component';
+import { TimelineChartComponent } from 'src/app/shared/charts/timeline-chart/timeline-chart.component';
 import { SlideInOnScrollDirective } from 'src/app/shared/directives/slide-in-on-scroll.directive';
 import { groupByYearBuilt } from 'src/app/shared/utils-helper';
 
 @Component({
   selector: 'app-timeline',
-  imports: [
-    LoaderComponent,
-    RouterModule,
-    SlideInOnScrollDirective,
-    TimelineChartV2Component,
-  ],
+  imports: [LoaderComponent, RouterModule, SlideInOnScrollDirective, TimelineChartComponent],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss',
 })

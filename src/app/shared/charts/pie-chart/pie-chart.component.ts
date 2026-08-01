@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { Chart, ChartConfiguration, ChartOptions, registerables, TooltipItem } from 'chart.js';
-import { ChartComponent } from '../chart/chart.component';
+import { ChartComponent } from '../../charts/chart/chart.component';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { sortMapObject } from '../../utils-helper';
 import { getThemeColors } from '../../theme-colors';
