@@ -9,6 +9,7 @@ import { WorldTourModeComponent } from './world-tour-mode.component';
 interface WorldTourModeInternals {
   selectedMarkerElement?: HTMLElement;
   markerElementsById: Map<number, HTMLElement>;
+  activateStop(stop: Item & { latNum: number; lonNum: number }): void;
   ensureActiveMarkerState(): void;
   updatePopupPosition(): void;
 }
@@ -17,6 +18,7 @@ describe('WorldTourModeComponent', () => {
   let component: WorldTourModeComponent;
   let fixture: ComponentFixture<WorldTourModeComponent>;
   let dataServiceMock: Pick<DataService, 'getWonders'>;
+  let preloadImages: HTMLImageElement[];
 
   const wonders: Item[] = [
     createWonder(
@@ -79,11 +81,18 @@ describe('WorldTourModeComponent', () => {
     dataServiceMock = {
       getWonders: jest.fn(() => of(wonders)),
     };
+    preloadImages = [];
 
     await TestBed.configureTestingModule({
       imports: [WorldTourModeComponent],
       providers: [{ provide: DataService, useValue: dataServiceMock }],
     }).compileComponents();
+
+    jest.spyOn(window, 'Image').mockImplementation(() => {
+      const image = document.createElement('img');
+      preloadImages.push(image);
+      return image;
+    });
 
     fixture = TestBed.createComponent(WorldTourModeComponent);
     component = fixture.componentInstance;
@@ -115,6 +124,9 @@ describe('WorldTourModeComponent', () => {
   });
 
   it('does not reveal the active wonder name or location in helper text', () => {
+    preloadImages[0].onload?.call(preloadImages[0], new Event('load'));
+    fixture.detectChanges();
+
     const currentStop = component.currentStop as Item;
     const tourLabel = fixture.nativeElement.querySelector('.tour-label');
     const tourPromptTitle = fixture.nativeElement.querySelector('.tour-prompt strong');
@@ -137,6 +149,37 @@ describe('WorldTourModeComponent', () => {
     expect(component.currentQuestion?.prompt).not.toContain(currentStop.location);
     expect(popupMeta).toBeNull();
     expect(popupImage.alt).toBe('Current world tour stop');
+  });
+
+  it('shows a loader instead of the previous marker image while the next image loads', () => {
+    const firstStop = component.currentStop as Item & { latNum: number; lonNum: number };
+
+    expect(fixture.nativeElement.querySelector('.quiz-popup__image')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.quiz-popup__image-loader')).toBeTruthy();
+
+    preloadImages[0].onload?.call(preloadImages[0], new Event('load'));
+    fixture.detectChanges();
+
+    const firstImage = fixture.nativeElement.querySelector(
+      '.quiz-popup__image',
+    ) as HTMLImageElement;
+    expect(firstImage.src).toBe(firstStop.imageURL);
+
+    const nextStop = component.stops.find((stop) => stop.id !== firstStop.id);
+    expect(nextStop).toBeTruthy();
+
+    (component as unknown as WorldTourModeInternals).activateStop(nextStop!);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.quiz-popup__image')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.quiz-popup__image-loader')).toBeTruthy();
+
+    preloadImages[1].onload?.call(preloadImages[1], new Event('load'));
+    fixture.detectChanges();
+
+    const nextImage = fixture.nativeElement.querySelector('.quiz-popup__image') as HTMLImageElement;
+    expect(nextImage.src).toBe(nextStop?.imageURL);
+    expect(fixture.nativeElement.querySelector('.quiz-popup__image-loader')).toBeNull();
   });
 
   it('marks the current active stop marker as visually distinct', () => {
