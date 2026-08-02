@@ -13,6 +13,7 @@ import { catchError, EMPTY, map, take, tap } from 'rxjs';
 import { DataService, Item } from 'src/app/services/data.service';
 import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
 import { COLOR_VARS, getCssColor, getThemeColors } from 'src/app/shared/theme-colors';
+import { LoaderTetrisComponent } from 'src/app/shared/components/loader-tetris/loader-tetris.component';
 
 type QuizCode = 'name' | 'location' | 'style' | 'yearBuilt' | 'buildingType';
 
@@ -46,7 +47,7 @@ interface PopupPosition {
 
 @Component({
   selector: 'app-world-tour-mode',
-  imports: [RouterModule, LoaderComponent],
+  imports: [RouterModule, LoaderComponent, LoaderTetrisComponent],
   templateUrl: './world-tour-mode.component.html',
   styleUrl: './world-tour-mode.component.scss',
 })
@@ -98,6 +99,8 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
   private timerStartedAt = 0;
   private advanceTimerId?: number;
   private globeReadyFallbackId?: number;
+  private popupImageLoadId = 0;
+  private popupImagePreloader?: HTMLImageElement;
 
   stops: TourStop[] = [];
   currentStop: TourStop | null = null;
@@ -111,6 +114,9 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
   attempts = 0;
   isFinished = false;
   isPopupPositionFrozen = false;
+  popupImageSrc = '';
+  isPopupImageLoading = false;
+  hasPopupImageError = false;
 
   get totalStops(): number {
     return this.stops.length;
@@ -337,6 +343,7 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
     this.isPopupPositionFrozen = false;
     this.currentStop = stop;
     this.currentQuestion = this.generateQuestion(stop);
+    this.loadPopupImage(stop.imageURL);
     this.attachSelectedMarker(stop);
     this.refreshMarkerSelectionState();
 
@@ -367,6 +374,49 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
     }
 
     return undefined;
+  }
+
+  private loadPopupImage(imageUrl: string): void {
+    this.popupImageLoadId++;
+    const loadId = this.popupImageLoadId;
+
+    this.popupImageSrc = imageUrl;
+    this.isPopupImageLoading = Boolean(imageUrl);
+    this.hasPopupImageError = !imageUrl;
+    this.popupImagePreloader = undefined;
+
+    if (!imageUrl) return;
+
+    const image = new Image();
+    this.popupImagePreloader = image;
+
+    image.onload = () => {
+      this.ngZone.run(() => {
+        if (loadId !== this.popupImageLoadId) return;
+
+        this.isPopupImageLoading = false;
+        this.hasPopupImageError = false;
+      });
+    };
+
+    image.onerror = () => {
+      this.ngZone.run(() => {
+        if (loadId !== this.popupImageLoadId) return;
+
+        this.isPopupImageLoading = false;
+        this.hasPopupImageError = true;
+      });
+    };
+
+    image.src = imageUrl;
+  }
+
+  private resetPopupImage(): void {
+    this.popupImageLoadId++;
+    this.popupImagePreloader = undefined;
+    this.popupImageSrc = '';
+    this.isPopupImageLoading = false;
+    this.hasPopupImageError = false;
   }
 
   private generateQuestion(stop: TourStop): TourQuestion {
@@ -591,6 +641,7 @@ export class WorldTourModeComponent implements AfterViewInit, OnDestroy {
 
   private clearCurrentStop(): void {
     this.stopPopupTracking();
+    this.resetPopupImage();
     this.selectedMarkerElement = undefined;
     this.currentStop = null;
     this.currentQuestion = null;

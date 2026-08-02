@@ -13,7 +13,7 @@
 
   @if (isLoading) {
     <div class="loader">
-      <app-loader></app-loader>
+      <app-loader-tetris />
     </div>
   } @else if (errorMessage) {
     <div class="state-message error-message">{{ errorMessage }}</div>
@@ -85,7 +85,15 @@
           [style.top]="popupPosition ? popupPosition.top + 'px' : '16px'"
         >
           <div class="quiz-popup__image-frame">
-            <img class="quiz-popup__image" [src]="stop.imageURL" alt="Current world tour stop" />
+            @if (isPopupImageLoading) {
+              <div class="quiz-popup__image-loader" role="status" aria-label="Loading image">
+                <app-loader></app-loader>
+              </div>
+            } @else if (hasPopupImageError) {
+              <div class="quiz-popup__image-error">Image unavailable</div>
+            } @else {
+              <img class="quiz-popup__image" [src]="popupImageSrc" alt="Current world tour stop" />
+            }
           </div>
           <div class="quiz-popup__question">{{ question.prompt }}</div>
           <div class="quiz-popup__options">
